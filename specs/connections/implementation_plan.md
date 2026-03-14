@@ -464,8 +464,8 @@ def hash_items(items: list[str]) -> str:
 - [ ] Test offline mode in Chrome DevTools
 
 ### Phase 8 — Data Pipeline (Week 4)
-- [ ] `kaggle_loader.py`: load IPL CSVs into SQLite
-- [ ] `normalizer.py`: unified schema
+- [x] `kaggle_loader.py`: load IPL CSVs into SQLite (`packages/data-pipeline/kaggle_loader.py` + `schema.py`)
+- [x] `normalizer.py`: unified schema
 - [ ] `espncricinfo.py`: basic squad/award scraper (rate-limited)
 - [ ] Manual data entry: nicknames, slogans, wordplay items
 
