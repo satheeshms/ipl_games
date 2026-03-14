@@ -452,10 +452,10 @@ def hash_items(items: list[str]) -> str:
 - [ ] `lib/share.ts`: build share text, clipboard copy, Web Share API
 
 ### Phase 6 — Help Modal & Polish (Week 3)
-- [ ] `HelpModal` with rules, color key, animated example
-- [ ] Accessibility: ARIA labels, keyboard nav (Tab + Enter)
-- [ ] Contrast audit (≥ 4.5:1 on all tile text)
-- [ ] Loading state while puzzle JSON fetches
+- [x] `HelpModal` with rules, color key, animated example (auto-shows on first visit, ? button in header, Escape to close)
+- [x] Accessibility: ARIA labels, keyboard nav (Tab + Enter to submit, Escape closes modal)
+- [x] Contrast audit (≥ 4.5:1 on all tile text — bumped white/40 → white/50 where needed)
+- [x] Loading state while puzzle JSON fetches
 
 ### Phase 7 — PWA (Week 4)
 - [ ] `vite-plugin-pwa` setup

@@ -1,13 +1,30 @@
+import { useState, useEffect } from 'react';
 import { usePuzzle } from './hooks/usePuzzle';
 import { Header } from './components/Header';
 import { GameBoard } from './components/GameBoard';
+import { HelpModal } from './components/HelpModal';
+
+const HELP_SEEN_KEY = 'ipl-connections-help-seen';
 
 function App() {
   const { puzzle, loading, error } = usePuzzle();
+  const [showHelp, setShowHelp] = useState(false);
+
+  // Auto-show on first visit
+  useEffect(() => {
+    if (!loading && puzzle && !localStorage.getItem(HELP_SEEN_KEY)) {
+      setShowHelp(true);
+    }
+  }, [loading, puzzle]);
+
+  function closeHelp() {
+    localStorage.setItem(HELP_SEEN_KEY, '1');
+    setShowHelp(false);
+  }
 
   return (
     <div className="min-h-screen bg-[#1a1a2e] flex flex-col">
-      {puzzle && <Header edition={puzzle.edition} date={puzzle.date} />}
+      {puzzle && <Header edition={puzzle.edition} date={puzzle.date} onHelp={() => setShowHelp(true)} />}
 
       <main className="flex-1 flex flex-col items-center justify-start pt-4">
         {loading && (
@@ -27,6 +44,8 @@ function App() {
           <GameBoard puzzle={puzzle} />
         )}
       </main>
+
+      {showHelp && <HelpModal onClose={closeHelp} />}
     </div>
   );
 }

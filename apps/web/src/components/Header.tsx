@@ -1,6 +1,7 @@
 interface HeaderProps {
   edition: number;
   date: string;
+  onHelp: () => void;
 }
 
 function formatDate(dateStr: string): string {
@@ -9,14 +10,23 @@ function formatDate(dateStr: string): string {
   return d.toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
 }
 
-export function Header({ edition, date }: HeaderProps) {
+export function Header({ edition, date, onHelp }: HeaderProps) {
   return (
     <header className="w-full px-4 py-3 border-b border-white/10">
       <div className="max-w-lg mx-auto flex items-center justify-between">
         <h1 className="text-xl font-bold text-white tracking-tight">IPL Connections</h1>
-        <span className="text-sm text-white/50">
-          #{edition} &middot; {formatDate(date)}
-        </span>
+        <div className="flex items-center gap-3">
+          <span className="text-sm text-white/50">
+            #{edition} &middot; {formatDate(date)}
+          </span>
+          <button
+            onClick={onHelp}
+            aria-label="How to play"
+            className="w-7 h-7 rounded-full border border-white/30 text-white/60 hover:text-white hover:border-white/60 text-sm font-bold transition-colors flex items-center justify-center"
+          >
+            ?
+          </button>
+        </div>
       </div>
     </header>
   );

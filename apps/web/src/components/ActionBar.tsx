@@ -8,9 +8,10 @@ interface ActionBarProps {
 
 export function ActionBar({ onShuffle, onDeselectAll, onSubmit, canSubmit, canDeselectAll }: ActionBarProps) {
   return (
-    <div className="flex items-center justify-center gap-3 flex-wrap">
+    <div className="flex items-center justify-center gap-3 flex-wrap" role="group" aria-label="Game actions">
       <button
         onClick={onShuffle}
+        aria-label="Shuffle tiles"
         className="rounded-full border border-white/40 px-6 py-2 text-sm font-medium text-white/80
                    hover:border-white/70 hover:text-white transition-colors duration-150"
       >
@@ -20,6 +21,8 @@ export function ActionBar({ onShuffle, onDeselectAll, onSubmit, canSubmit, canDe
       <button
         onClick={onDeselectAll}
         disabled={!canDeselectAll}
+        aria-disabled={!canDeselectAll}
+        aria-label="Deselect all tiles"
         className="rounded-full border border-white/40 px-6 py-2 text-sm font-medium text-white/80
                    hover:border-white/70 hover:text-white transition-colors duration-150
                    disabled:opacity-40 disabled:cursor-not-allowed"
@@ -30,6 +33,8 @@ export function ActionBar({ onShuffle, onDeselectAll, onSubmit, canSubmit, canDe
       <button
         onClick={onSubmit}
         disabled={!canSubmit}
+        aria-disabled={!canSubmit}
+        aria-label="Submit selected tiles"
         className="rounded-full bg-white px-6 py-2 text-sm font-semibold text-[#1a1a2e]
                    hover:bg-white/90 transition-colors duration-150
                    disabled:opacity-40 disabled:cursor-not-allowed"

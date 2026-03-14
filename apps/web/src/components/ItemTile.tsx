@@ -24,6 +24,8 @@ export function ItemTile({ item, isSelected, onSelect, onDeselect, disabled, sha
     <motion.button
       onClick={handleClick}
       disabled={disabled}
+      aria-pressed={isSelected}
+      aria-label={`${item}${isSelected ? ', selected' : ''}`}
       animate={bouncing ? { scale: [1, 1.1, 0.95, 1.05, 1] } : { scale: 1 }}
       transition={bouncing ? { duration: 0.4 } : { duration: 0.15 }}
       className={[
