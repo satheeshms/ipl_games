@@ -31,7 +31,7 @@ export function usePuzzle(): UsePuzzleResult {
 
       // Try fetching today's puzzle first
       try {
-        const res = await fetch(`/puzzles/${today}.json`);
+        const res = await fetch(`${import.meta.env.BASE_URL}puzzles/${today}.json`);
         if (res.ok) {
           const data: Puzzle = await res.json();
           if (!cancelled) {
@@ -46,7 +46,7 @@ export function usePuzzle(): UsePuzzleResult {
 
       // Fall back to dev.json
       try {
-        const res = await fetch('/puzzles/dev.json');
+        const res = await fetch(`${import.meta.env.BASE_URL}puzzles/dev.json`);
         if (!res.ok) {
           throw new Error(`Failed to load dev puzzle: ${res.status} ${res.statusText}`);
         }
