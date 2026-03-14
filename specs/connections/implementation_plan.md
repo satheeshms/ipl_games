@@ -424,10 +424,11 @@ def hash_items(items: list[str]) -> str:
 - [x] `usePuzzle` hook: load puzzle by today's date, fall back to `dev.json`
 
 ### Phase 2 — Game Engine (Week 1)
-- [ ] Implement `useGameEngine` reducer with all actions
-- [ ] Submit flow: async hash check, one-away detection, life deduction
-- [ ] Unit tests for reducer logic (Vitest)
-- [ ] Unit tests for `hash.ts` (verify matches `hash_util.py` output)
+- [x] Implement `useGameEngine` reducer with all actions
+- [x] Submit flow: async hash check, one-away detection, life deduction
+- [x] `lib/storage.ts`: localStorage save/load/clearStale helpers
+- [x] Unit tests for reducer logic (Vitest) — 28 tests passing
+- [x] Unit tests for `hash.ts` (verify matches `hash_util.py` output)
 
 ### Phase 3 — Core UI (Week 2)
 - [ ] `Header`, `ItemGrid`, `ItemTile` (select/deselect)
