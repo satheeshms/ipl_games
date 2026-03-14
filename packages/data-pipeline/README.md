@@ -83,9 +83,14 @@ python kaggle_loader.py --data-dir data/ --db data/ipl.db --reset
 python normalizer.py --db data/ipl.db --export-json data/ipl_data.json
 ```
 
+`kaggle_loader.py` loads in sequence:
+1. Venues, teams, IPL season winners
+2. Players and player-team links from match data
+3. Awards from `manual_awards.json` (Orange Cap, Purple Cap, Player of Tournament, Costliest Player)
+
 `normalizer.py` automatically runs in sequence:
 1. Merges renamed franchise aliases (e.g. Delhi Daredevils → Delhi Capitals)
-2. Loads all `ipl20??-squad` files (players, player-team links, head coaches)
+2. Loads all `ipl20??-squad` files via `squad_loader.py` (players, player-team links, head coaches)
 3. Loads `manual_coaches.json` for historical coach records
 4. Exports `data/ipl_data.json`
 
