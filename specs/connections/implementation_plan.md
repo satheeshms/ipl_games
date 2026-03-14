@@ -470,9 +470,9 @@ def hash_items(items: list[str]) -> str:
 - [ ] Manual data entry: nicknames, slogans, wordplay items
 
 ### Phase 9 — Puzzle Curator (Week 5)
-- [ ] `curator.py create` interactive flow
-- [ ] `curator.py validate` for existing files
-- [ ] `hash_util.py` with cross-validation test vs browser hash
+- [x] `curator.py create` interactive flow
+- [x] `curator.py validate` for existing files
+- [x] `hash_util.py` with cross-validation test vs browser hash
 - [ ] Generate first 7 puzzles for IPL season launch
 
 ### Phase 10 — Deployment (Week 5)

@@ -1,5 +1,2 @@
 .claude/settings.local.json
-packages/data-pipeline/__pycache__/espncricinfo.cpython-312.pyc
-packages/data-pipeline/__pycache__/kaggle_loader.cpython-312.pyc
-packages/data-pipeline/__pycache__/normalizer.cpython-312.pyc
-packages/data-pipeline/__pycache__/schema.cpython-312.pyc
+packages/data-pipeline/__pycache__/*

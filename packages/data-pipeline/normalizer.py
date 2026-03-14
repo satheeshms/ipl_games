@@ -95,7 +95,64 @@ def normalize_teams(conn) -> dict[int, int]:
 
 
 # ---------------------------------------------------------------------------
-# Step 2 — Export ipl_data.json
+# Step 2 — Load coaches from manual_coaches.json
+# ---------------------------------------------------------------------------
+
+def load_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
+    """
+    Read manual_coaches.json and insert into the coaches table.
+    Must run AFTER normalize_teams() so canonical team names exist.
+
+    Returns (rows_inserted, skipped_entries).
+    """
+    coaches_path = data_dir / "manual_coaches.json"
+    if not coaches_path.exists():
+        print(f"  [coaches] {coaches_path} not found, skipping.")
+        return 0, []
+
+    with open(coaches_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    # Build team_name -> team_id map
+    team_map = {
+        name: tid
+        for tid, name in conn.execute("SELECT id, name FROM teams").fetchall()
+    }
+
+    rows = []
+    skipped = []
+
+    for season_str, team_coaches in data.get("coaches", {}).items():
+        if season_str.startswith("_"):
+            continue
+        try:
+            season = int(season_str)
+        except ValueError:
+            skipped.append(f"Invalid season '{season_str}'")
+            continue
+
+        for team_name, coach_name in team_coaches.items():
+            team_id = team_map.get(team_name)
+            if team_id is None:
+                skipped.append(f"{season} {team_name}: team not in DB")
+                continue
+            rows.append((team_id, season, coach_name))
+
+    if skipped:
+        print(f"  [coaches] {len(skipped)} entries skipped:")
+        for s in skipped:
+            print(f"    {s}")
+
+    conn.executemany(
+        "INSERT OR REPLACE INTO coaches (team_id, season, name) VALUES (?, ?, ?)",
+        rows,
+    )
+    conn.commit()
+    return len(rows), skipped
+
+
+# ---------------------------------------------------------------------------
+# Step 3 — Export ipl_data.json
 # ---------------------------------------------------------------------------
 
 def export_json(conn, out_path: Path) -> None:
@@ -190,6 +247,21 @@ def export_json(conn, out_path: Path) -> None:
         for r in conn.execute("SELECT id, name, city FROM venues ORDER BY name")
     ]
 
+    coaches = [
+        {
+            "team_id": r[0],
+            "team_name": r[1],
+            "season": r[2],
+            "coach": r[3],
+        }
+        for r in conn.execute("""
+            SELECT c.team_id, t.name, c.season, c.name
+            FROM coaches c
+            JOIN teams t ON t.id = c.team_id
+            ORDER BY c.season, t.name
+        """)
+    ]
+
     data = {
         "teams": teams,
         "players": players,
@@ -197,6 +269,7 @@ def export_json(conn, out_path: Path) -> None:
         "awards": awards,
         "ipl_wins": ipl_wins,
         "venues": venues,
+        "coaches": coaches,
     }
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -206,7 +279,7 @@ def export_json(conn, out_path: Path) -> None:
     print(f"  Exported {out_path}")
     print(f"    teams: {len(teams)}, players: {len(players)}, "
           f"player_teams: {len(player_teams)}, awards: {len(awards)}, "
-          f"ipl_wins: {len(ipl_wins)}, venues: {len(venues)}")
+          f"ipl_wins: {len(ipl_wins)}, venues: {len(venues)}, coaches: {len(coaches)}")
 
 
 # ---------------------------------------------------------------------------
@@ -256,10 +329,15 @@ def main() -> None:
     else:
         print(f"  {len(merged)} team(s) merged.")
 
-    # Step 2 — JSON export
+    # Step 2 — coaches
+    print("Step 2: Loading coaches...")
+    n, skipped = load_coaches(conn, db_path.parent)
+    print(f"  {n} coach records loaded, {len(skipped)} skipped.")
+
+    # Step 3 — JSON export
     if not args.no_export:
         json_path = args.export_json or db_path.parent / "ipl_data.json"
-        print(f"Step 2: Exporting {json_path}...")
+        print(f"Step 3: Exporting {json_path}...")
         export_json(conn, json_path)
 
     conn.close()

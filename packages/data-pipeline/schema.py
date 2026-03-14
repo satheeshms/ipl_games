@@ -51,9 +51,18 @@ CREATE TABLE IF NOT EXISTS venues (
     city     TEXT,
     aliases  TEXT
 );
+
+CREATE TABLE IF NOT EXISTS coaches (
+    id       INTEGER PRIMARY KEY,
+    team_id  INTEGER REFERENCES teams(id),
+    season   INTEGER,
+    name     TEXT,
+    UNIQUE (team_id, season)
+);
 """
 
 DROP_TABLES = """
+DROP TABLE IF EXISTS coaches;
 DROP TABLE IF EXISTS awards;
 DROP TABLE IF EXISTS ipl_wins;
 DROP TABLE IF EXISTS player_teams;
