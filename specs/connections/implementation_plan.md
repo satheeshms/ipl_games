@@ -431,12 +431,12 @@ def hash_items(items: list[str]) -> str:
 - [x] Unit tests for `hash.ts` (verify matches `hash_util.py` output)
 
 ### Phase 3 — Core UI (Week 2)
-- [ ] `Header`, `ItemGrid`, `ItemTile` (select/deselect)
-- [ ] `CategoryBanner` (revealed group)
-- [ ] `LivesIndicator`
-- [ ] `ActionBar` (Shuffle, Deselect All, Submit)
-- [ ] Wire components to `useGameEngine`
-- [ ] Basic Tailwind styling, mobile layout
+- [x] `Header`, `ItemGrid`, `ItemTile` (select/deselect)
+- [x] `CategoryBanner` (revealed group)
+- [x] `LivesIndicator`
+- [x] `ActionBar` (Shuffle, Deselect All, Submit)
+- [x] Wire components to `useGameEngine`
+- [x] Basic Tailwind styling, mobile layout
 
 ### Phase 4 — Animations (Week 2)
 - [ ] Tile shake animation on wrong guess (CSS keyframe)

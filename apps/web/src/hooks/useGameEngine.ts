@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useCallback } from 'react';
-import type { GameState, GameStatus, Color, Puzzle } from '../types';
+import type { GameState, Color, Puzzle } from '../types';
 import { shuffle } from '../lib/shuffle';
 import { hashItems } from '../lib/hash';
 import { saveState, loadState } from '../lib/storage';
