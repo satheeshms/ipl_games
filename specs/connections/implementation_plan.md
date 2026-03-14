@@ -476,9 +476,9 @@ def hash_items(items: list[str]) -> str:
 - [ ] Generate first 7 puzzles for IPL season launch
 
 ### Phase 10 — Deployment (Week 5)
-- [ ] GitHub Actions: build `apps/web/` → deploy to GitHub Pages
-- [ ] Puzzle JSON committed to repo (part of static assets)
-- [ ] Configure base URL for GitHub Pages sub-path
+- [x] GitHub Actions: build `apps/web/` → deploy to GitHub Pages
+- [x] Puzzle JSON committed to repo (part of static assets)
+- [x] Configure base URL for GitHub Pages sub-path
 - [ ] Smoke test on real mobile devices (iOS Safari, Android Chrome)
 
 ---
