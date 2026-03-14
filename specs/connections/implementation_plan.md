@@ -416,12 +416,12 @@ def hash_items(items: list[str]) -> str:
 ## 12. Implementation Phases
 
 ### Phase 1 — Project Scaffold (Week 1)
-- [ ] Init Vite + React + TypeScript project in `apps/web/`
-- [ ] Configure Tailwind CSS
-- [ ] Define all TypeScript types (`src/types/index.ts`)
-- [ ] Implement `lib/hash.ts` and `lib/shuffle.ts`
-- [ ] Create sample puzzle JSON for local dev (`public/puzzles/dev.json`)
-- [ ] `usePuzzle` hook: load puzzle by today's date, fall back to `dev.json`
+- [x] Init Vite + React + TypeScript project in `apps/web/`
+- [x] Configure Tailwind CSS
+- [x] Define all TypeScript types (`src/types/index.ts`)
+- [x] Implement `lib/hash.ts` and `lib/shuffle.ts`
+- [x] Create sample puzzle JSON for local dev (`public/puzzles/dev.json`)
+- [x] `usePuzzle` hook: load puzzle by today's date, fall back to `dev.json`
 
 ### Phase 2 — Game Engine (Week 1)
 - [ ] Implement `useGameEngine` reducer with all actions

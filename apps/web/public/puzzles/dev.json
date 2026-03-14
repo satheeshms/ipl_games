@@ -1,0 +1,33 @@
+{
+  "id": "dev",
+  "date": "2026-03-14",
+  "edition": 1,
+  "items": [
+    "Thala", "Rohit Sharma", "Dwayne Bravo", "MS Dhoni",
+    "Shane Warne", "Hitman", "Yuzvendra Chahal", "King",
+    "Ruturaj Gaikwad", "Harshal Patel", "Adam Gilchrist", "Universe Boss",
+    "Bhuvneshwar Kumar", "Gautam Gambhir", "Deepak Chahar", "Ravindra Jadeja"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "CSK Players",
+      "hash": "753706144fc233169880b91c9005090779ac9a468be8f76632d9499979e891b3"
+    },
+    {
+      "color": "green",
+      "title": "Purple Cap Winners",
+      "hash": "6437fb428c7b3343eadf2e14b4304447f0a04c5ca68181dfc3af5e6cbc6ebc04"
+    },
+    {
+      "color": "blue",
+      "title": "IPL Winning Captains (first time)",
+      "hash": "1c220d9dce0fed47b30cac25aba057809f10713da8fc7b4c54dadd89f6129e9e"
+    },
+    {
+      "color": "purple",
+      "title": "Player Nicknames",
+      "hash": "58d9d8330433ba08338a9f9834d8ff62cbdc165806cbddf6b7edbffea508d23a"
+    }
+  ]
+}
