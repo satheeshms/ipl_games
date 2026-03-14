@@ -46,17 +46,6 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [puzzle.id]);
 
-  // Keyboard: Enter to submit when 4 items selected
-  useEffect(() => {
-    function onKeyDown(e: KeyboardEvent) {
-      if (e.key === 'Enter' && state.selected.length === 4 && state.status === 'playing') {
-        handleSubmit();
-      }
-    }
-    window.addEventListener('keydown', onKeyDown);
-    return () => window.removeEventListener('keydown', onKeyDown);
-  }, [state.selected.length, state.status, handleSubmit]);
-
   // Handle "One Away!" toast
   useEffect(() => {
     if (state.oneAway) {
@@ -110,6 +99,17 @@ export function GameBoard({ puzzle }: GameBoardProps) {
       engine.wrongGuess(oneAway);
     }
   }, [state, engine]);
+
+  // Keyboard: Enter to submit when 4 items selected
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      if (e.key === 'Enter' && state.selected.length === 4 && state.status === 'playing') {
+        handleSubmit();
+      }
+    }
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [state.selected.length, state.status, handleSubmit]);
 
   // When the puzzle resets (new puzzle.id), reset modal closed state
   useEffect(() => {
