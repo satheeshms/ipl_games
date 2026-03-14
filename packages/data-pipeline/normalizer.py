@@ -329,15 +329,20 @@ def main() -> None:
     else:
         print(f"  {len(merged)} team(s) merged.")
 
-    # Step 2 — coaches
-    print("Step 2: Loading coaches...")
+    # Step 2 — squads
+    print("Step 2: Loading squad files...")
+    from squad_loader import load_squads
+    load_squads(conn, db_path.parent)
+
+    # Step 3 — coaches
+    print("Step 3: Loading coaches...")
     n, skipped = load_coaches(conn, db_path.parent)
     print(f"  {n} coach records loaded, {len(skipped)} skipped.")
 
-    # Step 3 — JSON export
+    # Step 4 — JSON export
     if not args.no_export:
         json_path = args.export_json or db_path.parent / "ipl_data.json"
-        print(f"Step 3: Exporting {json_path}...")
+        print(f"Step 4: Exporting {json_path}...")
         export_json(conn, json_path)
 
     conn.close()

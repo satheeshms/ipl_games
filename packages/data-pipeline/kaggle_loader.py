@@ -254,111 +254,7 @@ def load_player_teams(conn, matches_df, deliveries_df, player_id_map: dict,
 
 
 # ---------------------------------------------------------------------------
-# Step 7 — Orange Cap
-# ---------------------------------------------------------------------------
-
-def load_orange_cap(conn, matches_df, deliveries_df, player_id_map: dict) -> None:
-    """Insert orange_cap awards (top run scorer per season)."""
-    import pandas as pd
-
-    df = deliveries_df.copy()
-
-    # Handle is_super_over column
-    if "is_super_over" in df.columns:
-        df["is_super_over"] = pd.to_numeric(df["is_super_over"], errors="coerce").fillna(0).astype(int)
-        df = df[df["is_super_over"] == 0]
-
-    # Join seasons
-    match_season = matches_df[["id", "season"]].copy()
-    match_season["season"] = match_season["season"].apply(_coerce_season)
-    match_season = match_season.rename(columns={"id": "match_id"})
-    df = df.merge(match_season, on="match_id", how="left")
-
-    # Support both old ("batsman") and new ("batter") column names
-    batter_col = "batsman" if "batsman" in df.columns else "batter" if "batter" in df.columns else None
-    if "batsman_runs" not in df.columns or batter_col is None:
-        print("  [orange_cap] Required columns missing, skipping.")
-        return
-
-    runs = (
-        df.groupby(["season", batter_col])["batsman_runs"]
-        .sum()
-        .reset_index()
-        .rename(columns={batter_col: "batsman"})
-    )
-
-    rows = []
-    for season, group in runs.groupby("season"):
-        top = group.loc[group["batsman_runs"].idxmax()]
-        pid = player_id_map.get(top["batsman"])
-        if pid is None:
-            continue
-        rows.append(("orange_cap", pid, season))
-
-    conn.executemany(
-        "INSERT OR REPLACE INTO awards (type, player_id, season) VALUES (?, ?, ?)",
-        rows,
-    )
-    conn.commit()
-
-
-# ---------------------------------------------------------------------------
-# Step 8 — Purple Cap
-# ---------------------------------------------------------------------------
-
-_NON_BOWLER_DISMISSALS = {"run out", "retired hurt", "obstructing the field"}
-
-
-def load_purple_cap(conn, matches_df, deliveries_df, player_id_map: dict) -> None:
-    """Insert purple_cap awards (top wicket taker per season)."""
-    import pandas as pd
-
-    df = deliveries_df.copy()
-
-    if "player_dismissed" not in df.columns or "dismissal_kind" not in df.columns:
-        print("  [purple_cap] Required columns missing, skipping.")
-        return
-
-    # Keep only rows that are genuine bowler wickets
-    df = df[
-        df["player_dismissed"].notna()
-        & ~df["dismissal_kind"].isin(_NON_BOWLER_DISMISSALS)
-    ]
-
-    # Join seasons
-    match_season = matches_df[["id", "season"]].copy()
-    match_season["season"] = match_season["season"].apply(_coerce_season)
-    match_season = match_season.rename(columns={"id": "match_id"})
-    df = df.merge(match_season, on="match_id", how="left")
-
-    if "bowler" not in df.columns:
-        print("  [purple_cap] bowler column missing, skipping.")
-        return
-
-    wickets = (
-        df.groupby(["season", "bowler"])["player_dismissed"]
-        .count()
-        .reset_index()
-        .rename(columns={"player_dismissed": "wickets"})
-    )
-
-    rows = []
-    for season, group in wickets.groupby("season"):
-        top = group.loc[group["wickets"].idxmax()]
-        pid = player_id_map.get(top["bowler"])
-        if pid is None:
-            continue
-        rows.append(("purple_cap", pid, season))
-
-    conn.executemany(
-        "INSERT OR REPLACE INTO awards (type, player_id, season) VALUES (?, ?, ?)",
-        rows,
-    )
-    conn.commit()
-
-
-# ---------------------------------------------------------------------------
-# Step 9 — Manual awards (player_of_tournament etc.)
+# Step 7 — Manual awards (orange_cap, purple_cap, player_of_tournament, costliest_player)
 # ---------------------------------------------------------------------------
 
 def load_manual_awards(conn, data_dir: Path, player_id_map: dict) -> int:
@@ -406,7 +302,7 @@ def load_manual_awards(conn, data_dir: Path, player_id_map: dict) -> int:
 
 
 # ---------------------------------------------------------------------------
-# Step 11 — Summary
+# Step 8 — Summary
 # ---------------------------------------------------------------------------
 
 def print_summary(conn) -> None:
@@ -423,7 +319,8 @@ def print_summary(conn) -> None:
     orange_n = count("awards", "type='orange_cap'")
     purple_n = count("awards", "type='purple_cap'")
     pot_n = count("awards", "type='player_of_tournament'")
-    awards_n = orange_n + purple_n + pot_n
+    costliest_n = count("awards", "type='costliest_player'")
+    awards_n = orange_n + purple_n + pot_n + costliest_n
     ipl_wins_n = count("ipl_wins")
 
     print("\nLoaded:")
@@ -433,7 +330,8 @@ def print_summary(conn) -> None:
     print(f"  player_teams: {player_teams_n}")
     print(
         f"  awards:       {awards_n} "
-        f"({orange_n} orange_cap + {purple_n} purple_cap + {pot_n} player_of_tournament)"
+        f"({orange_n} orange_cap + {purple_n} purple_cap + {pot_n} player_of_tournament + {costliest_n} costliest_player)"
+        f"  [all from manual_awards.json]"
     )
     print(f"  ipl_wins:     {ipl_wins_n}")
 
@@ -539,30 +437,14 @@ def main() -> None:
 
     # Step 7
     try:
-        print("Step 7: Loading Orange Cap awards...")
-        load_orange_cap(conn, matches_df, deliveries_df, player_id_map)
-    except Exception as exc:
-        print(f"Step 7 (orange_cap) FAILED: {exc}")
-        sys.exit(1)
-
-    # Step 8
-    try:
-        print("Step 8: Loading Purple Cap awards...")
-        load_purple_cap(conn, matches_df, deliveries_df, player_id_map)
-    except Exception as exc:
-        print(f"Step 8 (purple_cap) FAILED: {exc}")
-        sys.exit(1)
-
-    # Step 9
-    try:
-        print("Step 9: Loading manual awards (player_of_tournament)...")
+        print("Step 7: Loading manual awards (orange_cap, purple_cap, player_of_tournament, costliest_player)...")
         n = load_manual_awards(conn, data_dir, player_id_map)
         print(f"  {n} manual award entries loaded")
     except Exception as exc:
-        print(f"Step 9 (manual_awards) FAILED: {exc}")
+        print(f"Step 7 (manual_awards) FAILED: {exc}")
         sys.exit(1)
 
-    # Step 10
+    # Step 8
     print_summary(conn)
 
     conn.close()

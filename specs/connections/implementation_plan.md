@@ -346,7 +346,8 @@ VitePWA({
 
 | Script | Source | Output |
 |---|---|---|
-| `kaggle_loader.py` | Kaggle IPL dataset CSV | Normalized player/team/award records |
+| `kaggle_loader.py` | Kaggle IPL dataset CSV | Normalized player/team/award records (awards loaded from manual_awards.json — orange_cap, purple_cap, player_of_tournament, costliest_player sourced from Wikipedia/official records) |
+| `squad_loader.py` | `ipl20??-squad` CSV files (Team, Complete Squad List) | Players + player_teams for 2025/2026 seasons; season inferred from filename |
 | `espncricinfo.py` | Web scraping (respectful, rate-limited) | Recent season stats, squad lists |
 | `normalizer.py` | All scrapers | `data/ipl_data.json` + `data/ipl.db` (SQLite) |
 
@@ -357,7 +358,7 @@ VitePWA({
 players(id, name, nicknames, nationality, batting_hand, bowling_hand)
 teams(id, name, short_name, city, home_venue, active_from, active_to)
 player_teams(player_id, team_id, season)
-awards(type, player_id, season)          -- type: orange_cap, purple_cap, mvp
+awards(type, player_id, season)          -- type: orange_cap, purple_cap, player_of_tournament, costliest_player
 ipl_wins(team_id, season, captain_id)
 venues(id, name, city, aliases)
 ```

@@ -1,4 +1,4 @@
-*.csv
+
 *.db
-*.json
+ipl_data.json
 !.gitkeep

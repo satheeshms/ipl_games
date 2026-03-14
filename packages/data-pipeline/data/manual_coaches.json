@@ -1,0 +1,199 @@
+{
+  "_note": "Head coaches per team per season. Team names use canonical names (post-normalizer). Add new seasons at the end.",
+  "coaches": {
+    "2008": {
+      "Chennai Super Kings": "M Vettori",
+      "Delhi Daredevils": "Mohammad Azharuddin",
+      "Kings XI Punjab": "Dav Whatmore",
+      "Kolkata Knight Riders": "John Buchanan",
+      "Mumbai Indians": "Lalchand Rajput",
+      "Rajasthan Royals": "Shane Warne",
+      "Royal Challengers Bangalore": "Ray Jennings",
+      "Deccan Chargers": "Dean Jones"
+    },
+    "2009": {
+      "Chennai Super Kings": "M Vettori",
+      "Delhi Daredevils": "Greg Shipperd",
+      "Kings XI Punjab": "Dav Whatmore",
+      "Kolkata Knight Riders": "John Buchanan",
+      "Mumbai Indians": "Lalchand Rajput",
+      "Rajasthan Royals": "Shane Warne",
+      "Royal Challengers Bangalore": "Ray Jennings",
+      "Deccan Chargers": "Darren Lehmann"
+    },
+    "2010": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Daredevils": "Greg Shipperd",
+      "Kings XI Punjab": "Dav Whatmore",
+      "Kolkata Knight Riders": "John Buchanan",
+      "Mumbai Indians": "Lalchand Rajput",
+      "Rajasthan Royals": "Zubin Bharucha",
+      "Royal Challengers Bangalore": "Ray Jennings",
+      "Deccan Chargers": "Darren Lehmann",
+      "Kochi Tuskers Kerala": "Bob Cottam",
+      "Pune Warriors India": "Ravi Shastri"
+    },
+    "2011": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Daredevils": "Greg Shipperd",
+      "Kings XI Punjab": "Dav Whatmore",
+      "Kolkata Knight Riders": "Trevor Bayliss",
+      "Mumbai Indians": "Anil Kumble",
+      "Rajasthan Royals": "Zubin Bharucha",
+      "Royal Challengers Bangalore": "Ray Jennings",
+      "Deccan Chargers": "Darren Lehmann",
+      "Kochi Tuskers Kerala": "Bob Cottam",
+      "Pune Warriors India": "Ravi Shastri"
+    },
+    "2012": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Daredevils": "Greg Shipperd",
+      "Kings XI Punjab": "Michael Bevan",
+      "Kolkata Knight Riders": "Trevor Bayliss",
+      "Mumbai Indians": "Anil Kumble",
+      "Rajasthan Royals": "Paddy Upton",
+      "Royal Challengers Bangalore": "Ray Jennings",
+      "Deccan Chargers": "Darren Lehmann",
+      "Pune Warriors India": "Ravi Shastri",
+      "Sunrisers Hyderabad": "Tom Moody"
+    },
+    "2013": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Daredevils": "Greg Shipperd",
+      "Kings XI Punjab": "Michael Bevan",
+      "Kolkata Knight Riders": "Trevor Bayliss",
+      "Mumbai Indians": "John Wright",
+      "Rajasthan Royals": "Paddy Upton",
+      "Royal Challengers Bangalore": "Ray Jennings",
+      "Sunrisers Hyderabad": "Tom Moody"
+    },
+    "2014": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Daredevils": "Gary Kirsten",
+      "Kings XI Punjab": "Sanjay Bangar",
+      "Kolkata Knight Riders": "Trevor Bayliss",
+      "Mumbai Indians": "John Wright",
+      "Rajasthan Royals": "Paddy Upton",
+      "Royal Challengers Bangalore": "Daniel Vettori",
+      "Sunrisers Hyderabad": "Tom Moody"
+    },
+    "2015": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Daredevils": "Gary Kirsten",
+      "Kings XI Punjab": "Sanjay Bangar",
+      "Kolkata Knight Riders": "Trevor Bayliss",
+      "Mumbai Indians": "Mahela Jayawardene",
+      "Rajasthan Royals": "Paddy Upton",
+      "Royal Challengers Bangalore": "Daniel Vettori",
+      "Sunrisers Hyderabad": "Tom Moody"
+    },
+    "2016": {
+      "Delhi Daredevils": "Gary Kirsten",
+      "Gujarat Lions": "Brad Hodge",
+      "Kings XI Punjab": "Sanjay Bangar",
+      "Kolkata Knight Riders": "Jacques Kallis",
+      "Mumbai Indians": "Mahela Jayawardene",
+      "Rising Pune Supergiants": "Stephen Fleming",
+      "Royal Challengers Bangalore": "Daniel Vettori",
+      "Sunrisers Hyderabad": "Tom Moody"
+    },
+    "2017": {
+      "Delhi Daredevils": "Gary Kirsten",
+      "Gujarat Lions": "Brad Hodge",
+      "Kings XI Punjab": "Brad Haddin",
+      "Kolkata Knight Riders": "Jacques Kallis",
+      "Mumbai Indians": "Mahela Jayawardene",
+      "Rising Pune Supergiants": "Stephen Fleming",
+      "Royal Challengers Bangalore": "Daniel Vettori",
+      "Sunrisers Hyderabad": "Tom Moody"
+    },
+    "2018": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Daredevils": "Ricky Ponting",
+      "Kings XI Punjab": "Brad Haddin",
+      "Kolkata Knight Riders": "Jacques Kallis",
+      "Mumbai Indians": "Mahela Jayawardene",
+      "Rajasthan Royals": "Paddy Upton",
+      "Royal Challengers Bangalore": "Daniel Vettori",
+      "Sunrisers Hyderabad": "Tom Moody"
+    },
+    "2019": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Capitals": "Ricky Ponting",
+      "Kings XI Punjab": "Mike Hesson",
+      "Kolkata Knight Riders": "Jacques Kallis",
+      "Mumbai Indians": "Mahela Jayawardene",
+      "Rajasthan Royals": "Andrew McDonald",
+      "Royal Challengers Bangalore": "Gary Kirsten",
+      "Sunrisers Hyderabad": "Tom Moody"
+    },
+    "2020": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Capitals": "Ricky Ponting",
+      "Kings XI Punjab": "Anil Kumble",
+      "Kolkata Knight Riders": "Brendon McCullum",
+      "Mumbai Indians": "Mahela Jayawardene",
+      "Rajasthan Royals": "Andrew McDonald",
+      "Royal Challengers Bangalore": "Simon Katich",
+      "Sunrisers Hyderabad": "Trevor Bayliss"
+    },
+    "2021": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Capitals": "Ricky Ponting",
+      "Kings XI Punjab": "Anil Kumble",
+      "Kolkata Knight Riders": "Brendon McCullum",
+      "Mumbai Indians": "Mahela Jayawardene",
+      "Rajasthan Royals": "Trevor Penney",
+      "Royal Challengers Bangalore": "Mike Hesson",
+      "Sunrisers Hyderabad": "Trevor Bayliss"
+    },
+    "2022": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Capitals": "Ricky Ponting",
+      "Gujarat Titans": "Ashish Nehra",
+      "Kolkata Knight Riders": "Brendon McCullum",
+      "Lucknow Super Giants": "Andy Flower",
+      "Mumbai Indians": "Mahela Jayawardene",
+      "Punjab Kings": "Anil Kumble",
+      "Rajasthan Royals": "Kumar Sangakkara",
+      "Royal Challengers Bangalore": "Sanjay Bangar",
+      "Sunrisers Hyderabad": "Tom Moody"
+    },
+    "2023": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Capitals": "Ricky Ponting",
+      "Gujarat Titans": "Ashish Nehra",
+      "Kolkata Knight Riders": "Chandrakant Pandit",
+      "Lucknow Super Giants": "Andy Flower",
+      "Mumbai Indians": "Mark Boucher",
+      "Punjab Kings": "Trevor Bayliss",
+      "Rajasthan Royals": "Kumar Sangakkara",
+      "Royal Challengers Bangalore": "Sanjay Bangar",
+      "Sunrisers Hyderabad": "Brian Lara"
+    },
+    "2024": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Capitals": "Ricky Ponting",
+      "Gujarat Titans": "Ashish Nehra",
+      "Kolkata Knight Riders": "Chandrakant Pandit",
+      "Lucknow Super Giants": "Justin Langer",
+      "Mumbai Indians": "Mark Boucher",
+      "Punjab Kings": "Trevor Bayliss",
+      "Rajasthan Royals": "Kumar Sangakkara",
+      "Royal Challengers Bengaluru": "Andy Flower",
+      "Sunrisers Hyderabad": "Daniel Vettori"
+    },
+    "2025": {
+      "Chennai Super Kings": "Stephen Fleming",
+      "Delhi Capitals": "Hemang Badani",
+      "Gujarat Titans": "Ashish Nehra",
+      "Kolkata Knight Riders": "Chandrakant Pandit",
+      "Lucknow Super Giants": "Justin Langer",
+      "Mumbai Indians": "Mark Boucher",
+      "Punjab Kings": "Ricky Ponting",
+      "Rajasthan Royals": "Rahul Dravid",
+      "Royal Challengers Bengaluru": "Andy Flower",
+      "Sunrisers Hyderabad": "Daniel Vettori"
+    }
+  }
+}
