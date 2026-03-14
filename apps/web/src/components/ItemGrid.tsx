@@ -6,9 +6,11 @@ interface ItemGridProps {
   onSelect: (item: string) => void;
   onDeselect: (item: string) => void;
   disabled: boolean;
+  shakingItems?: string[];
+  bouncingItems?: string[];
 }
 
-export function ItemGrid({ items, selected, onSelect, onDeselect, disabled }: ItemGridProps) {
+export function ItemGrid({ items, selected, onSelect, onDeselect, disabled, shakingItems = [], bouncingItems = [] }: ItemGridProps) {
   return (
     <div className="grid grid-cols-4 gap-2 w-full">
       {items.map(item => (
@@ -19,6 +21,8 @@ export function ItemGrid({ items, selected, onSelect, onDeselect, disabled }: It
           onSelect={() => onSelect(item)}
           onDeselect={() => onDeselect(item)}
           disabled={disabled}
+          shaking={shakingItems.includes(item)}
+          bouncing={bouncingItems.includes(item)}
         />
       ))}
     </div>

@@ -439,10 +439,11 @@ def hash_items(items: list[str]) -> str:
 - [x] Basic Tailwind styling, mobile layout
 
 ### Phase 4 — Animations (Week 2)
-- [ ] Tile shake animation on wrong guess (CSS keyframe)
-- [ ] Correct group reveal: tiles animate up into banner (Framer Motion)
-- [ ] "One Away!" toast with auto-dismiss
-- [ ] Smooth tile deselection on wrong guess
+- [x] Tile shake animation on wrong guess (CSS keyframe)
+- [x] Correct group reveal: tiles bounce then banner spring slides in (Framer Motion)
+- [x] "One Away!" toast with auto-dismiss (AnimatePresence fade + slide)
+- [x] Smooth tile deselection on wrong guess
+- [x] Framer Motion installed; `useGameEngine` gained `revealCategory()` + `wrongGuess()` for animation-controlled dispatch timing; hash logic moved to `GameBoard.handleSubmit`
 
 ### Phase 5 — Session & Sharing (Week 3)
 - [ ] `lib/storage.ts` + `useLocalStorage` hook

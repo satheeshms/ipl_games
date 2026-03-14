@@ -146,6 +146,8 @@ interface UseGameEngineResult {
   submitGuess: () => Promise<void>;
   loadPuzzle: (puzzle: Puzzle) => void;
   clearOneAway: () => void;
+  revealCategory: (color: Color) => void;
+  wrongGuess: (oneAway: boolean) => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -263,6 +265,28 @@ export function useGameEngine(): UseGameEngineResult {
     }
   }, [state]);
 
+  // ------------------------------------------------------------------
+  // revealCategory — dispatches REVEAL_CATEGORY then checks for win
+  // ------------------------------------------------------------------
+  const revealCategory = useCallback((color: Color) => {
+    dispatch({ type: 'REVEAL_CATEGORY', payload: { color } });
+    // Use state snapshot captured at call time to check win condition
+    if (state.puzzle && state.revealedCategories.length + 1 === state.puzzle.categories.length) {
+      dispatch({ type: 'GAME_OVER', payload: { status: 'won' } });
+    }
+  }, [state]);
+
+  // ------------------------------------------------------------------
+  // wrongGuess — dispatches WRONG_GUESS then checks for game over
+  // ------------------------------------------------------------------
+  const wrongGuess = useCallback((oneAway: boolean) => {
+    dispatch({ type: 'WRONG_GUESS', payload: { oneAway } });
+    // lives - 1 because the reducer hasn't run yet at this point
+    if (state.lives - 1 === 0) {
+      dispatch({ type: 'GAME_OVER', payload: { status: 'lost' } });
+    }
+  }, [state]);
+
   return {
     state,
     selectItem,
@@ -272,5 +296,7 @@ export function useGameEngine(): UseGameEngineResult {
     submitGuess,
     loadPuzzle,
     clearOneAway,
+    revealCategory,
+    wrongGuess,
   };
 }

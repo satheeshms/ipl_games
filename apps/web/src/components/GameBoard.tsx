@@ -1,6 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
-import type { Puzzle } from '../types';
+import type { Puzzle, PuzzleCategory } from '../types';
 import { useGameEngine } from '../hooks/useGameEngine';
+import { hashItems } from '../lib/hash';
 import { CategoryBanner } from './CategoryBanner';
 import { ItemGrid } from './ItemGrid';
 import { LivesIndicator } from './LivesIndicator';
@@ -12,6 +13,21 @@ interface GameBoardProps {
   puzzle: Puzzle;
 }
 
+async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<boolean> {
+  const remainingItems = gridItems.filter(gi => !selected.includes(gi));
+  for (const category of categories) {
+    for (let removeIdx = 0; removeIdx < selected.length; removeIdx++) {
+      const threesome = selected.filter((_, idx) => idx !== removeIdx);
+      for (const candidate of remainingItems) {
+        // eslint-disable-next-line no-await-in-loop
+        const comboHash = await hashItems([...threesome, candidate]);
+        if (comboHash === category.hash) return true;
+      }
+    }
+  }
+  return false;
+}
+
 export function GameBoard({ puzzle }: GameBoardProps) {
   const engine = useGameEngine();
   const { state } = engine;
@@ -20,6 +36,9 @@ export function GameBoard({ puzzle }: GameBoardProps) {
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   // Whether the modal has been explicitly closed by the user
   const [modalClosed, setModalClosed] = useState(false);
+  // Animation state
+  const [shakingItems, setShakingItems] = useState<string[]>([]);
+  const [bouncingItems, setBouncingItems] = useState<string[]>([]);
 
   // Load puzzle on mount / when puzzle id changes
   useEffect(() => {
@@ -39,32 +58,47 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     }
   }, [state.oneAway]);
 
-  // Handle submit with duplicate-guess detection
+  // Handle submit with inline hash logic and animations
   const handleSubmit = useCallback(async () => {
-    if (state.status !== 'playing') return;
-    if (state.selected.length !== 4) return;
+    if (state.status !== 'playing' || state.selected.length !== 4 || !state.puzzle) return;
 
-    // Check for duplicate guess: compare sorted selected against all previous guesses
-    const sortedSelected = [...state.selected].sort();
+    // Capture before any state change
+    const selectedItems = [...state.selected];
+
+    // Duplicate check
+    const sortedSelected = [...selectedItems].sort();
     const isDuplicate = state.guessHistory.some(g => {
-      const sortedGuess = [...g.items].sort();
-      return (
-        sortedGuess.length === sortedSelected.length &&
-        sortedGuess.every((item, i) => item === sortedSelected[i])
-      );
+      const s = [...g.items].sort();
+      return s.length === 4 && s.every((item, i) => item === sortedSelected[i]);
     });
 
     if (isDuplicate) {
       setToastMessage('Already guessed!');
-      const timer = setTimeout(() => setToastMessage(null), 2000);
-      // Return cleanup — we can't return from an async callback in useCallback easily,
-      // so we just schedule the clear.
-      void timer;
+      setTimeout(() => setToastMessage(null), 2000);
       return;
     }
 
-    await engine.submitGuess();
-  }, [state.status, state.selected, state.guessHistory, engine]);
+    // Hash check
+    const guessHash = await hashItems(selectedItems);
+    const matched = state.puzzle.categories.find(c => c.hash === guessHash);
+
+    if (matched) {
+      // Bounce animation then reveal
+      setBouncingItems(selectedItems);
+      setTimeout(() => {
+        setBouncingItems([]);
+        engine.revealCategory(matched.color);
+      }, 500);
+    } else {
+      // Shake animation
+      setShakingItems(selectedItems);
+      setTimeout(() => setShakingItems([]), 650);
+
+      // One-away check
+      const oneAway = await checkOneAway(selectedItems, state.gridItems, state.puzzle.categories);
+      engine.wrongGuess(oneAway);
+    }
+  }, [state, engine]);
 
   // When the puzzle resets (new puzzle.id), reset modal closed state
   useEffect(() => {
@@ -98,6 +132,8 @@ export function GameBoard({ puzzle }: GameBoardProps) {
           onSelect={engine.selectItem}
           onDeselect={engine.deselectItem}
           disabled={gridDisabled}
+          shakingItems={shakingItems}
+          bouncingItems={bouncingItems}
         />
       )}
 
@@ -116,7 +152,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
         canDeselectAll={state.selected.length > 0}
       />
 
-      {/* Results modal (placeholder) */}
+      {/* Results modal */}
       {isGameOver && !modalClosed && (
         <ResultsModal
           status={state.status}
