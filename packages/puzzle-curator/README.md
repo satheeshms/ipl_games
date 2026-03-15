@@ -141,6 +141,61 @@ Runs 7 checks:
 
 ---
 
+## Auto-generate a puzzle
+
+`auto_curator.py` picks items automatically from `ipl_data.json` based on category type specs,
+checks for collisions with previously published puzzles, and writes the JSON after confirmation.
+
+### Generate
+
+```bash
+cd packages/puzzle-curator
+
+python auto_curator.py generate \
+  --date 2026-03-20 \
+  --output ../../apps/web/public/puzzles/ \
+  --data-file ../data-pipeline/data/ipl_data.json \
+  --categories yellow:orange_cap green:purple_cap blue:ipl_champions purple:team_players:CSK:2025
+```
+
+Pass exactly **4** `--categories` specs, one per colour, in `color:type[:params]` format:
+
+| Category type | Params | Items drawn from |
+|---------------|--------|-----------------|
+| `orange_cap` | — | Orange Cap winners |
+| `purple_cap` | — | Purple Cap winners |
+| `player_of_tournament` | — | Player of the Tournament winners |
+| `costliest_player` | — | Costliest auction picks |
+| `winning_captain` | — | IPL winning captains |
+| `ipl_champions` | — | Unique IPL-winning team names |
+| `team_players` | `TEAM:SEASON` | Squad players for a team + season |
+| `coaches` | `SEASON` | Head coaches for a season |
+
+**Team codes:** `CSK`, `MI`, `RCB`, `KKR`, `DC`, `SRH`, `RR`, `LSG`, `GT`, `PBKS`
+
+Items that appear in any previously published puzzle are automatically excluded. If fewer than
+4 candidates remain after exclusions the generator prints a clear error.
+
+The tool shows a full preview and prompts `Save this puzzle? [y/N]` before writing anything.
+After saving, validate with:
+
+```bash
+python curator.py validate --file ../../apps/web/public/puzzles/2026-03-20.json
+```
+
+### Check for cross-puzzle collisions
+
+```bash
+python auto_curator.py check \
+  --file ../../apps/web/public/puzzles/2026-03-20.json \
+  --puzzles-dir ../../apps/web/public/puzzles/
+```
+
+Scans every `YYYY-MM-DD.json` in the directory and reports any item in the target puzzle that
+has already appeared in another puzzle. Exits 0 if clean, 1 if collisions found.
+
+---
+
 ## Verify hash compatibility
 
 To confirm the Python hash output matches the browser's Web Crypto implementation:

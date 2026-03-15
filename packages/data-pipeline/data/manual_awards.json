@@ -16,7 +16,7 @@
     "2018": "KS Williamson",
     "2019": "DA Warner",
     "2020": "KL Rahul",
-    "2021": "RA Gaikwad",
+    "2021": "RD Gaikwad",
     "2022": "JC Buttler",
     "2023": "Shubman Gill",
     "2024": "V Kohli",
@@ -64,6 +64,27 @@
     "2025": "RR Pant",
     "2026": "CJ Green"
   },
+  "_winning_captain_note": "Kaggle scorecard initials for 2008-2020. 2021-2024 use Kaggle initials where available; 2025 uses full name from squad file. Entries skipped if player not yet in DB.",
+  "winning_captain": {
+    "2008": "SK Warne",
+    "2009": "AC Gilchrist",
+    "2010": "MS Dhoni",
+    "2011": "MS Dhoni",
+    "2012": "G Gambhir",
+    "2013": "RG Sharma",
+    "2014": "G Gambhir",
+    "2015": "RG Sharma",
+    "2016": "DA Warner",
+    "2017": "RG Sharma",
+    "2018": "MS Dhoni",
+    "2019": "RG Sharma",
+    "2020": "RG Sharma",
+    "2021": "MS Dhoni",
+    "2022": "HH Pandya",
+    "2023": "MS Dhoni",
+    "2024": "SS Iyer",
+    "2025": "Rajat Patidar"
+  },
   "player_of_tournament": {
     "2008": "SR Watson",
     "2009": "AC Gilchrist",
@@ -81,6 +102,7 @@
     "2021": "HV Patel",
     "2022": "JC Buttler",
     "2023": "Shubman Gill",
-    "2024": "SP Narine"
+    "2024": "SP Narine",
+    "2025": "SA Yadav"
   }
 }
