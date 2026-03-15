@@ -27,6 +27,8 @@ TEAM_ALIASES: dict[str, str] = {
     "Royal Challengers Bangalore": "Royal Challengers Bengaluru",
     # Typo in some Kaggle editions
     "Rising Pune Supergiant":   "Rising Pune Supergiants",
+    # manual_coaches.json uses full name; Kaggle omits "India"
+    "Pune Warriors India":      "Pune Warriors",
 }
 
 
@@ -88,7 +90,7 @@ def normalize_teams(conn) -> dict[int, int]:
         conn.execute("DELETE FROM teams WHERE id = ?", (alias_id,))
 
         merged[alias_id] = canonical_id
-        print(f"  Merged '{alias_name}' → '{canonical_name}'")
+        print(f"  Merged '{alias_name}' -> '{canonical_name}'")
 
     conn.commit()
     return merged
@@ -132,7 +134,9 @@ def load_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
             continue
 
         for team_name, coach_name in team_coaches.items():
-            team_id = team_map.get(team_name)
+            # Resolve alias -> canonical name if needed
+            resolved = TEAM_ALIASES.get(team_name, team_name)
+            team_id = team_map.get(resolved)
             if team_id is None:
                 skipped.append(f"{season} {team_name}: team not in DB")
                 continue
@@ -333,6 +337,17 @@ def main() -> None:
     print("Step 2: Loading squad files...")
     from squad_loader import load_squads
     load_squads(conn, db_path.parent)
+
+    # Step 2b — re-run manual awards now that squad players are in the DB
+    # (entries skipped in kaggle_loader due to missing players are picked up here)
+    print("Step 2b: Re-loading manual awards (pick up squad-only players)...")
+    from kaggle_loader import load_manual_awards
+    player_id_map = {
+        name: pid
+        for pid, name in conn.execute("SELECT id, name FROM players").fetchall()
+    }
+    n = load_manual_awards(conn, db_path.parent, player_id_map)
+    print(f"  {n} award entries processed (INSERT OR REPLACE)")
 
     # Step 3 — coaches
     print("Step 3: Loading coaches...")

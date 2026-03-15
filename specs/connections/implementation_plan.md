@@ -381,11 +381,22 @@ python normalizer.py            # fetches all sources, writes data/
 cd packages/puzzle-curator
 pip install -r requirements.txt
 
-# Create puzzle for a specific date (interactive)
+# Create puzzle interactively
 python curator.py create --date 2026-03-20 --output ../apps/web/public/puzzles/
+
+# Auto-generate puzzle from category type specs
+python auto_curator.py generate \
+  --date 2026-03-20 --output ../apps/web/public/puzzles/ \
+  --data-file ../data-pipeline/data/ipl_data.json \
+  --categories yellow:orange_cap green:purple_cap blue:ipl_champions purple:team_players:CSK:2025
 
 # Validate an existing puzzle file
 python curator.py validate --file ../apps/web/public/puzzles/2026-03-20.json
+
+# Check for cross-puzzle item collisions
+python auto_curator.py check \
+  --file ../apps/web/public/puzzles/2026-03-20.json \
+  --puzzles-dir ../apps/web/public/puzzles/
 ```
 
 ### `create` Flow
@@ -474,6 +485,9 @@ def hash_items(items: list[str]) -> str:
 - [x] `curator.py create` interactive flow
 - [x] `curator.py validate` for existing files
 - [x] `hash_util.py` with cross-validation test vs browser hash
+- [x] `auto_curator.py generate` — auto-generate from category type specs
+- [x] `auto_curator.py check` — cross-puzzle item collision checker
+- [x] `category_generators.py` — generators for all award/squad/coach/champion types
 - [ ] Generate first 7 puzzles for IPL season launch
 
 ### Phase 10 — Deployment (Week 5)

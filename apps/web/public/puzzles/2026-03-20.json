@@ -1,0 +1,45 @@
+{
+  "id": "2026-03-20",
+  "date": "2026-03-20",
+  "edition": 1,
+  "items": [
+    "RG Sharma",
+    "KS Williamson",
+    "Vijay Shankar",
+    "DJ Bravo",
+    "RP Singh",
+    "MS Dhoni",
+    "Rachin Ravindra",
+    "Rahul Tripathi",
+    "Urvil Patel",
+    "Imran Tahir",
+    "AC Gilchrist",
+    "ML Hayden",
+    "DA Warner",
+    "RV Uthappa",
+    "SL Malinga",
+    "Rajat Patidar"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Orange Cap Winners",
+      "hash": "34936e57fd993335ea83c79c96ed4a2538f3cc59fcd2387458ce91451bd7acbe"
+    },
+    {
+      "color": "green",
+      "title": "Purple Cap Winners",
+      "hash": "10b56c0f438e7fc953042301d36559d029518ccb88f0849cab900a24a9fe220b"
+    },
+    {
+      "color": "blue",
+      "title": "IPL Winning Captains",
+      "hash": "235bddf29b3729d881c11670a606f73cce6905650e3916447eda6065ca3ab287"
+    },
+    {
+      "color": "purple",
+      "title": "Chennai Super Kings 2025 Squad",
+      "hash": "2e20963ba4ecbeb9ae31d45cea42a33c6a21bd5ca0cbffba7c4533cefabc9a3e"
+    }
+  ]
+}
