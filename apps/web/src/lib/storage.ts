@@ -1,0 +1,41 @@
+import type { GameState } from '../types';
+
+const KEY = (id: string) => `ipl-connections-${id}`;
+
+// Fields to persist
+type PersistedState = Pick<
+  GameState,
+  'gridItems' | 'selected' | 'revealedCategories' | 'lives' | 'guessHistory' | 'status'
+>;
+
+export function saveState(puzzleId: string, state: PersistedState): void {
+  try {
+    localStorage.setItem(KEY(puzzleId), JSON.stringify(state));
+  } catch {
+    // localStorage unavailable — ignore
+  }
+}
+
+export function loadState(puzzleId: string): PersistedState | null {
+  try {
+    const raw = localStorage.getItem(KEY(puzzleId));
+    if (!raw) return null;
+    return JSON.parse(raw) as PersistedState;
+  } catch {
+    return null;
+  }
+}
+
+export function clearStaleStates(currentId: string): void {
+  try {
+    const prefix = 'ipl-connections-';
+    for (let i = localStorage.length - 1; i >= 0; i--) {
+      const key = localStorage.key(i);
+      if (key && key.startsWith(prefix) && key !== KEY(currentId)) {
+        localStorage.removeItem(key);
+      }
+    }
+  } catch {
+    // ignore
+  }
+}

@@ -1,0 +1,1 @@
+# No external deps needed — uses only stdlib (hashlib, json, argparse, pathlib, random, itertools)
