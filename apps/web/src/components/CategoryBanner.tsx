@@ -2,10 +2,10 @@ import { motion } from 'framer-motion';
 import type { PuzzleCategory, Guess } from '../types';
 
 const COLOR_MAP: Record<string, string> = {
-  yellow: '#F9DF6D',
-  green: '#A0C35A',
-  blue: '#B0C4EF',
-  purple: '#BA81C5',
+  yellow: '#F5A623',
+  green:  '#4CAF50',
+  blue:   '#42A5F5',
+  purple: '#AB47BC',
 };
 
 interface CategoryBannerProps {

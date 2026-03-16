@@ -14,3 +14,12 @@
 .shake {
   animation: shake 0.6s ease-in-out;
 }
+
+/* Stadium atmosphere — night cricket under lights */
+.stadium-bg {
+  background:
+    radial-gradient(ellipse 80% 40% at 50% 0%,   rgba(245, 166, 35, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 10% 100%,  rgba(0, 120, 30, 0.10)  0%, transparent 55%),
+    radial-gradient(ellipse 50% 50% at 90% 100%,  rgba(0, 120, 30, 0.10)  0%, transparent 55%),
+    #0d1a0e;
+}

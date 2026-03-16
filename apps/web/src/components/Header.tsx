@@ -1,3 +1,5 @@
+import { BiSolidCricketBall } from 'react-icons/bi';
+
 interface HeaderProps {
   edition: number;
   date: string;
@@ -12,9 +14,12 @@ function formatDate(dateStr: string): string {
 
 export function Header({ edition, date, onHelp }: HeaderProps) {
   return (
-    <header className="w-full px-4 py-3 border-b border-white/10">
+    <header className="w-full px-4 py-3 border-b border-game-accent/30">
       <div className="max-w-lg mx-auto flex items-center justify-between">
-        <h1 className="text-xl font-bold text-white tracking-tight">IPL Connections</h1>
+        <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+          <BiSolidCricketBall size={26} className="shrink-0 text-red-600" />
+          IPL Connections
+        </h1>
         <div className="flex items-center gap-3">
           <span className="text-sm text-white/50">
             #{edition} &middot; {formatDate(date)}
