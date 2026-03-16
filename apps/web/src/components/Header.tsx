@@ -18,7 +18,7 @@ export function Header({ edition, date, onHelp }: HeaderProps) {
       <div className="max-w-lg mx-auto flex items-center justify-between">
         <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
           <BiSolidCricketBall size={26} className="shrink-0 text-red-600" />
-          IPL Connections
+          IPL Cluster 4
         </h1>
         <div className="flex items-center gap-3">
           <span className="text-sm text-white/50">

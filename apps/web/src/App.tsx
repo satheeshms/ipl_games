@@ -4,7 +4,7 @@ import { Header } from './components/Header';
 import { GameBoard } from './components/GameBoard';
 import { HelpModal } from './components/HelpModal';
 
-const HELP_SEEN_KEY = 'ipl-connections-help-seen';
+const HELP_SEEN_KEY = 'ipl-cluster4-help-seen';
 
 function App() {
   const { puzzle, loading, error } = usePuzzle();

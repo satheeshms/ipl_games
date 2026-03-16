@@ -125,7 +125,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     .filter((c): c is NonNullable<typeof c> => c !== undefined);
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full max-w-lg mx-auto px-4 py-6" role="main" aria-label="IPL Connections puzzle">
+    <div className="flex flex-col items-center gap-4 w-full max-w-lg mx-auto px-4 py-6" role="main" aria-label="IPL Cluster 4 puzzle">
       {/* Revealed category banners */}
       {revealedPuzzleCategories.map(category => (
         <CategoryBanner
