@@ -6,6 +6,7 @@ on:
         - game_spec_1
   workflow_dispatch:
 
+
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
@@ -35,10 +36,7 @@ jobs:
           VITE_BASE_URL: /
 
       - name: Deploy to Cloudflare Pages
-        uses: cloudflare/pages-action@v1
-        with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          projectName: ipl-games
-          directory: ./apps/web/dist
-          gitHubToken: ${{ secrets.GITHUB_TOKEN }}
+        run: npx wrangler pages deploy ./apps/web/dist --project-name=ipl-games --branch=main
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
