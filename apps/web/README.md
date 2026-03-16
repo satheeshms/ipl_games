@@ -1,73 +1,94 @@
-# React + TypeScript + Vite
+# IPL Connections — Web App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Daily IPL cricket word-association game built with React 18 + Vite + TypeScript + Tailwind CSS.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## Prerequisites
 
-## React Compiler
+- **Node.js** 18+ (check with `node -v`)
+- **npm** 9+ (comes with Node)
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Local Development
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+```bash
+# From the repo root
+cd apps/web
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+# Install dependencies (first time only, or after pulling new changes)
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+# Start the dev server with hot-module reload
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Open [http://localhost:5173](http://localhost:5173) in your browser.
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+The app loads today's puzzle from `public/puzzles/YYYY-MM-DD.json`. If no puzzle file exists
+for today it will show an error — add a puzzle file to `public/puzzles/` to test locally
+(see [puzzle curator docs](../../packages/puzzle-curator/README.md)).
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## Available Scripts
+
+| Command | Description |
+|---------|-------------|
+| `npm run dev` | Start dev server at http://localhost:5173 |
+| `npm run build` | TypeScript check + production build → `dist/` |
+| `npm run preview` | Serve the production build locally |
+| `npm run test` | Run tests once |
+| `npm run test:watch` | Run tests in watch mode |
+| `npm run lint` | Run ESLint |
+
+---
+
+## Project Structure
+
 ```
+apps/web/
+├── public/
+│   ├── puzzles/          # Daily puzzle JSON files (YYYY-MM-DD.json)
+│   └── favicon.svg       # Cricket ball favicon
+├── src/
+│   ├── components/       # React UI components
+│   │   └── icons/        # Inline SVG icon components
+│   ├── hooks/            # Custom React hooks (usePuzzle, useGameState)
+│   ├── lib/              # Utilities (hash.ts — SHA-256 answer verification)
+│   ├── types/            # TypeScript type definitions
+│   ├── App.tsx           # Root component
+│   └── main.tsx          # Entry point
+├── tailwind.config.ts    # Theme colors (game.* + category.*)
+└── vite.config.ts        # Vite config
+```
+
+---
+
+## Adding a Puzzle for Local Testing
+
+Generate a puzzle file using the curator tool and drop it into `public/puzzles/`:
+
+```bash
+cd packages/puzzle-curator
+python auto_curator.py generate \
+  --date $(date +%Y-%m-%d) \
+  --output ../../apps/web/public/puzzles/ \
+  --data-file ../data-pipeline/data/ipl_data.json \
+  --categories yellow:orange_cap green:purple_cap blue:ipl_champions purple:team_players:CSK:2025
+```
+
+See [puzzle curator docs](../../packages/puzzle-curator/README.md) for full instructions.
+
+---
+
+## Production Build
+
+```bash
+npm run build
+# Output in dist/ — deploy to GitHub Pages or any static host
+```
+
+The `npm run build` command runs TypeScript type checking first (`tsc -b`) and will fail
+on type errors before bundling.

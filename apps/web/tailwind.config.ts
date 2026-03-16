@@ -9,15 +9,17 @@ export default {
     extend: {
       colors: {
         category: {
-          yellow: '#F9DF6D',
-          green: '#A0C35A',
-          blue: '#B0C4EF',
-          purple: '#BA81C5',
+          yellow: '#F5A623',
+          green:  '#4CAF50',
+          blue:   '#42A5F5',
+          purple: '#AB47BC',
         },
         game: {
-          bg: '#1a1a2e',
-          tile: '#2d2d44',
-          'tile-selected': '#4a4a6a',
+          bg:              '#0d1a0e',
+          tile:            '#1a3a1e',
+          'tile-selected': '#2d5e35',
+          'tile-hover':    '#243f28',
+          accent:          '#F5A623',
         },
       },
     },

@@ -23,7 +23,7 @@ function App() {
   }
 
   return (
-    <div className="min-h-screen bg-[#1a1a2e] flex flex-col">
+    <div className="min-h-screen stadium-bg flex flex-col">
       {puzzle && <Header edition={puzzle.edition} date={puzzle.date} onHelp={() => setShowHelp(true)} />}
 
       <main className="flex-1 flex flex-col items-center justify-start pt-4">

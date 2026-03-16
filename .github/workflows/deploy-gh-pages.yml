@@ -42,7 +42,7 @@ jobs:
         run: npm run build
         working-directory: ./apps/web
         env:
-          VITE_BASE_URL: /${{ github.event.repository.name }}/
+          VITE_BASE_URL: /
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
