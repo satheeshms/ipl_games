@@ -12,6 +12,7 @@ Usage:
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -97,16 +98,132 @@ def normalize_teams(conn) -> dict[int, int]:
 
 
 # ---------------------------------------------------------------------------
-# Step 2 — Load coaches from manual_coaches.json
+# Step 2 — Migrate coaches table and load from manual_coaches_all.ndjson
 # ---------------------------------------------------------------------------
 
-def load_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
+# Roles to extract from each team entry in manual_coaches_all.ndjson
+COACH_ROLES = {
+    "head_coach":     "head",
+    "batting_coach":  "batting",
+    "bowling_coach":  "bowling",
+    "fielding_coach": "fielding",
+}
+
+# Placeholder values that mean "no coach appointed"
+_NO_COACH = {"not appointed", "n/a", "tbd", ""}
+
+
+def _clean_coach_name(raw: str) -> str | None:
+    """Strip parenthetical role annotations and return None if not a real name."""
+    if not raw:
+        return None
+    cleaned = re.sub(r"\s*\([^)]*\)", "", raw).strip()
+    if cleaned.lower() in _NO_COACH:
+        return None
+    return cleaned if cleaned else None
+
+
+def migrate_coaches_table(conn) -> None:
     """
-    Read manual_coaches.json and insert into the coaches table.
-    Must run AFTER normalize_teams() so canonical team names exist.
+    Recreate the coaches table with a role column.
+    Safe to call on both old (no role column) and new schemas.
+    """
+    has_role = any(
+        row[1] == "role"
+        for row in conn.execute("PRAGMA table_info(coaches)")
+    )
+    if has_role:
+        return  # already migrated
+
+    print("  Migrating coaches table to add role column...")
+    conn.executescript("""
+        ALTER TABLE coaches RENAME TO coaches_old;
+        CREATE TABLE coaches (
+            id       INTEGER PRIMARY KEY,
+            team_id  INTEGER REFERENCES teams(id),
+            season   INTEGER,
+            role     TEXT NOT NULL DEFAULT 'head',
+            name     TEXT,
+            UNIQUE (team_id, season, role)
+        );
+        INSERT INTO coaches (team_id, season, role, name)
+            SELECT team_id, season, 'head', name FROM coaches_old;
+        DROP TABLE coaches_old;
+    """)
+    conn.commit()
+    print("  Migration done.")
+
+
+def load_all_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
+    """
+    Read manual_coaches_all.ndjson and load all coach roles into the coaches table.
+
+    The file is a sequence of top-level JSON objects (one per season), each with:
+      { "ipl_season": YYYY, "teams": [ { "team_name": ..., "head_coach": ..., ... } ] }
+
+    Only head / batting / bowling / fielding roles are loaded.
+    Entries with "Not Appointed" or blank values are skipped.
+    Parenthetical annotations like "(Lead)" are stripped from names.
 
     Returns (rows_inserted, skipped_entries).
     """
+    ndjson_path = data_dir / "manual_coaches_all.ndjson"
+    if not ndjson_path.exists():
+        # Fallback to legacy file
+        print(f"  [coaches] {ndjson_path} not found, trying manual_coaches.json...")
+        return _load_coaches_legacy(conn, data_dir)
+
+    content = ndjson_path.read_text(encoding="utf-8").strip()
+    season_blocks = [
+        json.loads(block.strip())
+        for block in re.split(r"\n(?=\{)", content)
+        if block.strip()
+    ]
+
+    team_map = {
+        name: tid
+        for tid, name in conn.execute("SELECT id, name FROM teams").fetchall()
+    }
+
+    rows = []
+    skipped = []
+
+    for block in season_blocks:
+        season = block.get("ipl_season")
+        if not season:
+            continue
+        for team_entry in block.get("teams", []):
+            raw_team = team_entry.get("team_name", "")
+            resolved = TEAM_ALIASES.get(raw_team, raw_team)
+            team_id = team_map.get(resolved)
+            if team_id is None:
+                skipped.append(f"{season} {raw_team}: team not in DB")
+                continue
+
+            for field, role in COACH_ROLES.items():
+                raw_name = team_entry.get(field, "")
+                name = _clean_coach_name(raw_name)
+                if name is None:
+                    continue
+                rows.append((team_id, season, role, name))
+
+    if skipped:
+        print(f"  [coaches] {len(skipped)} entries skipped:")
+        for s in skipped[:10]:
+            print(f"    {s}")
+        if len(skipped) > 10:
+            print(f"    ... and {len(skipped) - 10} more")
+
+    conn.executemany(
+        "INSERT OR REPLACE INTO coaches (team_id, season, role, name) VALUES (?, ?, ?, ?)",
+        rows,
+    )
+    conn.commit()
+    return len(rows), skipped
+
+
+def _load_coaches_legacy(conn, data_dir: Path) -> tuple[int, list[str]]:
+    """Fallback: load head coaches from manual_coaches.json (old format)."""
     coaches_path = data_dir / "manual_coaches.json"
     if not coaches_path.exists():
         print(f"  [coaches] {coaches_path} not found, skipping.")
@@ -115,7 +232,6 @@ def load_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
     with open(coaches_path, encoding="utf-8") as f:
         data = json.load(f)
 
-    # Build team_name -> team_id map
     team_map = {
         name: tid
         for tid, name in conn.execute("SELECT id, name FROM teams").fetchall()
@@ -132,23 +248,16 @@ def load_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
         except ValueError:
             skipped.append(f"Invalid season '{season_str}'")
             continue
-
         for team_name, coach_name in team_coaches.items():
-            # Resolve alias -> canonical name if needed
             resolved = TEAM_ALIASES.get(team_name, team_name)
             team_id = team_map.get(resolved)
             if team_id is None:
                 skipped.append(f"{season} {team_name}: team not in DB")
                 continue
-            rows.append((team_id, season, coach_name))
-
-    if skipped:
-        print(f"  [coaches] {len(skipped)} entries skipped:")
-        for s in skipped:
-            print(f"    {s}")
+            rows.append((team_id, season, "head", coach_name))
 
     conn.executemany(
-        "INSERT OR REPLACE INTO coaches (team_id, season, name) VALUES (?, ?, ?)",
+        "INSERT OR REPLACE INTO coaches (team_id, season, role, name) VALUES (?, ?, ?, ?)",
         rows,
     )
     conn.commit()
@@ -159,18 +268,39 @@ def load_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
 # Step 3 — Export ipl_data.json
 # ---------------------------------------------------------------------------
 
-def export_json(conn, out_path: Path) -> None:
+def load_records(data_dir: Path) -> dict:
+    """
+    Read manual_records.json and return its batting/bowling/season record lists.
+    Returns an empty dict if the file doesn't exist.
+    """
+    records_path = data_dir / "manual_records.json"
+    if not records_path.exists():
+        print(f"  [records] {records_path} not found, skipping.")
+        return {}
+    with open(records_path, encoding="utf-8") as f:
+        data = json.load(f)
+    # Strip comment keys (starting with _)
+    return {k: v for k, v in data.items() if not k.startswith("_")}
+
+
+def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
     """
     Write a flat JSON file the curator CLI can query without SQLite.
 
     Structure:
     {
-      "teams": [{"id", "name", "short_name", "city", "active_from", "active_to"}],
-      "players": [{"id", "name", "nicknames", "nationality"}],
-      "player_teams": [{"player_id", "player_name", "team_id", "team_name", "season"}],
-      "awards": [{"type", "player_id", "player_name", "season"}],
-      "ipl_wins": [{"season", "team_id", "team_name"}],
-      "venues": [{"id", "name", "city"}]
+      "teams": [...],
+      "players": [...],
+      "player_teams": [...],
+      "awards": [...],
+      "ipl_wins": [...],
+      "venues": [...],
+      "coaches": [...],
+      "records": {
+        "batting_records": [...],
+        "bowling_records": [...],
+        "season_records": [...]
+      }
     }
     """
 
@@ -256,15 +386,18 @@ def export_json(conn, out_path: Path) -> None:
             "team_id": r[0],
             "team_name": r[1],
             "season": r[2],
-            "coach": r[3],
+            "role": r[3],
+            "coach": r[4],
         }
         for r in conn.execute("""
-            SELECT c.team_id, t.name, c.season, c.name
+            SELECT c.team_id, t.name, c.season, c.role, c.name
             FROM coaches c
             JOIN teams t ON t.id = c.team_id
-            ORDER BY c.season, t.name
+            ORDER BY c.season, t.name, c.role
         """)
     ]
+
+    records = load_records(data_dir) if data_dir else {}
 
     data = {
         "teams": teams,
@@ -274,6 +407,7 @@ def export_json(conn, out_path: Path) -> None:
         "ipl_wins": ipl_wins,
         "venues": venues,
         "coaches": coaches,
+        "records": records,
     }
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -350,15 +484,16 @@ def main() -> None:
     print(f"  {n} award entries processed (INSERT OR REPLACE)")
 
     # Step 3 — coaches
-    print("Step 3: Loading coaches...")
-    n, skipped = load_coaches(conn, db_path.parent)
+    print("Step 3: Migrating and loading coaches...")
+    migrate_coaches_table(conn)
+    n, skipped = load_all_coaches(conn, db_path.parent)
     print(f"  {n} coach records loaded, {len(skipped)} skipped.")
 
     # Step 4 — JSON export
     if not args.no_export:
         json_path = args.export_json or db_path.parent / "ipl_data.json"
         print(f"Step 4: Exporting {json_path}...")
-        export_json(conn, json_path)
+        export_json(conn, json_path, data_dir=db_path.parent)
 
     conn.close()
     print("\nDone.")

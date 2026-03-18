@@ -56,8 +56,9 @@ CREATE TABLE IF NOT EXISTS coaches (
     id       INTEGER PRIMARY KEY,
     team_id  INTEGER REFERENCES teams(id),
     season   INTEGER,
+    role     TEXT NOT NULL DEFAULT 'head',
     name     TEXT,
-    UNIQUE (team_id, season)
+    UNIQUE (team_id, season, role)
 );
 """
 

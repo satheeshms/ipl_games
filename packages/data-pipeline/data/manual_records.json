@@ -1,0 +1,55 @@
+{
+  "_note": "Player names must use scorecard initials to match ipl_data.json (e.g. 'V Kohli', 'CH Gayle'). Each record has a unique holder; duplicate-player entries are intentional (same player holds multiple records).",
+  "_source": "ESPN Cricinfo / IPL official records (career stats through IPL 2025)",
+
+  "batting_records": [
+    {"record": "Highest Run Scorer",       "player": "V Kohli",   "statistic": "8,661 runs"},
+    {"record": "Most Sixes",               "player": "CH Gayle",  "statistic": "357 sixes"},
+    {"record": "Most Fours",               "player": "V Kohli",   "statistic": "771 fours"},
+    {"record": "Most Centuries",           "player": "V Kohli",   "statistic": "8 hundreds"},
+    {"record": "Most Fifties",             "player": "DA Warner", "statistic": "63 fifties"},
+    {"record": "Highest Individual Score", "player": "CH Gayle",  "statistic": "175* vs PWI (2013)"},
+    {"record": "Most Matches Played",      "player": "SK Raina",  "statistic": "205 matches"},
+    {"record": "Most Runs for a Single Franchise", "player": "V Kohli", "statistic": "8,661 runs for RCB"}
+  ],
+
+  "bowling_records": [
+    {"record": "Highest Wicket Taker",              "player": "YS Chahal",  "statistic": "221 wickets"},
+    {"record": "Best Bowling Figures",              "player": "AS Joseph",  "statistic": "6/12 vs SRH (2019)"},
+    {"record": "Most Dot Balls",                    "player": "B Kumar",    "statistic": "1,600+ dot balls"},
+    {"record": "Most 5-Wicket Hauls",               "player": "B Kumar",    "statistic": "2 hauls"},
+    {"record": "Most Wickets for a Single Franchise","player": "SL Malinga", "statistic": "170 wickets for MI"},
+    {"record": "Most Wickets in Playoff Matches",   "player": "SL Malinga", "statistic": "33 playoff wickets"},
+    {"record": "Best Economy Rate (min 500 balls)", "player": "SP Narine",  "statistic": "6.67 economy"},
+    {"record": "Most Wickets as an Overseas Bowler","player": "DJ Bravo",   "statistic": "183 wickets"}
+  ],
+
+  "season_records": [
+    {"record": "Most Runs in a Season",    "player": "V Kohli",   "season": 2016, "statistic": "973 runs"},
+    {"record": "Most Wickets in a Season", "player": "HV Patel",  "season": 2021, "statistic": "32 wickets"},
+    {"record": "Most Wickets in a Season", "player": "DJ Bravo",  "season": 2013, "statistic": "32 wickets"},
+    {"record": "Most Sixes in a Season",   "player": "CH Gayle",  "season": 2012, "statistic": "59 sixes"},
+    {"record": "Most Fours in a Season",   "player": "JC Buttler","season": 2022, "statistic": "97 fours"}
+  ],
+
+  "fielding_records": [
+    {"record": "Most WK Catches",                    "player": "MS Dhoni",      "statistic": "153 catches as keeper"},
+    {"record": "Most Stumpings",                     "player": "MS Dhoni",      "statistic": "48 stumpings"},
+    {"record": "Most Catches (non-keeper)",          "player": "V Kohli",       "statistic": "118 catches in 267 matches"},
+    {"record": "Most Catches (overseas non-keeper)", "player": "AB de Villiers","statistic": "118 catches in 184 matches"},
+    {"record": "Most Run-Outs (non-keeper)",         "player": "RA Jadeja",     "statistic": "23 run-outs — Bullet Arm"}
+  ],
+
+  "team_owners": [
+    {"team": "Mumbai Indians",             "owner": "Nita Ambani",    "group": "Reliance Industries"},
+    {"team": "Chennai Super Kings",        "owner": "N. Srinivasan",  "group": "India Cements"},
+    {"team": "Kolkata Knight Riders",      "owner": "Shah Rukh Khan", "group": "Red Chillies Entertainment"},
+    {"team": "Royal Challengers Bengaluru","owner": "Diageo",         "group": "United Spirits Limited"},
+    {"team": "Sunrisers Hyderabad",        "owner": "Kavya Maran",    "group": "Sun TV Network"},
+    {"team": "Delhi Capitals",             "owner": "Parth Jindal",   "group": "GMR Group & JSW Group"},
+    {"team": "Gujarat Titans",             "owner": "Siddharth Patel","group": "Torrent Pharma & CVC Capital Partners"},
+    {"team": "Lucknow Super Giants",       "owner": "Sanjiv Goenka",  "group": "RPSG Group"},
+    {"team": "Rajasthan Royals",           "owner": "Manoj Badale",   "group": "Royals Sports Group"},
+    {"team": "Punjab Kings",               "owner": "Preity Zinta",   "group": "KPH Dream Cricket Pvt Ltd"}
+  ]
+}

@@ -135,16 +135,130 @@ def gen_coaches(ipl_data: dict, params: list, exclude: set) -> dict:
     names = [
         c["coach"]
         for c in ipl_data.get("coaches", [])
-        if c["season"] == season
+        if c["season"] == season and c.get("role", "head") == "head"
     ]
 
     if not names:
         raise ValueError(
-            f"coaches: no coaches found for season {season}."
+            f"coaches: no head coaches found for season {season}."
         )
 
     items = _pick(names, exclude, f"coaches:{season}")
     return {"title": f"{season} Head Coaches", "items": items}
+
+
+def _gen_specialist_coaches(ipl_data: dict, params: list, exclude: set,
+                             role: str, label: str) -> dict:
+    """Shared logic for batting / bowling / fielding coach generators."""
+    if len(params) < 1:
+        raise ValueError(
+            f"{role}_coaches requires 1 param: season. Example: {role}_coaches:2026"
+        )
+    try:
+        season = int(params[0])
+    except ValueError:
+        raise ValueError(f"{role}_coaches: invalid season '{params[0]}' (must be a 4-digit year)")
+
+    names = [
+        c["coach"]
+        for c in ipl_data.get("coaches", [])
+        if c["season"] == season and c.get("role") == role
+    ]
+
+    if not names:
+        raise ValueError(
+            f"{role}_coaches: no {label} coaches found for season {season}."
+        )
+
+    items = _pick(names, exclude, f"{role}_coaches:{season}")
+    return {"title": f"{season} {label} Coaches", "items": items}
+
+
+def gen_batting_coaches(ipl_data: dict, params: list, exclude: set) -> dict:
+    """Pick 4 batting coaches from a given season. Params: [season]"""
+    return _gen_specialist_coaches(ipl_data, params, exclude, "batting", "Batting")
+
+
+def gen_bowling_coaches(ipl_data: dict, params: list, exclude: set) -> dict:
+    """Pick 4 bowling coaches from a given season. Params: [season]"""
+    return _gen_specialist_coaches(ipl_data, params, exclude, "bowling", "Bowling")
+
+
+def gen_fielding_coaches(ipl_data: dict, params: list, exclude: set) -> dict:
+    """Pick 4 fielding coaches from a given season. Params: [season]"""
+    return _gen_specialist_coaches(ipl_data, params, exclude, "fielding", "Fielding")
+
+
+def gen_fielding_records(ipl_data: dict, params: list, exclude: set) -> dict:
+    """
+    Pick 4 players who each hold a unique IPL fielding record:
+      Most WK Catches, Most Stumpings, Most Catches (non-keeper), Most Run-Outs (non-keeper).
+
+    Pool: exactly 4 unique players — use once.
+    """
+    entries = ipl_data.get("records", {}).get("fielding_records", [])
+    if not entries:
+        raise ValueError("fielding_records: no data in ipl_data['records']['fielding_records']")
+    names = [e["player"] for e in entries]
+    items = _pick(names, exclude, "fielding_records")
+    return {"title": "IPL Fielding Record Holders", "items": items}
+
+
+def gen_batting_records(ipl_data: dict, params: list, exclude: set) -> dict:
+    """
+    Pick 4 unique players who hold an IPL career batting record.
+
+    Source: ipl_data['records']['batting_records']
+    """
+    entries = ipl_data.get("records", {}).get("batting_records", [])
+    if not entries:
+        raise ValueError("batting_records: no data found in ipl_data['records']['batting_records']")
+    names = [e["player"] for e in entries]
+    items = _pick(names, exclude, "batting_records")
+    return {"title": "IPL Batting Record Holders", "items": items}
+
+
+def gen_bowling_records(ipl_data: dict, params: list, exclude: set) -> dict:
+    """
+    Pick 4 unique players who hold an IPL career bowling record.
+
+    Source: ipl_data['records']['bowling_records']
+    """
+    entries = ipl_data.get("records", {}).get("bowling_records", [])
+    if not entries:
+        raise ValueError("bowling_records: no data found in ipl_data['records']['bowling_records']")
+    names = [e["player"] for e in entries]
+    items = _pick(names, exclude, "bowling_records")
+    return {"title": "IPL Bowling Record Holders", "items": items}
+
+
+def gen_team_owners(ipl_data: dict, params: list, exclude: set) -> dict:
+    """
+    Pick 4 unique IPL franchise owners.
+
+    Source: ipl_data['records']['team_owners']
+    Pool: 10 teams — supports up to 2 uses.
+    """
+    entries = ipl_data.get("records", {}).get("team_owners", [])
+    if not entries:
+        raise ValueError("team_owners: no data found in ipl_data['records']['team_owners']")
+    names = [e["owner"] for e in entries]
+    items = _pick(names, exclude, "team_owners")
+    return {"title": "IPL Franchise Owners", "items": items}
+
+
+def gen_season_records(ipl_data: dict, params: list, exclude: set) -> dict:
+    """
+    Pick 4 unique players who hold an IPL single-season record.
+
+    Source: ipl_data['records']['season_records']
+    """
+    entries = ipl_data.get("records", {}).get("season_records", [])
+    if not entries:
+        raise ValueError("season_records: no data found in ipl_data['records']['season_records']")
+    names = [e["player"] for e in entries]
+    items = _pick(names, exclude, "season_records")
+    return {"title": "IPL Single Season Record Holders", "items": items}
 
 
 # ---------------------------------------------------------------------------
@@ -198,6 +312,14 @@ GENERATORS: dict[str, callable] = {
     "ipl_champions":        gen_ipl_champions,
     "team_players":         gen_team_players,
     "coaches":              gen_coaches,
+    "batting_coaches":      gen_batting_coaches,
+    "bowling_coaches":      gen_bowling_coaches,
+    "fielding_coaches":     gen_fielding_coaches,
+    "fielding_records":     gen_fielding_records,
+    "batting_records":      gen_batting_records,
+    "bowling_records":      gen_bowling_records,
+    "season_records":       gen_season_records,
+    "team_owners":          gen_team_owners,
 }
 
 
