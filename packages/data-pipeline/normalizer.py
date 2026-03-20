@@ -399,6 +399,132 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
 
     records = load_records(data_dir) if data_dir else {}
 
+    five_wicket_hauls = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "matches": r[2],
+            "innings": r[3],
+            "balls": r[4],
+            "runs": r[5],
+            "wickets": r[6],
+            "bbi": r[7],
+            "average": r[8],
+            "economy": r[9],
+            "strike_rate": r[10],
+            "four_w": r[11],
+            "five_w": r[12],
+            "ten_w": r[13],
+        }
+        for r in conn.execute("""
+            SELECT f.player_id, p.name,
+                   f.matches, f.innings, f.balls, f.runs, f.wickets, f.bbi,
+                   f.average, f.economy, f.strike_rate, f.four_w, f.five_w, f.ten_w
+            FROM five_wicket_hauls f
+            JOIN players p ON p.id = f.player_id
+            ORDER BY f.wickets DESC
+        """)
+    ]
+
+    batting_career_stats = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "matches": r[2],
+            "innings": r[3],
+            "not_out": r[4],
+            "runs": r[5],
+            "hs": r[6],
+            "average": r[7],
+            "balls_faced": r[8],
+            "strike_rate": r[9],
+            "hundreds": r[10],
+            "fifties": r[11],
+            "ducks": r[12],
+            "fours": r[13],
+            "sixes": r[14],
+        }
+        for r in conn.execute("""
+            SELECT b.player_id, p.name,
+                   b.matches, b.innings, b.not_out, b.runs, b.hs,
+                   b.average, b.balls_faced, b.strike_rate,
+                   b.hundreds, b.fifties, b.ducks, b.fours, b.sixes
+            FROM batting_career_stats b
+            JOIN players p ON p.id = b.player_id
+            ORDER BY b.runs DESC
+        """)
+    ]
+
+    bowling_career_stats = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "matches": r[2],
+            "innings": r[3],
+            "balls": r[4],
+            "runs": r[5],
+            "wickets": r[6],
+            "bbi": r[7],
+            "average": r[8],
+            "economy": r[9],
+            "strike_rate": r[10],
+            "four_w": r[11],
+            "five_w": r[12],
+        }
+        for r in conn.execute("""
+            SELECT b.player_id, p.name,
+                   b.matches, b.innings, b.balls, b.runs, b.wickets, b.bbi,
+                   b.average, b.economy, b.strike_rate, b.four_w, b.five_w
+            FROM bowling_career_stats b
+            JOIN players p ON p.id = b.player_id
+            ORDER BY b.wickets DESC
+        """)
+    ]
+
+    multi_team_players = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "team_count": r[2],
+            "teams": r[3],
+        }
+        for r in conn.execute("""
+            SELECT m.player_id, p.name, m.team_count, m.teams
+            FROM multi_team_players m
+            JOIN players p ON p.id = m.player_id
+            ORDER BY m.team_count DESC, p.name
+        """)
+    ]
+
+    most_ducks = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "matches": r[2],
+            "innings": r[3],
+            "not_out": r[4],
+            "runs": r[5],
+            "hs": r[6],
+            "average": r[7],
+            "balls_faced": r[8],
+            "strike_rate": r[9],
+            "hundreds": r[10],
+            "fifties": r[11],
+            "ducks": r[12],
+            "fours": r[13],
+            "sixes": r[14],
+        }
+        for r in conn.execute("""
+            SELECT d.player_id, p.name,
+                   d.matches, d.innings, d.not_out, d.runs, d.hs,
+                   d.average, d.balls_faced, d.strike_rate,
+                   d.hundreds, d.fifties, d.ducks, d.fours, d.sixes
+            FROM most_ducks d
+            JOIN players p ON p.id = d.player_id
+            ORDER BY d.ducks DESC, p.name
+        """)
+    ]
+
     data = {
         "teams": teams,
         "players": players,
@@ -408,6 +534,11 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
         "venues": venues,
         "coaches": coaches,
         "records": records,
+        "five_wicket_hauls": five_wicket_hauls,
+        "batting_career_stats": batting_career_stats,
+        "bowling_career_stats": bowling_career_stats,
+        "multi_team_players": multi_team_players,
+        "most_ducks": most_ducks,
     }
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -418,6 +549,11 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
     print(f"    teams: {len(teams)}, players: {len(players)}, "
           f"player_teams: {len(player_teams)}, awards: {len(awards)}, "
           f"ipl_wins: {len(ipl_wins)}, venues: {len(venues)}, coaches: {len(coaches)}")
+    print(f"    five_wicket_hauls: {len(five_wicket_hauls)}, "
+          f"batting_career_stats: {len(batting_career_stats)}, "
+          f"bowling_career_stats: {len(bowling_career_stats)}, "
+          f"multi_team_players: {len(multi_team_players)}, "
+          f"most_ducks: {len(most_ducks)}")
 
 
 # ---------------------------------------------------------------------------
@@ -472,16 +608,33 @@ def main() -> None:
     from squad_loader import load_squads
     load_squads(conn, db_path.parent)
 
-    # Step 2b — re-run manual awards now that squad players are in the DB
+    # Step 2b — re-run manual loaders now that squad players are in the DB
     # (entries skipped in kaggle_loader due to missing players are picked up here)
-    print("Step 2b: Re-loading manual awards (pick up squad-only players)...")
-    from kaggle_loader import load_manual_awards
+    print("Step 2b: Re-loading manual data (pick up squad-only players)...")
+    from kaggle_loader import (
+        load_manual_awards,
+        load_manual_5wkt_hauls,
+        load_manual_top_batsmen,
+        load_manual_top_bowlers,
+        load_manual_multi_team_players,
+        load_manual_most_ducks,
+    )
     player_id_map = {
         name: pid
         for pid, name in conn.execute("SELECT id, name FROM players").fetchall()
     }
     n = load_manual_awards(conn, db_path.parent, player_id_map)
     print(f"  {n} award entries processed (INSERT OR REPLACE)")
+    n = load_manual_5wkt_hauls(conn, db_path.parent, player_id_map)
+    print(f"  {n} five_wicket_hauls entries processed (INSERT OR REPLACE)")
+    n = load_manual_top_batsmen(conn, db_path.parent, player_id_map)
+    print(f"  {n} batting_career_stats entries processed (INSERT OR REPLACE)")
+    n = load_manual_top_bowlers(conn, db_path.parent, player_id_map)
+    print(f"  {n} bowling_career_stats entries processed (INSERT OR REPLACE)")
+    n = load_manual_multi_team_players(conn, db_path.parent, player_id_map)
+    print(f"  {n} multi_team_players entries processed (INSERT OR REPLACE)")
+    n = load_manual_most_ducks(conn, db_path.parent, player_id_map)
+    print(f"  {n} most_ducks entries processed (INSERT OR REPLACE)")
 
     # Step 3 — coaches
     print("Step 3: Migrating and loading coaches...")

@@ -60,9 +60,85 @@ CREATE TABLE IF NOT EXISTS coaches (
     name     TEXT,
     UNIQUE (team_id, season, role)
 );
+
+CREATE TABLE IF NOT EXISTS five_wicket_hauls (
+    player_id    INTEGER PRIMARY KEY REFERENCES players(id),
+    matches      INTEGER,
+    innings      INTEGER,
+    balls        INTEGER,
+    runs         INTEGER,
+    wickets      INTEGER,
+    bbi          TEXT,
+    average      REAL,
+    economy      REAL,
+    strike_rate  REAL,
+    four_w       INTEGER,
+    five_w       INTEGER,
+    ten_w        INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS batting_career_stats (
+    player_id    INTEGER PRIMARY KEY REFERENCES players(id),
+    matches      INTEGER,
+    innings      INTEGER,
+    not_out      INTEGER,
+    runs         INTEGER,
+    hs           TEXT,
+    average      REAL,
+    balls_faced  INTEGER,
+    strike_rate  REAL,
+    hundreds     INTEGER,
+    fifties      INTEGER,
+    ducks        INTEGER,
+    fours        INTEGER,
+    sixes        INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS bowling_career_stats (
+    player_id    INTEGER PRIMARY KEY REFERENCES players(id),
+    matches      INTEGER,
+    innings      INTEGER,
+    balls        INTEGER,
+    runs         INTEGER,
+    wickets      INTEGER,
+    bbi          TEXT,
+    average      REAL,
+    economy      REAL,
+    strike_rate  REAL,
+    four_w       INTEGER,
+    five_w       INTEGER
+);
+
+CREATE TABLE IF NOT EXISTS multi_team_players (
+    player_id   INTEGER PRIMARY KEY REFERENCES players(id),
+    team_count  INTEGER,
+    teams       TEXT
+);
+
+CREATE TABLE IF NOT EXISTS most_ducks (
+    player_id    INTEGER PRIMARY KEY REFERENCES players(id),
+    matches      INTEGER,
+    innings      INTEGER,
+    not_out      INTEGER,
+    runs         INTEGER,
+    hs           TEXT,
+    average      REAL,
+    balls_faced  INTEGER,
+    strike_rate  REAL,
+    hundreds     INTEGER,
+    fifties      INTEGER,
+    ducks        INTEGER,
+    fours        INTEGER,
+    sixes        INTEGER
+);
 """
 
 DROP_TABLES = """
+DROP TABLE IF EXISTS most_ducks;
+DROP TABLE IF EXISTS multi_team_players;
+DROP TABLE IF EXISTS bowling_career_stats;
+DROP TABLE IF EXISTS batting_career_stats;
+DROP TABLE IF EXISTS five_wicket_hauls;
 DROP TABLE IF EXISTS coaches;
 DROP TABLE IF EXISTS awards;
 DROP TABLE IF EXISTS ipl_wins;
