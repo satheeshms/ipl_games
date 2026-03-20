@@ -8195,7 +8195,9 @@
     "BBI": "4/10",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Lungi Ngidi",
+    "country": "South Africa"
   },
   {
     "Player": "PR Shah",
@@ -8212,7 +8214,14 @@
     "BBI": null,
     "5w": 0,
     "Catches": 10,
-    "Stumpings": 2
+    "Stumpings": 2,
+    "full_name": "Prithvi Shaw",
+    "country": "India",
+    "state": "Maharashtra",
+    "ranji_team": [
+      "Mumbai",
+      "Maharashtra"
+    ]
   },
   {
     "Player": "RD Rickelton",
@@ -8229,7 +8238,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 11,
-    "Stumpings": 5
+    "Stumpings": 5,
+    "full_name": "Ryan Rickelton",
+    "country": "South Africa"
   },
   {
     "Player": "S Tyagi",
@@ -8246,7 +8257,13 @@
     "BBI": "2/18",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Sudeep Tyagi",
+    "country": "India",
+    "state": "Uttar Pradesh",
+    "ranji_team": [
+      "Uttar Pradesh"
+    ]
   },
   {
     "Player": "SJ Srivastava",
@@ -8263,7 +8280,13 @@
     "BBI": "2/20",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Shalabh Srivastava",
+    "country": "India",
+    "state": "Uttar Pradesh",
+    "ranji_team": [
+      "Uttar Pradesh"
+    ]
   },
   {
     "Player": "Simarjeet Singh",
@@ -8281,7 +8304,13 @@
     "BBI": "3/26",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Simarjeet Singh",
+    "country": "India",
+    "state": "Delhi",
+    "ranji_team": [
+      "Delhi"
+    ]
   },
   {
     "Player": "V Nigam",
@@ -8298,7 +8327,13 @@
     "BBI": "2/18",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Vipraj Nigam",
+    "country": "India",
+    "state": "Uttar Pradesh",
+    "ranji_team": [
+      "Uttar Pradesh"
+    ]
   },
   {
     "Player": "A Madhwal",
@@ -8315,7 +8350,13 @@
     "BBI": "5/5",
     "5w": 1,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Akash Madhwal",
+    "country": "India",
+    "state": "Uttarakhand",
+    "ranji_team": [
+      "Uttarakhand"
+    ]
   },
   {
     "Player": "AA Chavan",
@@ -8332,7 +8373,13 @@
     "BBI": "2/23",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Ankeet Chavan",
+    "country": "India",
+    "state": "Maharashtra",
+    "ranji_team": [
+      "Mumbai"
+    ]
   },
   {
     "Player": "AD Nath",
@@ -8350,7 +8397,13 @@
     "BBI": null,
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Akshdeep Nath",
+    "country": "India",
+    "state": "Uttar Pradesh",
+    "ranji_team": [
+      "Uttar Pradesh"
+    ]
   },
   {
     "Player": "C Munro",
@@ -8368,7 +8421,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Colin Munro",
+    "country": "New Zealand"
   },
   {
     "Player": "CR Woakes",
@@ -8385,7 +8440,9 @@
     "BBI": "3/6",
     "5w": 0,
     "Catches": 6,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Chris Woakes",
+    "country": "England"
   },
   {
     "Player": "DJ Mitchell",
@@ -8402,7 +8459,9 @@
     "BBI": "1/18",
     "5w": 0,
     "Catches": 9,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Daryl Mitchell",
+    "country": "New Zealand"
   },
   {
     "Player": "DS Rathi",
@@ -8419,7 +8478,13 @@
     "BBI": "2/30",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Digvesh Singh Rathi",
+    "country": "India",
+    "state": "Delhi",
+    "ranji_team": [
+      "Delhi"
+    ]
   },
   {
     "Player": "HR Shokeen",
@@ -8436,7 +8501,13 @@
     "BBI": "2/34",
     "5w": 0,
     "Catches": 5,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Hrithik Shokeen",
+    "country": "India",
+    "state": "Delhi",
+    "ranji_team": [
+      "Delhi"
+    ]
   },
   {
     "Player": "KR Mayers",
@@ -8453,7 +8524,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Kyle Mayers",
+    "country": "West Indies"
   },
   {
     "Player": "N Jagadeesan",
@@ -8471,7 +8544,13 @@
     "BBI": null,
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Narayan Jagadeesan",
+    "country": "India",
+    "state": "Tamil Nadu",
+    "ranji_team": [
+      "Tamil Nadu"
+    ]
   },
   {
     "Player": "PBB Rajapaksa",
@@ -8488,7 +8567,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Bhanuka Rajapaksa",
+    "country": "Sri Lanka"
   },
   {
     "Player": "RP Meredith",
@@ -8505,7 +8586,9 @@
     "BBI": "2/24",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Riley Meredith",
+    "country": "Australia"
   },
   {
     "Player": "RV Gomez",
@@ -8523,7 +8606,14 @@
     "BBI": "2/14",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Raiphi Gomez",
+    "country": "India",
+    "state": "Kerala",
+    "ranji_team": [
+      "Kerala",
+      "Puducherry"
+    ]
   },
   {
     "Player": "SB Dubey",
@@ -8540,7 +8630,13 @@
     "BBI": null,
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Shubham Dubey",
+    "country": "India",
+    "state": "Maharashtra",
+    "ranji_team": [
+      "Vidarbha"
+    ]
   },
   {
     "Player": "SE Rutherford",
@@ -8557,7 +8653,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Sherfane Rutherford",
+    "country": "West Indies"
   },
   {
     "Player": "SM Pollock",
@@ -8574,7 +8672,9 @@
     "BBI": "3/12",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Shaun Pollock",
+    "country": "South Africa"
   },
   {
     "Player": "WPUJC Vaas",
@@ -8591,7 +8691,9 @@
     "BBI": "3/21",
     "5w": 0,
     "Catches": 0,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Chaminda Vaas",
+    "country": "Sri Lanka"
   },
   {
     "Player": "A Chandila",
@@ -8608,7 +8710,13 @@
     "BBI": "4/13",
     "5w": 0,
     "Catches": 7,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Ajit Chandila",
+    "country": "India",
+    "state": "Haryana",
+    "ranji_team": [
+      "Haryana"
+    ]
   },
   {
     "Player": "AG Murtaza",
@@ -8626,7 +8734,13 @@
     "BBI": "3/15",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Ali Murtaza",
+    "country": "India",
+    "state": "Uttar Pradesh",
+    "ranji_team": [
+      "Uttar Pradesh"
+    ]
   },
   {
     "Player": "FY Fazal",
@@ -8643,7 +8757,13 @@
     "BBI": null,
     "5w": 0,
     "Catches": 6,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Faiz Fazal",
+    "country": "India",
+    "state": "Maharashtra",
+    "ranji_team": [
+      "Vidarbha"
+    ]
   },
   {
     "Player": "K Kartikeya",
@@ -8660,7 +8780,13 @@
     "BBI": "2/22",
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Kumar Kartikeya Singh",
+    "country": "India",
+    "state": "Uttar Pradesh",
+    "ranji_team": [
+      "Madhya Pradesh"
+    ]
   },
   {
     "Player": "KR Sen",
@@ -8677,7 +8803,13 @@
     "BBI": "4/20",
     "5w": 0,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Kuldeep Sen",
+    "country": "India",
+    "state": "Madhya Pradesh",
+    "ranji_team": [
+      "Madhya Pradesh"
+    ]
   },
   {
     "Player": "LA Pomersbach",
@@ -8694,7 +8826,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Luke Pomersbach",
+    "country": "Australia"
   },
   {
     "Player": "MJ Lumb",
@@ -8712,7 +8846,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 5,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Michael Lumb",
+    "country": "England"
   },
   {
     "Player": "MS Wade",
@@ -8729,7 +8865,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 8,
-    "Stumpings": 1
+    "Stumpings": 1,
+    "full_name": "Matthew Wade",
+    "country": "Australia"
   },
   {
     "Player": "PA Reddy",
@@ -8747,7 +8885,13 @@
     "BBI": null,
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "P Appala Reddy",
+    "country": "India",
+    "state": "unknown",
+    "ranji_team": [
+      "unknown"
+    ]
   },
   {
     "Player": "PVD Chameera",
@@ -8764,7 +8908,9 @@
     "BBI": "2/17",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Dushmantha Chameera",
+    "country": "Sri Lanka"
   },
   {
     "Player": "Pankaj Singh",
@@ -8781,7 +8927,13 @@
     "BBI": "2/18",
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Pankaj Singh",
+    "country": "India",
+    "state": "Rajasthan",
+    "ranji_team": [
+      "Rajasthan"
+    ]
   },
   {
     "Player": "R Rampaul",
@@ -8798,7 +8950,9 @@
     "BBI": "3/31",
     "5w": 0,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Ravi Rampaul",
+    "country": "West Indies"
   },
   {
     "Player": "WA Mota",
@@ -8815,7 +8969,14 @@
     "BBI": "1/6",
     "5w": 0,
     "Catches": 5,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Wilkin Mota",
+    "country": "India",
+    "state": "Maharashtra",
+    "ranji_team": [
+      "Mumbai",
+      "Tripura"
+    ]
   },
   {
     "Player": "AS Roy",
@@ -8832,7 +8993,9 @@
     "BBI": "2/19",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "AS Roy",
+    "country": "unknown"
   },
   {
     "Player": "Aman Hakim Khan",
@@ -8849,7 +9012,13 @@
     "BBI": null,
     "5w": 0,
     "Catches": 9,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Aman Hakim Khan",
+    "country": "India",
+    "state": "Maharashtra",
+    "ranji_team": [
+      "Puducherry"
+    ]
   },
   {
     "Player": "DR Sams",
@@ -8866,7 +9035,9 @@
     "BBI": "4/30",
     "5w": 0,
     "Catches": 7,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Daniel Sams",
+    "country": "Australia"
   },
   {
     "Player": "HC Brook",
@@ -8883,7 +9054,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Harry Brook",
+    "country": "England"
   },
   {
     "Player": "J Syed Mohammad",
@@ -8900,7 +9073,13 @@
     "BBI": "2/15",
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Jamaluddin Syed Mohammad",
+    "country": "India",
+    "state": "Assam",
+    "ranji_team": [
+      "Assam"
+    ]
   },
   {
     "Player": "JB Little",
@@ -8917,7 +9096,9 @@
     "BBI": "4/45",
     "5w": 0,
     "Catches": 5,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Josh Little",
+    "country": "Ireland"
   },
   {
     "Player": "JP Inglis",
@@ -8934,7 +9115,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 9,
-    "Stumpings": 1
+    "Stumpings": 1,
+    "full_name": "Josh Inglis",
+    "country": "Australia"
   },
   {
     "Player": "KL Nagarkoti",
@@ -8951,7 +9134,13 @@
     "BBI": "2/13",
     "5w": 0,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Kamlesh Nagarkoti",
+    "country": "India",
+    "state": "Rajasthan",
+    "ranji_team": [
+      "Rajasthan"
+    ]
   },
   {
     "Player": "S Rana",
@@ -8969,7 +9158,13 @@
     "BBI": null,
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Sachin Rana",
+    "country": "India",
+    "state": "Haryana",
+    "ranji_team": [
+      "Haryana"
+    ]
   },
   {
     "Player": "SB Bangar",
@@ -8986,7 +9181,13 @@
     "BBI": "2/34",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Sanjay Bangar",
+    "country": "India",
+    "state": "Maharashtra",
+    "ranji_team": [
+      "Railways"
+    ]
   },
   {
     "Player": "SM Katich",
@@ -9003,7 +9204,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Simon Katich",
+    "country": "Australia"
   },
   {
     "Player": "SS Prabhudessai",
@@ -9020,7 +9223,12 @@
     "BBI": null,
     "5w": 0,
     "Catches": 6,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Suyash Prabhudessai",
+    "country": "India",
+    "ranji_team": [
+      "Goa"
+    ]
   },
   {
     "Player": "Sohail Tanvir",
@@ -9037,7 +9245,9 @@
     "BBI": "6/14",
     "5w": 1,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Sohail Tanvir",
+    "country": "Pakistan"
   },
   {
     "Player": "V Vyshak",
@@ -9054,7 +9264,12 @@
     "BBI": "3/20",
     "5w": 0,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Vijaykumar Vyshak",
+    "country": "India",
+    "ranji_team": [
+      "Karnataka"
+    ]
   },
   {
     "Player": "YA Abdulla",
@@ -9071,7 +9286,12 @@
     "BBI": "4/31",
     "5w": 0,
     "Catches": 0,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Iqbal Abdulla",
+    "country": "India",
+    "ranji_team": [
+      "Mumbai"
+    ]
   },
   {
     "Player": "YV Takawale",
@@ -9088,7 +9308,12 @@
     "BBI": null,
     "5w": 0,
     "Catches": 11,
-    "Stumpings": 3
+    "Stumpings": 3,
+    "full_name": "Yogesh Takawale",
+    "country": "India",
+    "ranji_team": [
+      "Maharashtra"
+    ]
   },
   {
     "Player": "AN Ahmed",
@@ -9105,7 +9330,9 @@
     "BBI": "2/13",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Anwar Ahmed",
+    "country": "India"
   },
   {
     "Player": "BAW Mendis",
@@ -9123,7 +9350,9 @@
     "BBI": "2/19",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Ajantha Mendis",
+    "country": "Sri Lanka"
   },
   {
     "Player": "CRD Fernando",
@@ -9140,7 +9369,9 @@
     "BBI": "4/18",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Dilhara Fernando",
+    "country": "Sri Lanka"
   },
   {
     "Player": "I Udana",
@@ -9157,7 +9388,9 @@
     "BBI": "2/41",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Isuru Udana",
+    "country": "Sri Lanka"
   },
   {
     "Player": "JL Pattinson",
@@ -9174,7 +9407,9 @@
     "BBI": "2/19",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "James Pattinson",
+    "country": "Australia"
   },
   {
     "Player": "KW Richardson",
@@ -9192,7 +9427,9 @@
     "BBI": "2/18",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Kane Richardson",
+    "country": "Australia"
   },
   {
     "Player": "MJ Guptill",
@@ -9210,7 +9447,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 7,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Martin Guptill",
+    "country": "New Zealand"
   },
   {
     "Player": "MN Samuels",
@@ -9227,7 +9466,9 @@
     "BBI": "3/39",
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Marlon Samuels",
+    "country": "West Indies"
   },
   {
     "Player": "N Saini",
@@ -9244,7 +9485,12 @@
     "BBI": null,
     "5w": 0,
     "Catches": 11,
-    "Stumpings": 2
+    "Stumpings": 2,
+    "full_name": "Navdeep Saini",
+    "country": "India",
+    "ranji_team": [
+      "Delhi"
+    ]
   },
   {
     "Player": "R McLaren",
@@ -9261,7 +9507,9 @@
     "BBI": "2/28",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Ryan McLaren",
+    "country": "South Africa"
   },
   {
     "Player": "R Shepherd",
@@ -9280,7 +9528,9 @@
     "BBI": "2/42",
     "5w": 0,
     "Catches": 0,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Romario Shepherd",
+    "country": "West Indies"
   },
   {
     "Player": "RR Raje",
@@ -9297,7 +9547,12 @@
     "BBI": "2/16",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Rohan Raje",
+    "country": "India",
+    "ranji_team": [
+      "Mumbai"
+    ]
   },
   {
     "Player": "RT Ponting",
@@ -9315,7 +9570,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Ricky Ponting",
+    "country": "Australia"
   },
   {
     "Player": "S Kaushik",
@@ -9332,7 +9589,12 @@
     "BBI": "3/20",
     "5w": 0,
     "Catches": 0,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Shivil Kaushik",
+    "country": "India",
+    "ranji_team": [
+      "Karnataka"
+    ]
   },
   {
     "Player": "S Sandeep Warrier",
@@ -9350,7 +9612,12 @@
     "BBI": "3/15",
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Sandeep Warrier",
+    "country": "India",
+    "ranji_team": [
+      "Kerala"
+    ]
   },
   {
     "Player": "SB Styris",
@@ -9367,7 +9634,9 @@
     "BBI": "3/32",
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Scott Styris",
+    "country": "New Zealand"
   },
   {
     "Player": "SP Fleming",
@@ -9384,7 +9653,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Stephen Fleming",
+    "country": "New Zealand"
   },
   {
     "Player": "Shahid Afridi",
@@ -9401,7 +9672,9 @@
     "BBI": "3/28",
     "5w": 0,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Shahid Afridi",
+    "country": "Pakistan"
   },
   {
     "Player": "TK Curran",
@@ -9419,7 +9692,9 @@
     "BBI": "2/19",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Tom Curran",
+    "country": "England"
   },
   {
     "Player": "Zeeshan Ansari",
@@ -9436,7 +9711,12 @@
     "BBI": "3/42",
     "5w": 0,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Zeeshan Ansari",
+    "country": "India",
+    "ranji_team": [
+      "Uttar Pradesh"
+    ]
   },
   {
     "Player": "A Taide",
@@ -9453,7 +9733,12 @@
     "BBI": null,
     "5w": 0,
     "Catches": 5,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Atharva Taide",
+    "country": "India",
+    "ranji_team": [
+      "Vidarbha"
+    ]
   },
   {
     "Player": "AC Voges",
@@ -9470,7 +9755,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Adam Voges",
+    "country": "Australia"
   },
   {
     "Player": "Akash Singh",
@@ -9488,7 +9775,12 @@
     "BBI": "2/30",
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Akash Singh",
+    "country": "India",
+    "ranji_team": [
+      "Baroda"
+    ]
   },
   {
     "Player": "B Laughlin",
@@ -9506,7 +9798,9 @@
     "BBI": "2/15",
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Ben Laughlin",
+    "country": "Australia"
   },
   {
     "Player": "BB Samantray",
@@ -9524,7 +9818,12 @@
     "BBI": null,
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Biplab Samantray",
+    "country": "India",
+    "ranji_team": [
+      "Odisha"
+    ]
   },
   {
     "Player": "CJ Ferguson",
@@ -9541,7 +9840,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Callum Ferguson",
+    "country": "Australia"
   },
   {
     "Player": "CM Gautam",
@@ -9558,7 +9859,12 @@
     "BBI": null,
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 3
+    "Stumpings": 3,
+    "full_name": "C.M. Gautam",
+    "country": "India",
+    "ranji_team": [
+      "Karnataka"
+    ]
   },
   {
     "Player": "DP Vijaykumar",
@@ -9575,7 +9881,12 @@
     "BBI": "1/17",
     "5w": 0,
     "Catches": 0,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "D.P. Vijaykumar",
+    "country": "India",
+    "ranji_team": [
+      "Tamil Nadu"
+    ]
   },
   {
     "Player": "KA Jamieson",
@@ -9592,7 +9903,9 @@
     "BBI": "3/41",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Kyle Jamieson",
+    "country": "New Zealand"
   },
   {
     "Player": "KC Cariappa",
@@ -9609,7 +9922,12 @@
     "BBI": "2/16",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "K.C. Cariappa",
+    "country": "India",
+    "ranji_team": [
+      "Karnataka"
+    ]
   },
   {
     "Player": "Kamran Khan",
@@ -9627,7 +9945,12 @@
     "BBI": "3/18",
     "5w": 0,
     "Catches": 4,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Kamran Khan",
+    "country": "India",
+    "ranji_team": [
+      "Uttar Pradesh"
+    ]
   },
   {
     "Player": "Karanveer Singh",
@@ -9644,7 +9967,12 @@
     "BBI": "4/54",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Karanveer Singh",
+    "country": "India",
+    "ranji_team": [
+      "Tripura"
+    ]
   },
   {
     "Player": "M Ntini",
@@ -9661,7 +9989,9 @@
     "BBI": "4/21",
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Makhaya Ntini",
+    "country": "South Africa"
   },
   {
     "Player": "NK Patel",
@@ -9678,7 +10008,12 @@
     "BBI": null,
     "5w": 0,
     "Catches": 6,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Nayan Patel",
+    "country": "India",
+    "ranji_team": [
+      "Gujarat"
+    ]
   },
   {
     "Player": "P Dogra",
@@ -9695,7 +10030,12 @@
     "BBI": null,
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Paras Dogra",
+    "country": "India",
+    "ranji_team": [
+      "Jammu & Kashmir"
+    ]
   },
   {
     "Player": "RV Patel",
@@ -9712,7 +10052,12 @@
     "BBI": null,
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Rishi Patel",
+    "country": "India",
+    "ranji_team": [
+      "Gujarat"
+    ]
   },
   {
     "Player": "S Lamichhane",
@@ -9729,7 +10074,9 @@
     "BBI": "3/36",
     "5w": 0,
     "Catches": 2,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Sandeep Lamichhane",
+    "country": "Nepal"
   },
   {
     "Player": "S Vidyut",
@@ -9746,7 +10093,12 @@
     "BBI": "1/22",
     "5w": 0,
     "Catches": 1,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Vidyut Sivaramakrishnan",
+    "country": "India",
+    "ranji_team": [
+      "Tamil Nadu"
+    ]
   },
   {
     "Player": "SD Hope",
@@ -9763,7 +10115,9 @@
     "BBI": null,
     "5w": 0,
     "Catches": 6,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Shai Hope",
+    "country": "West Indies"
   },
   {
     "Player": "SH Johnson",
@@ -9781,7 +10135,12 @@
     "BBI": "2/25",
     "5w": 0,
     "Catches": 3,
-    "Stumpings": 0
+    "Stumpings": 0,
+    "full_name": "Sheldon Jackson",
+    "country": "India",
+    "ranji_team": [
+      "Saurashtra"
+    ]
   },
   {
     "Player": "SP Jackson",
@@ -9798,7 +10157,12 @@
     "BBI": null,
     "5w": 0,
     "Catches": 7,
-    "Stumpings": 2
+    "Stumpings": 2,
+    "full_name": "Sheldon Jackson",
+    "country": "India",
+    "ranji_team": [
+      "Saurashtra"
+    ]
   },
   {
     "Player": "Sikandar Raza",
