@@ -11,6 +11,7 @@ import itertools
 import json
 import random
 import sys
+from datetime import date as dt_date
 from pathlib import Path
 
 from hash_util import hash_items, verify_known_hashes
@@ -43,16 +44,475 @@ def shuffle(items: list) -> list:
 
 
 def search_data(query: str, ipl_data: dict) -> list[str]:
-    """Return up to 10 player/team names matching query (case-insensitive substring)."""
+    """Return up to 10 player/team names matching query (case-insensitive substring).
+
+    Also searches:
+      foreign_players  — by player name or country
+      india_state_wise — by player name or state (matching state returns all players in it)
+      ranji_team_wise  — by player name or team name (matching team returns all players in it)
+    """
     q = query.lower()
     results: list[str] = []
+    seen: set[str] = set()
+
+    def add(name: str) -> None:
+        if name and name not in seen:
+            seen.add(name)
+            results.append(name)
+
     for player in ipl_data.get("players", []):
         if q in player["name"].lower():
-            results.append(player["name"])
+            add(player["name"])
+
     for team in ipl_data.get("teams", []):
         if q in team["name"].lower():
-            results.append(team["name"])
+            add(team["name"])
+
+    for p in ipl_data.get("foreign_players", []):
+        if q in (p.get("name") or "").lower() or q in (p.get("country") or "").lower():
+            add(p["name"])
+
+    for state, players in ipl_data.get("india_state_wise", {}).items():
+        if q in state.lower():
+            for p in players:
+                add(p["name"])
+        else:
+            for p in players:
+                if q in (p.get("name") or "").lower():
+                    add(p["name"])
+
+    for ranji_team, players in ipl_data.get("ranji_team_wise", {}).items():
+        if q in ranji_team.lower():
+            for p in players:
+                add(p["name"])
+        else:
+            for p in players:
+                if q in (p.get("name") or "").lower():
+                    add(p["name"])
+
+    for row in ipl_data.get("player_teams", []):
+        if q in (row.get("team_name") or "").lower() or q in str(row.get("season") or ""):
+            add(row.get("player_name") or "")
+
     return results[:10]
+
+
+BROWSE_SHORTCUTS = (
+    "?team[:CODE[:SEASON]]  "
+    "?coaches[:SEASON]  ?batting_coaches[:SEASON]  ?bowling_coaches[:SEASON]  ?fielding_coaches[:SEASON]  "
+    "?orange_cap  ?purple_cap  ?pot  ?costliest  ?winning_captain  ?ipl_champions  "
+    "?batting_records  ?bowling_records  ?season_records  ?fielding_records  ?team_owners  "
+    "?countries  ?states  ?ranji  ?fifers  ?topbat  ?topbowl  ?multiteam  ?ducks"
+)
+
+
+def browse_groups(category: str, ipl_data: dict) -> None:
+    """Print available groups / ranked lists for a browse shortcut.
+
+    Shortcuts:
+      ?countries  — foreign players grouped by country
+      ?states     — Indian players grouped by home state
+      ?ranji      — Indian players grouped by Ranji team
+      ?fifers     — players with IPL 5-wicket hauls (wickets desc)
+      ?topbat     — top run-scorers (runs desc)
+      ?topbowl    — top wicket-takers (wickets desc)
+      ?multiteam  — players who played for the most franchises
+      ?ducks      — players with most ducks
+    """
+    if category == "countries":
+        counts: dict[str, int] = {}
+        for p in ipl_data.get("foreign_players", []):
+            country = p.get("country") or "Unknown"
+            counts[country] = counts.get(country, 0) + 1
+        if not counts:
+            print("  No foreign player data loaded.")
+            return
+        print("  Foreign player countries:")
+        for country, n in sorted(counts.items()):
+            print(f"    {country} ({n})")
+
+    elif category == "states":
+        groups = ipl_data.get("india_state_wise", {})
+        if not groups:
+            print("  No state data loaded.")
+            return
+        print("  Indian states:")
+        for state, players in sorted(groups.items()):
+            print(f"    {state} ({len(players)})")
+
+    elif category == "ranji":
+        groups = ipl_data.get("ranji_team_wise", {})
+        if not groups:
+            print("  No Ranji team data loaded.")
+            return
+        print("  Ranji Trophy teams:")
+        for team, players in sorted(groups.items()):
+            print(f"    {team} ({len(players)})")
+
+    elif category == "fifers":
+        players = ipl_data.get("five_wicket_hauls", [])
+        if not players:
+            print("  No five_wicket_hauls data loaded.")
+            return
+        print("  Players with IPL 5-wicket hauls (wickets desc):")
+        for p in players:
+            print(f"    {p['player_name']}  {p['wickets']}w  BBI {p['bbi']}")
+
+    elif category == "topbat":
+        players = ipl_data.get("batting_career_stats", [])
+        if not players:
+            print("  No batting_career_stats data loaded.")
+            return
+        print("  Top run-scorers:")
+        for p in players:
+            print(f"    {p['player_name']}  {p['runs']} runs  avg {p['average']}  100s {p['hundreds']}")
+
+    elif category == "topbowl":
+        players = ipl_data.get("bowling_career_stats", [])
+        if not players:
+            print("  No bowling_career_stats data loaded.")
+            return
+        print("  Top wicket-takers:")
+        for p in players:
+            print(f"    {p['player_name']}  {p['wickets']}w  econ {p['economy']}  BBI {p['bbi']}")
+
+    elif category == "multiteam":
+        players = ipl_data.get("multi_team_players", [])
+        if not players:
+            print("  No multi_team_players data loaded.")
+            return
+        print("  Players with most franchises:")
+        for p in players:
+            print(f"    {p['player_name']}  {p['team_count']} teams  ({p['teams']})")
+
+    elif category == "ducks":
+        players = ipl_data.get("most_ducks", [])
+        if not players:
+            print("  No most_ducks data loaded.")
+            return
+        print("  Players with most ducks:")
+        for p in players:
+            print(f"    {p['player_name']}  {p['ducks']} ducks  {p['innings']} innings")
+
+    elif category.startswith("team"):
+        parts = category.split(":", 2)
+        pt = ipl_data.get("player_teams", [])
+        if not pt:
+            print("  No player_teams data loaded.")
+            return
+        if len(parts) == 1:
+            team_seasons: dict[str, set] = {}
+            for row in pt:
+                team_seasons.setdefault(row["team_name"], set()).add(row["season"])
+            print("  Teams (use ?team:CODE for seasons, ?team:CODE:SEASON for squad):")
+            for tn, seasons in sorted(team_seasons.items()):
+                print(f"    {tn}  ({len(seasons)} seasons: {min(seasons)}-{max(seasons)})")
+        elif len(parts) == 2:
+            q = parts[1].lower()
+            season_players: dict = {}
+            for row in pt:
+                if q in row["team_name"].lower():
+                    season_players.setdefault(row["season"], []).append(row["player_name"])
+            if not season_players:
+                print(f"  No team matching '{parts[1]}'.")
+                return
+            print(f"  Seasons for '{parts[1]}' (use ?team:{parts[1]}:SEASON for squad):")
+            for s in sorted(season_players):
+                print(f"    {s}  ({len(season_players[s])} players)")
+        elif len(parts) == 3:
+            q, season_q = parts[1].lower(), parts[2]
+            players = sorted({
+                row["player_name"] for row in pt
+                if q in row["team_name"].lower() and str(row["season"]) == season_q
+            })
+            if not players:
+                print(f"  No players found for '{parts[1]}' {season_q}.")
+                return
+            print(f"  {parts[1]} {season_q} squad ({len(players)} players):")
+            for p in players:
+                print(f"    {p}")
+
+    elif any(category.startswith(r) for r in
+             ("coaches", "batting_coaches", "bowling_coaches", "fielding_coaches")):
+        parts = category.split(":", 1)
+        role_key = parts[0]
+        role_map = {"coaches": "head", "batting_coaches": "batting",
+                    "bowling_coaches": "bowling", "fielding_coaches": "fielding"}
+        role = role_map.get(role_key, "head")
+        all_coaches = ipl_data.get("coaches", [])
+        if not all_coaches:
+            print("  No coaches data loaded.")
+            return
+        if len(parts) == 1:
+            seasons = sorted({c["season"] for c in all_coaches if c.get("role") == role})
+            print(f"  Seasons with {role_key} data (use ?{role_key}:SEASON):")
+            for s in seasons:
+                n = sum(1 for c in all_coaches if c["season"] == s and c.get("role") == role)
+                print(f"    {s}  ({n} coaches)")
+        else:
+            try:
+                season = int(parts[1])
+            except ValueError:
+                print(f"  Invalid season '{parts[1]}'.")
+                return
+            names = sorted({c["coach"] for c in all_coaches
+                            if c["season"] == season and c.get("role") == role})
+            if not names:
+                print(f"  No {role} coaches found for {season}.")
+                return
+            print(f"  {season} {role} coaches:")
+            for n in names:
+                print(f"    {n}")
+
+    elif category in ("orange_cap", "purple_cap", "player_of_tournament",
+                      "pot", "costliest", "costliest_player", "winning_captain"):
+        award_map = {"pot": "player_of_tournament", "costliest": "costliest_player"}
+        award_type = award_map.get(category, category)
+        entries = [a for a in ipl_data.get("awards", []) if a["type"] == award_type]
+        if not entries:
+            print(f"  No {award_type} data loaded.")
+            return
+        print(f"  {award_type} winners ({len(entries)}):")
+        for a in sorted(entries, key=lambda x: x["season"]):
+            print(f"    {a['season']}  {a['player_name']}")
+
+    elif category == "ipl_champions":
+        wins = ipl_data.get("ipl_wins", [])
+        if not wins:
+            print("  No ipl_wins data loaded.")
+            return
+        print(f"  IPL Champions ({len(wins)}):")
+        for w in sorted(wins, key=lambda x: x["season"]):
+            print(f"    {w['season']}  {w['team_name']}")
+
+    elif category in ("batting_records", "bowling_records", "season_records", "fielding_records"):
+        entries = ipl_data.get("records", {}).get(category, [])
+        if not entries:
+            print(f"  No {category} data loaded.")
+            return
+        print(f"  {category} ({len(entries)}):")
+        for e in entries:
+            print(f"    {e.get('player')}  --  {e.get('record', '')}")
+
+    elif category == "team_owners":
+        entries = ipl_data.get("records", {}).get("team_owners", [])
+        if not entries:
+            print("  No team_owners data loaded.")
+            return
+        print(f"  Franchise owners ({len(entries)}):")
+        for e in entries:
+            print(f"    {e.get('owner')}  ({e.get('team', '')})")
+
+    else:
+        print(f"  Unknown browse shortcut. Available: {BROWSE_SHORTCUTS}")
+
+
+# ---------------------------------------------------------------------------
+# Rule engine
+# ---------------------------------------------------------------------------
+
+# Cooldown windows (days). Adjust here to tune the rule engine.
+ITEM_COOLDOWN_DAYS    = 2   # same item in any group within N days
+GROUP_COOLDOWN_DAYS   = 4   # same group tag within N days
+TYPE_COOLDOWN_DAYS    = 3   # same category-type prefix within N days
+TEAM_COOLDOWN_DAYS    = 2   # same franchise team within N days
+
+
+class RuleViolation:
+    """A single rule violation with a severity level."""
+    def __init__(self, rule: str, message: str, severity: str = "warn"):
+        self.rule     = rule
+        self.message  = message
+        self.severity = severity   # "warn" (ask to override) | "block" (hard stop)
+
+    def __repr__(self) -> str:
+        return f"RuleViolation({self.rule!r}, severity={self.severity!r})"
+
+
+class DedupeIndex:
+    """Pre-computed lookup tables built from all past puzzle files."""
+    def __init__(self):
+        self.used_items:  dict[tuple[str, str], str] = {}  # (group, item) -> first_date
+        self.group_dates: dict[str, str]              = {}  # group -> latest_date
+        self.item_dates:  dict[str, str]              = {}  # item  -> latest_date (any group)
+        self.type_dates:  dict[str, str]              = {}  # type_prefix -> latest_date
+        self.team_dates:  dict[str, str]              = {}  # team_code -> latest_date
+
+    @property
+    def group_count(self) -> int:
+        return len(self.group_dates)
+
+    @property
+    def pair_count(self) -> int:
+        return len(self.used_items)
+
+
+def _group_type(group: str) -> str:
+    """'team_players:CSK:2026' -> 'team_players',  'orange_cap' -> 'orange_cap'"""
+    return group.split(":")[0] if group else ""
+
+
+def _team_code(group: str) -> str | None:
+    """'team_players:CSK:2026' -> 'CSK',  anything else -> None"""
+    parts = group.split(":")
+    if parts[0] == "team_players" and len(parts) >= 2:
+        return parts[1]
+    return None
+
+
+def _days_between(from_date: str, to_date: str) -> int | None:
+    """Return (to_date - from_date).days, or None if either date is unparseable."""
+    try:
+        return (dt_date.fromisoformat(to_date) - dt_date.fromisoformat(from_date)).days
+    except ValueError:
+        return None
+
+
+def check_group_rules(group: str, puzzle_date: str, idx: "DedupeIndex") -> list[RuleViolation]:
+    """Run all group-tag-level rules. Returns list of violations (may be empty)."""
+    if not group:
+        return []
+    violations: list[RuleViolation] = []
+
+    # Rule 1: group cooldown
+    if group in idx.group_dates:
+        n = _days_between(idx.group_dates[group], puzzle_date)
+        if n is not None and 0 < n < GROUP_COOLDOWN_DAYS:
+            violations.append(RuleViolation(
+                rule="group_cooldown",
+                message=(f"Group '{group}' was last used on {idx.group_dates[group]} "
+                         f"({n} day(s) ago — min gap is {GROUP_COOLDOWN_DAYS} days)."),
+            ))
+
+    # Rule 2: category-type cooldown
+    gtype = _group_type(group)
+    if gtype and gtype in idx.type_dates:
+        n = _days_between(idx.type_dates[gtype], puzzle_date)
+        if n is not None and 0 < n < TYPE_COOLDOWN_DAYS:
+            violations.append(RuleViolation(
+                rule="type_cooldown",
+                message=(f"Category type '{gtype}' was last used on {idx.type_dates[gtype]} "
+                         f"({n} day(s) ago — min gap is {TYPE_COOLDOWN_DAYS} days)."),
+            ))
+
+    # Rule 3: team cooldown
+    team = _team_code(group)
+    if team and team in idx.team_dates:
+        n = _days_between(idx.team_dates[team], puzzle_date)
+        if n is not None and 0 < n < TEAM_COOLDOWN_DAYS:
+            violations.append(RuleViolation(
+                rule="team_cooldown",
+                message=(f"Team '{team}' appeared in a puzzle on {idx.team_dates[team]} "
+                         f"({n} day(s) ago — min gap is {TEAM_COOLDOWN_DAYS} days)."),
+            ))
+
+    return violations
+
+
+def check_item_rules(group: str, item: str, puzzle_date: str,
+                     idx: "DedupeIndex") -> list[RuleViolation]:
+    """Run all item-level rules. Returns list of violations (may be empty)."""
+    violations: list[RuleViolation] = []
+
+    # Rule 4: (group, item) pair already used — permanent block
+    if group:
+        prev = idx.used_items.get((group, item))
+        if prev:
+            violations.append(RuleViolation(
+                rule="group_item_used",
+                message=f"'{item}' was already used in group '{group}' on {prev}.",
+                severity="block",
+            ))
+
+    # Rule 5: item appeared in any puzzle within the cooldown window
+    if item in idx.item_dates:
+        n = _days_between(idx.item_dates[item], puzzle_date)
+        if n is not None and 0 < n < ITEM_COOLDOWN_DAYS:
+            violations.append(RuleViolation(
+                rule="item_cooldown",
+                message=(f"'{item}' appeared in a puzzle {n} day(s) ago "
+                         f"(min gap is {ITEM_COOLDOWN_DAYS} days)."),
+            ))
+
+    return violations
+
+
+def prompt_violations(violations: list[RuleViolation]) -> bool:
+    """Print violations and ask for confirmation if any are warnings.
+
+    Returns True if the curator wants to proceed, False to reject.
+    Blocks (severity='block') always return False.
+    """
+    if not violations:
+        return True
+
+    blocks = [v for v in violations if v.severity == "block"]
+    warns  = [v for v in violations if v.severity == "warn"]
+
+    for v in violations:
+        tag = "[BLOCK]" if v.severity == "block" else "[WARN] "
+        print(f"  {tag} {v.message}")
+
+    if blocks:
+        print("  This item cannot be added (hard block). Choose a different item.")
+        return False
+
+    override = input(f"  Add anyway? [y/N]: ").strip().lower()
+    return override == "y"
+
+
+# ---------------------------------------------------------------------------
+# Deduplication helpers
+# ---------------------------------------------------------------------------
+
+
+def load_used_items(output_dir: Path) -> DedupeIndex:
+    """Scan all existing YYYY-MM-DD.json puzzle files in output_dir.
+
+    Builds and returns a DedupeIndex with five lookup tables:
+      used_items  : {(group, item): first_date_used}     — permanent pair tracking
+      group_dates : {group: latest_date_used}             — group cooldown
+      item_dates  : {item: latest_date_used (any group)}  — item cooldown
+      type_dates  : {type_prefix: latest_date_used}       — category-type cooldown
+      team_dates  : {team_code: latest_date_used}         — team cooldown
+
+    Only categories with both a 'group' field and an 'items' list are indexed.
+    Legacy puzzle files without these fields are silently skipped.
+    """
+    idx = DedupeIndex()
+    if not output_dir.exists():
+        return idx
+
+    def _update_latest(d: dict, key: str, date: str) -> None:
+        if key and (key not in d or date > d[key]):
+            d[key] = date
+
+    for puzzle_file in sorted(output_dir.glob("????-??-??.json")):
+        try:
+            with puzzle_file.open(encoding="utf-8") as fh:
+                puzzle = json.load(fh)
+        except (json.JSONDecodeError, OSError):
+            continue
+
+        date = puzzle.get("date", puzzle_file.stem)
+        for cat in puzzle.get("categories", []):
+            group = (cat.get("group") or "").strip()
+            if not group:
+                continue
+
+            _update_latest(idx.group_dates, group, date)
+            _update_latest(idx.type_dates,  _group_type(group), date)
+            team = _team_code(group)
+            if team:
+                _update_latest(idx.team_dates, team, date)
+
+            for item in cat.get("items", []):
+                key = (group, item)
+                if key not in idx.used_items:
+                    idx.used_items[key] = date
+                _update_latest(idx.item_dates, item, date)
+
+    return idx
 
 
 # ---------------------------------------------------------------------------
@@ -65,14 +525,17 @@ def cmd_create(args: argparse.Namespace) -> int:
     print("  IPL Connections — Puzzle Creator")
     print("=" * 60)
 
+    output_dir = Path(args.output)
+
     # 1. Verify hash_util is working correctly
-    print("\n[1/7] Verifying hash_util …")
+    print("\n[1/8] Verifying hash_util …")
     if not verify_known_hashes():
         print("ERROR: hash_util verification failed. Aborting.")
         return 1
     print("  Hash verification: PASS")
 
-    # 2. Load optional data file for search helper
+    # 2. Load optional data file + past-puzzle dedup index
+    print("\n[2/8] Loading data …")
     ipl_data: dict = {}
     if args.data_file:
         data_path = Path(args.data_file)
@@ -81,12 +544,40 @@ def cmd_create(args: argparse.Namespace) -> int:
         else:
             with data_path.open(encoding="utf-8") as fh:
                 ipl_data = json.load(fh)
-            player_count = len(ipl_data.get("players", []))
-            team_count = len(ipl_data.get("teams", []))
-            print(f"  Loaded data file: {player_count} players, {team_count} teams")
+            player_count    = len(ipl_data.get("players", []))
+            team_count      = len(ipl_data.get("teams", []))
+            pt_count        = len(ipl_data.get("player_teams", []))
+            awards_count    = len(ipl_data.get("awards", []))
+            coaches_count   = len(ipl_data.get("coaches", []))
+            foreign_count   = len(ipl_data.get("foreign_players", []))
+            state_count     = len(ipl_data.get("india_state_wise", {}))
+            ranji_count     = len(ipl_data.get("ranji_team_wise", {}))
+            fifers_count    = len(ipl_data.get("five_wicket_hauls", []))
+            topbat_count    = len(ipl_data.get("batting_career_stats", []))
+            topbowl_count   = len(ipl_data.get("bowling_career_stats", []))
+            multiteam_count = len(ipl_data.get("multi_team_players", []))
+            ducks_count     = len(ipl_data.get("most_ducks", []))
+            print(f"  Loaded: {player_count} players, {team_count} teams, "
+                  f"{pt_count} player-team-season rows, {awards_count} awards, "
+                  f"{coaches_count} coach records, {foreign_count} foreign players, "
+                  f"{state_count} states, {ranji_count} ranji teams, "
+                  f"{fifers_count} fifers, {topbat_count} top batsmen, {topbowl_count} top bowlers, "
+                  f"{multiteam_count} multi-team, {ducks_count} ducks")
+            print(f"  Browse: {BROWSE_SHORTCUTS}")
+
+    idx = load_used_items(output_dir)
+    if idx.pair_count:
+        print(f"  Dedup index: {idx.pair_count} (group, item) pairs across "
+              f"{idx.group_count} groups from past puzzles")
+        print(f"  Rules: item cooldown {ITEM_COOLDOWN_DAYS}d  |  "
+              f"group cooldown {GROUP_COOLDOWN_DAYS}d  |  "
+              f"type cooldown {TYPE_COOLDOWN_DAYS}d  |  "
+              f"team cooldown {TEAM_COOLDOWN_DAYS}d")
+    else:
+        print("  Dedup index: no past puzzles found — starting fresh")
 
     # 3. Collect categories interactively
-    print("\n[2/7] Enter puzzle categories\n")
+    print("\n[3/8] Enter puzzle categories\n")
     categories_data: list[dict] = []  # [{color, title, items:[str]}]
 
     for color in COLORS:
@@ -100,17 +591,33 @@ def cmd_create(args: argparse.Namespace) -> int:
                 break
             print("  Title cannot be empty. Try again.")
 
+        # Group tag — used for cross-puzzle deduplication
+        print(f"  Group tag identifies the data source for dedup (e.g. topbat / state:Karnataka / ranji:Mumbai).")
+        if idx.group_dates:
+            print(f"  Groups used so far: {', '.join(sorted(idx.group_dates))}")
+        while True:
+            group = input(f"  Group tag for {color.upper()} (Enter to skip): ").strip()
+            violations = check_group_rules(group, args.date, idx)
+            if not prompt_violations(violations):
+                print("  Enter a different group tag.")
+                continue
+            break
+
         # Items — prompt until exactly 4 unique items collected
         items: list[str] = []
-        print(f"  Enter 4 items for {color.upper()} (one per line, blank line to finish entry):")
+        print(f"  Enter 4 items for {color.upper()}:")
         while len(items) < 4:
             remaining = 4 - len(items)
-            prompt_label = f"  Item {len(items) + 1}/{4}"
+            prompt_label = f"  Item {len(items) + 1}/4"
 
             # Optional search helper
             if ipl_data:
-                search_query = input(f"{prompt_label} — Search (or press Enter to type directly): ").strip()
-                if search_query:
+                search_query = input(f"{prompt_label} — Search / browse (? for shortcuts, Enter to skip): ").strip()
+                if search_query == "?":
+                    print(f"  Browse shortcuts: {BROWSE_SHORTCUTS}")
+                elif search_query.startswith("?"):
+                    browse_groups(search_query[1:].lower(), ipl_data)
+                elif search_query:
                     matches = search_data(search_query, ipl_data)
                     if matches:
                         print("  Matches:")
@@ -121,20 +628,26 @@ def cmd_create(args: argparse.Namespace) -> int:
 
             item = input(f"{prompt_label} — Item name: ").strip()
             if not item:
-                if len(items) < 4:
-                    print(f"  Need {remaining} more item(s). Please enter an item name.")
+                print(f"  Need {remaining} more item(s). Please enter an item name.")
                 continue
             if item in items:
                 print(f"  '{item}' already added to this category. Enter a different item.")
                 continue
+
+            # Cross-puzzle rule checks
+            violations = check_item_rules(group, item, args.date, idx)
+            if not prompt_violations(violations):
+                print("  Skipped. Please enter a different item.")
+                continue
+
             items.append(item)
             print(f"  Added: {item}  ({len(items)}/4)")
 
-        categories_data.append({"color": color, "title": title, "items": items})
+        categories_data.append({"color": color, "title": title, "group": group, "items": items})
         print()
 
     # 4. Validate: no duplicate items across all 4 categories
-    print("[3/7] Checking for duplicate items …")
+    print("[4/8] Checking for duplicate items …")
     all_items: list[str] = []
     duplicates: list[str] = []
     for cat in categories_data:
@@ -151,25 +664,29 @@ def cmd_create(args: argparse.Namespace) -> int:
     print("  No duplicates found: OK")
 
     # 5. Compute SHA-256 hash for each category
-    print("\n[4/7] Computing category hashes …")
+    print("\n[5/8] Computing category hashes …")
     categories_out: list[dict] = []
     for cat in categories_data:
         h = hash_items(cat["items"])
-        categories_out.append({
+        entry = {
             "color": cat["color"],
             "title": cat["title"],
-            "hash": h,
-        })
-        print(f"  {cat['color'].upper():8s} '{cat['title']}' → {h[:16]}…")
+            "hash":  h,
+            "items": cat["items"],  # stored for curator dedup; not used by game UI
+        }
+        if cat["group"]:
+            entry["group"] = cat["group"]
+        categories_out.append(entry)
+        group_label = f"  [{cat['group']}]" if cat["group"] else ""
+        print(f"  {cat['color'].upper():8s} '{cat['title']}'{group_label} → {h[:16]}…")
 
     # 6. Shuffle all 16 items
-    print("\n[5/7] Shuffling items …")
+    print("\n[6/8] Shuffling items …")
     shuffled_items = shuffle(all_items)
     print(f"  Items shuffled: {shuffled_items}")
 
     # 7. Determine edition number
-    print("\n[6/7] Determining edition number …")
-    output_dir = Path(args.output)
+    print("\n[7/8] Determining edition number …")
     if args.edition is not None:
         edition = args.edition
         print(f"  Edition (from --edition flag): {edition}")
@@ -183,7 +700,7 @@ def cmd_create(args: argparse.Namespace) -> int:
         print(f"  Auto-detected edition: {edition} ({len(existing)} existing puzzle(s) found)")
 
     # 8. Write puzzle JSON
-    print(f"\n[7/7] Writing puzzle file …")
+    print(f"\n[8/8] Writing puzzle file …")
     puzzle: dict = {
         "id": args.date,
         "date": args.date,

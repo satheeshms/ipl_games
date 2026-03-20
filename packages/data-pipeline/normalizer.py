@@ -268,6 +268,71 @@ def _load_coaches_legacy(conn, data_dir: Path) -> tuple[int, list[str]]:
 # Step 3 — Export ipl_data.json
 # ---------------------------------------------------------------------------
 
+def load_player_enriched(data_dir: Path) -> list[dict]:
+    """Read players_master_enriched.json and return the list of player records."""
+    path = data_dir / "players_master_enriched.json"
+    if not path.exists():
+        print(f"  [enriched] {path} not found, skipping player geography categories.")
+        return []
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def build_player_geography(enriched: list[dict]) -> tuple[list, dict, dict]:
+    """
+    Builds three player geography categories from players_master_enriched.json.
+
+    Returns:
+      foreign_players  — list of non-Indian players sorted by country then name
+      india_state_wise — { state: [player, ...] } sorted alphabetically by state
+      ranji_team_wise  — { ranji_team: [player, ...] } sorted by team name;
+                         a player with multiple ranji teams appears in each group
+    """
+    def slim(p):
+        return {
+            "name":      p.get("Player"),
+            "full_name": p.get("full_name"),
+            "country":   p.get("country"),
+            "teams":     p.get("Teams", []),
+            "matches":   p.get("Matches"),
+        }
+
+    foreign_players = sorted(
+        [slim(p) for p in enriched
+         if p.get("country") and p["country"].strip().lower() != "india"],
+        key=lambda x: (x["country"] or "", x["name"] or ""),
+    )
+
+    state_wise: dict[str, list] = {}
+    ranji_wise: dict[str, list] = {}
+
+    for p in enriched:
+        if (p.get("country") or "").strip().lower() != "india":
+            continue
+
+        rec = slim(p)
+        rec["state"] = p.get("state")
+        rec["ranji_team"] = p.get("ranji_team")
+
+        state = p.get("state")
+        if state:
+            state_wise.setdefault(state, []).append(rec)
+
+        for rt in (p.get("ranji_team") or []):
+            ranji_wise.setdefault(rt, []).append(rec)
+
+    india_state_wise = {
+        k: sorted(v, key=lambda x: x["name"] or "")
+        for k, v in sorted(state_wise.items())
+    }
+    ranji_team_wise = {
+        k: sorted(v, key=lambda x: x["name"] or "")
+        for k, v in sorted(ranji_wise.items())
+    }
+
+    return foreign_players, india_state_wise, ranji_team_wise
+
+
 def load_records(data_dir: Path) -> dict:
     """
     Read manual_records.json and return its batting/bowling/season record lists.
@@ -398,6 +463,9 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
     ]
 
     records = load_records(data_dir) if data_dir else {}
+
+    enriched = load_player_enriched(data_dir) if data_dir else []
+    foreign_players, india_state_wise, ranji_team_wise = build_player_geography(enriched)
 
     five_wicket_hauls = [
         {
@@ -539,6 +607,9 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
         "bowling_career_stats": bowling_career_stats,
         "multi_team_players": multi_team_players,
         "most_ducks": most_ducks,
+        "foreign_players": foreign_players,
+        "india_state_wise": india_state_wise,
+        "ranji_team_wise": ranji_team_wise,
     }
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -554,6 +625,9 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
           f"bowling_career_stats: {len(bowling_career_stats)}, "
           f"multi_team_players: {len(multi_team_players)}, "
           f"most_ducks: {len(most_ducks)}")
+    print(f"    foreign_players: {len(foreign_players)}, "
+          f"india_state_wise groups: {len(india_state_wise)}, "
+          f"ranji_team_wise groups: {len(ranji_team_wise)}")
 
 
 # ---------------------------------------------------------------------------

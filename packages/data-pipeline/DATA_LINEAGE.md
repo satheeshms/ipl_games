@@ -74,6 +74,9 @@ Documents the full data flow from raw sources to `ipl_data.json`.
 | `bowling_career_stats` | `bowling_career_stats` | `manual_top_bowlers.json` | Career bowling stats, filtered to 100+ wickets |
 | `multi_team_players` | `multi_team_players` | `manual_players_multi_team.json` | Players who played for 5+ franchises |
 | `most_ducks` | `most_ducks` | `manual_most_ducks.json` | Batting stats for players with 10+ ducks |
+| `foreign_players` | *(none)* | `players_master_enriched.json` | **Bypasses DB** — non-Indian players with country, teams, matches |
+| `india_state_wise` | *(none)* | `players_master_enriched.json` | **Bypasses DB** — Indian players grouped by home state |
+| `ranji_team_wise` | *(none)* | `players_master_enriched.json` | **Bypasses DB** — Indian players grouped by Ranji Trophy team; players with multiple teams appear in each group |
 
 ---
 
@@ -106,6 +109,7 @@ For a consolidated player→teams→seasons view, `multi_team_players` provides 
 | Ghost DB columns | Several columns always NULL, bloating player/team JSON objects |
 | No team code lookup | Manual JSONs use short codes (RCB, CSK); no code→full name map in export |
 | Kaggle cutoff 2020 | player_teams is incomplete for 2021–2025 seasons |
+| Enriched player coverage | 375 of 592 players still missing country/state/ranji — populated incrementally via `batches/*enriched*.json` |
 
 ---
 
@@ -125,4 +129,4 @@ For a consolidated player→teams→seasons view, `multi_team_players` provides 
 
 ---
 
-*Last updated: IPL 2025 season*
+*Last updated: IPL 2025 season — added foreign_players, india_state_wise, ranji_team_wise*

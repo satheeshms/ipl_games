@@ -1,2 +1,5 @@
 .claude/settings.local.json
 packages/data-pipeline/__pycache__/*
+packages/data-pipeline/data/team/*
+packages/data-pipeline/data/archive/*
+packages/data-pipeline/data/batches/*

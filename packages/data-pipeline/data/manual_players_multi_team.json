@@ -1,0 +1,469 @@
+[
+  {
+    "Player": "AJ Finch",
+    "Teams": "DC/GL/KKR/KXIP/MI/PWI/RCB/RR/SRH",
+    "TeamList": [
+      "DC",
+      "GL",
+      "KKR",
+      "KXIP",
+      "MI",
+      "PWI",
+      "RCB",
+      "RR",
+      "SRH"
+    ],
+    "TeamCount": 9
+  },
+  {
+    "Player": "JD Unadkat",
+    "Teams": "DC/KKR/LSG/MI/RCB/RPS/RR/SRH",
+    "TeamList": [
+      "DC",
+      "KKR",
+      "LSG",
+      "MI",
+      "RCB",
+      "RPS",
+      "RR",
+      "SRH"
+    ],
+    "TeamCount": 8
+  },
+  {
+    "Player": "I Sharma",
+    "Teams": "DC/DCH/GT/KKR/KXIP/RPS/SRH",
+    "TeamList": [
+      "DC",
+      "DCH",
+      "GT",
+      "KKR",
+      "KXIP",
+      "RPS",
+      "SRH"
+    ],
+    "TeamCount": 7
+  },
+  {
+    "Player": "MK Pandey",
+    "Teams": "DC/KKR/LSG/MI/PWI/RCB/SRH",
+    "TeamList": [
+      "DC",
+      "KKR",
+      "LSG",
+      "MI",
+      "PWI",
+      "RCB",
+      "SRH"
+    ],
+    "TeamCount": 7
+  },
+  {
+    "Player": "AM Rahane",
+    "Teams": "CSK/DC/KKR/MI/RPS/RR",
+    "TeamList": [
+      "CSK",
+      "DC",
+      "KKR",
+      "MI",
+      "RPS",
+      "RR"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "DJ Hooda",
+    "Teams": "CSK/KXIP/LSG/PBKS/RR/SRH",
+    "TeamList": [
+      "CSK",
+      "KXIP",
+      "LSG",
+      "PBKS",
+      "RR",
+      "SRH"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "KD Karthik",
+    "Teams": "DC/GL/KKR/KXIP/MI/RCB",
+    "TeamList": [
+      "DC",
+      "GL",
+      "KKR",
+      "KXIP",
+      "MI",
+      "RCB"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "KL Rahul",
+    "Teams": "DC/KXIP/LSG/PBKS/RCB/SRH",
+    "TeamList": [
+      "DC",
+      "KXIP",
+      "LSG",
+      "PBKS",
+      "RCB",
+      "SRH"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "MA Agarwal",
+    "Teams": "DC/KXIP/PBKS/RCB/RPS/SRH",
+    "TeamList": [
+      "DC",
+      "KXIP",
+      "PBKS",
+      "RCB",
+      "RPS",
+      "SRH"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "MR Marsh",
+    "Teams": "DC/DCH/LSG/PWI/RPS/SRH",
+    "TeamList": [
+      "DC",
+      "DCH",
+      "LSG",
+      "PWI",
+      "RPS",
+      "SRH"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "Mohammed Shami",
+    "Teams": "DC/GT/KKR/KXIP/PBKS/SRH",
+    "TeamList": [
+      "DC",
+      "GT",
+      "KKR",
+      "KXIP",
+      "PBKS",
+      "SRH"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "PA Patel",
+    "Teams": "CSK/DCH/Kochi/MI/RCB/SRH",
+    "TeamList": [
+      "CSK",
+      "DCH",
+      "Kochi",
+      "MI",
+      "RCB",
+      "SRH"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "Q de Kock",
+    "Teams": "DC/KKR/LSG/MI/RCB/SRH",
+    "TeamList": [
+      "DC",
+      "KKR",
+      "LSG",
+      "MI",
+      "RCB",
+      "SRH"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "RV Uthappa",
+    "Teams": "CSK/KKR/MI/PWI/RCB/RR",
+    "TeamList": [
+      "CSK",
+      "KKR",
+      "MI",
+      "PWI",
+      "RCB",
+      "RR"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "SN Thakur",
+    "Teams": "CSK/DC/KKR/KXIP/LSG/RPS",
+    "TeamList": [
+      "CSK",
+      "DC",
+      "KKR",
+      "KXIP",
+      "LSG",
+      "RPS"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "Yuvraj Singh",
+    "Teams": "DC/KXIP/MI/PWI/RCB/SRH",
+    "TeamList": [
+      "DC",
+      "KXIP",
+      "MI",
+      "PWI",
+      "RCB",
+      "SRH"
+    ],
+    "TeamCount": 6
+  },
+  {
+    "Player": "A Nehra",
+    "Teams": "CSK/DC/MI/PWI/SRH",
+    "TeamList": [
+      "CSK",
+      "DC",
+      "MI",
+      "PWI",
+      "SRH"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "AB Dinda",
+    "Teams": "DC/KKR/PWI/RCB/RPS",
+    "TeamList": [
+      "DC",
+      "KKR",
+      "PWI",
+      "RCB",
+      "RPS"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "BB McCullum",
+    "Teams": "CSK/GL/KKR/Kochi/RCB",
+    "TeamList": [
+      "CSK",
+      "GL",
+      "KKR",
+      "Kochi",
+      "RCB"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "GJ Maxwell",
+    "Teams": "DC/KXIP/MI/PBKS/RCB",
+    "TeamList": [
+      "DC",
+      "KXIP",
+      "MI",
+      "PBKS",
+      "RCB"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "IK Pathan",
+    "Teams": "DC/GL/KXIP/RPS/SRH",
+    "TeamList": [
+      "DC",
+      "GL",
+      "KXIP",
+      "RPS",
+      "SRH"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "JO Holder",
+    "Teams": "CSK/KKR/LSG/RR/SRH",
+    "TeamList": [
+      "CSK",
+      "KKR",
+      "LSG",
+      "RR",
+      "SRH"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "KM Jadhav",
+    "Teams": "CSK/DC/Kochi/RCB/SRH",
+    "TeamList": [
+      "CSK",
+      "DC",
+      "Kochi",
+      "RCB",
+      "SRH"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "LH Ferguson",
+    "Teams": "GT/KKR/PBKS/RCB/RPS",
+    "TeamList": [
+      "GT",
+      "KKR",
+      "PBKS",
+      "RCB",
+      "RPS"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "MC Henriques",
+    "Teams": "DC/KKR/PBKS/RCB/SRH",
+    "TeamList": [
+      "DC",
+      "KKR",
+      "PBKS",
+      "RCB",
+      "SRH"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "MP Stoinis",
+    "Teams": "DC/KXIP/LSG/PBKS/RCB",
+    "TeamList": [
+      "DC",
+      "KXIP",
+      "LSG",
+      "PBKS",
+      "RCB"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "Mandeep Singh",
+    "Teams": "DC/KKR/KXIP/PBKS/RCB",
+    "TeamList": [
+      "DC",
+      "KKR",
+      "KXIP",
+      "PBKS",
+      "RCB"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "Mustafizur Rahman",
+    "Teams": "CSK/DC/MI/RR/SRH",
+    "TeamList": [
+      "CSK",
+      "DC",
+      "MI",
+      "RR",
+      "SRH"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "P Kumar",
+    "Teams": "GL/KXIP/MI/RCB/SRH",
+    "TeamList": [
+      "GL",
+      "KXIP",
+      "MI",
+      "RCB",
+      "SRH"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "R Ashwin",
+    "Teams": "CSK/DC/KXIP/RPS/RR",
+    "TeamList": [
+      "CSK",
+      "DC",
+      "KXIP",
+      "RPS",
+      "RR"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "RA Tripathi",
+    "Teams": "CSK/KKR/RPS/RR/SRH",
+    "TeamList": [
+      "CSK",
+      "KKR",
+      "RPS",
+      "RR",
+      "SRH"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "RP Singh",
+    "Teams": "DCH/Kochi/MI/RCB/RPS",
+    "TeamList": [
+      "DCH",
+      "Kochi",
+      "MI",
+      "RCB",
+      "RPS"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "S Dhawan",
+    "Teams": "DC/DCH/MI/PBKS/SRH",
+    "TeamList": [
+      "DC",
+      "DCH",
+      "MI",
+      "PBKS",
+      "SRH"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "TA Boult",
+    "Teams": "DC/KKR/MI/RR/SRH",
+    "TeamList": [
+      "DC",
+      "KKR",
+      "MI",
+      "RR",
+      "SRH"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "TG Southee",
+    "Teams": "CSK/KKR/MI/RCB/RR",
+    "TeamList": [
+      "CSK",
+      "KKR",
+      "MI",
+      "RCB",
+      "RR"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "VR Aaron",
+    "Teams": "DC/GT/KXIP/RCB/RR",
+    "TeamList": [
+      "DC",
+      "GT",
+      "KXIP",
+      "RCB",
+      "RR"
+    ],
+    "TeamCount": 5
+  },
+  {
+    "Player": "WP Saha",
+    "Teams": "CSK/GT/KKR/KXIP/SRH",
+    "TeamList": [
+      "CSK",
+      "GT",
+      "KKR",
+      "KXIP",
+      "SRH"
+    ],
+    "TeamCount": 5
+  }
+]
