@@ -12,6 +12,7 @@ Usage:
 
 import argparse
 import json
+import re
 import sys
 from pathlib import Path
 
@@ -97,16 +98,132 @@ def normalize_teams(conn) -> dict[int, int]:
 
 
 # ---------------------------------------------------------------------------
-# Step 2 — Load coaches from manual_coaches.json
+# Step 2 — Migrate coaches table and load from manual_coaches_all.ndjson
 # ---------------------------------------------------------------------------
 
-def load_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
+# Roles to extract from each team entry in manual_coaches_all.ndjson
+COACH_ROLES = {
+    "head_coach":     "head",
+    "batting_coach":  "batting",
+    "bowling_coach":  "bowling",
+    "fielding_coach": "fielding",
+}
+
+# Placeholder values that mean "no coach appointed"
+_NO_COACH = {"not appointed", "n/a", "tbd", ""}
+
+
+def _clean_coach_name(raw: str) -> str | None:
+    """Strip parenthetical role annotations and return None if not a real name."""
+    if not raw:
+        return None
+    cleaned = re.sub(r"\s*\([^)]*\)", "", raw).strip()
+    if cleaned.lower() in _NO_COACH:
+        return None
+    return cleaned if cleaned else None
+
+
+def migrate_coaches_table(conn) -> None:
     """
-    Read manual_coaches.json and insert into the coaches table.
-    Must run AFTER normalize_teams() so canonical team names exist.
+    Recreate the coaches table with a role column.
+    Safe to call on both old (no role column) and new schemas.
+    """
+    has_role = any(
+        row[1] == "role"
+        for row in conn.execute("PRAGMA table_info(coaches)")
+    )
+    if has_role:
+        return  # already migrated
+
+    print("  Migrating coaches table to add role column...")
+    conn.executescript("""
+        ALTER TABLE coaches RENAME TO coaches_old;
+        CREATE TABLE coaches (
+            id       INTEGER PRIMARY KEY,
+            team_id  INTEGER REFERENCES teams(id),
+            season   INTEGER,
+            role     TEXT NOT NULL DEFAULT 'head',
+            name     TEXT,
+            UNIQUE (team_id, season, role)
+        );
+        INSERT INTO coaches (team_id, season, role, name)
+            SELECT team_id, season, 'head', name FROM coaches_old;
+        DROP TABLE coaches_old;
+    """)
+    conn.commit()
+    print("  Migration done.")
+
+
+def load_all_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
+    """
+    Read manual_coaches_all.ndjson and load all coach roles into the coaches table.
+
+    The file is a sequence of top-level JSON objects (one per season), each with:
+      { "ipl_season": YYYY, "teams": [ { "team_name": ..., "head_coach": ..., ... } ] }
+
+    Only head / batting / bowling / fielding roles are loaded.
+    Entries with "Not Appointed" or blank values are skipped.
+    Parenthetical annotations like "(Lead)" are stripped from names.
 
     Returns (rows_inserted, skipped_entries).
     """
+    ndjson_path = data_dir / "manual_coaches_all.ndjson"
+    if not ndjson_path.exists():
+        # Fallback to legacy file
+        print(f"  [coaches] {ndjson_path} not found, trying manual_coaches.json...")
+        return _load_coaches_legacy(conn, data_dir)
+
+    content = ndjson_path.read_text(encoding="utf-8").strip()
+    season_blocks = [
+        json.loads(block.strip())
+        for block in re.split(r"\n(?=\{)", content)
+        if block.strip()
+    ]
+
+    team_map = {
+        name: tid
+        for tid, name in conn.execute("SELECT id, name FROM teams").fetchall()
+    }
+
+    rows = []
+    skipped = []
+
+    for block in season_blocks:
+        season = block.get("ipl_season")
+        if not season:
+            continue
+        for team_entry in block.get("teams", []):
+            raw_team = team_entry.get("team_name", "")
+            resolved = TEAM_ALIASES.get(raw_team, raw_team)
+            team_id = team_map.get(resolved)
+            if team_id is None:
+                skipped.append(f"{season} {raw_team}: team not in DB")
+                continue
+
+            for field, role in COACH_ROLES.items():
+                raw_name = team_entry.get(field, "")
+                name = _clean_coach_name(raw_name)
+                if name is None:
+                    continue
+                rows.append((team_id, season, role, name))
+
+    if skipped:
+        print(f"  [coaches] {len(skipped)} entries skipped:")
+        for s in skipped[:10]:
+            print(f"    {s}")
+        if len(skipped) > 10:
+            print(f"    ... and {len(skipped) - 10} more")
+
+    conn.executemany(
+        "INSERT OR REPLACE INTO coaches (team_id, season, role, name) VALUES (?, ?, ?, ?)",
+        rows,
+    )
+    conn.commit()
+    return len(rows), skipped
+
+
+def _load_coaches_legacy(conn, data_dir: Path) -> tuple[int, list[str]]:
+    """Fallback: load head coaches from manual_coaches.json (old format)."""
     coaches_path = data_dir / "manual_coaches.json"
     if not coaches_path.exists():
         print(f"  [coaches] {coaches_path} not found, skipping.")
@@ -115,7 +232,6 @@ def load_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
     with open(coaches_path, encoding="utf-8") as f:
         data = json.load(f)
 
-    # Build team_name -> team_id map
     team_map = {
         name: tid
         for tid, name in conn.execute("SELECT id, name FROM teams").fetchall()
@@ -132,23 +248,16 @@ def load_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
         except ValueError:
             skipped.append(f"Invalid season '{season_str}'")
             continue
-
         for team_name, coach_name in team_coaches.items():
-            # Resolve alias -> canonical name if needed
             resolved = TEAM_ALIASES.get(team_name, team_name)
             team_id = team_map.get(resolved)
             if team_id is None:
                 skipped.append(f"{season} {team_name}: team not in DB")
                 continue
-            rows.append((team_id, season, coach_name))
-
-    if skipped:
-        print(f"  [coaches] {len(skipped)} entries skipped:")
-        for s in skipped:
-            print(f"    {s}")
+            rows.append((team_id, season, "head", coach_name))
 
     conn.executemany(
-        "INSERT OR REPLACE INTO coaches (team_id, season, name) VALUES (?, ?, ?)",
+        "INSERT OR REPLACE INTO coaches (team_id, season, role, name) VALUES (?, ?, ?, ?)",
         rows,
     )
     conn.commit()
@@ -159,18 +268,121 @@ def load_coaches(conn, data_dir: Path) -> tuple[int, list[str]]:
 # Step 3 — Export ipl_data.json
 # ---------------------------------------------------------------------------
 
-def export_json(conn, out_path: Path) -> None:
+def load_player_enriched(data_dir: Path) -> list[dict]:
+    """Read players_master_enriched.json and return the list of player records."""
+    path = data_dir / "players_master_enriched.json"
+    if not path.exists():
+        print(f"  [enriched] {path} not found, skipping player geography categories.")
+        return []
+    with open(path, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def build_player_geography(enriched: list[dict]) -> tuple[list, dict, dict, list]:
+    """
+    Builds player geography and allrounder categories from players_master_enriched.json.
+
+    Returns:
+      foreign_players  — list of non-Indian players sorted by country then name
+      india_state_wise — { state: [player, ...] } sorted alphabetically by state
+      ranji_team_wise  — { ranji_team: [player, ...] } sorted by team name
+      allrounders      — players with 1000+ runs AND 50+ wickets, sorted by runs desc
+    """
+    def slim(p):
+        return {
+            "name":      p.get("Player"),
+            "full_name": p.get("full_name"),
+            "country":   p.get("country"),
+            "teams":     p.get("Teams", []),
+            "matches":   p.get("Matches"),
+        }
+
+    foreign_players = sorted(
+        [slim(p) for p in enriched
+         if p.get("country") and p["country"].strip().lower() != "india"],
+        key=lambda x: (x["country"] or "", x["name"] or ""),
+    )
+
+    state_wise: dict[str, list] = {}
+    ranji_wise: dict[str, list] = {}
+
+    for p in enriched:
+        if (p.get("country") or "").strip().lower() != "india":
+            continue
+
+        rec = slim(p)
+        rec["state"] = p.get("state")
+        rec["ranji_team"] = p.get("ranji_team")
+
+        state = p.get("state")
+        if state:
+            state_wise.setdefault(state, []).append(rec)
+
+        for rt in (p.get("ranji_team") or []):
+            ranji_wise.setdefault(rt, []).append(rec)
+
+    india_state_wise = {
+        k: sorted(v, key=lambda x: x["name"] or "")
+        for k, v in sorted(state_wise.items())
+    }
+    ranji_team_wise = {
+        k: sorted(v, key=lambda x: x["name"] or "")
+        for k, v in sorted(ranji_wise.items())
+    }
+
+    allrounders = sorted(
+        [
+            {
+                "name":     p.get("Player"),
+                "full_name": p.get("full_name"),
+                "country":  p.get("country"),
+                "teams":    p.get("Teams", []),
+                "matches":  p.get("Matches"),
+                "runs":     p.get("Runs"),
+                "wickets":  p.get("Wickets"),
+            }
+            for p in enriched
+            if p.get("Runs", 0) >= 1000 and p.get("Wickets", 0) >= 50
+        ],
+        key=lambda x: (-(x["runs"] or 0), -(x["wickets"] or 0)),
+    )
+
+    return foreign_players, india_state_wise, ranji_team_wise, allrounders
+
+
+def load_records(data_dir: Path) -> dict:
+    """
+    Read manual_records.json and return its batting/bowling/season record lists.
+    Returns an empty dict if the file doesn't exist.
+    """
+    records_path = data_dir / "manual_records.json"
+    if not records_path.exists():
+        print(f"  [records] {records_path} not found, skipping.")
+        return {}
+    with open(records_path, encoding="utf-8") as f:
+        data = json.load(f)
+    # Strip comment keys (starting with _)
+    return {k: v for k, v in data.items() if not k.startswith("_")}
+
+
+def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
     """
     Write a flat JSON file the curator CLI can query without SQLite.
 
     Structure:
     {
-      "teams": [{"id", "name", "short_name", "city", "active_from", "active_to"}],
-      "players": [{"id", "name", "nicknames", "nationality"}],
-      "player_teams": [{"player_id", "player_name", "team_id", "team_name", "season"}],
-      "awards": [{"type", "player_id", "player_name", "season"}],
-      "ipl_wins": [{"season", "team_id", "team_name"}],
-      "venues": [{"id", "name", "city"}]
+      "teams": [...],
+      "players": [...],
+      "player_teams": [...],
+      "awards": [...],
+      "ipl_wins": [...],
+      "venues": [...],
+      "coaches": [...],
+      "records": {
+        "batting_records": [...],
+        "bowling_records": [...],
+        "season_records": [...]
+      }
     }
     """
 
@@ -256,13 +468,261 @@ def export_json(conn, out_path: Path) -> None:
             "team_id": r[0],
             "team_name": r[1],
             "season": r[2],
-            "coach": r[3],
+            "role": r[3],
+            "coach": r[4],
         }
         for r in conn.execute("""
-            SELECT c.team_id, t.name, c.season, c.name
+            SELECT c.team_id, t.name, c.season, c.role, c.name
             FROM coaches c
             JOIN teams t ON t.id = c.team_id
-            ORDER BY c.season, t.name
+            ORDER BY c.season, t.name, c.role
+        """)
+    ]
+
+    records = load_records(data_dir) if data_dir else {}
+
+    enriched = load_player_enriched(data_dir) if data_dir else []
+    foreign_players, india_state_wise, ranji_team_wise, allrounders = build_player_geography(enriched)
+
+    five_wicket_hauls = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "matches": r[2],
+            "innings": r[3],
+            "balls": r[4],
+            "runs": r[5],
+            "wickets": r[6],
+            "bbi": r[7],
+            "average": r[8],
+            "economy": r[9],
+            "strike_rate": r[10],
+            "four_w": r[11],
+            "five_w": r[12],
+            "ten_w": r[13],
+        }
+        for r in conn.execute("""
+            SELECT f.player_id, p.name,
+                   f.matches, f.innings, f.balls, f.runs, f.wickets, f.bbi,
+                   f.average, f.economy, f.strike_rate, f.four_w, f.five_w, f.ten_w
+            FROM five_wicket_hauls f
+            JOIN players p ON p.id = f.player_id
+            ORDER BY f.wickets DESC
+        """)
+    ]
+
+    batting_career_stats = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "matches": r[2],
+            "innings": r[3],
+            "not_out": r[4],
+            "runs": r[5],
+            "hs": r[6],
+            "average": r[7],
+            "balls_faced": r[8],
+            "strike_rate": r[9],
+            "hundreds": r[10],
+            "fifties": r[11],
+            "ducks": r[12],
+            "fours": r[13],
+            "sixes": r[14],
+        }
+        for r in conn.execute("""
+            SELECT b.player_id, p.name,
+                   b.matches, b.innings, b.not_out, b.runs, b.hs,
+                   b.average, b.balls_faced, b.strike_rate,
+                   b.hundreds, b.fifties, b.ducks, b.fours, b.sixes
+            FROM batting_career_stats b
+            JOIN players p ON p.id = b.player_id
+            ORDER BY b.runs DESC
+        """)
+    ]
+
+    bowling_career_stats = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "matches": r[2],
+            "innings": r[3],
+            "balls": r[4],
+            "runs": r[5],
+            "wickets": r[6],
+            "bbi": r[7],
+            "average": r[8],
+            "economy": r[9],
+            "strike_rate": r[10],
+            "four_w": r[11],
+            "five_w": r[12],
+        }
+        for r in conn.execute("""
+            SELECT b.player_id, p.name,
+                   b.matches, b.innings, b.balls, b.runs, b.wickets, b.bbi,
+                   b.average, b.economy, b.strike_rate, b.four_w, b.five_w
+            FROM bowling_career_stats b
+            JOIN players p ON p.id = b.player_id
+            ORDER BY b.wickets DESC
+        """)
+    ]
+
+    multi_team_players = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "team_count": r[2],
+            "teams": r[3],
+        }
+        for r in conn.execute("""
+            SELECT m.player_id, p.name, m.team_count, m.teams
+            FROM multi_team_players m
+            JOIN players p ON p.id = m.player_id
+            ORDER BY m.team_count DESC, p.name
+        """)
+    ]
+
+    most_ducks = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "matches": r[2],
+            "innings": r[3],
+            "not_out": r[4],
+            "runs": r[5],
+            "hs": r[6],
+            "average": r[7],
+            "balls_faced": r[8],
+            "strike_rate": r[9],
+            "hundreds": r[10],
+            "fifties": r[11],
+            "ducks": r[12],
+            "fours": r[13],
+            "sixes": r[14],
+        }
+        for r in conn.execute("""
+            SELECT d.player_id, p.name,
+                   d.matches, d.innings, d.not_out, d.runs, d.hs,
+                   d.average, d.balls_faced, d.strike_rate,
+                   d.hundreds, d.fifties, d.ducks, d.fours, d.sixes
+            FROM most_ducks d
+            JOIN players p ON p.id = d.player_id
+            ORDER BY d.ducks DESC, p.name
+        """)
+    ]
+
+    high_strike_rate_batsmen = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "rank": r[2],
+            "matches": r[3],
+            "innings": r[4],
+            "not_out": r[5],
+            "runs": r[6],
+            "hs": r[7],
+            "average": r[8],
+            "balls_faced": r[9],
+            "strike_rate": r[10],
+            "hundreds": r[11],
+            "fifties": r[12],
+            "ducks": r[13],
+            "fours": r[14],
+            "sixes": r[15],
+            "teams": r[16],
+            "span": r[17],
+        }
+        for r in conn.execute("""
+            SELECT s.player_id, p.name,
+                   s.rank, s.matches, s.innings, s.not_out, s.runs, s.hs,
+                   s.average, s.balls_faced, s.strike_rate,
+                   s.hundreds, s.fifties, s.ducks, s.fours, s.sixes,
+                   s.teams, s.span
+            FROM batting_strike_rate s
+            JOIN players p ON p.id = s.player_id
+            ORDER BY s.strike_rate DESC
+        """)
+    ]
+
+    highest_batting_avg = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "rank": r[2],
+            "matches": r[3],
+            "innings": r[4],
+            "not_out": r[5],
+            "runs": r[6],
+            "hs": r[7],
+            "average": r[8],
+            "balls_faced": r[9],
+            "strike_rate": r[10],
+            "hundreds": r[11],
+            "fifties": r[12],
+            "ducks": r[13],
+            "fours": r[14],
+            "sixes": r[15],
+            "teams": r[16],
+            "span": r[17],
+        }
+        for r in conn.execute("""
+            SELECT a.player_id, p.name,
+                   a.rank, a.matches, a.innings, a.not_out, a.runs, a.hs,
+                   a.average, a.balls_faced, a.strike_rate,
+                   a.hundreds, a.fifties, a.ducks, a.fours, a.sixes,
+                   a.teams, a.span
+            FROM highest_batting_avg a
+            JOIN players p ON p.id = a.player_id
+            ORDER BY a.average DESC
+        """)
+    ]
+
+    catches_by_fielder = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "rank": r[2],
+            "matches": r[3],
+            "innings": r[4],
+            "catches": r[5],
+            "max_catches_in_innings": r[6],
+            "catches_per_inning": r[7],
+            "teams": r[8],
+            "span": r[9],
+        }
+        for r in conn.execute("""
+            SELECT c.player_id, p.name,
+                   c.rank, c.matches, c.innings, c.catches,
+                   c.max_catches_in_innings, c.catches_per_inning,
+                   c.teams, c.span
+            FROM catches_by_fielder c
+            JOIN players p ON p.id = c.player_id
+            ORDER BY c.catches DESC
+        """)
+    ]
+
+    dismissals_by_keeper = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "rank": r[2],
+            "matches": r[3],
+            "innings": r[4],
+            "dismissed": r[5],
+            "catches": r[6],
+            "stumpings": r[7],
+            "max_dismissals_in_innings": r[8],
+            "dismissals_per_inning": r[9],
+            "teams": r[10],
+            "span": r[11],
+        }
+        for r in conn.execute("""
+            SELECT d.player_id, p.name,
+                   d.rank, d.matches, d.innings, d.dismissed,
+                   d.catches, d.stumpings, d.max_dismissals_in_innings,
+                   d.dismissals_per_inning, d.teams, d.span
+            FROM dismissals_by_keeper d
+            JOIN players p ON p.id = d.player_id
+            ORDER BY d.dismissed DESC
         """)
     ]
 
@@ -274,6 +734,20 @@ def export_json(conn, out_path: Path) -> None:
         "ipl_wins": ipl_wins,
         "venues": venues,
         "coaches": coaches,
+        "records": records,
+        "five_wicket_hauls": five_wicket_hauls,
+        "batting_career_stats": batting_career_stats,
+        "bowling_career_stats": bowling_career_stats,
+        "multi_team_players": multi_team_players,
+        "most_ducks": most_ducks,
+        "high_strike_rate_batsmen": high_strike_rate_batsmen,
+        "highest_batting_avg": highest_batting_avg,
+        "catches_by_fielder": catches_by_fielder,
+        "dismissals_by_keeper": dismissals_by_keeper,
+        "allrounders": allrounders,
+        "foreign_players": foreign_players,
+        "india_state_wise": india_state_wise,
+        "ranji_team_wise": ranji_team_wise,
     }
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -284,6 +758,19 @@ def export_json(conn, out_path: Path) -> None:
     print(f"    teams: {len(teams)}, players: {len(players)}, "
           f"player_teams: {len(player_teams)}, awards: {len(awards)}, "
           f"ipl_wins: {len(ipl_wins)}, venues: {len(venues)}, coaches: {len(coaches)}")
+    print(f"    five_wicket_hauls: {len(five_wicket_hauls)}, "
+          f"batting_career_stats: {len(batting_career_stats)}, "
+          f"bowling_career_stats: {len(bowling_career_stats)}, "
+          f"multi_team_players: {len(multi_team_players)}, "
+          f"most_ducks: {len(most_ducks)}, "
+          f"high_strike_rate_batsmen: {len(high_strike_rate_batsmen)} (150+ SR), "
+          f"highest_batting_avg: {len(highest_batting_avg)} (30+ avg/50+ matches/1000+ runs), "
+          f"catches_by_fielder: {len(catches_by_fielder)} (50+ matches/50+ catches), "
+          f"dismissals_by_keeper: {len(dismissals_by_keeper)} (50+ matches/50+ dismissals)")
+    print(f"    foreign_players: {len(foreign_players)}, "
+          f"india_state_wise groups: {len(india_state_wise)}, "
+          f"ranji_team_wise groups: {len(ranji_team_wise)}, "
+          f"allrounders: {len(allrounders)} (1000+ runs AND 50+ wickets)")
 
 
 # ---------------------------------------------------------------------------
@@ -338,27 +825,58 @@ def main() -> None:
     from squad_loader import load_squads
     load_squads(conn, db_path.parent)
 
-    # Step 2b — re-run manual awards now that squad players are in the DB
+    # Step 2b — re-run manual loaders now that squad players are in the DB
     # (entries skipped in kaggle_loader due to missing players are picked up here)
-    print("Step 2b: Re-loading manual awards (pick up squad-only players)...")
-    from kaggle_loader import load_manual_awards
+    print("Step 2b: Re-loading manual data (pick up squad-only players)...")
+    from kaggle_loader import (
+        load_manual_awards,
+        load_manual_5wkt_hauls,
+        load_manual_top_batsmen,
+        load_manual_top_bowlers,
+        load_manual_multi_team_players,
+        load_manual_most_ducks,
+        load_manual_batting_strike_rate,
+        load_manual_highest_batting_avg,
+        load_manual_catches_by_fielder,
+        load_manual_dismissals_by_keeper,
+    )
+    # Rebuild player_id_map AFTER squad_loader has inserted new players
     player_id_map = {
         name: pid
         for pid, name in conn.execute("SELECT id, name FROM players").fetchall()
     }
     n = load_manual_awards(conn, db_path.parent, player_id_map)
     print(f"  {n} award entries processed (INSERT OR REPLACE)")
+    n = load_manual_5wkt_hauls(conn, db_path.parent, player_id_map)
+    print(f"  {n} five_wicket_hauls entries processed (INSERT OR REPLACE)")
+    n = load_manual_top_batsmen(conn, db_path.parent, player_id_map)
+    print(f"  {n} batting_career_stats entries processed (INSERT OR REPLACE)")
+    n = load_manual_top_bowlers(conn, db_path.parent, player_id_map)
+    print(f"  {n} bowling_career_stats entries processed (INSERT OR REPLACE)")
+    n = load_manual_multi_team_players(conn, db_path.parent, player_id_map)
+    print(f"  {n} multi_team_players entries processed (INSERT OR REPLACE)")
+    n = load_manual_most_ducks(conn, db_path.parent, player_id_map)
+    print(f"  {n} most_ducks entries processed (INSERT OR REPLACE)")
+    n = load_manual_batting_strike_rate(conn, db_path.parent, player_id_map)
+    print(f"  {n} batting_strike_rate entries processed (INSERT OR REPLACE)")
+    n = load_manual_highest_batting_avg(conn, db_path.parent, player_id_map)
+    print(f"  {n} highest_batting_avg entries processed (INSERT OR REPLACE)")
+    n = load_manual_catches_by_fielder(conn, db_path.parent, player_id_map)
+    print(f"  {n} catches_by_fielder entries processed (INSERT OR REPLACE)")
+    n = load_manual_dismissals_by_keeper(conn, db_path.parent, player_id_map)
+    print(f"  {n} dismissals_by_keeper entries processed (INSERT OR REPLACE)")
 
     # Step 3 — coaches
-    print("Step 3: Loading coaches...")
-    n, skipped = load_coaches(conn, db_path.parent)
+    print("Step 3: Migrating and loading coaches...")
+    migrate_coaches_table(conn)
+    n, skipped = load_all_coaches(conn, db_path.parent)
     print(f"  {n} coach records loaded, {len(skipped)} skipped.")
 
     # Step 4 — JSON export
     if not args.no_export:
         json_path = args.export_json or db_path.parent / "ipl_data.json"
         print(f"Step 4: Exporting {json_path}...")
-        export_json(conn, json_path)
+        export_json(conn, json_path, data_dir=db_path.parent)
 
     conn.close()
     print("\nDone.")

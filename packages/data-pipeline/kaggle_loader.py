@@ -302,7 +302,513 @@ def load_manual_awards(conn, data_dir: Path, player_id_map: dict) -> int:
 
 
 # ---------------------------------------------------------------------------
-# Step 8 — Summary
+# Step 8 — Manual 5-wicket haul performers
+# ---------------------------------------------------------------------------
+
+def load_manual_5wkt_hauls(conn, data_dir: Path, player_id_map: dict) -> int:
+    """Load manual_5_plus_wickets.json into five_wicket_hauls table.
+
+    Returns the number of rows inserted.
+    """
+    import json
+
+    manual_path = data_dir / "manual_5_plus_wickets.json"
+    if not manual_path.exists():
+        print(f"  [5wkt_hauls] {manual_path} not found, skipping.")
+        return 0
+
+    with open(manual_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    rows = []
+    skipped = []
+    for entry in data:
+        player_name = entry["Player"]
+        pid = player_id_map.get(player_name)
+        if pid is None:
+            skipped.append(player_name)
+            continue
+        rows.append((
+            pid,
+            entry["Matches"],
+            entry["Innings"],
+            entry["Balls"],
+            entry["Runs"],
+            entry["Wickets"],
+            entry["BBI"],
+            entry["Average"],
+            entry["Economy"],
+            entry["StrikeRate"],
+            entry["4w"],
+            entry["5w"],
+            entry["10w"],
+        ))
+
+    if skipped:
+        print(f"  [5wkt_hauls] {len(skipped)} entries skipped (player not in DB):")
+        for name in skipped:
+            print(f"    '{name}'")
+
+    conn.executemany(
+        """INSERT OR REPLACE INTO five_wicket_hauls
+           (player_id, matches, innings, balls, runs, wickets, bbi,
+            average, economy, strike_rate, four_w, five_w, ten_w)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        rows,
+    )
+    conn.commit()
+    return len(rows)
+
+
+# ---------------------------------------------------------------------------
+# Step 9 — Top batsmen (3000+ runs)
+# ---------------------------------------------------------------------------
+
+def load_manual_top_batsmen(conn, data_dir: Path, player_id_map: dict, min_runs: int = 3000) -> int:
+    """Load manual_top_run_batsmen.json filtering to min_runs+ into batting_career_stats.
+
+    Returns the number of rows inserted.
+    """
+    import json
+
+    manual_path = data_dir / "manual_top_run_batsmen.json"
+    if not manual_path.exists():
+        print(f"  [top_batsmen] {manual_path} not found, skipping.")
+        return 0
+
+    with open(manual_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    rows = []
+    skipped = []
+    for entry in data:
+        if entry["Runs"] < min_runs:
+            continue
+        player_name = entry["Player"]
+        pid = player_id_map.get(player_name)
+        if pid is None:
+            skipped.append(player_name)
+            continue
+        rows.append((
+            pid,
+            entry["Matches"],
+            entry["Innings"],
+            entry["NotOut"],
+            entry["Runs"],
+            entry["HS"],
+            entry["Average"],
+            entry["BallsFaced"],
+            entry["StrikeRate"],
+            entry["100s"],
+            entry["50s"],
+            entry["Ducks"],
+            entry["Fours"],
+            entry["Sixes"],
+        ))
+
+    if skipped:
+        print(f"  [top_batsmen] {len(skipped)} entries skipped (player not in DB):")
+        for name in skipped:
+            print(f"    '{name}'")
+
+    conn.executemany(
+        """INSERT OR REPLACE INTO batting_career_stats
+           (player_id, matches, innings, not_out, runs, hs, average,
+            balls_faced, strike_rate, hundreds, fifties, ducks, fours, sixes)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        rows,
+    )
+    conn.commit()
+    return len(rows)
+
+
+# ---------------------------------------------------------------------------
+# Step 10 — Top bowlers (100+ wickets)
+# ---------------------------------------------------------------------------
+
+def load_manual_top_bowlers(conn, data_dir: Path, player_id_map: dict, min_wickets: int = 100) -> int:
+    """Load manual_top_bowlers.json filtering to min_wickets+ into bowling_career_stats.
+
+    Returns the number of rows inserted.
+    """
+    import json
+
+    manual_path = data_dir / "manual_top_bowlers.json"
+    if not manual_path.exists():
+        print(f"  [top_bowlers] {manual_path} not found, skipping.")
+        return 0
+
+    with open(manual_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    rows = []
+    skipped = []
+    for entry in data:
+        if entry["Wickets"] < min_wickets:
+            continue
+        player_name = entry["Player"]
+        pid = player_id_map.get(player_name)
+        if pid is None:
+            skipped.append(player_name)
+            continue
+        rows.append((
+            pid,
+            entry["Matches"],
+            entry["Innings"],
+            entry["Balls"],
+            entry["Runs"],
+            entry["Wickets"],
+            entry["BBI"],
+            entry["Average"],
+            entry["Economy"],
+            entry["StrikeRate"],
+            entry["4w"],
+            entry["5w"],
+        ))
+
+    if skipped:
+        print(f"  [top_bowlers] {len(skipped)} entries skipped (player not in DB):")
+        for name in skipped:
+            print(f"    '{name}'")
+
+    conn.executemany(
+        """INSERT OR REPLACE INTO bowling_career_stats
+           (player_id, matches, innings, balls, runs, wickets, bbi,
+            average, economy, strike_rate, four_w, five_w)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        rows,
+    )
+    conn.commit()
+    return len(rows)
+
+
+# ---------------------------------------------------------------------------
+# Step 11 — Players who played for 5+ teams
+# ---------------------------------------------------------------------------
+
+def load_manual_multi_team_players(conn, data_dir: Path, player_id_map: dict, min_teams: int = 5) -> int:
+    """Load manual_players_multi_team.json filtering to min_teams+ into multi_team_players.
+
+    Returns the number of rows inserted.
+    """
+    import json
+
+    manual_path = data_dir / "manual_players_multi_team.json"
+    if not manual_path.exists():
+        print(f"  [multi_team] {manual_path} not found, skipping.")
+        return 0
+
+    with open(manual_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    rows = []
+    skipped = []
+    for entry in data:
+        if entry["TeamCount"] < min_teams:
+            continue
+        player_name = entry["Player"]
+        pid = player_id_map.get(player_name)
+        if pid is None:
+            skipped.append(player_name)
+            continue
+        rows.append((pid, entry["TeamCount"], entry["Teams"]))
+
+    if skipped:
+        print(f"  [multi_team] {len(skipped)} entries skipped (player not in DB):")
+        for name in skipped:
+            print(f"    '{name}'")
+
+    conn.executemany(
+        "INSERT OR REPLACE INTO multi_team_players (player_id, team_count, teams) VALUES (?, ?, ?)",
+        rows,
+    )
+    conn.commit()
+    return len(rows)
+
+
+# ---------------------------------------------------------------------------
+# Step 12 — Players with 10+ ducks
+# ---------------------------------------------------------------------------
+
+def load_manual_most_ducks(conn, data_dir: Path, player_id_map: dict, min_ducks: int = 10) -> int:
+    """Load manual_most_ducks.json filtering to min_ducks+ into most_ducks table.
+
+    Returns the number of rows inserted.
+    """
+    import json
+
+    manual_path = data_dir / "manual_most_ducks.json"
+    if not manual_path.exists():
+        print(f"  [most_ducks] {manual_path} not found, skipping.")
+        return 0
+
+    with open(manual_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    rows = []
+    skipped = []
+    for entry in data:
+        if entry["Ducks"] < min_ducks:
+            continue
+        player_name = entry["Player"]
+        pid = player_id_map.get(player_name)
+        if pid is None:
+            skipped.append(player_name)
+            continue
+        rows.append((
+            pid,
+            entry["Matches"],
+            entry["Innings"],
+            entry["NotOut"],
+            entry["Runs"],
+            entry["HS"],
+            entry["Average"],
+            entry["BallsFaced"],
+            entry["StrikeRate"],
+            entry["100s"],
+            entry["50s"],
+            entry["Ducks"],
+            entry["Fours"],
+            entry["Sixes"],
+        ))
+
+    if skipped:
+        print(f"  [most_ducks] {len(skipped)} entries skipped (player not in DB):")
+        for name in skipped:
+            print(f"    '{name}'")
+
+    conn.executemany(
+        """INSERT OR REPLACE INTO most_ducks
+           (player_id, matches, innings, not_out, runs, hs, average,
+            balls_faced, strike_rate, hundreds, fifties, ducks, fours, sixes)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        rows,
+    )
+    conn.commit()
+    return len(rows)
+
+
+# ---------------------------------------------------------------------------
+# Step 13 — Players with high batting strike rate (150+)
+# ---------------------------------------------------------------------------
+
+def load_manual_batting_strike_rate(conn, data_dir: Path, player_id_map: dict, min_sr: float = 150.0) -> int:
+    """Load manual_batting_strike_rate.json filtering to min_sr+ into batting_strike_rate table.
+
+    Returns the number of rows inserted.
+    """
+    import json
+
+    manual_path = data_dir / "manual_batting_strike_rate.json"
+    if not manual_path.exists():
+        print(f"  [batting_sr] {manual_path} not found, skipping.")
+        return 0
+
+    with open(manual_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    rows = []
+    skipped = []
+    for entry in data:
+        if entry["StrikeRate"] < min_sr:
+            continue
+        player_name = entry["Player"]
+        pid = player_id_map.get(player_name)
+        if pid is None:
+            skipped.append(player_name)
+            continue
+        rows.append((
+            pid,
+            entry["Rank"],
+            entry["Matches"],
+            entry["Innings"],
+            entry["NotOut"],
+            entry["Runs"],
+            entry["HS"],
+            entry["Average"],
+            entry["BallsFaced"],
+            entry["StrikeRate"],
+            entry["100s"],
+            entry["50s"],
+            entry["Ducks"],
+            entry["Fours"],
+            entry["Sixes"],
+            entry["Teams"],
+            entry["Span"],
+        ))
+
+    if skipped:
+        print(f"  [batting_sr] {len(skipped)} entries skipped (player not in DB — will retry in normalizer Step 2b):")
+        for name in skipped:
+            print(f"    '{name}'")
+
+    conn.executemany(
+        """INSERT OR REPLACE INTO batting_strike_rate
+           (player_id, rank, matches, innings, not_out, runs, hs, average,
+            balls_faced, strike_rate, hundreds, fifties, ducks, fours, sixes, teams, span)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        rows,
+    )
+    conn.commit()
+    return len(rows)
+
+
+# ---------------------------------------------------------------------------
+# Step 14 — Highest batting average (30+ avg, 50+ matches, 1000+ runs)
+# ---------------------------------------------------------------------------
+
+def load_manual_highest_batting_avg(conn, data_dir: Path, player_id_map: dict,
+                                     min_avg: float = 30.0, min_matches: int = 50,
+                                     min_runs: int = 1000) -> int:
+    """Load manual_highest_batting_avg.json with filters into highest_batting_avg table."""
+    import json
+
+    manual_path = data_dir / "manual_highest_batting_avg.json"
+    if not manual_path.exists():
+        print(f"  [batting_avg] {manual_path} not found, skipping.")
+        return 0
+
+    with open(manual_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    rows = []
+    skipped = []
+    for entry in data:
+        if (entry["Average"] < min_avg or
+                entry["Matches"] < min_matches or
+                entry["Runs"] < min_runs):
+            continue
+        player_name = entry["Player"]
+        pid = player_id_map.get(player_name)
+        if pid is None:
+            skipped.append(player_name)
+            continue
+        rows.append((
+            pid, entry["Rank"], entry["Matches"], entry["Innings"],
+            entry["NotOut"], entry["Runs"], entry["HS"], entry["Average"],
+            entry["BallsFaced"], entry["StrikeRate"], entry["100s"],
+            entry["50s"], entry["Ducks"], entry["Fours"], entry["Sixes"],
+            entry["Teams"], entry["Span"],
+        ))
+
+    if skipped:
+        print(f"  [batting_avg] {len(skipped)} entries skipped (player not in DB — will retry in normalizer Step 2b):")
+        for name in skipped:
+            print(f"    '{name}'")
+
+    conn.executemany(
+        """INSERT OR REPLACE INTO highest_batting_avg
+           (player_id, rank, matches, innings, not_out, runs, hs, average,
+            balls_faced, strike_rate, hundreds, fifties, ducks, fours, sixes, teams, span)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        rows,
+    )
+    conn.commit()
+    return len(rows)
+
+
+# ---------------------------------------------------------------------------
+# Step 15 — Catches by fielder (50+ matches, 50+ catches)
+# ---------------------------------------------------------------------------
+
+def load_manual_catches_by_fielder(conn, data_dir: Path, player_id_map: dict,
+                                    min_matches: int = 50, min_catches: int = 50) -> int:
+    """Load manual_most_dismissals_fielder.json with filters into catches_by_fielder table."""
+    import json
+
+    manual_path = data_dir / "manual_most_dismissals_fielder.json"
+    if not manual_path.exists():
+        print(f"  [catches_fielder] {manual_path} not found, skipping.")
+        return 0
+
+    with open(manual_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    rows = []
+    skipped = []
+    for entry in data:
+        if entry["Matches"] < min_matches or entry["Catches"] < min_catches:
+            continue
+        player_name = entry["Player"]
+        pid = player_id_map.get(player_name)
+        if pid is None:
+            skipped.append(player_name)
+            continue
+        rows.append((
+            pid, entry["Rank"], entry["Matches"], entry["Innings"],
+            entry["Catches"], entry["MaxCatchesInInnings"],
+            entry["CatchesPerInning"], entry["Teams"], entry["Span"],
+        ))
+
+    if skipped:
+        print(f"  [catches_fielder] {len(skipped)} entries skipped (player not in DB — will retry in normalizer Step 2b):")
+        for name in skipped:
+            print(f"    '{name}'")
+
+    conn.executemany(
+        """INSERT OR REPLACE INTO catches_by_fielder
+           (player_id, rank, matches, innings, catches, max_catches_in_innings,
+            catches_per_inning, teams, span)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        rows,
+    )
+    conn.commit()
+    return len(rows)
+
+
+# ---------------------------------------------------------------------------
+# Step 16 — Dismissals by wicket keeper (50+ matches, 50+ dismissals)
+# ---------------------------------------------------------------------------
+
+def load_manual_dismissals_by_keeper(conn, data_dir: Path, player_id_map: dict,
+                                      min_matches: int = 50, min_dismissals: int = 50) -> int:
+    """Load manual_most_dismissals_wk.json with filters into dismissals_by_keeper table."""
+    import json
+
+    manual_path = data_dir / "manual_most_dismissals_wk.json"
+    if not manual_path.exists():
+        print(f"  [dismissals_keeper] {manual_path} not found, skipping.")
+        return 0
+
+    with open(manual_path, encoding="utf-8") as f:
+        data = json.load(f)
+
+    rows = []
+    skipped = []
+    for entry in data:
+        total_dismissals = entry["Catches"] + entry["Stumpings"]
+        if entry["Matches"] < min_matches or total_dismissals < min_dismissals:
+            continue
+        player_name = entry["Player"]
+        pid = player_id_map.get(player_name)
+        if pid is None:
+            skipped.append(player_name)
+            continue
+        rows.append((
+            pid, entry["Rank"], entry["Matches"], entry["Innings"],
+            entry["Dismissed"], entry["Catches"], entry["Stumpings"],
+            entry["MaxDismissalsInInnings"], entry["DismissalsPerInning"],
+            entry["Teams"], entry["Span"],
+        ))
+
+    if skipped:
+        print(f"  [dismissals_keeper] {len(skipped)} entries skipped (player not in DB — will retry in normalizer Step 2b):")
+        for name in skipped:
+            print(f"    '{name}'")
+
+    conn.executemany(
+        """INSERT OR REPLACE INTO dismissals_by_keeper
+           (player_id, rank, matches, innings, dismissed, catches, stumpings,
+            max_dismissals_in_innings, dismissals_per_inning, teams, span)
+           VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+        rows,
+    )
+    conn.commit()
+    return len(rows)
+
+
+# ---------------------------------------------------------------------------
+# Step 17 — Summary
 # ---------------------------------------------------------------------------
 
 def print_summary(conn) -> None:
@@ -322,18 +828,36 @@ def print_summary(conn) -> None:
     costliest_n = count("awards", "type='costliest_player'")
     awards_n = orange_n + purple_n + pot_n + costliest_n
     ipl_wins_n = count("ipl_wins")
+    five_wkt_n = count("five_wicket_hauls")
+    batting_n = count("batting_career_stats")
+    bowling_n = count("bowling_career_stats")
+    multi_team_n = count("multi_team_players")
+    most_ducks_n = count("most_ducks")
+    batting_sr_n = count("batting_strike_rate")
+    batting_avg_n = count("highest_batting_avg")
+    catches_fielder_n = count("catches_by_fielder")
+    dismissals_keeper_n = count("dismissals_by_keeper")
 
     print("\nLoaded:")
-    print(f"  venues:       {venues_n}")
-    print(f"  teams:        {teams_n}")
-    print(f"  players:      {players_n}")
-    print(f"  player_teams: {player_teams_n}")
+    print(f"  venues:               {venues_n}")
+    print(f"  teams:                {teams_n}")
+    print(f"  players:              {players_n}")
+    print(f"  player_teams:         {player_teams_n}")
     print(
-        f"  awards:       {awards_n} "
+        f"  awards:               {awards_n} "
         f"({orange_n} orange_cap + {purple_n} purple_cap + {pot_n} player_of_tournament + {costliest_n} costliest_player)"
         f"  [all from manual_awards.json]"
     )
-    print(f"  ipl_wins:     {ipl_wins_n}")
+    print(f"  ipl_wins:             {ipl_wins_n}")
+    print(f"  five_wicket_hauls:    {five_wkt_n}  [from manual_5_plus_wickets.json]")
+    print(f"  batting_career_stats: {batting_n}  [from manual_top_run_batsmen.json, 3000+ runs]")
+    print(f"  bowling_career_stats: {bowling_n}  [from manual_top_bowlers.json, 100+ wickets]")
+    print(f"  multi_team_players:   {multi_team_n}  [from manual_players_multi_team.json, 5+ teams]")
+    print(f"  most_ducks:           {most_ducks_n}  [from manual_most_ducks.json, 10+ ducks]")
+    print(f"  batting_strike_rate:  {batting_sr_n}  [from manual_batting_strike_rate.json, 150+ SR]")
+    print(f"  highest_batting_avg:  {batting_avg_n}  [from manual_highest_batting_avg.json, 30+ avg, 50+ matches, 1000+ runs]")
+    print(f"  catches_by_fielder:   {catches_fielder_n}  [from manual_most_dismissals_fielder.json, 50+ matches, 50+ catches]")
+    print(f"  dismissals_by_keeper: {dismissals_keeper_n}  [from manual_most_dismissals_wk.json, 50+ matches, 50+ dismissals]")
 
 
 # ---------------------------------------------------------------------------
@@ -445,6 +969,87 @@ def main() -> None:
         sys.exit(1)
 
     # Step 8
+    try:
+        print("Step 8: Loading 5-wicket haul performers...")
+        n = load_manual_5wkt_hauls(conn, data_dir, player_id_map)
+        print(f"  {n} five_wicket_hauls entries loaded")
+    except Exception as exc:
+        print(f"Step 8 (5wkt_hauls) FAILED: {exc}")
+        sys.exit(1)
+
+    # Step 9
+    try:
+        print("Step 9: Loading top batsmen (3000+ runs)...")
+        n = load_manual_top_batsmen(conn, data_dir, player_id_map)
+        print(f"  {n} batting_career_stats entries loaded")
+    except Exception as exc:
+        print(f"Step 9 (top_batsmen) FAILED: {exc}")
+        sys.exit(1)
+
+    # Step 10
+    try:
+        print("Step 10: Loading top bowlers (100+ wickets)...")
+        n = load_manual_top_bowlers(conn, data_dir, player_id_map)
+        print(f"  {n} bowling_career_stats entries loaded")
+    except Exception as exc:
+        print(f"Step 10 (top_bowlers) FAILED: {exc}")
+        sys.exit(1)
+
+    # Step 11
+    try:
+        print("Step 11: Loading players who played for 5+ teams...")
+        n = load_manual_multi_team_players(conn, data_dir, player_id_map)
+        print(f"  {n} multi_team_players entries loaded")
+    except Exception as exc:
+        print(f"Step 11 (multi_team) FAILED: {exc}")
+        sys.exit(1)
+
+    # Step 12
+    try:
+        print("Step 12: Loading players with 10+ ducks...")
+        n = load_manual_most_ducks(conn, data_dir, player_id_map)
+        print(f"  {n} most_ducks entries loaded")
+    except Exception as exc:
+        print(f"Step 12 (most_ducks) FAILED: {exc}")
+        sys.exit(1)
+
+    # Step 13
+    try:
+        print("Step 13: Loading players with 150+ batting strike rate...")
+        n = load_manual_batting_strike_rate(conn, data_dir, player_id_map)
+        print(f"  {n} batting_strike_rate entries loaded")
+    except Exception as exc:
+        print(f"Step 13 (batting_sr) FAILED: {exc}")
+        sys.exit(1)
+
+    # Step 14
+    try:
+        print("Step 14: Loading highest batting average (30+ avg, 50+ matches, 1000+ runs)...")
+        n = load_manual_highest_batting_avg(conn, data_dir, player_id_map)
+        print(f"  {n} highest_batting_avg entries loaded")
+    except Exception as exc:
+        print(f"Step 14 (batting_avg) FAILED: {exc}")
+        sys.exit(1)
+
+    # Step 15
+    try:
+        print("Step 15: Loading catches by fielder (50+ matches, 50+ catches)...")
+        n = load_manual_catches_by_fielder(conn, data_dir, player_id_map)
+        print(f"  {n} catches_by_fielder entries loaded")
+    except Exception as exc:
+        print(f"Step 15 (catches_fielder) FAILED: {exc}")
+        sys.exit(1)
+
+    # Step 16
+    try:
+        print("Step 16: Loading dismissals by wicket keeper (50+ matches, 50+ dismissals)...")
+        n = load_manual_dismissals_by_keeper(conn, data_dir, player_id_map)
+        print(f"  {n} dismissals_by_keeper entries loaded")
+    except Exception as exc:
+        print(f"Step 16 (dismissals_keeper) FAILED: {exc}")
+        sys.exit(1)
+
+    # Step 17
     print_summary(conn)
 
     conn.close()

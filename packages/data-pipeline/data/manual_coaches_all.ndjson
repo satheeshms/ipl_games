@@ -1,0 +1,1351 @@
+{
+  "ipl_season": 2008,
+  "teams": [
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Shane Warne",
+      "batting_coach": "Shane Warne (Lead)",
+      "bowling_coach": "Shane Warne (Lead)",
+      "fielding_coach": "Jeremy Snape"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Kepler Wessels",
+      "batting_coach": "Stephen Fleming (Player-Mentor)",
+      "bowling_coach": "Eric Simons",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Lalchand Rajput",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Shaun Pollock (Player-Lead)",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "John Buchanan",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Tom Moody",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Greg Shipperd",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Venkatesh Prasad",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Deccan Chargers",
+      "head_coach": "Robin Singh",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2009,
+  "location": "South Africa",
+  "teams": [
+    {
+      "team_name": "Deccan Chargers",
+      "head_coach": "Darren Lehmann",
+      "batting_coach": "Darren Lehmann (Lead)",
+      "bowling_coach": "Vincent Barnes",
+      "fielding_coach": "Mike Young"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Stephen Fleming (Lead)",
+      "bowling_coach": "Eric Simons",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Ray Jennings",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Shaun Pollock",
+      "batting_coach": "Praveen Amre",
+      "bowling_coach": "Shaun Pollock (Lead)",
+      "fielding_coach": "Jonty Rhodes"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Greg Shipperd",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Tom Moody",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Shane Warne",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Jeremy Snape"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "John Buchanan",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    }
+  ]
+}
+{
+  "ipl_season": 2010,
+  "teams": [
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Stephen Fleming (Lead)",
+      "bowling_coach": "Eric Simons",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Robin Singh",
+      "batting_coach": "Praveen Amre",
+      "bowling_coach": "Shaun Pollock",
+      "fielding_coach": "Jonty Rhodes"
+    },
+    {
+      "team_name": "Deccan Chargers",
+      "head_coach": "Darren Lehmann",
+      "batting_coach": "Darren Lehmann (Lead)",
+      "bowling_coach": "Kanwaljit Singh (Assistant)",
+      "fielding_coach": "Mike Young"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Ray Jennings",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Dav Whatmore",
+      "batting_coach": "Michael Bevan",
+      "bowling_coach": "Vijay Dahiya (Assistant)",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Greg Shipperd",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Eric Simons (Consultant)",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Shane Warne",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Shane Warne (Lead)",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Tom Moody",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    }
+  ]
+}
+{
+  "ipl_season": 2011,
+  "expansion_teams": ["Pune Warriors India", "Kochi Tuskers Kerala"],
+  "teams": [
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Stephen Fleming (Lead)",
+      "bowling_coach": "Andy Bichel",
+      "fielding_coach": "Steve Rixon"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Ray Jennings",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Venkatesh Prasad",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Robin Singh",
+      "batting_coach": "Praveen Amre",
+      "bowling_coach": "Shaun Pollock",
+      "fielding_coach": "Jonty Rhodes"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Dav Whatmore",
+      "batting_coach": "Michael Bevan",
+      "bowling_coach": "Wasim Akram",
+      "fielding_coach": "Vijay Dahiya (Assistant)"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Michael Bevan",
+      "batting_coach": "Michael Bevan (Lead)",
+      "bowling_coach": "Vikram Rathour (Assistant)",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Shane Warne",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Shane Warne (Lead)",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Greg Shipperd",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Eric Simons",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Deccan Chargers",
+      "head_coach": "Darren Lehmann",
+      "batting_coach": "Darren Lehmann (Lead)",
+      "bowling_coach": "Vincent Barnes",
+      "fielding_coach": "Trevor Penney"
+    },
+    {
+      "team_name": "Pune Warriors India",
+      "head_coach": "Geoff Marsh",
+      "batting_coach": "Dermot Reeve (Assistant)",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Praveen Amre (Assistant)"
+    },
+    {
+      "team_name": "Kochi Tuskers Kerala",
+      "head_coach": "Geoff Lawson",
+      "batting_coach": "Sanjay Bangar",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2012,
+  "teams": [
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Trevor Bayliss",
+      "batting_coach": "Vijay Dahiya (Assistant)",
+      "bowling_coach": "Wasim Akram",
+      "fielding_coach": "Trevor Penney"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Stephen Fleming (Lead)",
+      "bowling_coach": "Andy Bichel",
+      "fielding_coach": "Steve Rixon"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Robin Singh",
+      "batting_coach": "Praveen Amre",
+      "bowling_coach": "Shaun Pollock",
+      "fielding_coach": "Jonty Rhodes"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Eric Simons",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Eric Simons (Lead)",
+      "fielding_coach": "Not Appointed",
+      "mentor": "T.A. Sekhar"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Ray Jennings",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Venkatesh Prasad",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Adam Gilchrist (Captain-Coach)",
+      "batting_coach": "Vikram Rathour (Assistant)",
+      "bowling_coach": "Joe Dawes",
+      "fielding_coach": "Mike Young"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Rahul Dravid (Captain-Mentor)",
+      "batting_coach": "Rahul Dravid (Lead)",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed",
+      "mental_conditioning_coach": "Paddy Upton"
+    },
+    {
+      "team_name": "Pune Warriors India",
+      "head_coach": "Sourav Ganguly (Captain-Mentor)",
+      "batting_coach": "Praveen Amre",
+      "bowling_coach": "Allan Donald",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Deccan Chargers",
+      "head_coach": "Darren Lehmann",
+      "batting_coach": "Darren Lehmann (Lead)",
+      "bowling_coach": "Vincent Barnes",
+      "fielding_coach": "Trevor Penney"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2013,
+  "teams": [
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "John Wright",
+      "batting_coach": "Robin Singh",
+      "bowling_coach": "Shaun Pollock",
+      "fielding_coach": "Jonty Rhodes",
+      "chief_mentor": "Anil Kumble"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Stephen Fleming (Lead)",
+      "bowling_coach": "Andy Bichel",
+      "fielding_coach": "Steve Rixon"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Tom Moody",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Waqar Younis",
+      "fielding_coach": "Not Appointed",
+      "mentors": ["VVS Laxman", "Kris Srikkanth"]
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Trevor Bayliss",
+      "batting_coach": "Vijay Dahiya (Assistant)",
+      "bowling_coach": "Wasim Akram",
+      "fielding_coach": "Trevor Penney"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Paddy Upton",
+      "batting_coach": "Rahul Dravid (Captain-Mentor)",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Ray Jennings",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Venkatesh Prasad",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Darren Lehmann",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Joe Dawes",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Eric Simons",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Mushtaq Ahmed (Spin Consultant)",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Pune Warriors India",
+      "head_coach": "Allan Donald",
+      "batting_coach": "Praveen Amre",
+      "bowling_coach": "Allan Donald (Lead)",
+      "fielding_coach": "Not Appointed"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2014,
+  "teams": [
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Trevor Bayliss",
+      "batting_coach": "Woorkeri Raman",
+      "bowling_coach": "Wasim Akram",
+      "fielding_coach": "Trevor Penney"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Sanjay Bangar",
+      "batting_coach": "Sanjay Bangar (Lead)",
+      "bowling_coach": "Joe Dawes",
+      "fielding_coach": "R. Sridhar"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Stephen Fleming (Lead)",
+      "bowling_coach": "Andy Bichel",
+      "fielding_coach": "Steve Rixon"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "John Wright",
+      "batting_coach": "Robin Singh",
+      "bowling_coach": "Shaun Pollock",
+      "fielding_coach": "Jonty Rhodes",
+      "mentor": "Anil Kumble"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Paddy Upton",
+      "batting_coach": "Not Appointed",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed",
+      "chief_mentor": "Rahul Dravid"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Tom Moody",
+      "batting_coach": "VVS Laxman (Mentor/Lead)",
+      "bowling_coach": "Waqar Younis",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Daniel Vettori",
+      "batting_coach": "Trent Woodhill",
+      "bowling_coach": "Allan Donald",
+      "fielding_coach": "Trent Woodhill (Lead)"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Gary Kirsten",
+      "batting_coach": "Gary Kirsten (Lead)",
+      "bowling_coach": "Joe Dawes",
+      "fielding_coach": "Not Appointed"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2015,
+  "teams": [
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Robin Singh",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "Jonty Rhodes",
+      "chief_mentor": "Anil Kumble"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Stephen Fleming (Lead)",
+      "bowling_coach": "Andy Bichel",
+      "fielding_coach": "Steve Rixon"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Trevor Bayliss",
+      "batting_coach": "W.V. Raman",
+      "bowling_coach": "Wasim Akram",
+      "fielding_coach": "Vijay Dahiya (Assistant)",
+      "mentor": "Jacques Kallis"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Daniel Vettori",
+      "batting_coach": "Trent Woodhill",
+      "bowling_coach": "Bharat Arun",
+      "fielding_coach": "Trent Woodhill (Lead)"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Paddy Upton",
+      "batting_coach": "Rahul Dravid (Mentor/Lead)",
+      "bowling_coach": "Not Appointed",
+      "fielding_coach": "Not Appointed",
+      "mentor": "Rahul Dravid"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Tom Moody",
+      "batting_coach": "Simon Helmot (Assistant)",
+      "bowling_coach": "Muttiah Muralitharan",
+      "fielding_coach": "Not Appointed",
+      "mentor": "VVS Laxman"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Sanjay Bangar",
+      "batting_coach": "Sanjay Bangar (Lead)",
+      "bowling_coach": "Joe Dawes",
+      "fielding_coach": "R. Sridhar"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Gary Kirsten",
+      "batting_coach": "Gary Kirsten (Lead)",
+      "bowling_coach": "Alfonso Thomas",
+      "fielding_coach": "Not Appointed"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2016,
+  "teams": [
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Tom Moody",
+      "batting_coach": "VVS Laxman (Mentor/Lead)",
+      "bowling_coach": "Muttiah Muralitharan",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Daniel Vettori",
+      "batting_coach": "Trent Woodhill",
+      "bowling_coach": "Allan Donald",
+      "fielding_coach": "Trent Woodhill (Lead)"
+    },
+    {
+      "team_name": "Gujarat Lions",
+      "head_coach": "Brad Hodge",
+      "batting_coach": "Brad Hodge (Lead)",
+      "bowling_coach": "Heath Streak",
+      "fielding_coach": "Sitanshu Kotak (Assistant)"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Jacques Kallis",
+      "batting_coach": "Jacques Kallis (Lead)",
+      "bowling_coach": "Wasim Akram",
+      "fielding_coach": "Vijay Dahiya (Assistant)",
+      "mentor": "Simon Katich"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Robin Singh",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "Jonty Rhodes"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Paddy Upton",
+      "batting_coach": "Praveen Amre",
+      "bowling_coach": "T.A. Sekar",
+      "fielding_coach": "Not Appointed",
+      "mentor": "Rahul Dravid"
+    },
+    {
+      "team_name": "Rising Pune Supergiants",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Hrishikesh Kanitkar (Assistant)",
+      "bowling_coach": "Eric Simons",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Sanjay Bangar",
+      "batting_coach": "Sanjay Bangar (Lead)",
+      "bowling_coach": "Joe Dawes",
+      "fielding_coach": "R. Sridhar"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2017,
+  "teams": [
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Mahela Jayawardene",
+      "batting_coach": "Robin Singh",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "Jonty Rhodes",
+      "team_manager": "Rahul Sanghvi"
+    },
+    {
+      "team_name": "Rising Pune Supergiant",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Hrishikesh Kanitkar (Assistant)",
+      "bowling_coach": "Eric Simons",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Jacques Kallis",
+      "batting_coach": "Jacques Kallis (Lead)",
+      "bowling_coach": "L. Balaji",
+      "fielding_coach": "Vijay Dahiya (Assistant)",
+      "mentor": "Simon Katich"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Tom Moody",
+      "batting_coach": "VVS Laxman (Mentor/Lead)",
+      "bowling_coach": "Muttiah Muralitharan",
+      "fielding_coach": "Not Appointed",
+      "assistant_coach": "Simon Helmot"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Virender Sehwag (Director of Cricket)",
+      "batting_coach": "J. Arun Kumar",
+      "bowling_coach": "Joe Dawes",
+      "fielding_coach": "R. Sridhar",
+      "assistant_coach": "Mithun Manhas"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Paddy Upton",
+      "batting_coach": "Praveen Amre",
+      "bowling_coach": "T.A. Sekhar",
+      "fielding_coach": "Not Appointed",
+      "mentor": "Rahul Dravid"
+    },
+    {
+      "team_name": "Gujarat Lions",
+      "head_coach": "Brad Hodge",
+      "batting_coach": "Brad Hodge (Lead)",
+      "bowling_coach": "Heath Streak",
+      "fielding_coach": "Mohammad Kaif (Assistant)"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Daniel Vettori",
+      "batting_coach": "Trent Woodhill",
+      "bowling_coach": "Bharat Arun",
+      "fielding_coach": "Trent Woodhill (Lead)"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2018,
+  "teams": [
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Michael Hussey",
+      "bowling_coach": "Lakshmipathy Balaji",
+      "fielding_coach": "Rajiv Kumar",
+      "bowling_consultant": "Eric Simons"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Tom Moody",
+      "batting_coach": "VVS Laxman (Mentor)",
+      "bowling_coach": "Muttiah Muralitharan",
+      "fielding_coach": "Not Appointed",
+      "assistant_coach": "Simon Helmot"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Jacques Kallis",
+      "batting_coach": "Simon Katich (Assistant)",
+      "bowling_coach": "Heath Streak",
+      "fielding_coach": "Not Appointed"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Paddy Upton",
+      "batting_coach": "Amol Muzumdar",
+      "bowling_coach": "Sairaj Bahutule (Spin)",
+      "fielding_coach": "Dishant Yagnik",
+      "mentor": "Shane Warne"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Mahela Jayawardene",
+      "batting_coach": "Robin Singh",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "James Pamment"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Daniel Vettori",
+      "batting_coach": "Gary Kirsten",
+      "bowling_coach": "Ashish Nehra",
+      "fielding_coach": "Trent Woodhill"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Brad Hodge",
+      "batting_coach": "Brad Hodge (Lead)",
+      "bowling_coach": "Venkatesh Prasad",
+      "fielding_coach": "Nishant Bordoloi",
+      "director_of_cricket": "Virender Sehwag"
+    },
+    {
+      "team_name": "Delhi Daredevils",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Ricky Ponting (Lead)",
+      "bowling_coach": "James Hopes",
+      "fielding_coach": "Subhadeep Ghosh"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2019,
+  "teams": [
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Mahela Jayawardene",
+      "batting_coach": "Robin Singh",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "James Pamment"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Michael Hussey",
+      "bowling_coach": "Lakshmipathy Balaji",
+      "fielding_coach": "Rajiv Kumar",
+      "bowling_consultant": "Eric Simons"
+    },
+    {
+      "team_name": "Delhi Capitals",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Ricky Ponting (Lead)",
+      "bowling_coach": "James Hopes",
+      "fielding_coach": "Subhadeep Ghosh",
+      "advisor": "Sourav Ganguly"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Tom Moody",
+      "batting_coach": "VVS Laxman (Mentor)",
+      "bowling_coach": "Muttiah Muralitharan",
+      "fielding_coach": "Brad Haddin (Assistant)",
+      "assistant_coach": "Simon Helmot"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Jacques Kallis",
+      "batting_coach": "Simon Katich (Assistant)",
+      "bowling_coach": "Omkar Salvi",
+      "fielding_coach": "Not Appointed",
+      "mentor": "Abhishek Nayar"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Mike Hesson",
+      "batting_coach": "Sridharan Sriram",
+      "bowling_coach": "Ryan Harris",
+      "fielding_coach": "Craig McMillan"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Paddy Upton",
+      "batting_coach": "Amol Muzumdar",
+      "bowling_coach": "Steffan Jones (Fast Bowling)",
+      "fielding_coach": "Dishant Yagnik",
+      "mentor": "Shane Warne"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Gary Kirsten",
+      "batting_coach": "Gary Kirsten (Lead)",
+      "bowling_coach": "Ashish Nehra",
+      "fielding_coach": "Not Appointed"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2020,
+  "location": "United Arab Emirates",
+  "teams": [
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Mahela Jayawardene",
+      "batting_coach": "Robin Singh",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "James Pamment"
+    },
+    {
+      "team_name": "Delhi Capitals",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Ricky Ponting (Lead)",
+      "bowling_coach": "James Hopes",
+      "fielding_coach": "Mohammad Kaif (Assistant Coach)"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Trevor Bayliss",
+      "batting_coach": "VVS Laxman (Mentor/Lead)",
+      "bowling_coach": "Muttiah Muralitharan",
+      "fielding_coach": "Biju George"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Simon Katich",
+      "batting_coach": "Sridharan Sriram (Batting & Spin)",
+      "bowling_coach": "Adam Griffith",
+      "fielding_coach": "Malolan Rangarajan",
+      "director_of_cricket": "Mike Hesson"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Brendon McCullum",
+      "batting_coach": "Abhishek Nayar (Assistant Coach)",
+      "bowling_coach": "Kyle Mills",
+      "fielding_coach": "James Foster"
+    },
+    {
+      "team_name": "Kings XI Punjab",
+      "head_coach": "Anil Kumble",
+      "batting_coach": "Wasim Jaffer",
+      "bowling_coach": "Courtney Walsh",
+      "fielding_coach": "Jonty Rhodes"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Michael Hussey",
+      "bowling_coach": "Lakshmipathy Balaji",
+      "fielding_coach": "Rajiv Kumar"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Andrew McDonald",
+      "batting_coach": "Amol Muzumdar",
+      "bowling_coach": "Sairaj Bahutule",
+      "fielding_coach": "Dishant Yagnik"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2021,
+  "teams": [
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Michael Hussey",
+      "bowling_coach": "Lakshmipathy Balaji",
+      "fielding_coach": "Rajiv Kumar",
+      "bowling_consultant": "Eric Simons"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Mahela Jayawardene",
+      "batting_coach": "Robin Singh",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "James Pamment",
+      "director_of_cricket": "Zaheer Khan"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Simon Katich",
+      "batting_coach": "Sanjay Bangar (Consultant)",
+      "bowling_coach": "Adam Griffith",
+      "fielding_coach": "Malolan Rangarajan",
+      "director_of_cricket": "Mike Hesson"
+    },
+    {
+      "team_name": "Delhi Capitals",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Praveen Amre (Assistant)",
+      "bowling_coach": "James Hopes",
+      "fielding_coach": "Mohammad Kaif (Assistant)"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Brendon McCullum",
+      "batting_coach": "Abhishek Nayar (Assistant)",
+      "bowling_coach": "Kyle Mills",
+      "fielding_coach": "James Foster"
+    },
+    {
+      "team_name": "Punjab Kings",
+      "head_coach": "Anil Kumble",
+      "batting_coach": "Wasim Jaffer",
+      "bowling_coach": "Damien Wright",
+      "fielding_coach": "Jonty Rhodes"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Kumar Sangakkara (Director of Cricket)",
+      "batting_coach": "Amol Muzumdar",
+      "bowling_coach": "Sairaj Bahutule",
+      "fielding_coach": "Dishant Yagnik",
+      "fast_bowling_coach": "Steffan Jones"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Trevor Bayliss",
+      "batting_coach": "VVS Laxman (Mentor)",
+      "bowling_coach": "Muttiah Muralitharan",
+      "fielding_coach": "Biju George",
+      "assistant_coach": "Brad Haddin"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2022,
+  "teams": [
+    {
+      "team_name": "Gujarat Titans",
+      "head_coach": "Ashish Nehra",
+      "batting_coach": "Vikram Solanki (Director of Cricket)",
+      "bowling_coach": "Ashish Nehra (Lead)",
+      "fielding_coach": "Narender Negi",
+      "assistant_coach": "Vijay Dahiya"
+    },
+    {
+      "team_name": "Lucknow Super Giants",
+      "head_coach": "Andy Flower",
+      "batting_coach": "Andy Flower (Lead)",
+      "bowling_coach": "Andy Bichel",
+      "fielding_coach": "Jonty Rhodes",
+      "mentor": "Gautam Gambhir"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Kumar Sangakkara",
+      "batting_coach": "Amol Muzumdar",
+      "bowling_coach": "Lasith Malinga",
+      "fielding_coach": "Dishant Yagnik",
+      "fast_bowling_coach": "Steffan Jones"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Sanjay Bangar",
+      "batting_coach": "Sridharan Sriram (Batting & Spin)",
+      "bowling_coach": "Adam Griffith",
+      "fielding_coach": "Malolan Rangarajan",
+      "director_of_cricket": "Mike Hesson"
+    },
+    {
+      "team_name": "Delhi Capitals",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Praveen Amre",
+      "bowling_coach": "James Hopes",
+      "fielding_coach": "Subhadeep Ghosh",
+      "assistant_coach": "Shane Watson"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Mahela Jayawardene",
+      "batting_coach": "Robin Singh",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "James Pamment",
+      "director_of_cricket": "Zaheer Khan"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Brendon McCullum",
+      "batting_coach": "Abhishek Nayar (Assistant)",
+      "bowling_coach": "Bharat Arun",
+      "fielding_coach": "James Foster"
+    },
+    {
+      "team_name": "Punjab Kings",
+      "head_coach": "Anil Kumble",
+      "batting_coach": "Wasim Jaffer",
+      "bowling_coach": "Damien Wright",
+      "fielding_coach": "Jonty Rhodes"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Michael Hussey",
+      "bowling_coach": "Lakshmipathy Balaji",
+      "fielding_coach": "Rajiv Kumar",
+      "bowling_consultant": "Eric Simons"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Tom Moody",
+      "batting_coach": "Brian Lara (Strategic Advisor)",
+      "bowling_coach": "Dale Steyn (Pace) / Muttiah Muralitharan (Spin)",
+      "fielding_coach": "Hemang Badani"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2023,
+  "teams": [
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Michael Hussey",
+      "bowling_coach": "Dwayne Bravo",
+      "fielding_coach": "Rajiv Kumar",
+      "bowling_consultant": "Eric Simons"
+    },
+    {
+      "team_name": "Gujarat Titans",
+      "head_coach": "Ashish Nehra",
+      "batting_coach": "Gary Kirsten (Batting Coach & Mentor)",
+      "bowling_coach": "Ashish Nehra (Lead)",
+      "fielding_coach": "Narender Negi",
+      "director_of_cricket": "Vikram Solanki"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Mark Boucher",
+      "batting_coach": "Kieron Pollard",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "James Pamment",
+      "batting_assistant": "J. Arunkumar"
+    },
+    {
+      "team_name": "Lucknow Super Giants",
+      "head_coach": "Andy Flower",
+      "batting_coach": "Andy Flower (Lead)",
+      "bowling_coach": "Morne Morkel (Fast) / Narendra Hirwani (Spin)",
+      "fielding_coach": "Jonty Rhodes",
+      "mentor": "Gautam Gambhir"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Kumar Sangakkara",
+      "batting_coach": "Amol Muzumdar",
+      "bowling_coach": "Lasith Malinga",
+      "fielding_coach": "Dishant Yagnik",
+      "assistant_coach": "Trevor Penney"
+    },
+    {
+      "team_name": "Royal Challengers Bangalore",
+      "head_coach": "Sanjay Bangar",
+      "batting_coach": "Sridharan Sriram (Batting & Spin)",
+      "bowling_coach": "Adam Griffith",
+      "fielding_coach": "Malolan Rangarajan",
+      "director_of_cricket": "Mike Hesson"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Chandrakant Pandit",
+      "batting_coach": "Abhishek Nayar (Assistant Coach)",
+      "bowling_coach": "Bharat Arun",
+      "fielding_coach": "Ryan ten Doeschate",
+      "mentor": "David Hussey"
+    },
+    {
+      "team_name": "Punjab Kings",
+      "head_coach": "Trevor Bayliss",
+      "batting_coach": "Wasim Jaffer",
+      "bowling_coach": "Charl Langeveldt (Fast) / Sunil Joshi (Spin)",
+      "fielding_coach": "Trevor Gonsalves",
+      "assistant_coach": "Brad Haddin"
+    },
+    {
+      "team_name": "Delhi Capitals",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Ricky Ponting (Lead)",
+      "bowling_coach": "James Hopes",
+      "fielding_coach": "Biju George",
+      "director_of_cricket": "Sourav Ganguly"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Brian Lara",
+      "batting_coach": "Hemang Badani",
+      "bowling_coach": "Dale Steyn (Fast) / Muttiah Muralitharan (Spin)",
+      "fielding_coach": "Ryan Cook"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2024,
+  "teams": [
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Chandrakant Pandit",
+      "mentor": "Gautam Gambhir",
+      "batting_coach": "Abhishek Nayar (Assistant Coach)",
+      "bowling_coach": "Bharat Arun",
+      "fielding_coach": "Ryan ten Doeschate"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Michael Hussey",
+      "bowling_coach": "Dwayne Bravo",
+      "fielding_coach": "Rajiv Kumar",
+      "bowling_consultant": "Eric Simons"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Mark Boucher",
+      "batting_coach": "Kieron Pollard",
+      "bowling_coach": "Lasith Malinga",
+      "fielding_coach": "James Pamment",
+      "assistant_batting_coach": "J. Arunkumar"
+    },
+    {
+      "team_name": "Royal Challengers Bengaluru",
+      "head_coach": "Andy Flower",
+      "batting_coach": "Neil McKenzie",
+      "bowling_coach": "Adam Griffith",
+      "fielding_coach": "Malolan Rangarajan",
+      "director_of_cricket": "Mo Bobat"
+    },
+    {
+      "team_name": "Gujarat Titans",
+      "head_coach": "Ashish Nehra",
+      "batting_coach": "Gary Kirsten (Batting Coach & Mentor)",
+      "bowling_coach": "Ashish Nehra (Lead)",
+      "fielding_coach": "Narender Negi",
+      "director_of_cricket": "Vikram Solanki"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Daniel Vettori",
+      "batting_coach": "Hemang Badani",
+      "bowling_coach": "James Franklin (Pace) / Muttiah Muralitharan (Spin)",
+      "fielding_coach": "Ryan Cook"
+    },
+    {
+      "team_name": "Lucknow Super Giants",
+      "head_coach": "Justin Langer",
+      "batting_coach": "Justin Langer (Lead)",
+      "bowling_coach": "Morne Morkel (Fast) / Pravin Tambe (Spin)",
+      "fielding_coach": "Jonty Rhodes",
+      "assistant_coach": "Lance Klusener"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Kumar Sangakkara",
+      "batting_coach": "Amol Muzumdar",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "Dishant Yagnik",
+      "assistant_coach": "Trevor Penney"
+    },
+    {
+      "team_name": "Delhi Capitals",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Pravin Amre",
+      "bowling_coach": "James Hopes",
+      "fielding_coach": "Biju George",
+      "director_of_cricket": "Sourav Ganguly"
+    },
+    {
+      "team_name": "Punjab Kings",
+      "head_coach": "Trevor Bayliss",
+      "batting_coach": "Wasim Jaffer",
+      "bowling_coach": "Charl Langeveldt (Fast) / Sunil Joshi (Spin)",
+      "fielding_coach": "Trevor Gonsalves",
+      "director_of_cricket_development": "Sanjay Bangar"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2025,
+  "status": "Upcoming/Current",
+  "teams": [
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Rahul Dravid",
+      "batting_coach": "Vikram Rathour",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "Dishant Yagnik",
+      "director_of_cricket": "Kumar Sangakkara"
+    },
+    {
+      "team_name": "Punjab Kings",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Brad Haddin",
+      "bowling_coach": "James Hopes",
+      "fielding_coach": "Brad Haddin",
+      "spin_bowling_coach": "Sunil Joshi"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Mahela Jayawardene",
+      "batting_coach": "Kieron Pollard",
+      "bowling_coach": "Lasith Malinga",
+      "fielding_coach": "Carl Hopkinson",
+      "assistant_bowling_coach": "Paras Mhambrey"
+    },
+    {
+      "team_name": "Royal Challengers Bengaluru",
+      "head_coach": "Andy Flower",
+      "batting_coach": "Dinesh Karthik (Mentor & Batting)",
+      "bowling_coach": "Omkar Salvi",
+      "fielding_coach": "Malolan Rangarajan",
+      "director_of_cricket": "Mo Bobat"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Chandrakant Pandit",
+      "batting_coach": "Abhishek Nayar",
+      "bowling_coach": "Bharat Arun",
+      "fielding_coach": "Ryan ten Doeschate",
+      "mentor": "Dwayne Bravo"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Michael Hussey",
+      "bowling_coach": "Eric Simons (Consultant)",
+      "fielding_coach": "Rajiv Kumar"
+    },
+    {
+      "team_name": "Delhi Capitals",
+      "head_coach": "Hemang Badani",
+      "batting_coach": "Praveen Amre (Assistant)",
+      "bowling_coach": "Munaf Patel",
+      "fielding_coach": "Biju George",
+      "director_of_cricket": "Venugopal Rao"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Daniel Vettori",
+      "batting_coach": "Hemang Badani",
+      "bowling_coach": "James Franklin (Pace) / Muttiah Muralitharan (Spin)",
+      "fielding_coach": "Ryan Cook"
+    },
+    {
+      "team_name": "Gujarat Titans",
+      "head_coach": "Ashish Nehra",
+      "batting_coach": "Parthiv Patel",
+      "bowling_coach": "Ashish Nehra (Lead)",
+      "fielding_coach": "Narendra Negi",
+      "director_of_cricket": "Vikram Solanki"
+    },
+    {
+      "team_name": "Lucknow Super Giants",
+      "head_coach": "Justin Langer",
+      "batting_coach": "Justin Langer (Lead)",
+      "bowling_coach": "Morne Morkel",
+      "fielding_coach": "Jonty Rhodes",
+      "mentor": "Zaheer Khan"
+    }
+  ]
+}
+
+{
+  "ipl_season": 2026,
+  "status": "Current",
+  "teams": [
+    {
+      "team_name": "Royal Challengers Bengaluru",
+      "head_coach": "Andy Flower",
+      "batting_coach": "Dinesh Karthik",
+      "bowling_coach": "Adam Griffith",
+      "fielding_coach": "Malolan Rangarajan",
+      "director_of_cricket": "Mo Bobat"
+    },
+    {
+      "team_name": "Chennai Super Kings",
+      "head_coach": "Stephen Fleming",
+      "batting_coach": "Michael Hussey",
+      "bowling_coach": "Eric Simons",
+      "fielding_coach": "James Foster",
+      "assistant_coach": "Sridharan Sriram"
+    },
+    {
+      "team_name": "Kolkata Knight Riders",
+      "head_coach": "Abhishek Nayar",
+      "batting_coach": "Abhishek Nayar (Lead)",
+      "bowling_coach": "Tim Southee",
+      "fielding_coach": "Dishant Yagnik",
+      "mentor": "Dwayne Bravo",
+      "assistant_coach": "Shane Watson"
+    },
+    {
+      "team_name": "Mumbai Indians",
+      "head_coach": "Mahela Jayawardene",
+      "batting_coach": "Kieron Pollard",
+      "bowling_coach": "Paras Mhambrey & Lasith Malinga",
+      "fielding_coach": "Carl Hopkinson"
+    },
+    {
+      "team_name": "Gujarat Titans",
+      "head_coach": "Ashish Nehra",
+      "batting_coach": "Matthew Hayden",
+      "bowling_coach": "Ashish Nehra (Lead)",
+      "fielding_coach": "Narender Negi",
+      "director_of_cricket": "Vikram Solanki"
+    },
+    {
+      "team_name": "Rajasthan Royals",
+      "head_coach": "Kumar Sangakkara",
+      "batting_coach": "Vikram Rathour (Assistant)",
+      "bowling_coach": "Shane Bond",
+      "fielding_coach": "Trevor Penney (Lead Assistant)",
+      "director_of_cricket": "Kumar Sangakkara"
+    },
+    {
+      "team_name": "Lucknow Super Giants",
+      "head_coach": "Justin Langer",
+      "batting_coach": "Justin Langer (Lead)",
+      "bowling_coach": "Bharat Arun",
+      "fielding_coach": "Jonty Rhodes",
+      "spin_consultant": "Carl Crowe"
+    },
+    {
+      "team_name": "Delhi Capitals",
+      "head_coach": "Hemang Badani",
+      "batting_coach": "Ian Bell (Assistant)",
+      "bowling_coach": "Munaf Patel",
+      "fielding_coach": "Biju George",
+      "director_of_cricket": "Venugopal Rao"
+    },
+    {
+      "team_name": "Sunrisers Hyderabad",
+      "head_coach": "Daniel Vettori",
+      "batting_coach": "Simon Helmot (Assistant)",
+      "bowling_coach": "Varun Aaron",
+      "fielding_coach": "Ryan Cook"
+    },
+    {
+      "team_name": "Punjab Kings",
+      "head_coach": "Ricky Ponting",
+      "batting_coach": "Brad Haddin",
+      "bowling_coach": "James Hopes",
+      "spin_coach": "Sairaj Bahutule"
+    }
+  ]
+}
