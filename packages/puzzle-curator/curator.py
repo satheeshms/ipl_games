@@ -98,7 +98,7 @@ def search_data(query: str, ipl_data: dict) -> list[str]:
 
 
 BROWSE_SHORTCUTS = (
-    "?team[:CODE[:SEASON]]  "
+    "?team[:CODE[:SEASON]]  ?team_all:CODE  "
     "?coaches[:SEASON]  ?batting_coaches[:SEASON]  ?bowling_coaches[:SEASON]  ?fielding_coaches[:SEASON]  "
     "?orange_cap  ?purple_cap  ?pot  ?costliest  ?winning_captain  ?ipl_champions  "
     "?batting_records  ?bowling_records  ?season_records  ?fielding_records  ?team_owners  "
@@ -239,6 +239,27 @@ def browse_groups(category: str, ipl_data: dict) -> None:
         print("  IPL Allrounders (1000+ runs & 50+ wickets):")
         for p in players:
             print(f"    {p['name']}  {p.get('runs', '?')} runs  {p.get('wickets', '?')} wickets")
+
+    elif category.startswith("team_all"):
+        parts = category.split(":", 1)
+        pt = ipl_data.get("player_teams", [])
+        if not pt:
+            print("  No player_teams data loaded.")
+            return
+        if len(parts) == 1:
+            print("  Usage: ?team_all:CODE  (e.g. ?team_all:CSK)")
+            return
+        q = parts[1].upper()
+        from category_generators import _TEAM_CODES, _resolve_team
+        try:
+            team_name = _resolve_team(ipl_data, q)
+        except ValueError as e:
+            print(f"  {e}")
+            return
+        players = sorted({row["player_name"] for row in pt if row["team_name"] == team_name})
+        print(f"  {team_name} — all-time players ({len(players)}):")
+        for p in players:
+            print(f"    {p}")
 
     elif category.startswith("team"):
         parts = category.split(":", 2)

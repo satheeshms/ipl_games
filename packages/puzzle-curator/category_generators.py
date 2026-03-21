@@ -116,6 +116,39 @@ def gen_team_players(ipl_data: dict, params: list, exclude: set) -> dict:
     return {"title": f"{team_name} {season} Squad", "items": items}
 
 
+def gen_team_all_seasons(ipl_data: dict, params: list, exclude: set) -> dict:
+    """
+    Pick 4 players who have ever played for a team (any season).
+
+    Params: [team_code_or_name]
+    Example: team_all_seasons:CSK
+
+    Used when the puzzle has no season context — pairs well with non-squad
+    categories like coaches, awards, records.
+    """
+    if len(params) < 1:
+        raise ValueError(
+            "team_all_seasons requires 1 param: team. "
+            "Example: team_all_seasons:CSK"
+        )
+
+    team_name = _resolve_team(ipl_data, params[0])
+
+    names = [
+        pt["player_name"]
+        for pt in ipl_data.get("player_teams", [])
+        if pt["team_name"] == team_name
+    ]
+
+    if not names:
+        raise ValueError(
+            f"team_all_seasons: no players found for team '{team_name}'."
+        )
+
+    items = _pick(names, exclude, f"team_all_seasons:{team_name}")
+    return {"title": f"{team_name} Players (All Time)", "items": items}
+
+
 def gen_coaches(ipl_data: dict, params: list, exclude: set) -> dict:
     """
     Pick 4 head coaches from a given season.
@@ -311,6 +344,7 @@ GENERATORS: dict[str, callable] = {
     "winning_captain":        gen_winning_captain,
     "ipl_champions":          gen_ipl_champions,
     "team_players":           gen_team_players,
+    "team_all_seasons":       gen_team_all_seasons,
     "coaches":                gen_coaches,
     "batting_coaches":        gen_batting_coaches,
     "bowling_coaches":        gen_bowling_coaches,
