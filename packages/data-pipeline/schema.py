@@ -131,9 +131,79 @@ CREATE TABLE IF NOT EXISTS most_ducks (
     fours        INTEGER,
     sixes        INTEGER
 );
+
+CREATE TABLE IF NOT EXISTS batting_strike_rate (
+    player_id    INTEGER PRIMARY KEY REFERENCES players(id),
+    rank         INTEGER,
+    matches      INTEGER,
+    innings      INTEGER,
+    not_out      INTEGER,
+    runs         INTEGER,
+    hs           TEXT,
+    average      REAL,
+    balls_faced  INTEGER,
+    strike_rate  REAL,
+    hundreds     INTEGER,
+    fifties      INTEGER,
+    ducks        INTEGER,
+    fours        INTEGER,
+    sixes        INTEGER,
+    teams        TEXT,
+    span         TEXT
+);
+
+CREATE TABLE IF NOT EXISTS highest_batting_avg (
+    player_id    INTEGER PRIMARY KEY REFERENCES players(id),
+    rank         INTEGER,
+    matches      INTEGER,
+    innings      INTEGER,
+    not_out      INTEGER,
+    runs         INTEGER,
+    hs           TEXT,
+    average      REAL,
+    balls_faced  INTEGER,
+    strike_rate  REAL,
+    hundreds     INTEGER,
+    fifties      INTEGER,
+    ducks        INTEGER,
+    fours        INTEGER,
+    sixes        INTEGER,
+    teams        TEXT,
+    span         TEXT
+);
+
+CREATE TABLE IF NOT EXISTS catches_by_fielder (
+    player_id              INTEGER PRIMARY KEY REFERENCES players(id),
+    rank                   INTEGER,
+    matches                INTEGER,
+    innings                INTEGER,
+    catches                INTEGER,
+    max_catches_in_innings INTEGER,
+    catches_per_inning     REAL,
+    teams                  TEXT,
+    span                   TEXT
+);
+
+CREATE TABLE IF NOT EXISTS dismissals_by_keeper (
+    player_id                  INTEGER PRIMARY KEY REFERENCES players(id),
+    rank                       INTEGER,
+    matches                    INTEGER,
+    innings                    INTEGER,
+    dismissed                  INTEGER,
+    catches                    INTEGER,
+    stumpings                  INTEGER,
+    max_dismissals_in_innings  INTEGER,
+    dismissals_per_inning      REAL,
+    teams                      TEXT,
+    span                       TEXT
+);
 """
 
 DROP_TABLES = """
+DROP TABLE IF EXISTS dismissals_by_keeper;
+DROP TABLE IF EXISTS catches_by_fielder;
+DROP TABLE IF EXISTS highest_batting_avg;
+DROP TABLE IF EXISTS batting_strike_rate;
 DROP TABLE IF EXISTS most_ducks;
 DROP TABLE IF EXISTS multi_team_players;
 DROP TABLE IF EXISTS bowling_career_stats;

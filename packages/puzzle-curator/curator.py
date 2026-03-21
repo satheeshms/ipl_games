@@ -102,7 +102,8 @@ BROWSE_SHORTCUTS = (
     "?coaches[:SEASON]  ?batting_coaches[:SEASON]  ?bowling_coaches[:SEASON]  ?fielding_coaches[:SEASON]  "
     "?orange_cap  ?purple_cap  ?pot  ?costliest  ?winning_captain  ?ipl_champions  "
     "?batting_records  ?bowling_records  ?season_records  ?fielding_records  ?team_owners  "
-    "?countries  ?states  ?ranji  ?fifers  ?topbat  ?topbowl  ?multiteam  ?ducks"
+    "?countries  ?states  ?ranji  ?fifers  ?topbat  ?topbowl  ?multiteam  ?ducks  "
+    "?strikers  ?batting_avg  ?fielders  ?keepers  ?allrounders"
 )
 
 
@@ -193,6 +194,51 @@ def browse_groups(category: str, ipl_data: dict) -> None:
         print("  Players with most ducks:")
         for p in players:
             print(f"    {p['player_name']}  {p['ducks']} ducks  {p['innings']} innings")
+
+    elif category == "strikers":
+        players = ipl_data.get("high_strike_rate_batsmen", [])
+        if not players:
+            print("  No high_strike_rate_batsmen data loaded.")
+            return
+        print("  High strike rate batsmen (150+ SR):")
+        for p in players:
+            print(f"    {p['player_name']}  SR {p.get('strike_rate', '?')}  {p.get('matches', '?')} matches")
+
+    elif category == "batting_avg":
+        players = ipl_data.get("highest_batting_avg", [])
+        if not players:
+            print("  No highest_batting_avg data loaded.")
+            return
+        print("  Highest batting average (30+ avg, 50+ matches, 1000+ runs):")
+        for p in players:
+            print(f"    {p['player_name']}  avg {p.get('average', '?')}  {p.get('runs', '?')} runs  {p.get('matches', '?')} matches")
+
+    elif category == "fielders":
+        players = ipl_data.get("catches_by_fielder", [])
+        if not players:
+            print("  No catches_by_fielder data loaded.")
+            return
+        print("  Most catches by fielder (50+ matches, 50+ catches):")
+        for p in players:
+            print(f"    {p['player_name']}  {p.get('catches', '?')} catches  {p.get('matches', '?')} matches")
+
+    elif category == "keepers":
+        players = ipl_data.get("dismissals_by_keeper", [])
+        if not players:
+            print("  No dismissals_by_keeper data loaded.")
+            return
+        print("  Most dismissals by keeper (50+ matches, 50+ dismissals):")
+        for p in players:
+            print(f"    {p['player_name']}  {p.get('dismissals', '?')} dismissals  {p.get('matches', '?')} matches")
+
+    elif category == "allrounders":
+        players = ipl_data.get("allrounders", [])
+        if not players:
+            print("  No allrounders data loaded.")
+            return
+        print("  IPL Allrounders (1000+ runs & 50+ wickets):")
+        for p in players:
+            print(f"    {p['name']}  {p.get('runs', '?')} runs  {p.get('wickets', '?')} wickets")
 
     elif category.startswith("team"):
         parts = category.split(":", 2)
@@ -544,25 +590,32 @@ def cmd_create(args: argparse.Namespace) -> int:
         else:
             with data_path.open(encoding="utf-8") as fh:
                 ipl_data = json.load(fh)
-            player_count    = len(ipl_data.get("players", []))
-            team_count      = len(ipl_data.get("teams", []))
-            pt_count        = len(ipl_data.get("player_teams", []))
-            awards_count    = len(ipl_data.get("awards", []))
-            coaches_count   = len(ipl_data.get("coaches", []))
-            foreign_count   = len(ipl_data.get("foreign_players", []))
-            state_count     = len(ipl_data.get("india_state_wise", {}))
-            ranji_count     = len(ipl_data.get("ranji_team_wise", {}))
-            fifers_count    = len(ipl_data.get("five_wicket_hauls", []))
-            topbat_count    = len(ipl_data.get("batting_career_stats", []))
-            topbowl_count   = len(ipl_data.get("bowling_career_stats", []))
-            multiteam_count = len(ipl_data.get("multi_team_players", []))
-            ducks_count     = len(ipl_data.get("most_ducks", []))
+            player_count      = len(ipl_data.get("players", []))
+            team_count        = len(ipl_data.get("teams", []))
+            pt_count          = len(ipl_data.get("player_teams", []))
+            awards_count      = len(ipl_data.get("awards", []))
+            coaches_count     = len(ipl_data.get("coaches", []))
+            foreign_count     = len(ipl_data.get("foreign_players", []))
+            state_count       = len(ipl_data.get("india_state_wise", {}))
+            ranji_count       = len(ipl_data.get("ranji_team_wise", {}))
+            fifers_count      = len(ipl_data.get("five_wicket_hauls", []))
+            topbat_count      = len(ipl_data.get("batting_career_stats", []))
+            topbowl_count     = len(ipl_data.get("bowling_career_stats", []))
+            multiteam_count   = len(ipl_data.get("multi_team_players", []))
+            ducks_count       = len(ipl_data.get("most_ducks", []))
+            strikers_count    = len(ipl_data.get("high_strike_rate_batsmen", []))
+            batting_avg_count = len(ipl_data.get("highest_batting_avg", []))
+            fielders_count    = len(ipl_data.get("catches_by_fielder", []))
+            keepers_count     = len(ipl_data.get("dismissals_by_keeper", []))
+            allrounders_count = len(ipl_data.get("allrounders", []))
             print(f"  Loaded: {player_count} players, {team_count} teams, "
                   f"{pt_count} player-team-season rows, {awards_count} awards, "
                   f"{coaches_count} coach records, {foreign_count} foreign players, "
                   f"{state_count} states, {ranji_count} ranji teams, "
                   f"{fifers_count} fifers, {topbat_count} top batsmen, {topbowl_count} top bowlers, "
-                  f"{multiteam_count} multi-team, {ducks_count} ducks")
+                  f"{multiteam_count} multi-team, {ducks_count} ducks, "
+                  f"{strikers_count} strikers, {batting_avg_count} batting avg, "
+                  f"{fielders_count} fielders, {keepers_count} keepers, {allrounders_count} allrounders")
             print(f"  Browse: {BROWSE_SHORTCUTS}")
 
     idx = load_used_items(output_dir)

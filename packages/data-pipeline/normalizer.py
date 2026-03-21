@@ -278,15 +278,15 @@ def load_player_enriched(data_dir: Path) -> list[dict]:
         return json.load(f)
 
 
-def build_player_geography(enriched: list[dict]) -> tuple[list, dict, dict]:
+def build_player_geography(enriched: list[dict]) -> tuple[list, dict, dict, list]:
     """
-    Builds three player geography categories from players_master_enriched.json.
+    Builds player geography and allrounder categories from players_master_enriched.json.
 
     Returns:
       foreign_players  — list of non-Indian players sorted by country then name
       india_state_wise — { state: [player, ...] } sorted alphabetically by state
-      ranji_team_wise  — { ranji_team: [player, ...] } sorted by team name;
-                         a player with multiple ranji teams appears in each group
+      ranji_team_wise  — { ranji_team: [player, ...] } sorted by team name
+      allrounders      — players with 1000+ runs AND 50+ wickets, sorted by runs desc
     """
     def slim(p):
         return {
@@ -330,7 +330,24 @@ def build_player_geography(enriched: list[dict]) -> tuple[list, dict, dict]:
         for k, v in sorted(ranji_wise.items())
     }
 
-    return foreign_players, india_state_wise, ranji_team_wise
+    allrounders = sorted(
+        [
+            {
+                "name":     p.get("Player"),
+                "full_name": p.get("full_name"),
+                "country":  p.get("country"),
+                "teams":    p.get("Teams", []),
+                "matches":  p.get("Matches"),
+                "runs":     p.get("Runs"),
+                "wickets":  p.get("Wickets"),
+            }
+            for p in enriched
+            if p.get("Runs", 0) >= 1000 and p.get("Wickets", 0) >= 50
+        ],
+        key=lambda x: (-(x["runs"] or 0), -(x["wickets"] or 0)),
+    )
+
+    return foreign_players, india_state_wise, ranji_team_wise, allrounders
 
 
 def load_records(data_dir: Path) -> dict:
@@ -465,7 +482,7 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
     records = load_records(data_dir) if data_dir else {}
 
     enriched = load_player_enriched(data_dir) if data_dir else []
-    foreign_players, india_state_wise, ranji_team_wise = build_player_geography(enriched)
+    foreign_players, india_state_wise, ranji_team_wise, allrounders = build_player_geography(enriched)
 
     five_wicket_hauls = [
         {
@@ -593,6 +610,122 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
         """)
     ]
 
+    high_strike_rate_batsmen = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "rank": r[2],
+            "matches": r[3],
+            "innings": r[4],
+            "not_out": r[5],
+            "runs": r[6],
+            "hs": r[7],
+            "average": r[8],
+            "balls_faced": r[9],
+            "strike_rate": r[10],
+            "hundreds": r[11],
+            "fifties": r[12],
+            "ducks": r[13],
+            "fours": r[14],
+            "sixes": r[15],
+            "teams": r[16],
+            "span": r[17],
+        }
+        for r in conn.execute("""
+            SELECT s.player_id, p.name,
+                   s.rank, s.matches, s.innings, s.not_out, s.runs, s.hs,
+                   s.average, s.balls_faced, s.strike_rate,
+                   s.hundreds, s.fifties, s.ducks, s.fours, s.sixes,
+                   s.teams, s.span
+            FROM batting_strike_rate s
+            JOIN players p ON p.id = s.player_id
+            ORDER BY s.strike_rate DESC
+        """)
+    ]
+
+    highest_batting_avg = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "rank": r[2],
+            "matches": r[3],
+            "innings": r[4],
+            "not_out": r[5],
+            "runs": r[6],
+            "hs": r[7],
+            "average": r[8],
+            "balls_faced": r[9],
+            "strike_rate": r[10],
+            "hundreds": r[11],
+            "fifties": r[12],
+            "ducks": r[13],
+            "fours": r[14],
+            "sixes": r[15],
+            "teams": r[16],
+            "span": r[17],
+        }
+        for r in conn.execute("""
+            SELECT a.player_id, p.name,
+                   a.rank, a.matches, a.innings, a.not_out, a.runs, a.hs,
+                   a.average, a.balls_faced, a.strike_rate,
+                   a.hundreds, a.fifties, a.ducks, a.fours, a.sixes,
+                   a.teams, a.span
+            FROM highest_batting_avg a
+            JOIN players p ON p.id = a.player_id
+            ORDER BY a.average DESC
+        """)
+    ]
+
+    catches_by_fielder = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "rank": r[2],
+            "matches": r[3],
+            "innings": r[4],
+            "catches": r[5],
+            "max_catches_in_innings": r[6],
+            "catches_per_inning": r[7],
+            "teams": r[8],
+            "span": r[9],
+        }
+        for r in conn.execute("""
+            SELECT c.player_id, p.name,
+                   c.rank, c.matches, c.innings, c.catches,
+                   c.max_catches_in_innings, c.catches_per_inning,
+                   c.teams, c.span
+            FROM catches_by_fielder c
+            JOIN players p ON p.id = c.player_id
+            ORDER BY c.catches DESC
+        """)
+    ]
+
+    dismissals_by_keeper = [
+        {
+            "player_id": r[0],
+            "player_name": r[1],
+            "rank": r[2],
+            "matches": r[3],
+            "innings": r[4],
+            "dismissed": r[5],
+            "catches": r[6],
+            "stumpings": r[7],
+            "max_dismissals_in_innings": r[8],
+            "dismissals_per_inning": r[9],
+            "teams": r[10],
+            "span": r[11],
+        }
+        for r in conn.execute("""
+            SELECT d.player_id, p.name,
+                   d.rank, d.matches, d.innings, d.dismissed,
+                   d.catches, d.stumpings, d.max_dismissals_in_innings,
+                   d.dismissals_per_inning, d.teams, d.span
+            FROM dismissals_by_keeper d
+            JOIN players p ON p.id = d.player_id
+            ORDER BY d.dismissed DESC
+        """)
+    ]
+
     data = {
         "teams": teams,
         "players": players,
@@ -607,6 +740,11 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
         "bowling_career_stats": bowling_career_stats,
         "multi_team_players": multi_team_players,
         "most_ducks": most_ducks,
+        "high_strike_rate_batsmen": high_strike_rate_batsmen,
+        "highest_batting_avg": highest_batting_avg,
+        "catches_by_fielder": catches_by_fielder,
+        "dismissals_by_keeper": dismissals_by_keeper,
+        "allrounders": allrounders,
         "foreign_players": foreign_players,
         "india_state_wise": india_state_wise,
         "ranji_team_wise": ranji_team_wise,
@@ -624,10 +762,15 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
           f"batting_career_stats: {len(batting_career_stats)}, "
           f"bowling_career_stats: {len(bowling_career_stats)}, "
           f"multi_team_players: {len(multi_team_players)}, "
-          f"most_ducks: {len(most_ducks)}")
+          f"most_ducks: {len(most_ducks)}, "
+          f"high_strike_rate_batsmen: {len(high_strike_rate_batsmen)} (150+ SR), "
+          f"highest_batting_avg: {len(highest_batting_avg)} (30+ avg/50+ matches/1000+ runs), "
+          f"catches_by_fielder: {len(catches_by_fielder)} (50+ matches/50+ catches), "
+          f"dismissals_by_keeper: {len(dismissals_by_keeper)} (50+ matches/50+ dismissals)")
     print(f"    foreign_players: {len(foreign_players)}, "
           f"india_state_wise groups: {len(india_state_wise)}, "
-          f"ranji_team_wise groups: {len(ranji_team_wise)}")
+          f"ranji_team_wise groups: {len(ranji_team_wise)}, "
+          f"allrounders: {len(allrounders)} (1000+ runs AND 50+ wickets)")
 
 
 # ---------------------------------------------------------------------------
@@ -692,7 +835,12 @@ def main() -> None:
         load_manual_top_bowlers,
         load_manual_multi_team_players,
         load_manual_most_ducks,
+        load_manual_batting_strike_rate,
+        load_manual_highest_batting_avg,
+        load_manual_catches_by_fielder,
+        load_manual_dismissals_by_keeper,
     )
+    # Rebuild player_id_map AFTER squad_loader has inserted new players
     player_id_map = {
         name: pid
         for pid, name in conn.execute("SELECT id, name FROM players").fetchall()
@@ -709,6 +857,14 @@ def main() -> None:
     print(f"  {n} multi_team_players entries processed (INSERT OR REPLACE)")
     n = load_manual_most_ducks(conn, db_path.parent, player_id_map)
     print(f"  {n} most_ducks entries processed (INSERT OR REPLACE)")
+    n = load_manual_batting_strike_rate(conn, db_path.parent, player_id_map)
+    print(f"  {n} batting_strike_rate entries processed (INSERT OR REPLACE)")
+    n = load_manual_highest_batting_avg(conn, db_path.parent, player_id_map)
+    print(f"  {n} highest_batting_avg entries processed (INSERT OR REPLACE)")
+    n = load_manual_catches_by_fielder(conn, db_path.parent, player_id_map)
+    print(f"  {n} catches_by_fielder entries processed (INSERT OR REPLACE)")
+    n = load_manual_dismissals_by_keeper(conn, db_path.parent, player_id_map)
+    print(f"  {n} dismissals_by_keeper entries processed (INSERT OR REPLACE)")
 
     # Step 3 — coaches
     print("Step 3: Migrating and loading coaches...")
