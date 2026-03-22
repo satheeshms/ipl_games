@@ -1,6 +1,6 @@
 import type { GameState } from '../types';
 
-const KEY = (id: string) => `ipl-connections-${id}`;
+const KEY = (id: string) => `ipl-cluster4-${id}`;
 
 // Fields to persist
 type PersistedState = Pick<
@@ -28,7 +28,7 @@ export function loadState(puzzleId: string): PersistedState | null {
 
 export function clearStaleStates(currentId: string): void {
   try {
-    const prefix = 'ipl-connections-';
+    const prefix = 'ipl-cluster4-';
     for (let i = localStorage.length - 1; i >= 0; i--) {
       const key = localStorage.key(i);
       if (key && key.startsWith(prefix) && key !== KEY(currentId)) {

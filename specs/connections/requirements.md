@@ -1,6 +1,6 @@
-# IPL Connections — Requirements
+# IPL Cluster 4 — Requirements
 
-**Game:** IPL Connections
+**Game:** IPL Cluster 4
 **Spec Version:** 1.0
 **Date:** 2026-03-14
 **Status:** Draft
@@ -9,7 +9,7 @@
 
 ## 1. Overview
 
-IPL Connections is a daily word/item puzzle game inspired by the NYTimes Connections (Sports Edition). Players are presented with 16 IPL-related items arranged in a 4×4 grid and must sort them into 4 hidden groups of 4, each sharing a common IPL theme or category. The game is scoped for the IPL season and targets cricket fans.
+IPL Cluster 4 is a daily word/item puzzle game inspired by the NYTimes Connections (Sports Edition). Players are presented with 16 IPL-related items arranged in a 4×4 grid and must sort them into 4 hidden groups of 4, each sharing a common IPL theme or category. The game is scoped for the IPL season and targets cricket fans.
 
 ---
 
@@ -164,7 +164,7 @@ Puzzle creators are expected to expand this list each season using the data pipe
 - Share output format (no spoilers, emoji grid):
 
 ```
-IPL Connections #42 — 14 Mar 2026
+IPL Cluster 4 #42 — 14 Mar 2026
 🟨🟨🟨🟨
 🟩🟩🟩🟩
 🟦🟦🟦🟦

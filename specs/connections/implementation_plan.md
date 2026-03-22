@@ -1,4 +1,4 @@
-# IPL Connections — Implementation Plan
+# IPL Cluster 4 — Implementation Plan
 
 **Spec Version:** 1.0
 **Date:** 2026-03-14
@@ -277,7 +277,7 @@ const EMOJI: Record<Color, string> = {
 };
 
 export function buildShareText(puzzle: Puzzle, guessHistory: Guess[]): string {
-  const header = `IPL Connections #${puzzle.edition} — ${formatDate(puzzle.date)}`;
+  const header = `IPL Cluster 4 #${puzzle.edition} — ${formatDate(puzzle.date)}`;
   const grid = guessHistory
     .map(g => Array(4).fill(EMOJI[g.categoryColor ?? 'yellow']).join(''))
     // For wrong guesses, show each item's actual category color
@@ -291,7 +291,7 @@ export function buildShareText(puzzle: Puzzle, guessHistory: Guess[]): string {
 ### `lib/storage.ts`
 
 ```typescript
-const KEY = (id: string) => `ipl-connections-${id}`;
+const KEY = (id: string) => `ipl-cluster4-${id}`;
 
 export function saveState(puzzleId: string, state: Partial<GameState>) { ... }
 export function loadState(puzzleId: string): Partial<GameState> | null { ... }
@@ -303,7 +303,7 @@ export function clearStaleStates(currentId: string) { ... } // remove other puzz
 ## 8. Session Persistence
 
 On `LOAD_PUZZLE`:
-1. Check `localStorage` for key `ipl-connections-{puzzleId}`.
+1. Check `localStorage` for key `ipl-cluster4-{puzzleId}`.
 2. If found and valid, restore: `gridItems`, `selected`, `revealedCategories`, `lives`, `guessHistory`, `status`.
 3. If not found, start fresh.
 
@@ -320,7 +320,7 @@ Fields persisted: `gridItems`, `selected`, `revealedCategories`, `lives`, `guess
 VitePWA({
   registerType: 'autoUpdate',
   manifest: {
-    name: 'IPL Connections',
+    name: 'IPL Cluster 4',
     short_name: 'IPL Connect',
     theme_color: '#1a1a2e',
     background_color: '#1a1a2e',
