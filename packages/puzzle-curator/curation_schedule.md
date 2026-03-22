@@ -13,163 +13,172 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 
 | Ed | Date | Day | Match | Yellow | Green | Blue | Purple | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 25 Mar | Wed | — | `ipl_champions` | `orange_cap` | `purple_cap` | `player_of_tournament` | [ ] |
-| 2 | 26 Mar | Thu | — | `coaches:2026` | `coaches:2025` | `team_owners` | `winning_captain` | [ ] |
-| 3 | 27 Mar | Fri | — | `legends:india` | `legends:overseas` | `winning_squad:2008` | `costliest_player` | [ ] |
+| 1 | 25 Mar | Wed | — | `team_players:MI:2026` | `team_players:MI:2008` | `top_run_scorers` | `played_both:CSK:MI` | [ ] |
+| 2 | 26 Mar | Thu | — | `team_players:CSK:2026` | `team_players:CSK:2008` | `top_wicket_takers` | `played_both:CSK:RCB` | [ ] |
+| 3 | 27 Mar | Fri | — | `team_players:RCB:2026` | `team_players:RCB:2008` | `highest_batting_avg` | `played_both:RCB:MI` | [ ] |
 
 ## Phase 1 — Match Days (28 Mar - 12 Apr)
 
 | Ed | Date | Day | Match | Yellow | Green | Blue | Purple | Status |
 |---|---|---|---|---|---|---|---|---|
-| 4 | 28 Mar | Sat | RCB vs SRH | `team_players:RCB:2026` | `team_players:RCB:2008` | `top_run_scorers` | `played_both:CSK:MI` | [ ] |
-| 5 | 29 Mar | Sun | MI vs KKR | `team_players:MI:2026` | `team_players:MI:2008` | `top_wicket_takers` | `played_both:CSK:RCB` | [ ] |
-| 6 | 30 Mar | Mon | RR vs CSK | `team_players:RR:2026` | `team_players:RR:2008` | `highest_batting_avg` | `played_both:RCB:MI` | [ ] |
-| 7 | 31 Mar | Tue | PBKS vs GT | `team_players:CSK:2026` | `team_players:MI:2026` | `played_both:CSK:MI` | `winning_captain` | [ ] |
-| 8 | 1 Apr | Wed | LSG vs DC | `team_players:LSG:2026` | `team_all_seasons:LSG` | `catches_by_fielder` | `played_both:KKR:MI` | [ ] |
-| 9 | 2 Apr | Thu | KKR vs SRH | `team_players:KKR:2026` | `team_players:KKR:2008` | `most_fifties` | `played_both:CSK:KKR` | [ ] |
-| 10 | 3 Apr | Fri | CSK vs PBKS | `team_players:CSK:2026` | `team_legends:CSK` | `country:Australia` | `played_both:RR:CSK` | [ ] |
-| 11 | 4 Apr | Sat | DC vs MI | `team_players:DC:2026` | `team_players:DC:2008` | `country:South Africa` | `multi_team:5` | [ ] |
-| 12 | 5 Apr | Sun | SRH vs LSG | `team_players:SRH:2026` | `team_all_seasons:SRH` | `country:England` | `multi_team:7` | [ ] |
-| 13 | 6 Apr | Mon | KKR vs PBKS | `team_players:KKR:2026` | `team_players:KKR:2008` | `country:New Zealand` | `longest_serving` | [ ] |
-| 14 | 7 Apr | Tue | RR vs MI | `team_players:CSK:2026` | `team_players:RCB:2026` | `played_both:CSK:RCB` | `costliest_player` | [ ] |
-| 15 | 8 Apr | Wed | DC vs GT | `team_players:DC:2026` | `team_players:DC:2008` | `country:Sri Lanka` | `legends:india` | [ ] |
-| 16 | 9 Apr | Thu | KKR vs LSG | `team_players:KKR:2026` | `team_legends:KKR` | `country:West Indies` | `legends:overseas` | [ ] |
-| 17 | 10 Apr | Fri | RR vs RCB | `team_players:RR:2026` | `team_players:RR:2008` | `state:Maharashtra` | `most_ducks` | [ ] |
-| 18 | 11 Apr | Sat | PBKS vs SRH | `team_players:PBKS:2026` | `team_players:PBKS:2008` | `state:Delhi` | `dismissals_by_keeper` | [ ] |
-| 19 | 12 Apr | Sun | LSG vs GT | `team_players:LSG:2026` | `team_all_seasons:LSG` | `state:Karnataka` | `allrounders` | [ ] |
+| 4 | 28 Mar | Sat | RCB vs SRH | `team_players:SRH:2026` | `team_all_seasons:SRH` | `catches_by_fielder` | `played_both:KKR:MI` | [ ] |
+| 5 | 29 Mar | Sun | MI vs KKR | `team_players:MI:2026` | `team_players:MI:2008` | `most_fifties` | `played_both:CSK:KKR` | [ ] |
+| 6 | 30 Mar | Mon | RR vs CSK | `team_players:RR:2026` | `team_players:RR:2008` | `most_matches` | `played_both:RR:CSK` | [ ] |
+| 7 | 31 Mar | Tue | PBKS vs GT | `team_players:PBKS:2026` | `team_players:PBKS:2008` | `top_run_scorers` | `multi_team:5` | [ ] |
+| 8 | 1 Apr | Wed | LSG vs DC | `team_players:LSG:2026` | `team_all_seasons:LSG` | `top_wicket_takers` | `multi_team:7` | [ ] |
+| 9 | 2 Apr | Thu | KKR vs SRH | `team_players:KKR:2026` | `team_players:KKR:2008` | `highest_batting_avg` | `longest_serving` | [ ] |
+| 10 | 3 Apr | Fri | CSK vs PBKS | `team_players:CSK:2026` | `team_players:CSK:2008` | `catches_by_fielder` | `orange_cap` | [ ] |
+| 11 | 4 Apr | Sat | DC vs MI | `team_players:DC:2026` | `team_players:DC:2008` | `most_fifties` | `purple_cap` | [ ] |
+| 12 | 5 Apr | Sun | SRH vs LSG | `team_players:SRH:2026` | `team_all_seasons:SRH` | `top_run_scorers` | `winning_captain` | [ ] |
+| 13 | 6 Apr | Mon | KKR vs PBKS | `team_players:KKR:2026` | `team_players:KKR:2008` | `top_wicket_takers` | `costliest_player` | [ ] |
+| 14 | 7 Apr | Tue | RR vs MI | `team_players:RR:2026` | `team_players:RR:2008` | `highest_batting_avg` | `player_of_tournament` | [ ] |
+| 15 | 8 Apr | Wed | DC vs GT | `team_players:DC:2026` | `team_players:DC:2008` | `catches_by_fielder` | `ipl_champions` | [ ] |
+| 16 | 9 Apr | Thu | KKR vs LSG | `team_players:KKR:2026` | `team_legends:KKR` | `country:Australia` | `team_owners` | [ ] |
+| 17 | 10 Apr | Fri | RR vs RCB | `team_players:RR:2026` | `team_legends:RR` | `country:South Africa` | `played_both:CSK:MI` | [ ] |
+| 18 | 11 Apr | Sat | PBKS vs SRH | `team_players:PBKS:2026` | `team_players:PBKS:2008` | `country:England` | `played_both:CSK:RCB` | [ ] |
+| 19 | 12 Apr | Sun | LSG vs GT | `team_players:LSG:2026` | `team_all_seasons:LSG` | `country:New Zealand` | `played_both:RCB:MI` | [ ] |
 
 ## Phase 2 — Match Days (13 Apr - 21 May)
 
 | Ed | Date | Day | Match | Yellow | Green | Blue | Purple | Status |
 |---|---|---|---|---|---|---|---|---|
-| 20 | 13 Apr | Mon | RCB vs CSK | `team_players:RCB:2026` | `team_players:RCB:2008` | `state:Tamil Nadu` | `fifers` | [ ] |
-| 21 | 14 Apr | Tue | MI vs RR | `country:Australia` | `country:South Africa` | `country:England` | `country:West Indies` | [ ] |
-| 22 | 15 Apr | Wed | KKR vs DC | `team_players:KKR:2026` | `team_players:KKR:2008` | `state:Uttar Pradesh` | `high_strike_rate` | [ ] |
-| 23 | 16 Apr | Thu | GT vs SRH | `team_players:GT:2026` | `team_all_seasons:GT` | `state:Punjab` | `orange_cap` | [ ] |
-| 24 | 17 Apr | Fri | CSK vs LSG | `team_players:CSK:2026` | `team_players:CSK:2008` | `ranji:Mumbai` | `purple_cap` | [ ] |
-| 25 | 18 Apr | Sat | RCB vs MI | `team_players:RCB:2026` | `team_players:RCB:2008` | `ranji:Delhi` | `winning_captain` | [ ] |
-| 26 | 19 Apr | Sun | PBKS vs KKR | `team_players:PBKS:2026` | `team_players:PBKS:2008` | `ranji:Karnataka` | `costliest_player` | [ ] |
-| 27 | 20 Apr | Mon | RR vs GT | `team_players:RR:2026` | `team_players:RR:2008` | `coaches:2026` | `player_of_tournament` | [ ] |
-| 28 | 21 Apr | Tue | DC vs SRH | `legends:india` | `legends:overseas` | `winning_squad:2008` | `orange_cap` | [ ] |
-| 29 | 22 Apr | Wed | CSK vs RCB | `team_players:CSK:2026` | `team_players:CSK:2008` | `batting_records` | `ipl_champions` | [ ] |
-| 30 | 23 Apr | Thu | MI vs PBKS | `team_players:MI:2026` | `team_players:MI:2008` | `bowling_records` | `team_owners` | [ ] |
-| 31 | 24 Apr | Fri | LSG vs RR | `team_players:LSG:2026` | `team_all_seasons:LSG` | `season_records` | `played_both:CSK:MI` | [ ] |
-| 32 | 25 Apr | Sat | KKR vs GT | `team_players:KKR:2026` | `team_players:KKR:2008` | `fielding_records` | `played_both:CSK:RCB` | [ ] |
-| 33 | 26 Apr | Sun | SRH vs DC | `team_players:SRH:2026` | `team_all_seasons:SRH` | `top_run_scorers` | `played_both:RCB:MI` | [ ] |
-| 34 | 27 Apr | Mon | RCB vs LSG | `team_players:RCB:2026` | `team_players:RCB:2008` | `top_wicket_takers` | `played_both:KKR:MI` | [ ] |
-| 35 | 28 Apr | Tue | CSK vs MI | `state:Maharashtra` | `state:Delhi` | `ranji:Mumbai` | `ranji:Delhi` | [ ] |
-| 36 | 29 Apr | Wed | GT vs PBKS | `team_players:GT:2026` | `team_all_seasons:GT` | `highest_batting_avg` | `played_both:CSK:KKR` | [ ] |
-| 37 | 30 Apr | Thu | RR vs KKR | `team_players:RR:2026` | `team_players:RR:2008` | `catches_by_fielder` | `played_both:RR:CSK` | [ ] |
-| 38 | 1 May | Fri | DC vs RCB | `team_players:DC:2026` | `team_players:DC:2008` | `most_fifties` | `multi_team:5` | [ ] |
-| 39 | 2 May | Sat | MI vs SRH | `team_players:MI:2026` | `team_players:MI:2008` | `most_matches` | `multi_team:7` | [ ] |
-| 40 | 3 May | Sun | LSG vs CSK | `team_players:LSG:2026` | `team_all_seasons:LSG` | `top_run_scorers` | `longest_serving` | [ ] |
-| 41 | 4 May | Mon | PBKS vs RR | `team_players:PBKS:2026` | `team_players:PBKS:2008` | `top_wicket_takers` | `legends:india` | [ ] |
-| 42 | 5 May | Tue | GT vs KKR | `top_run_scorers` | `top_wicket_takers` | `highest_batting_avg` | `most_ducks` | [ ] |
-| 43 | 6 May | Wed | SRH vs RCB | `team_players:SRH:2026` | `team_all_seasons:SRH` | `catches_by_fielder` | `legends:overseas` | [ ] |
-| 44 | 7 May | Thu | DC vs LSG | `team_players:DC:2026` | `team_players:DC:2008` | `most_fifties` | `orange_cap` | [ ] |
-| 45 | 8 May | Fri | MI vs CSK | `team_players:MI:2026` | `team_players:MI:2008` | `country:Australia` | `purple_cap` | [ ] |
-| 46 | 9 May | Sat | RR vs SRH | `team_players:RR:2026` | `team_players:RR:2008` | `country:South Africa` | `winning_captain` | [ ] |
-| 47 | 10 May | Sun | KKR vs PBKS | `team_players:KKR:2026` | `team_players:KKR:2008` | `country:England` | `costliest_player` | [ ] |
-| 48 | 11 May | Mon | GT vs RCB | `team_players:GT:2026` | `team_all_seasons:GT` | `country:New Zealand` | `player_of_tournament` | [ ] |
-| 49 | 12 May | Tue | DC vs CSK | `team_all_seasons:GT` | `team_all_seasons:LSG` | `multi_team:5` | `longest_serving` | [ ] |
-| 50 | 13 May | Wed | MI vs GT | `team_players:MI:2026` | `team_players:MI:2008` | `country:Sri Lanka` | `ipl_champions` | [ ] |
-| 51 | 14 May | Thu | LSG vs KKR | `team_players:KKR:2026` | `team_players:KKR:2008` | `country:West Indies` | `team_owners` | [ ] |
-| 52 | 15 May | Fri | SRH vs PBKS | `team_players:SRH:2026` | `team_all_seasons:SRH` | `state:Maharashtra` | `played_both:CSK:MI` | [ ] |
-| 53 | 16 May | Sat | RCB vs RR | `team_players:RCB:2026` | `team_players:RCB:2008` | `state:Delhi` | `played_both:CSK:RCB` | [ ] |
-| 54 | 17 May | Sun | CSK vs DC | `team_players:CSK:2026` | `team_players:CSK:2008` | `state:Karnataka` | `played_both:RCB:MI` | [ ] |
-| 55 | 18 May | Mon | KKR vs MI | `team_players:KKR:2026` | `team_players:KKR:2008` | `state:Tamil Nadu` | `played_both:KKR:MI` | [ ] |
-| 56 | 19 May | Tue | GT vs LSG | `batting_records` | `bowling_records` | `season_records` | `fielding_records` | [ ] |
-| 57 | 20 May | Wed | PBKS vs RR | `team_players:PBKS:2026` | `team_players:PBKS:2008` | `state:Uttar Pradesh` | `played_both:CSK:KKR` | [ ] |
-| 58 | 21 May | Thu | SRH vs DC | `team_players:SRH:2026` | `team_all_seasons:SRH` | `state:Punjab` | `played_both:RR:CSK` | [ ] |
+| 20 | 13 Apr | Mon | RCB vs CSK | `team_players:RCB:2026` | `team_players:RCB:2008` | `country:Sri Lanka` | `played_both:KKR:MI` | [ ] |
+| 21 | 14 Apr | Tue | MI vs RR | `team_players:MI:2026` | `team_players:MI:2008` | `country:West Indies` | `played_both:CSK:KKR` | [ ] |
+| 22 | 15 Apr | Wed | KKR vs DC | `team_players:KKR:2026` | `team_players:KKR:2008` | `state:Maharashtra` | `played_both:RR:CSK` | [ ] |
+| 23 | 16 Apr | Thu | GT vs SRH | `team_players:GT:2026` | `team_all_seasons:GT` | `state:Delhi` | `multi_team:5` | [ ] |
+| 24 | 17 Apr | Fri | CSK vs LSG | `team_players:CSK:2026` | `team_players:CSK:2008` | `state:Karnataka` | `multi_team:7` | [ ] |
+| 25 | 18 Apr | Sat | RCB vs MI | `team_players:RCB:2026` | `team_players:RCB:2008` | `state:Tamil Nadu` | `longest_serving` | [ ] |
+| 26 | 19 Apr | Sun | PBKS vs KKR | `team_players:PBKS:2026` | `team_players:PBKS:2008` | `state:Uttar Pradesh` | `most_ducks` | [ ] |
+| 27 | 20 Apr | Mon | RR vs GT | `team_players:RR:2026` | `team_players:RR:2008` | `state:Punjab` | `dismissals_by_keeper` | [ ] |
+| 28 | 21 Apr | Tue | DC vs SRH | `team_players:DC:2026` | `team_players:DC:2008` | `ranji:Mumbai` | `allrounders` | [ ] |
+| 29 | 22 Apr | Wed | CSK vs RCB | `team_players:CSK:2026` | `team_players:CSK:2008` | `ranji:Delhi` | `fifers` | [ ] |
+| 30 | 23 Apr | Thu | MI vs PBKS | `team_players:MI:2026` | `team_players:MI:2008` | `ranji:Karnataka` | `high_strike_rate` | [ ] |
+| 31 | 24 Apr | Fri | LSG vs RR | `team_players:LSG:2026` | `team_all_seasons:LSG` | `coaches:2026` | `orange_cap` | [ ] |
+| 32 | 25 Apr | Sat | KKR vs GT | `team_players:KKR:2026` | `team_players:KKR:2008` | `batting_records` | `purple_cap` | [ ] |
+| 33 | 26 Apr | Sun | SRH vs DC | `team_players:SRH:2026` | `team_all_seasons:SRH` | `bowling_records` | `winning_captain` | [ ] |
+| 34 | 27 Apr | Mon | RCB vs LSG | `team_players:RCB:2026` | `team_players:RCB:2008` | `season_records` | `costliest_player` | [ ] |
+| 35 | 28 Apr | Tue | CSK vs MI | `team_players:CSK:2026` | `team_all_seasons:CSK` | `fielding_records` | `player_of_tournament` | [ ] |
+| 36 | 29 Apr | Wed | GT vs PBKS | `team_players:GT:2026` | `team_all_seasons:GT` | `top_run_scorers` | `ipl_champions` | [ ] |
+| 37 | 30 Apr | Thu | RR vs KKR | `team_players:RR:2026` | `team_players:RR:2008` | `top_wicket_takers` | `team_owners` | [ ] |
+| 38 | 1 May | Fri | DC vs RCB | `team_players:DC:2026` | `team_players:DC:2008` | `highest_batting_avg` | `played_both:CSK:MI` | [ ] |
+| 39 | 2 May | Sat | MI vs SRH | `team_players:MI:2026` | `team_players:MI:2008` | `catches_by_fielder` | `played_both:CSK:RCB` | [ ] |
+| 40 | 3 May | Sun | LSG vs CSK | `team_players:LSG:2026` | `team_all_seasons:LSG` | `most_fifties` | `played_both:RCB:MI` | [ ] |
+| 41 | 4 May | Mon | PBKS vs RR | `team_players:PBKS:2026` | `team_players:PBKS:2008` | `most_matches` | `played_both:KKR:MI` | [ ] |
+| 42 | 5 May | Tue | GT vs KKR | `team_players:GT:2026` | `team_all_seasons:GT` | `top_run_scorers` | `played_both:CSK:KKR` | [ ] |
+| 43 | 6 May | Wed | SRH vs RCB | `team_players:SRH:2026` | `team_all_seasons:SRH` | `top_wicket_takers` | `played_both:RR:CSK` | [ ] |
+| 44 | 7 May | Thu | DC vs LSG | `team_all_seasons:DC` | `team_legends:DC` | `country:Australia` | `multi_team:5` | [ ] |
+| 45 | 8 May | Fri | MI vs CSK | `team_all_seasons:MI` | `team_legends:MI` | `country:South Africa` | `multi_team:7` | [ ] |
+| 46 | 9 May | Sat | RR vs SRH | `team_all_seasons:RR` | `team_legends:RR` | `country:England` | `longest_serving` | [ ] |
+| 47 | 10 May | Sun | KKR vs PBKS | `team_all_seasons:KKR` | `team_players:KKR:2008` | `country:New Zealand` | `most_ducks` | [ ] |
+| 48 | 11 May | Mon | GT vs RCB | `team_players:GT:2026` | `team_all_seasons:GT` | `country:Sri Lanka` | `dismissals_by_keeper` | [ ] |
+| 49 | 12 May | Tue | DC vs CSK | `team_all_seasons:DC` | `team_legends:DC` | `country:West Indies` | `orange_cap` | [ ] |
+| 50 | 13 May | Wed | MI vs GT | `team_all_seasons:MI` | `team_legends:MI` | `state:Maharashtra` | `purple_cap` | [ ] |
+| 51 | 14 May | Thu | LSG vs KKR | `team_all_seasons:LSG` | `team_legends:LSG` | `state:Delhi` | `winning_captain` | [ ] |
+| 52 | 15 May | Fri | SRH vs PBKS | `team_players:SRH:2026` | `team_all_seasons:SRH` | `state:Karnataka` | `costliest_player` | [ ] |
+| 53 | 16 May | Sat | RCB vs RR | `team_players:RCB:2026` | `team_players:RCB:2008` | `state:Tamil Nadu` | `player_of_tournament` | [ ] |
+| 54 | 17 May | Sun | CSK vs DC | `team_players:CSK:2026` | `team_all_seasons:CSK` | `state:Uttar Pradesh` | `ipl_champions` | [ ] |
+| 55 | 18 May | Mon | KKR vs MI | `team_all_seasons:KKR` | `team_legends:KKR` | `state:Punjab` | `team_owners` | [ ] |
+| 56 | 19 May | Tue | GT vs LSG | `team_players:GT:2026` | `team_all_seasons:GT` | `ranji:Mumbai` | `played_both:CSK:MI` | [ ] |
+| 57 | 20 May | Wed | PBKS vs RR | `team_all_seasons:PBKS` | `team_players:PBKS:2008` | `ranji:Delhi` | `played_both:CSK:RCB` | [ ] |
+| 58 | 21 May | Thu | SRH vs DC | `team_all_seasons:SRH` | `team_legends:SRH` | `ranji:Karnataka` | `played_both:RCB:MI` | [ ] |
 
 ## Playoffs (22-31 May)
 
 | Ed | Date | Day | Match | Yellow | Green | Blue | Purple | Status |
 |---|---|---|---|---|---|---|---|---|
-| 59 | 22 May | Fri | — | `team_players:KKR:2026` | `team_players:KKR:2008` | `ranji:Mumbai` | `multi_team:5` | [ ] |
-| 60 | 23 May | Sat | — | `team_players:MI:2026` | `team_players:MI:2008` | `ranji:Delhi` | `multi_team:7` | [ ] |
-| 61 | 24 May | Sun | — | `team_players:RCB:2026` | `team_players:RCB:2008` | `ranji:Karnataka` | `longest_serving` | [ ] |
-| 62 | 26 May | Tue | — | `team_players:CSK:2026` | `team_players:CSK:2008` | `coaches:2026` | `legends:india` | [ ] |
-| 63 | 28 May | Thu | — | `team_players:PBKS:2026` | `team_players:PBKS:2008` | `batting_records` | `legends:overseas` | [ ] |
-| 64 | 30 May | Sat | — | `team_players:RR:2026` | `team_players:RR:2008` | `bowling_records` | `orange_cap` | [ ] |
-| 65 | 31 May | Sun | — | `team_players:GT:2026` | `team_all_seasons:GT` | `season_records` | `purple_cap` | [ ] |
+| 59 | 22 May | Fri | — | `ipl_champions` | `legends:india` | `coaches:2026` | `most_ducks` | [ ] |
+| 60 | 23 May | Sat | — | `orange_cap` | `legends:overseas` | `batting_records` | `team_owners` | [ ] |
+| 61 | 24 May | Sun | — | `top_run_scorers` | `winning_squad:2008` | `country:Australia` | `played_both:CSK:MI` | [ ] |
+| 62 | 26 May | Tue | — | `batting_records` | `purple_cap` | `country:South Africa` | `played_both:CSK:RCB` | [ ] |
+| 63 | 28 May | Thu | — | `ipl_champions` | `coaches:2026` | `country:England` | `played_both:RCB:MI` | [ ] |
+| 64 | 30 May | Sat | — | `orange_cap` | `country:New Zealand` | `bowling_records` | `played_both:KKR:MI` | [ ] |
+| 65 | 31 May | Sun | — | `legends:india` | `country:Sri Lanka` | `season_records` | `winning_captain` | [ ] |
 
 ---
 
 ## Pool Usage Summary
 
-| Spec | Uses |
-|------|------|
-| `team_players:KKR:2026` | 9 |
-| `team_players:KKR:2008` | 8 |
-| `team_players:RCB:2026` | 7 |
-| `team_players:MI:2026` | 7 |
-| `team_players:CSK:2026` | 7 |
-| `team_players:RCB:2008` | 6 |
-| `team_players:MI:2008` | 6 |
-| `team_players:RR:2026` | 6 |
-| `team_players:RR:2008` | 6 |
-| `orange_cap` | 5 |
-| `legends:india` | 5 |
-| `legends:overseas` | 5 |
-| `team_all_seasons:LSG` | 5 |
-| `team_players:SRH:2026` | 5 |
-| `team_all_seasons:SRH` | 5 |
-| `team_players:PBKS:2026` | 5 |
-| `team_players:PBKS:2008` | 5 |
-| `team_all_seasons:GT` | 5 |
-| `purple_cap` | 4 |
-| `winning_captain` | 4 |
-| `costliest_player` | 4 |
-| `top_run_scorers` | 4 |
-| `played_both:CSK:MI` | 4 |
-| `top_wicket_takers` | 4 |
-| `played_both:CSK:RCB` | 4 |
-| `team_players:LSG:2026` | 4 |
-| `team_players:DC:2026` | 4 |
-| `team_players:DC:2008` | 4 |
-| `multi_team:5` | 4 |
-| `longest_serving` | 4 |
-| `team_players:GT:2026` | 4 |
-| `team_players:CSK:2008` | 4 |
-| `ipl_champions` | 3 |
-| `player_of_tournament` | 3 |
-| `coaches:2026` | 3 |
-| `team_owners` | 3 |
-| `highest_batting_avg` | 3 |
-| `played_both:RCB:MI` | 3 |
-| `catches_by_fielder` | 3 |
-| `played_both:KKR:MI` | 3 |
-| `most_fifties` | 3 |
-| `played_both:CSK:KKR` | 3 |
-| `country:Australia` | 3 |
-| `played_both:RR:CSK` | 3 |
-| `country:South Africa` | 3 |
-| `country:England` | 3 |
-| `multi_team:7` | 3 |
-| `country:West Indies` | 3 |
-| `state:Maharashtra` | 3 |
-| `state:Delhi` | 3 |
-| `ranji:Mumbai` | 3 |
-| `ranji:Delhi` | 3 |
-| `batting_records` | 3 |
-| `bowling_records` | 3 |
-| `season_records` | 3 |
-| `winning_squad:2008` | 2 |
-| `country:New Zealand` | 2 |
-| `country:Sri Lanka` | 2 |
-| `most_ducks` | 2 |
-| `state:Karnataka` | 2 |
-| `state:Tamil Nadu` | 2 |
-| `state:Uttar Pradesh` | 2 |
-| `state:Punjab` | 2 |
-| `ranji:Karnataka` | 2 |
-| `fielding_records` | 2 |
-| `coaches:2025` | 1 |
-| `team_legends:CSK` | 1 |
-| `team_legends:KKR` | 1 |
-| `dismissals_by_keeper` | 1 |
-| `allrounders` | 1 |
-| `fifers` | 1 |
-| `high_strike_rate` | 1 |
-| `most_matches` | 1 |
+| Spec | Uses | Cap | Remaining |
+|------|------|-----|-----------|
+| `top_run_scorers` | 6 | ∞ | ∞ |
+| `team_players:CSK:2026` | 6 | 6 | 0 |
+| `team_all_seasons:SRH` | 6 | 32 | 26 |
+| `team_players:MI:2026` | 5 | 5 | 0 |
+| `team_players:MI:2008` | 5 | 5 | 0 |
+| `played_both:CSK:MI` | 5 | ∞ | ∞ |
+| `top_wicket_takers` | 5 | ∞ | ∞ |
+| `played_both:CSK:RCB` | 5 | ∞ | ∞ |
+| `team_players:RCB:2026` | 5 | 5 | 0 |
+| `team_players:RCB:2008` | 5 | 5 | 0 |
+| `played_both:RCB:MI` | 5 | ∞ | ∞ |
+| `team_players:SRH:2026` | 5 | 5 | 0 |
+| `team_players:RR:2026` | 5 | 5 | 0 |
+| `team_players:PBKS:2008` | 5 | 5 | 0 |
+| `team_all_seasons:LSG` | 5 | 15 | 10 |
+| `team_players:KKR:2026` | 5 | 5 | 0 |
+| `team_players:KKR:2008` | 5 | 5 | 0 |
+| `orange_cap` | 5 | ∞ | ∞ |
+| `ipl_champions` | 5 | ∞ | ∞ |
+| `team_players:GT:2026` | 5 | 5 | 0 |
+| `team_all_seasons:GT` | 5 | 14 | 9 |
+| `team_players:CSK:2008` | 4 | 4 | 0 |
+| `highest_batting_avg` | 4 | ∞ | ∞ |
+| `catches_by_fielder` | 4 | ∞ | ∞ |
+| `played_both:KKR:MI` | 4 | ∞ | ∞ |
+| `team_players:RR:2008` | 4 | 4 | 0 |
+| `team_players:PBKS:2026` | 4 | 4 | 0 |
+| `team_players:LSG:2026` | 4 | 4 | 0 |
+| `team_players:DC:2026` | 4 | 4 | 0 |
+| `team_players:DC:2008` | 4 | 4 | 0 |
+| `purple_cap` | 4 | ∞ | ∞ |
+| `winning_captain` | 4 | ∞ | ∞ |
+| `team_owners` | 4 | ∞ | ∞ |
+| `most_fifties` | 3 | ∞ | ∞ |
+| `played_both:CSK:KKR` | 3 | ∞ | ∞ |
+| `played_both:RR:CSK` | 3 | ∞ | ∞ |
+| `multi_team:5` | 3 | ∞ | ∞ |
+| `multi_team:7` | 3 | ∞ | ∞ |
+| `longest_serving` | 3 | ∞ | ∞ |
+| `costliest_player` | 3 | ∞ | ∞ |
+| `player_of_tournament` | 3 | ∞ | ∞ |
+| `country:Australia` | 3 | ∞ | ∞ |
+| `country:South Africa` | 3 | ∞ | ∞ |
+| `country:England` | 3 | ∞ | ∞ |
+| `country:New Zealand` | 3 | ∞ | ∞ |
+| `country:Sri Lanka` | 3 | ∞ | ∞ |
+| `most_ducks` | 3 | ∞ | ∞ |
+| `coaches:2026` | 3 | ∞ | ∞ |
+| `batting_records` | 3 | ∞ | ∞ |
+| `most_matches` | 2 | ∞ | ∞ |
+| `team_legends:KKR` | 2 | 5 | 3 |
+| `team_legends:RR` | 2 | 3 | 1 |
+| `country:West Indies` | 2 | ∞ | ∞ |
+| `state:Maharashtra` | 2 | ∞ | ∞ |
+| `state:Delhi` | 2 | ∞ | ∞ |
+| `state:Karnataka` | 2 | ∞ | ∞ |
+| `state:Tamil Nadu` | 2 | ∞ | ∞ |
+| `state:Uttar Pradesh` | 2 | ∞ | ∞ |
+| `state:Punjab` | 2 | ∞ | ∞ |
+| `dismissals_by_keeper` | 2 | ∞ | ∞ |
+| `ranji:Mumbai` | 2 | ∞ | ∞ |
+| `ranji:Delhi` | 2 | ∞ | ∞ |
+| `ranji:Karnataka` | 2 | ∞ | ∞ |
+| `bowling_records` | 2 | ∞ | ∞ |
+| `season_records` | 2 | ∞ | ∞ |
+| `team_all_seasons:CSK` | 2 | 34 | 32 |
+| `team_all_seasons:DC` | 2 | 46 | 44 |
+| `team_legends:DC` | 2 | 6 | 4 |
+| `team_all_seasons:MI` | 2 | 45 | 43 |
+| `team_legends:MI` | 2 | 5 | 3 |
+| `team_all_seasons:KKR` | 2 | 42 | 40 |
+| `legends:india` | 2 | ∞ | ∞ |
+| `allrounders` | 1 | ∞ | ∞ |
+| `fifers` | 1 | ∞ | ∞ |
+| `high_strike_rate` | 1 | ∞ | ∞ |
+| `fielding_records` | 1 | ∞ | ∞ |
+| `team_all_seasons:RR` | 1 | 46 | 45 |
+| `team_legends:LSG` | 1 | 1 | 0 |
+| `team_all_seasons:PBKS` | 1 | 45 | 44 |
+| `team_legends:SRH` | 1 | 3 | 2 |
+| `legends:overseas` | 1 | ∞ | ∞ |
+| `winning_squad:2008` | 1 | ∞ | ∞ |

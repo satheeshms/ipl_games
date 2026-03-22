@@ -16,9 +16,10 @@ Usage:
 """
 
 import argparse
+import json
 import random
 from datetime import date, timedelta
-from collections import defaultdict
+from collections import Counter, defaultdict
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
@@ -109,11 +110,6 @@ FIXTURES_2026 = {
     "2026-05-20": ("PBKS","RR"),
     "2026-05-21": ("SRH", "DC"),
 }
-
-# Teams that existed in inaugural 2008 season
-TEAMS_IN_2008 = {"RCB", "CSK", "MI", "KKR", "RR", "PBKS", "DC"}
-# Teams that did NOT exist in 2008 → use team_all_seasons
-TEAMS_NOT_IN_2008 = {"SRH", "GT", "LSG"}
 
 # ---------------------------------------------------------------------------
 # Category groups (for 4-Worlds constraint)
@@ -206,13 +202,70 @@ class CooldownEngine:
 # Category pools per slot
 # ---------------------------------------------------------------------------
 
-# Yellow: 2026 squads — Mega tier (MI/CSK/RCB/KKR) weighted 50%
 MEGA_TEAMS  = ["MI", "CSK", "RCB", "KKR"]
 LARGE_TEAMS = ["RR", "SRH"]
 SMALL_TEAMS = ["DC", "PBKS", "GT", "LSG"]
 ALL_TEAMS   = MEGA_TEAMS + LARGE_TEAMS + SMALL_TEAMS  # 10 teams
 
+# Teams that existed in inaugural 2008 season
+TEAMS_IN_2008     = {"RCB", "CSK", "MI", "KKR", "RR", "PBKS", "DC"}
+TEAMS_NOT_IN_2008 = {"SRH", "GT", "LSG"}
+
+# ---------------------------------------------------------------------------
+# Yellow pool — Easy slot
+#
+# Squad specs are repeated proportionally to fan-base size so the rotation
+# naturally weights Mega teams more heavily.  Caps (computed from squad sizes
+# at runtime) enforce the hard per-spec limit.
+#
+# Non-squad openers (awards, records, legends) appear once or twice so they
+# surface naturally across the 65-edition run without any hardcoded placement.
+# To add a new spec, just append it here.
+# ---------------------------------------------------------------------------
+YELLOW_POOL: list[str] = (
+    [f"team_players:{t}:2026" for t in MEGA_TEAMS]  * 7 +   # MI/CSK/RCB/KKR × 7
+    [f"team_players:{t}:2026" for t in LARGE_TEAMS] * 5 +   # RR/SRH × 5
+    [f"team_players:{t}:2026" for t in SMALL_TEAMS] * 4 +   # DC/PBKS/GT/LSG × 4
+    # Non-squad variety — once each; update this list freely as data changes
+    ["ipl_champions", "orange_cap", "legends:india",
+     "team_owners",   "top_run_scorers", "batting_records"]
+)
+
+# ---------------------------------------------------------------------------
+# Green pool — Medium slot (standalone / non-team-paired)
+#
+# Used when Yellow is non-squad, or when all same-team Green options are
+# exhausted.  Team-paired options (TEAM:2008, team_all_seasons, team_legends)
+# are tried first in _pick_green before falling back to this pool.
+# To surface a spec earlier, add more copies; to restrict, remove copies.
+# ---------------------------------------------------------------------------
+GREEN_POOL: list[str] = (
+    # Legends & history
+    ["legends:india", "legends:india",
+     "legends:overseas", "legends:overseas",
+     "winning_squad:2008", "winning_squad:2011", "winning_squad:2013",
+     "winning_squad:2016", "winning_squad:2019", "winning_squad:2022",
+     "winning_squad:2024"] +
+    # Awards / management (medium difficulty)
+    ["orange_cap", "purple_cap", "costliest_player", "winning_captain",
+     "player_of_tournament",
+     "coaches:2026", "coaches:2025", "coaches:2024", "coaches:2023",
+     "coaches:2022", "coaches:2021", "coaches:2020", "coaches:2019"] +
+    # Geographic
+    ["country:Australia", "country:South Africa", "country:England",
+     "country:New Zealand", "country:Sri Lanka", "country:West Indies",
+     "state:Maharashtra", "state:Delhi", "state:Karnataka",
+     "state:Tamil Nadu", "state:Uttar Pradesh", "state:Punjab",
+     "ranji:Mumbai", "ranji:Delhi", "ranji:Karnataka"] +
+    # Historical squad fallbacks (when team-pairing unavailable)
+    [f"team_players:{t}:2008" for t in sorted(TEAMS_IN_2008)] +
+    [f"team_all_seasons:{t}" for t in ALL_TEAMS] +
+    [f"team_legends:{t}"     for t in ALL_TEAMS]
+)
+
+# ---------------------------------------------------------------------------
 # Blue pool: stats + geographic + management — complexity 3
+# ---------------------------------------------------------------------------
 BLUE_POOL = [
     # Stats
     "top_run_scorers", "top_wicket_takers", "highest_batting_avg",
@@ -243,7 +296,6 @@ PURPLE_POOL = [
     "played_both:CSK:MI", "played_both:CSK:RCB", "played_both:RCB:MI",
     "played_both:KKR:MI", "played_both:CSK:KKR", "played_both:RR:CSK",
     "multi_team:5", "multi_team:7", "longest_serving",
-    "legends:india", "legends:overseas",
     # Niche stats
     "most_ducks", "most_ducks", "most_ducks",
     "dismissals_by_keeper", "dismissals_by_keeper",
@@ -260,63 +312,91 @@ PURPLE_POOL = [
     "winning_squad:2024",
 ]
 
-# Green: alternate between 2008 squad (for teams in 2008), team_all_seasons,
-# team_legends, winning_squad, legends  — see logic in build_schedule()
-
-# ---------------------------------------------------------------------------
-# Signature puzzles — fixed (Y, G, B, P)
-# Index = edition number - 1 (0-based)
-# ---------------------------------------------------------------------------
-
-SIGNATURE = {
-    # Ed 7 — CSK vs MI: El Clasico
-    6:  ("team_players:CSK:2026", "team_players:MI:2026",
-         "played_both:CSK:MI",    "winning_captain"),
-
-    # Ed 14 — Dhoni vs Kohli: The Fanbases
-    13: ("team_players:CSK:2026", "team_players:RCB:2026",
-         "played_both:CSK:RCB",   "costliest_player"),
-
-    # Ed 21 — Foreign Invasion
-    20: ("country:Australia", "country:South Africa",
-         "country:England",   "country:West Indies"),
-
-    # Ed 28 — Golden Era (2008-2013)
-    27: ("legends:india",       "legends:overseas",
-         "winning_squad:2008",  "orange_cap"),
-
-    # Ed 35 — Geography Quiz
-    34: ("state:Maharashtra",  "state:Delhi",
-         "ranji:Mumbai",       "ranji:Delhi"),
-
-    # Ed 42 — Numbers Game
-    41: ("top_run_scorers",    "top_wicket_takers",
-         "highest_batting_avg","most_ducks"),
-
-    # Ed 49 — Underdogs & Nomads
-    48: ("team_all_seasons:GT", "team_all_seasons:LSG",
-         "multi_team:5",        "longest_serving"),
-
-    # Ed 56 — Record Breakers
-    55: ("batting_records",    "bowling_records",
-         "season_records",     "fielding_records"),
-
-    # Playoffs Ed 61-65 — left with team placeholders; fill when teams known
-}
-
-# ---------------------------------------------------------------------------
-# Pre-IPL fixed overrides (editions 1-3)
-# ---------------------------------------------------------------------------
-
-PRE_IPL_FIXED = {
-    0: ("ipl_champions",       "orange_cap",           "purple_cap",     "player_of_tournament"),
-    1: ("coaches:2026",        "coaches:2025",         "team_owners",    "winning_captain"),
-    2: ("legends:india",       "legends:overseas",     "winning_squad:2008", "costliest_player"),
-}
-
 # ---------------------------------------------------------------------------
 # Main scheduler
 # ---------------------------------------------------------------------------
+
+def spec_prefix(spec: str) -> str:
+    """Return the type prefix of a spec, e.g. 'country' for 'country:Australia'."""
+    return spec.split(":")[0]
+
+
+# Reverse mapping: short code → full team name (mirrors category_generators._TEAM_CODES)
+_TEAM_FULL_NAMES: dict[str, str] = {
+    "CSK":  "Chennai Super Kings",
+    "MI":   "Mumbai Indians",
+    "RCB":  "Royal Challengers Bengaluru",
+    "KKR":  "Kolkata Knight Riders",
+    "DC":   "Delhi Capitals",
+    "SRH":  "Sunrisers Hyderabad",
+    "RR":   "Rajasthan Royals",
+    "LSG":  "Lucknow Super Giants",
+    "GT":   "Gujarat Titans",
+    "PBKS": "Punjab Kings",
+}
+_FULL_NAME_TO_CODE: dict[str, str] = {v: k for k, v in _TEAM_FULL_NAMES.items()}
+
+
+def compute_pool_caps(data_file: Path | None = None) -> dict[str, int]:
+    """
+    Compute max uses per spec from ipl_data.json pool sizes.
+
+    For a pool of N distinct items, cap = max(1, N // 4) so schedule_runner
+    never exhausts the pool.  Returns {} gracefully if data unavailable.
+
+    Covers:
+      team_players:TEAM:SEASON  — squad size for that season
+      team_all_seasons:TEAM     — distinct players across all seasons
+      team_legends:TEAM         — players with batting career stats for that team
+    """
+    if data_file is None:
+        default = Path(__file__).parent.parent / "data-pipeline" / "data" / "ipl_data.json"
+        if not default.exists():
+            return {}
+        data_file = default
+
+    try:
+        with open(data_file, encoding="utf-8") as f:
+            ipl_data = json.load(f)
+    except Exception:
+        return {}
+
+    pt = ipl_data.get("player_teams", [])
+    caps: dict[str, int] = {}
+
+    # team_players:TEAM:SEASON — count per (team, season)
+    season_teams: Counter = Counter(
+        (p["team_name"], str(p["season"])) for p in pt
+    )
+    for (team_name, season), count in season_teams.items():
+        code = _FULL_NAME_TO_CODE.get(team_name)
+        if code:
+            caps[f"team_players:{code}:{season}"] = max(1, count // 4)
+
+    # team_all_seasons:TEAM — distinct players ever for each team
+    from collections import defaultdict
+    team_player_set: dict[str, set] = defaultdict(set)
+    for p in pt:
+        team_player_set[p["team_name"]].add(p["player_name"])
+    for team_name, players in team_player_set.items():
+        code = _FULL_NAME_TO_CODE.get(team_name)
+        if code:
+            caps[f"team_all_seasons:{code}"] = max(1, len(players) // 4)
+
+    # team_legends:TEAM — distinct players with batting OR bowling career stats
+    stat_names = (
+        {e["player_name"] for e in ipl_data.get("batting_career_stats", [])} |
+        {e["player_name"] for e in ipl_data.get("bowling_career_stats", [])}
+    )
+    for team_name, players in team_player_set.items():
+        code = _FULL_NAME_TO_CODE.get(team_name)
+        if code:
+            legend_count = len(players & stat_names)
+            if legend_count >= 4:
+                caps[f"team_legends:{code}"] = max(1, legend_count // 4)
+
+    return caps
+
 
 def _team_from_spec(spec: str) -> str | None:
     """Extract team code from a squad spec, or None."""
@@ -327,79 +407,137 @@ def _team_from_spec(spec: str) -> str | None:
     return None
 
 
-def _pick_yellow(day_str: str, cd: CooldownEngine, day_idx: int) -> str:
-    """Pick Yellow category — match-day team if available, else fan-base weighted rotation."""
+def _under_cap(spec: str, spec_use_count: Counter, caps: dict[str, int]) -> bool:
+    """Return True if spec has not yet reached its use cap."""
+    return spec_use_count[spec] < caps.get(spec, 99)
+
+
+def _best_squad_spec(team: str, spec_use_count: Counter,
+                     caps: dict[str, int]) -> str:
+    """Return the best squad spec for a team: 2026 if under cap, else team_all_seasons."""
+    spec_2026 = f"team_players:{team}:2026"
+    if _under_cap(spec_2026, spec_use_count, caps):
+        return spec_2026
+    return f"team_all_seasons:{team}"
+
+
+def _pick_yellow(day_str: str, cd: CooldownEngine, day_idx: int,
+                 spec_use_count: Counter, caps: dict[str, int],
+                 yellow_ptr: list[int]) -> str:
+    """Pick Yellow — fixture-team priority, then YELLOW_POOL rotation.
+
+    On match days the fixture team gets first pick (respecting cooldown).
+    Otherwise falls through to the pool which naturally weights Mega teams
+    more heavily via repetition.  Caps degrade 2026 → team_all_seasons.
+    """
     fixture = FIXTURES_2026.get(day_str)
     if fixture:
-        team1, team2 = fixture
-        if cd.team_available(team1, day_idx):
-            return f"team_players:{team1}:2026"
-        if cd.team_available(team2, day_idx):
-            return f"team_players:{team2}:2026"
+        for team in fixture:
+            if cd.team_available(team, day_idx):
+                spec = _best_squad_spec(team, spec_use_count, caps)
+                if _under_cap(spec, spec_use_count, caps):
+                    return spec
 
-    # Fallback: fan-base weighted rotation
-    # Mega 50%, Large 25%, Small 25%
-    weights = (
-        [(t, 5) for t in MEGA_TEAMS] +
-        [(t, 2) for t in LARGE_TEAMS] +
-        [(t, 2) for t in SMALL_TEAMS]
+    # Pool rotation — respects caps and cooldowns
+    return _pick_from_pool(
+        YELLOW_POOL, cd, day_idx,
+        used_groups=set(), pointer=yellow_ptr,
+        spec_use_count=spec_use_count, caps=caps,
     )
-    pool = [(t, w) for t, w in weights if cd.team_available(t, day_idx)]
-    if not pool:
-        # all on cooldown — pick least-recently-used
-        pool = [(t, w) for t, w in weights]
-
-    teams, wts = zip(*pool)
-    chosen = random.choices(teams, weights=wts, k=1)[0]
-    return f"team_players:{chosen}:2026"
 
 
 def _pick_green(yellow_spec: str, cd: CooldownEngine, day_idx: int,
-                green_depth: dict) -> str:
-    """Pick Green — paired historical/all-time squad, legends, or winning_squad."""
+                used_groups: set[str], used_prefixes: set[str],
+                spec_use_count: Counter, caps: dict[str, int],
+                green_ptr: list[int]) -> str:
+    """Pick Green — same-team historical preference, then GREEN_POOL fallback.
+
+    Priority for squad-based Yellow:
+      1. team_players:TEAM:2008  (if team existed in 2008)
+      2. team_all_seasons:TEAM   (skip if Yellow already claimed it)
+      3. team_legends:TEAM
+
+    Falls back to GREEN_POOL for non-squad Yellow or when all team
+    options are exhausted/on-cooldown.
+    """
     team = _team_from_spec(yellow_spec)
     if team:
+        candidates = []
         if team in TEAMS_IN_2008:
-            spec_2008 = f"team_players:{team}:2008"
-            if cd.available(spec_2008, day_idx):
-                return spec_2008
-        # team_all_seasons
+            candidates.append(f"team_players:{team}:2008")
         spec_all = f"team_all_seasons:{team}"
-        if cd.available(spec_all, day_idx):
-            return spec_all
-        # team_legends as fallback
-        return f"team_legends:{team}"
+        if spec_all != yellow_spec:
+            candidates.append(spec_all)
+        candidates.append(f"team_legends:{team}")
 
-    # Non-squad Yellow (signature day) — use rotating team or legends
-    options = [
-        "legends:india", "legends:overseas",
-        "winning_squad:2011", "winning_squad:2013",
-        "winning_squad:2019", "winning_squad:2022",
-        "team_all_seasons:CSK", "team_all_seasons:MI",
-    ]
-    for opt in options:
-        if cd.available(opt, day_idx):
-            return opt
-    return "team_all_seasons:MI"
+        for spec in candidates:
+            # Team-pairing (Y=2026 squad, G=2008/all-time) intentionally shares
+            # the same group AND same prefix — both constraints are relaxed here.
+            # Only cooldown and cap are enforced.
+            if (cd.available(spec, day_idx)
+                    and _under_cap(spec, spec_use_count, caps)):
+                return spec
+
+    # Fallback: general Green pool
+    return _pick_from_pool(
+        GREEN_POOL, cd, day_idx,
+        used_groups=used_groups, pointer=green_ptr,
+        used_prefixes=used_prefixes,
+        spec_use_count=spec_use_count, caps=caps,
+    )
 
 
 def _pick_from_pool(pool: list[str], cd: CooldownEngine, day_idx: int,
-                    used_groups: set[str], pointer: list[int]) -> str:
-    """Advance through pool finding next available spec that respects cooldown + group constraint."""
+                    used_groups: set[str], pointer: list[int],
+                    used_prefixes: set[str] | None = None,
+                    spec_use_count: Counter | None = None,
+                    caps: dict[str, int] | None = None) -> str:
+    """Advance through pool finding next available spec that respects:
+    - cooldown engine
+    - 4-Worlds group constraint (used_groups)
+    - same-type-prefix constraint (used_prefixes) — prevents e.g. 2× country:* in one puzzle
+    - pool exhaustion cap (spec_use_count vs caps)
+    """
+    if used_prefixes is None:
+        used_prefixes = set()
+    if spec_use_count is None:
+        spec_use_count = Counter()
+    if caps is None:
+        caps = {}
+
+    def _allowed(spec: str, check_group: bool) -> bool:
+        if not cd.available(spec, day_idx):
+            return False
+        if spec_use_count[spec] >= caps.get(spec, 99):
+            return False
+        if spec_prefix(spec) in used_prefixes:
+            return False
+        if check_group and get_group(spec) in used_groups:
+            return False
+        return True
+
     start = pointer[0]
+    # Pass 1: full constraints (group + prefix)
     for offset in range(len(pool)):
         idx = (start + offset) % len(pool)
         spec = pool[idx]
-        grp  = get_group(spec)
-        if cd.available(spec, day_idx) and grp not in used_groups:
+        if _allowed(spec, check_group=True):
             pointer[0] = (idx + 1) % len(pool)
             return spec
 
-    # Relax group constraint — just find next cooldown-available
+    # Pass 2: relax group constraint — keep prefix constraint
     for offset in range(len(pool)):
         idx = (start + offset) % len(pool)
         spec = pool[idx]
-        if cd.available(spec, day_idx):
+        if _allowed(spec, check_group=False):
+            pointer[0] = (idx + 1) % len(pool)
+            return spec
+
+    # Pass 3: relax prefix constraint too — just need cooldown + cap
+    for offset in range(len(pool)):
+        idx = (start + offset) % len(pool)
+        spec = pool[idx]
+        if cd.available(spec, day_idx) and spec_use_count[spec] < caps.get(spec, 99):
             pointer[0] = (idx + 1) % len(pool)
             return spec
 
@@ -409,14 +547,23 @@ def _pick_from_pool(pool: list[str], cd: CooldownEngine, day_idx: int,
     return spec
 
 
-def build_schedule() -> list[tuple]:
+def build_schedule(data_file: Path | None = None) -> tuple[list[tuple], dict]:
     """
-    Returns list of (edition, date, yellow, green, blue, purple) tuples.
+    Returns (schedule, caps) where schedule is a list of
+    (edition, date, yellow, green, blue, purple) tuples.
+
+    All four slots are picked purely from their pools — no per-edition
+    overrides.  To change what appears in the schedule, edit the pool
+    lists (YELLOW_POOL, GREEN_POOL, BLUE_POOL, PURPLE_POOL).
     """
     random.seed(42)  # reproducible output
     cd = CooldownEngine()
-    blue_ptr  = [0]
+    yellow_ptr = [0]
+    green_ptr  = [0]
+    blue_ptr   = [0]
     purple_ptr = [0]
+    spec_use_count: Counter = Counter()
+    caps = compute_pool_caps(data_file)
 
     schedule = []
 
@@ -424,31 +571,41 @@ def build_schedule() -> list[tuple]:
         day_str = d.strftime("%Y-%m-%d")
         edition = i + 1
 
-        # --- Signature puzzle override ---
-        if i in SIGNATURE:
-            y, g, b, p = SIGNATURE[i]
-        elif i in PRE_IPL_FIXED:
-            y, g, b, p = PRE_IPL_FIXED[i]
-        else:
-            # --- Dynamic selection ---
-            y = _pick_yellow(day_str, cd, i)
-            g = _pick_green(y, cd, i, {})
+        y = _pick_yellow(day_str, cd, i, spec_use_count, caps, yellow_ptr)
 
-            used_groups = {get_group(y), get_group(g)}
-            b = _pick_from_pool(BLUE_POOL,   cd, i, used_groups, blue_ptr)
-            used_groups.add(get_group(b))
-            p = _pick_from_pool(PURPLE_POOL, cd, i, used_groups, purple_ptr)
+        used_groups   = {get_group(y)}
+        used_prefixes = {spec_prefix(y)}
 
-        # Record cooldowns for all 4 specs
+        g = _pick_green(y, cd, i, used_groups, used_prefixes,
+                        spec_use_count, caps, green_ptr)
+
+        used_groups.add(get_group(g))
+        used_prefixes.add(spec_prefix(g))
+        # team_legends is a combined run+wicket leaderboard — block stat leaders
+        # in the same puzzle even if the group constraint is later relaxed
+        if g.startswith("team_legends:"):
+            used_prefixes.update({"top_run_scorers", "top_wicket_takers"})
+
+        b = _pick_from_pool(BLUE_POOL, cd, i, used_groups, blue_ptr,
+                            used_prefixes=used_prefixes,
+                            spec_use_count=spec_use_count, caps=caps)
+        used_groups.add(get_group(b))
+        used_prefixes.add(spec_prefix(b))
+
+        p = _pick_from_pool(PURPLE_POOL, cd, i, used_groups, purple_ptr,
+                            used_prefixes=used_prefixes,
+                            spec_use_count=spec_use_count, caps=caps)
+
         for spec in (y, g, b, p):
             cd.record(spec, i)
+            spec_use_count[spec] += 1
             team = _team_from_spec(spec)
             if team:
                 cd.record(f"team_players:{team}:placeholder", i)
 
         schedule.append((edition, d, y, g, b, p))
 
-    return schedule
+    return schedule, caps
 
 
 # ---------------------------------------------------------------------------
@@ -483,7 +640,8 @@ def _match_context(d: date) -> str:
     return "—"
 
 
-def write_schedule(schedule: list[tuple], output_path: Path):
+def write_schedule(schedule: list[tuple], output_path: Path,
+                   caps: dict[str, int] | None = None):
     lines = [
         "# IPL 2026 — Curation Schedule v5",
         "",
@@ -514,18 +672,22 @@ def write_schedule(schedule: list[tuple], output_path: Path):
     lines += ["", "---", ""]
 
     # Pool usage summary
-    from collections import Counter
     usage: Counter = Counter()
     for _, _, y, g, b, p in schedule:
         for spec in (y, g, b, p):
             usage[spec] += 1
 
+    _caps = caps or {}
+
     lines.append("## Pool Usage Summary")
     lines.append("")
-    lines.append("| Spec | Uses |")
-    lines.append("|------|------|")
+    lines.append("| Spec | Uses | Cap | Remaining |")
+    lines.append("|------|------|-----|-----------|")
     for spec, count in sorted(usage.items(), key=lambda x: -x[1]):
-        lines.append(f"| `{spec}` | {count} |")
+        cap = _caps.get(spec)
+        cap_str  = str(cap) if cap is not None else "∞"
+        rem_str  = str(cap - count) if cap is not None else "∞"
+        lines.append(f"| `{spec}` | {count} | {cap_str} | {rem_str} |")
     lines.append("")
 
     text = "\n".join(lines)
@@ -543,16 +705,19 @@ def main():
                         help="Print to stdout instead of writing file")
     parser.add_argument("--output", default="curation_schedule.md",
                         help="Output path (default: ./curation_schedule.md)")
+    parser.add_argument("--data-file", default=None,
+                        help="Path to ipl_data.json for pool-cap computation")
     args = parser.parse_args()
 
-    schedule = build_schedule()
+    data_file = Path(args.data_file) if args.data_file else None
+    schedule, caps = build_schedule(data_file=data_file)
 
     if args.preview:
         for ed, d, y, g, b, p in schedule:
             print(f"Ed {ed:2d}  {d}  Y={y:<35} G={g:<35} B={b:<30} P={p}")
     else:
         output_path = Path(args.output)
-        write_schedule(schedule, output_path)
+        write_schedule(schedule, output_path, caps=caps)
 
 
 if __name__ == "__main__":

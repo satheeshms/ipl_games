@@ -145,36 +145,60 @@ def gen_most_matches(ipl_data: dict, params: list, exclude: set) -> dict:
 
 def gen_team_legends(ipl_data: dict, params: list, exclude: set) -> dict:
     """
-    Pick 4 all-time top run scorers for a specific team.
+    Pick 4 all-time legends for a specific team.
 
     Params: [team_code_or_name]
     Example: team_legends:CSK
 
-    Source: ipl_data['batting_career_stats'] filtered by players in ipl_data['player_teams']
+    Ranks players by a combined legend score:
+      score = runs_percentile + wickets_percentile
+    so elite bowlers (Malinga, Bravo) rank alongside elite batters (Dhoni, Kohli).
+    Players with no batting or bowling record are excluded.
     """
     if len(params) < 1:
         raise ValueError("team_legends requires 1 param: team. Example: team_legends:CSK")
 
     team_name = _resolve_team(ipl_data, params[0])
 
-    # Players who have ever played for this team
     team_player_names = {
         pt["player_name"]
         for pt in ipl_data.get("player_teams", [])
         if pt["team_name"] == team_name
     }
 
-    entries = ipl_data.get("batting_career_stats", [])
-    team_entries = [e for e in entries if e["player_name"] in team_player_names]
+    bat_map = {
+        e["player_name"]: e.get("runs", 0)
+        for e in ipl_data.get("batting_career_stats", [])
+        if e["player_name"] in team_player_names
+    }
+    bowl_map = {
+        e["player_name"]: e.get("wickets", 0)
+        for e in ipl_data.get("bowling_career_stats", [])
+        if e["player_name"] in team_player_names
+    }
 
-    if not team_entries:
+    all_names = team_player_names & (bat_map.keys() | bowl_map.keys())
+    if not all_names:
         raise ValueError(
-            f"team_legends: no batting stats found for players who played for '{team_name}'."
+            f"team_legends: no stats found for players who played for '{team_name}'."
         )
 
-    sorted_entries = sorted(team_entries, key=lambda e: e.get("runs", 0), reverse=True)
-    names = [e["player_name"] for e in sorted_entries]
-    items = _pick(names, exclude, f"team_legends:{team_name}")
+    # Percentile rank within team — avoids runs swamping wickets
+    def _percentile_rank(values: list[float]) -> dict[str, float]:
+        if not values:
+            return {}
+        mn, mx = min(values), max(values)
+        if mx == mn:
+            return {n: 0.5 for n in all_names}
+        return {n: (v - mn) / (mx - mn) for n, v in zip(all_names, values)}
+
+    bat_values  = [bat_map.get(n, 0)  for n in all_names]
+    bowl_values = [bowl_map.get(n, 0) for n in all_names]
+    bat_pct  = {n: (bat_map.get(n, 0)  - min(bat_values))  / (max(bat_values)  - min(bat_values)  or 1) for n in all_names}
+    bowl_pct = {n: (bowl_map.get(n, 0) - min(bowl_values)) / (max(bowl_values) - min(bowl_values) or 1) for n in all_names}
+
+    scored = sorted(all_names, key=lambda n: bat_pct[n] + bowl_pct[n], reverse=True)
+    items = _pick(scored, exclude, f"team_legends:{team_name}")
     return {"title": f"{team_name} Legends", "items": items}
 
 
