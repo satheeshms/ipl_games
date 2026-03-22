@@ -87,6 +87,15 @@ def normalize_teams(conn) -> dict[int, int]:
             "DELETE FROM ipl_wins WHERE team_id = ?", (alias_id,)
         )
 
+        # Re-point team_player_stats
+        conn.execute(
+            "UPDATE OR IGNORE team_player_stats SET team_id = ? WHERE team_id = ?",
+            (canonical_id, alias_id),
+        )
+        conn.execute(
+            "DELETE FROM team_player_stats WHERE team_id = ?", (alias_id,)
+        )
+
         # Delete the alias team row
         conn.execute("DELETE FROM teams WHERE id = ?", (alias_id,))
 
@@ -365,6 +374,48 @@ def load_records(data_dir: Path) -> dict:
     return {k: v for k, v in data.items() if not k.startswith("_")}
 
 
+def _top_n(name_value: dict[str, float], n: int = 12) -> list[str]:
+    """Return top-n names sorted by value descending."""
+    return [k for k, _ in sorted(name_value.items(), key=lambda x: x[1], reverse=True)[:n]]
+
+
+def build_team_legends(conn, top_n: int = 12) -> dict[str, dict[str, list[str]]]:
+    """
+    For each team, return top-N batters (by runs) and top-N bowlers (by wickets)
+    sourced from team_player_stats (loaded from team_*.json files).
+    Teams with fewer than 4 eligible batters OR 4 eligible bowlers are excluded.
+    """
+    from collections import defaultdict
+
+    team_bat: dict[str, dict[str, int]] = defaultdict(dict)
+    team_bowl: dict[str, dict[str, int]] = defaultdict(dict)
+
+    for row in conn.execute("""
+        SELECT t.name, p.name, tps.runs, tps.wickets
+        FROM team_player_stats tps
+        JOIN players p ON p.id = tps.player_id
+        JOIN teams   t ON t.id = tps.team_id
+    """):
+        team_name, player_name, runs, wickets = row
+        if runs and runs > 0:
+            team_bat[team_name][player_name] = runs
+        if wickets and wickets > 0:
+            team_bowl[team_name][player_name] = wickets
+
+    result = {}
+    for team_name in set(team_bat) | set(team_bowl):
+        bat_eligible  = team_bat.get(team_name, {})
+        bowl_eligible = team_bowl.get(team_name, {})
+        if len(bat_eligible) < 4 or len(bowl_eligible) < 4:
+            continue
+        result[team_name] = {
+            "batting": _top_n(bat_eligible, top_n),
+            "bowling": _top_n(bowl_eligible, top_n),
+        }
+
+    return result
+
+
 def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
     """
     Write a flat JSON file the curator CLI can query without SQLite.
@@ -480,6 +531,7 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
     ]
 
     records = load_records(data_dir) if data_dir else {}
+    team_legends = build_team_legends(conn)
 
     enriched = load_player_enriched(data_dir) if data_dir else []
     foreign_players, india_state_wise, ranji_team_wise, allrounders = build_player_geography(enriched)
@@ -748,6 +800,7 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
         "foreign_players": foreign_players,
         "india_state_wise": india_state_wise,
         "ranji_team_wise": ranji_team_wise,
+        "team_legends": team_legends,
     }
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
@@ -770,7 +823,8 @@ def export_json(conn, out_path: Path, data_dir: Path | None = None) -> None:
     print(f"    foreign_players: {len(foreign_players)}, "
           f"india_state_wise groups: {len(india_state_wise)}, "
           f"ranji_team_wise groups: {len(ranji_team_wise)}, "
-          f"allrounders: {len(allrounders)} (1000+ runs AND 50+ wickets)")
+          f"allrounders: {len(allrounders)} (1000+ runs AND 50+ wickets), "
+          f"team_legends: {len(team_legends)} teams")
 
 
 # ---------------------------------------------------------------------------
