@@ -483,7 +483,74 @@ def load_manual_top_bowlers(conn, data_dir: Path, player_id_map: dict, min_wicke
 
 
 # ---------------------------------------------------------------------------
-# Step 11 — Players who played for 5+ teams
+# Step 11 — Team player stats (from team_*.json)
+# ---------------------------------------------------------------------------
+
+def load_team_player_stats(
+    conn, data_dir: Path, player_id_map: dict, team_id_map: dict
+) -> int:
+    """Load all team_*.json files from data_dir into team_player_stats.
+
+    team_id_map: {full_team_name: team_id}  e.g. {"Chennai Super Kings": 1, ...}
+    Returns total rows inserted.
+    """
+    import glob
+    import json
+
+    files = sorted(glob.glob(str(data_dir / "team_*.json")))
+    if not files:
+        print("  [team_player_stats] no team_*.json files found, skipping.")
+        return 0
+
+    total = 0
+    skipped_players: list[str] = []
+    skipped_teams: list[str] = []
+    for path in files:
+        with open(path, encoding="utf-8") as f:
+            doc = json.load(f)
+        full_name = doc.get("fullName", "")
+        tid = team_id_map.get(full_name)
+        if tid is None:
+            skipped_teams.append(f"{doc['team']} ({full_name})")
+            continue
+        rows = []
+        for entry in doc["players"]:
+            pid = player_id_map.get(entry["Player"])
+            if pid is None:
+                skipped_players.append(entry["Player"])
+                continue
+            rows.append((
+                pid, tid,
+                entry.get("Span"),
+                entry.get("Matches", 0),
+                entry.get("Runs", 0),
+                entry.get("HS"),
+                entry.get("100s", 0),
+                entry.get("Wickets", 0),
+                entry.get("BBI"),
+                entry.get("5w", 0),
+                entry.get("Catches", 0),
+                entry.get("Stumpings", 0),
+            ))
+        conn.executemany(
+            """INSERT OR REPLACE INTO team_player_stats
+               (player_id, team_id, span, matches, runs, hs, hundreds,
+                wickets, bbi, five_w, catches, stumpings)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",
+            rows,
+        )
+        conn.commit()
+        total += len(rows)
+
+    if skipped_teams:
+        print(f"  [team_player_stats] {len(skipped_teams)} teams not in DB: {skipped_teams}")
+    if skipped_players:
+        print(f"  [team_player_stats] {len(skipped_players)} players not in DB (skipped)")
+    return total
+
+
+# ---------------------------------------------------------------------------
+# Step 12 — Players who played for 5+ teams
 # ---------------------------------------------------------------------------
 
 def load_manual_multi_team_players(conn, data_dir: Path, player_id_map: dict, min_teams: int = 5) -> int:
@@ -831,6 +898,7 @@ def print_summary(conn) -> None:
     five_wkt_n = count("five_wicket_hauls")
     batting_n = count("batting_career_stats")
     bowling_n = count("bowling_career_stats")
+    team_player_stats_n = count("team_player_stats")
     multi_team_n = count("multi_team_players")
     most_ducks_n = count("most_ducks")
     batting_sr_n = count("batting_strike_rate")
@@ -852,6 +920,14 @@ def print_summary(conn) -> None:
     print(f"  five_wicket_hauls:    {five_wkt_n}  [from manual_5_plus_wickets.json]")
     print(f"  batting_career_stats: {batting_n}  [from manual_top_run_batsmen.json, 3000+ runs]")
     print(f"  bowling_career_stats: {bowling_n}  [from manual_top_bowlers.json, 100+ wickets]")
+    print(f"  team_player_stats:    {team_player_stats_n}  [from team_*.json]")
+    for row in conn.execute("""
+        SELECT t.name, COUNT(*) as n
+        FROM team_player_stats tps
+        JOIN teams t ON t.id = tps.team_id
+        GROUP BY t.name ORDER BY t.name
+    """):
+        print(f"    {row[0]}: {row[1]} players")
     print(f"  multi_team_players:   {multi_team_n}  [from manual_players_multi_team.json, 5+ teams]")
     print(f"  most_ducks:           {most_ducks_n}  [from manual_most_ducks.json, 10+ ducks]")
     print(f"  batting_strike_rate:  {batting_sr_n}  [from manual_batting_strike_rate.json, 150+ SR]")
@@ -997,59 +1073,69 @@ def main() -> None:
 
     # Step 11
     try:
-        print("Step 11: Loading players who played for 5+ teams...")
-        n = load_manual_multi_team_players(conn, data_dir, player_id_map)
-        print(f"  {n} multi_team_players entries loaded")
+        print("Step 11: Loading team player stats from team_*.json...")
+        team_id_map = {r[0]: r[1] for r in conn.execute("SELECT name, id FROM teams")}
+        n = load_team_player_stats(conn, data_dir, player_id_map, team_id_map)
+        print(f"  {n} team_player_stats entries loaded")
     except Exception as exc:
-        print(f"Step 11 (multi_team) FAILED: {exc}")
+        print(f"Step 11 (team_player_stats) FAILED: {exc}")
         sys.exit(1)
 
     # Step 12
     try:
-        print("Step 12: Loading players with 10+ ducks...")
-        n = load_manual_most_ducks(conn, data_dir, player_id_map)
-        print(f"  {n} most_ducks entries loaded")
+        print("Step 12: Loading players who played for 5+ teams...")
+        n = load_manual_multi_team_players(conn, data_dir, player_id_map)
+        print(f"  {n} multi_team_players entries loaded")
     except Exception as exc:
-        print(f"Step 12 (most_ducks) FAILED: {exc}")
+        print(f"Step 12 (multi_team) FAILED: {exc}")
         sys.exit(1)
 
     # Step 13
     try:
-        print("Step 13: Loading players with 150+ batting strike rate...")
-        n = load_manual_batting_strike_rate(conn, data_dir, player_id_map)
-        print(f"  {n} batting_strike_rate entries loaded")
+        print("Step 13: Loading players with 10+ ducks...")
+        n = load_manual_most_ducks(conn, data_dir, player_id_map)
+        print(f"  {n} most_ducks entries loaded")
     except Exception as exc:
-        print(f"Step 13 (batting_sr) FAILED: {exc}")
+        print(f"Step 13 (most_ducks) FAILED: {exc}")
         sys.exit(1)
 
     # Step 14
     try:
-        print("Step 14: Loading highest batting average (30+ avg, 50+ matches, 1000+ runs)...")
-        n = load_manual_highest_batting_avg(conn, data_dir, player_id_map)
-        print(f"  {n} highest_batting_avg entries loaded")
+        print("Step 14: Loading players with 150+ batting strike rate...")
+        n = load_manual_batting_strike_rate(conn, data_dir, player_id_map)
+        print(f"  {n} batting_strike_rate entries loaded")
     except Exception as exc:
-        print(f"Step 14 (batting_avg) FAILED: {exc}")
+        print(f"Step 14 (batting_sr) FAILED: {exc}")
         sys.exit(1)
 
     # Step 15
     try:
-        print("Step 15: Loading catches by fielder (50+ matches, 50+ catches)...")
-        n = load_manual_catches_by_fielder(conn, data_dir, player_id_map)
-        print(f"  {n} catches_by_fielder entries loaded")
+        print("Step 15: Loading highest batting average (30+ avg, 50+ matches, 1000+ runs)...")
+        n = load_manual_highest_batting_avg(conn, data_dir, player_id_map)
+        print(f"  {n} highest_batting_avg entries loaded")
     except Exception as exc:
-        print(f"Step 15 (catches_fielder) FAILED: {exc}")
+        print(f"Step 15 (batting_avg) FAILED: {exc}")
         sys.exit(1)
 
     # Step 16
     try:
-        print("Step 16: Loading dismissals by wicket keeper (50+ matches, 50+ dismissals)...")
-        n = load_manual_dismissals_by_keeper(conn, data_dir, player_id_map)
-        print(f"  {n} dismissals_by_keeper entries loaded")
+        print("Step 16: Loading catches by fielder (50+ matches, 50+ catches)...")
+        n = load_manual_catches_by_fielder(conn, data_dir, player_id_map)
+        print(f"  {n} catches_by_fielder entries loaded")
     except Exception as exc:
-        print(f"Step 16 (dismissals_keeper) FAILED: {exc}")
+        print(f"Step 16 (catches_fielder) FAILED: {exc}")
         sys.exit(1)
 
     # Step 17
+    try:
+        print("Step 17: Loading dismissals by wicket keeper (50+ matches, 50+ dismissals)...")
+        n = load_manual_dismissals_by_keeper(conn, data_dir, player_id_map)
+        print(f"  {n} dismissals_by_keeper entries loaded")
+    except Exception as exc:
+        print(f"Step 17 (dismissals_keeper) FAILED: {exc}")
+        sys.exit(1)
+
+    # Step 18
     print_summary(conn)
 
     conn.close()

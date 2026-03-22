@@ -109,6 +109,22 @@ CREATE TABLE IF NOT EXISTS bowling_career_stats (
     five_w       INTEGER
 );
 
+CREATE TABLE IF NOT EXISTS team_player_stats (
+    player_id   INTEGER REFERENCES players(id),
+    team_id     INTEGER REFERENCES teams(id),
+    span        TEXT,
+    matches     INTEGER,
+    runs        INTEGER,
+    hs          TEXT,
+    hundreds    INTEGER,
+    wickets     INTEGER,
+    bbi         TEXT,
+    five_w      INTEGER,
+    catches     INTEGER,
+    stumpings   INTEGER,
+    PRIMARY KEY (player_id, team_id)
+);
+
 CREATE TABLE IF NOT EXISTS multi_team_players (
     player_id   INTEGER PRIMARY KEY REFERENCES players(id),
     team_count  INTEGER,
@@ -206,6 +222,7 @@ DROP TABLE IF EXISTS highest_batting_avg;
 DROP TABLE IF EXISTS batting_strike_rate;
 DROP TABLE IF EXISTS most_ducks;
 DROP TABLE IF EXISTS multi_team_players;
+DROP TABLE IF EXISTS team_player_stats;
 DROP TABLE IF EXISTS bowling_career_stats;
 DROP TABLE IF EXISTS batting_career_stats;
 DROP TABLE IF EXISTS five_wicket_hauls;
