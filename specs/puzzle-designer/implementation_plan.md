@@ -205,7 +205,7 @@ Players who should appear in Yellow/Green categories (casual fans know them):
 |---------------|-------------|-----------|------------|----------|
 | `coaches:SEASON` | Head coaches of a given season | ~8-10 | 3 | 5-6 (spread across seasons) |
 | `coaches:TEAM:SEASON` | All coaching staff for a team in a season (head, batting, bowling, fielding) | 4/team (36 unique across 10 teams) | 3 | 8+ (rotate teams/seasons) |
-| `team_owners` | Franchise owners | 10 | 2 | 2 |
+| `team_owners` ✅ | Franchise owners | 10 | 2 | 2 — `ipl_data['records']['team_owners']` (from `manual_records.json`) |
 
 ---
 
@@ -294,50 +294,47 @@ This should be a manual review step, not automated.
 
 ## 6. New Category Generators Needed
 
-The following generators need to be implemented in `category_generators.py`:
+The following generators need to be implemented in `category_generators.py`.
+
+### 6.0 Data Architecture
+
+All generators read exclusively from `ipl_data.json` at puzzle-generation time. No database or network access is required. The JSON is produced by `packages/data-pipeline/normalizer.py` and committed to `packages/data-pipeline/data/ipl_data.json`.
 
 ### 6.1 Geographic Generators
 
-```
-country:COUNTRY          — 4 foreign players from given country
-state:STATE              — 4 Indian players from given state
-ranji:TEAM               — 4 players who played Ranji for given team
-```
-
-**Data source:** `ipl_data.json` → `foreign_players` (country), `india_state_wise` (state), `ranji_team_wise` (ranji)
+| Spec | Description | Data source key | Pool |
+|------|-------------|-----------------|------|
+| `country:COUNTRY` | 4 foreign players from given country | `ipl_data['foreign_players'][].country` | 259 total; AU=69, SA=46, SL=31, ENG=30, NZ=29, WI=19 |
+| `state:STATE` | 4 Indian players from given state | `ipl_data['india_state_wise'][STATE]` | Pre-grouped dict, 24 states |
+| `ranji:TEAM` | 4 players who played Ranji for given team | `ipl_data['ranji_team_wise'][TEAM]` | Pre-grouped dict, 39 Ranji teams |
 
 ### 6.2 Cross-Team & Legends Generators
 
-```
-played_both:TEAM1:TEAM2  — 4 players who played for both teams
-multi_team:N+            — 4 players who played for N+ different teams
-longest_serving          — 4 players with most IPL seasons (15+)
-legends:india            — 4 Indian Test legends who played IPL (Tendulkar, Dravid, Ganguly, Laxman, Kumble, Zaheer, Harbhajan, Yuvraj, Sehwag, etc.)
-legends:overseas         — 4 foreign Test legends in IPL (Warne, Gilchrist, Ponting, Kallis, Pietersen, Muralitharan, Pollock, Vettori, Hussey, Symonds, etc.)
-```
-
-**Data source:** `player_teams` (computed at generation time). For `legends`, a curated list of ~12 Indian and ~15 overseas legends is defined as a constant (not auto-derived — these are editorial picks, not statistical).
+| Spec | Description | Data source key | Pool |
+|------|-------------|-----------------|------|
+| `played_both:TEAM1:TEAM2` | 4 players who played for both teams | Computed from `ipl_data['player_teams']` at runtime | Varies: CSK-RCB=23, KKR-MI=26, CSK-MI=17 |
+| `multi_team:N+` | 4 players who played for N+ teams | `ipl_data['multi_team_players'][].team_count` | 37 entries total |
+| `longest_serving` | 4 players with most IPL seasons | Computed from `ipl_data['player_teams']` (distinct seasons per player) | ~15 with 13+ seasons |
+| `legends:india` | 4 Indian Test legends who played IPL | Curated hardcoded list (~12), verified against `ipl_data['player_teams']` | Tendulkar, Dravid, Ganguly, Laxman, Kumble, Zaheer, Harbhajan, Yuvraj, Sehwag… |
+| `legends:overseas` | 4 foreign Test legends in IPL | Curated hardcoded list (~15), verified against `ipl_data['player_teams']` | Warne, Gilchrist, Ponting, Kallis, Pietersen, Muralitharan, Pollock, Vettori, Hussey, Symonds… |
 
 ### 6.3 Team & Management Generators
 
-```
-winning_squad:SEASON     — 4 players from the championship-winning team that season (pool: 15-23/season, 17 seasons)
-coaches:TEAM:SEASON      — 4 coaching staff for a team in a season (head, batting, bowling, fielding coaches)
-```
-
-**Data source:** `ipl_data.json` → `ipl_wins` (winning team + season) cross-referenced with `player_teams` for winning squad. `coaches` data already in ipl_data for coaching staff.
+| Spec | Description | Data source key | Pool |
+|------|-------------|-----------------|------|
+| `winning_squad:SEASON` | 4 from championship-winning squad | `ipl_data['ipl_wins']` (season→team_name) × `ipl_data['player_teams']` | 17 seasons, 15-23 players each |
+| `coaches:TEAM:SEASON` | 4 coaching staff for a team in a season | `ipl_data['coaches']` filtered by `team_name` + `season` + `role` | 4 roles per team (head/batting/bowling/fielding), 36 unique coaches/season |
+| `team_owners` ✅ | 4 IPL franchise owners | `ipl_data['records']['team_owners']` (sourced from `manual_records.json`) | 10 owners — supports 2 uses |
 
 ### 6.4 Enhanced Stat Generators
 
-```
-top_run_scorers          — 4 from all-time top run scorers (pool: 28, filtered to 3000+ runs)
-top_wicket_takers        — 4 from all-time top wicket takers (pool: 29, filtered to 100+ wickets)
-most_fifties             — 4 players with most IPL fifties (pool: 73)
-most_matches             — 4 players with most IPL appearances (pool: 100)
-team_legends:TEAM        — 4 highest run/wicket players for a specific team
-```
-
-**Data source:** `manual_top_run_batsmen.json`, `manual_top_bowlers.json`, `manual_fifties.json`, `manual_most_matches.json`, `team_*.json`
+| Spec | Description | Data source key | Pool |
+|------|-------------|-----------------|------|
+| `top_run_scorers` | 4 all-time highest run scorers (3000+ filter) | `ipl_data['batting_career_stats']` sorted by `runs` | 28 players |
+| `top_wicket_takers` | 4 all-time highest wicket takers (100+ filter) | `ipl_data['bowling_career_stats']` sorted by `wickets` | 29 players |
+| `most_fifties` | 4 players with most IPL fifties | `ipl_data['batting_career_stats']` sorted by `fifties` field | 28 entries (re-sorted) |
+| `most_matches` | 4 players with most IPL appearances | `ipl_data['batting_career_stats']` sorted by `matches` | 28 entries (or `manual_most_matches.json` for wider pool) |
+| `team_legends:TEAM` | 4 highest run scorers for a specific team | `ipl_data['batting_career_stats']` filtered by players in `player_teams` for that team | Varies by team |
 
 ---
 
@@ -369,26 +366,39 @@ The `curation_schedule.md` is the working document that `schedule_runner.py` rea
 ## 8. Implementation Phases
 
 ### Phase 1 — Category Generator Implementation
-**Goal:** Implement all new generators from §6.
+**Goal:** Implement all new generators from §6. All data sourced from `ipl_data.json`.
 
-**Tasks:**
-- [ ] `country:COUNTRY` generator using `foreign_players` data
-- [ ] `state:STATE` generator using `india_state_wise` data
-- [ ] `ranji:TEAM` generator using `ranji_team_wise` data
-- [ ] `played_both:TEAM1:TEAM2` generator using `player_teams` data
-- [ ] `multi_team:N+` generator
-- [ ] `longest_serving` generator
-- [ ] `legends:india` generator (curated list of Indian Test legends in IPL)
-- [ ] `legends:overseas` generator (curated list of foreign Test legends in IPL)
-- [ ] `winning_squad:SEASON` generator using ipl_wins + player_teams data
-- [ ] `coaches:TEAM:SEASON` generator using coaches data (4 roles per team)
-- [ ] `top_run_scorers` generator using manual_top_run_batsmen.json (3000+ runs filter)
-- [ ] `top_wicket_takers` generator using manual_top_bowlers.json (100+ wickets filter)
-- [ ] `most_fifties` generator
-- [ ] `most_matches` generator
-- [ ] `team_legends:TEAM` generator
+**Quick wins — data already in `ipl_data.json`, just need function bodies written:**
+- [x] `high_strike_rate` → `ipl_data['high_strike_rate_batsmen']` (16 entries)
+- [x] `highest_batting_avg` → `ipl_data['highest_batting_avg']` (35 entries)
+- [x] `catches_by_fielder` → `ipl_data['catches_by_fielder']` (24 entries)
+- [x] `dismissals_by_keeper` → `ipl_data['dismissals_by_keeper']` (12 entries)
+- [x] `allrounders` → `ipl_data['allrounders']` (11 entries)
+
+**Geographic generators:**
+- [x] `country:COUNTRY` → `ipl_data['foreign_players'][].country` (259 players)
+- [x] `state:STATE` → `ipl_data['india_state_wise'][STATE]` (pre-grouped dict, 24 states)
+- [x] `ranji:TEAM` → `ipl_data['ranji_team_wise'][TEAM]` (pre-grouped dict, 39 teams)
+
+**Cross-team & legends generators:**
+- [x] `played_both:TEAM1:TEAM2` → computed from `ipl_data['player_teams']` at runtime
+- [x] `multi_team:N+` → `ipl_data['multi_team_players'][].team_count` (37 entries, filter by N)
+- [x] `longest_serving` → computed from `ipl_data['player_teams']` (distinct seasons per player, top 20 pool)
+- [x] `legends:india` → curated hardcoded list ~12, verified against `ipl_data['player_teams']`
+- [x] `legends:overseas` → curated hardcoded list ~15, verified against `ipl_data['player_teams']`
+
+**Team & management generators:**
+- [x] `winning_squad:SEASON` → `ipl_data['ipl_wins']` × `ipl_data['player_teams']` (17 seasons)
+- [x] `coaches:TEAM:SEASON` → `ipl_data['coaches']` filtered by team_name + season + role
+
+**Stat generators:**
+- [x] `top_run_scorers` → `ipl_data['batting_career_stats']` sorted by `runs` (28 players, 3000+ filter)
+- [x] `top_wicket_takers` → `ipl_data['bowling_career_stats']` sorted by `wickets` (29 players, 100+ filter)
+- [x] `most_fifties` → `ipl_data['batting_career_stats']` sorted by `fifties` field
+- [x] `most_matches` → `ipl_data['batting_career_stats']` sorted by `matches`
+- [x] `team_legends:TEAM` → `ipl_data['batting_career_stats']` filtered by `player_teams` for that team
+
 - [ ] Unit tests for all new generators
-- [ ] Audit existing generators (`high_strike_rate`, `highest_batting_avg`, `catches_by_fielder`, `dismissals_by_keeper`, `allrounders`) — referenced but not implemented
 
 ### Phase 2 — Schedule Generation Algorithm
 **Goal:** Build a smarter `gen_schedule_v5.py` that applies all design principles.
