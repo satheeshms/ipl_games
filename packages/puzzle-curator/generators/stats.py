@@ -7,7 +7,7 @@ Covers:
       dismissals_by_keeper, allrounders
   - New stat generators:
       top_run_scorers, top_wicket_takers, most_fifties, most_matches,
-      team_legends
+      team_legends_batting, team_legends_bowling
 """
 
 from category_generators import _pick, _resolve_team
@@ -27,7 +27,7 @@ def gen_high_strike_rate(ipl_data: dict, params: list, exclude: set) -> dict:
         raise ValueError("high_strike_rate: no data in ipl_data['high_strike_rate_batsmen']")
     names = [e["player_name"] for e in entries]
     items = _pick(names, exclude, "high_strike_rate")
-    return {"title": "High Strike Rate Batsmen", "items": items}
+    return {"title": "IPL High Strike Rate Batsmen (150+ SR)", "items": items}
 
 
 def gen_highest_batting_avg(ipl_data: dict, params: list, exclude: set) -> dict:
@@ -40,7 +40,7 @@ def gen_highest_batting_avg(ipl_data: dict, params: list, exclude: set) -> dict:
         raise ValueError("highest_batting_avg: no data in ipl_data['highest_batting_avg']")
     names = [e["player_name"] for e in entries]
     items = _pick(names, exclude, "highest_batting_avg")
-    return {"title": "Highest Batting Average", "items": items}
+    return {"title": "IPL Career Batting Average Leaders (30+ avg)", "items": items}
 
 
 def gen_catches_by_fielder(ipl_data: dict, params: list, exclude: set) -> dict:
@@ -53,7 +53,7 @@ def gen_catches_by_fielder(ipl_data: dict, params: list, exclude: set) -> dict:
         raise ValueError("catches_by_fielder: no data in ipl_data['catches_by_fielder']")
     names = [e["player_name"] for e in entries]
     items = _pick(names, exclude, "catches_by_fielder")
-    return {"title": "Most Catches by a Fielder", "items": items}
+    return {"title": "Most IPL Catches by a Fielder (50+ matches)", "items": items}
 
 
 def gen_dismissals_by_keeper(ipl_data: dict, params: list, exclude: set) -> dict:
@@ -98,7 +98,7 @@ def gen_top_run_scorers(ipl_data: dict, params: list, exclude: set) -> dict:
     sorted_entries = sorted(entries, key=lambda e: e.get("runs", 0), reverse=True)
     names = [e["player_name"] for e in sorted_entries]
     items = _pick(names, exclude, "top_run_scorers")
-    return {"title": "All-Time Top Run Scorers", "items": items}
+    return {"title": "All-Time Top Run Scorers scrored 3000+ runs", "items": items}
 
 
 def gen_top_wicket_takers(ipl_data: dict, params: list, exclude: set) -> dict:
@@ -143,20 +143,15 @@ def gen_most_matches(ipl_data: dict, params: list, exclude: set) -> dict:
     return {"title": "Most IPL Matches", "items": items}
 
 
-def gen_team_legends(ipl_data: dict, params: list, exclude: set) -> dict:
+def gen_team_legends_batting(ipl_data: dict, params: list, exclude: set) -> dict:
     """
-    Pick 4 all-time legends for a specific team.
+    Pick 4 all-time batting legends for a specific team (top 12 by runs).
 
     Params: [team_code_or_name]
-    Example: team_legends:CSK
-
-    Ranks players by a combined legend score:
-      score = runs_percentile + wickets_percentile
-    so elite bowlers (Malinga, Bravo) rank alongside elite batters (Dhoni, Kohli).
-    Players with no batting or bowling record are excluded.
+    Example: team_legends_batting:CSK
     """
     if len(params) < 1:
-        raise ValueError("team_legends requires 1 param: team. Example: team_legends:CSK")
+        raise ValueError("team_legends_batting requires 1 param: team. Example: team_legends_batting:CSK")
 
     team_name = _resolve_team(ipl_data, params[0])
 
@@ -171,35 +166,77 @@ def gen_team_legends(ipl_data: dict, params: list, exclude: set) -> dict:
         for e in ipl_data.get("batting_career_stats", [])
         if e["player_name"] in team_player_names
     }
+
+    if not bat_map:
+        raise ValueError(
+            f"team_legends_batting: no batting stats found for players who played for '{team_name}'."
+        )
+
+    top12 = sorted(bat_map, key=lambda n: bat_map[n], reverse=True)[:12]
+    items = _pick(top12, exclude, f"team_legends_batting:{team_name}")
+    return {"title": f"{team_name} Batting Legends", "items": items}
+
+
+def gen_team_legends_bowling(ipl_data: dict, params: list, exclude: set) -> dict:
+    """
+    Pick 4 all-time bowling legends for a specific team (top 12 by wickets).
+
+    Params: [team_code_or_name]
+    Example: team_legends_bowling:CSK
+    """
+    if len(params) < 1:
+        raise ValueError("team_legends_bowling requires 1 param: team. Example: team_legends_bowling:CSK")
+
+    team_name = _resolve_team(ipl_data, params[0])
+
+    team_player_names = {
+        pt["player_name"]
+        for pt in ipl_data.get("player_teams", [])
+        if pt["team_name"] == team_name
+    }
+
     bowl_map = {
         e["player_name"]: e.get("wickets", 0)
         for e in ipl_data.get("bowling_career_stats", [])
         if e["player_name"] in team_player_names
     }
 
-    all_names = team_player_names & (bat_map.keys() | bowl_map.keys())
-    if not all_names:
+    if not bowl_map:
         raise ValueError(
-            f"team_legends: no stats found for players who played for '{team_name}'."
+            f"team_legends_bowling: no bowling stats found for players who played for '{team_name}'."
         )
 
-    # Percentile rank within team — avoids runs swamping wickets
-    def _percentile_rank(values: list[float]) -> dict[str, float]:
-        if not values:
-            return {}
-        mn, mx = min(values), max(values)
-        if mx == mn:
-            return {n: 0.5 for n in all_names}
-        return {n: (v - mn) / (mx - mn) for n, v in zip(all_names, values)}
+    top12 = sorted(bowl_map, key=lambda n: bowl_map[n], reverse=True)[:12]
+    items = _pick(top12, exclude, f"team_legends_bowling:{team_name}")
+    return {"title": f"{team_name} Bowling Legends", "items": items}
 
-    bat_values  = [bat_map.get(n, 0)  for n in all_names]
-    bowl_values = [bowl_map.get(n, 0) for n in all_names]
-    bat_pct  = {n: (bat_map.get(n, 0)  - min(bat_values))  / (max(bat_values)  - min(bat_values)  or 1) for n in all_names}
-    bowl_pct = {n: (bowl_map.get(n, 0) - min(bowl_values)) / (max(bowl_values) - min(bowl_values) or 1) for n in all_names}
 
-    scored = sorted(all_names, key=lambda n: bat_pct[n] + bowl_pct[n], reverse=True)
-    items = _pick(scored, exclude, f"team_legends:{team_name}")
-    return {"title": f"{team_name} Legends", "items": items}
+def gen_most_ducks(ipl_data: dict, params: list, exclude: set) -> dict:
+    """
+    Pick 4 players with the most IPL ducks (golden ducks / zero scores).
+    Source: ipl_data['most_ducks']  (field: 'player_name')
+    """
+    entries = ipl_data.get("most_ducks", [])
+    if not entries:
+        raise ValueError("most_ducks: no data in ipl_data['most_ducks']")
+    names = [e["player_name"] for e in entries if "player_name" in e]
+    items = _pick(names, exclude, "most_ducks")
+    return {"title": "Most IPL Ducks", "items": items}
+
+
+def gen_fifers(ipl_data: dict, params: list, exclude: set) -> dict:
+    """
+    Pick 4 players who have taken an IPL 5-wicket haul (fifer).
+    Source: ipl_data['five_wicket_hauls']  (field: 'player_name' or 'name')
+    """
+    entries = ipl_data.get("five_wicket_hauls", [])
+    if not entries:
+        raise ValueError("fifers: no data in ipl_data['five_wicket_hauls']")
+    # Support both field name variants
+    names = [e.get("player_name") or e.get("name") for e in entries]
+    names = [n for n in names if n]
+    items = _pick(names, exclude, "fifers")
+    return {"title": "IPL Five-Wicket Hauls", "items": items}
 
 
 # ---------------------------------------------------------------------------
@@ -207,14 +244,17 @@ def gen_team_legends(ipl_data: dict, params: list, exclude: set) -> dict:
 # ---------------------------------------------------------------------------
 
 GENERATORS = {
-    "high_strike_rate":    gen_high_strike_rate,
-    "highest_batting_avg": gen_highest_batting_avg,
-    "catches_by_fielder":  gen_catches_by_fielder,
-    "dismissals_by_keeper": gen_dismissals_by_keeper,
-    "allrounders":         gen_allrounders,
-    "top_run_scorers":     gen_top_run_scorers,
-    "top_wicket_takers":   gen_top_wicket_takers,
-    "most_fifties":        gen_most_fifties,
-    "most_matches":        gen_most_matches,
-    "team_legends":        gen_team_legends,
+    "high_strike_rate":       gen_high_strike_rate,
+    "highest_batting_avg":    gen_highest_batting_avg,
+    "catches_by_fielder":     gen_catches_by_fielder,
+    "dismissals_by_keeper":   gen_dismissals_by_keeper,
+    "allrounders":            gen_allrounders,
+    "top_run_scorers":        gen_top_run_scorers,
+    "top_wicket_takers":      gen_top_wicket_takers,
+    "most_fifties":           gen_most_fifties,
+    "most_matches":           gen_most_matches,
+    "most_ducks":             gen_most_ducks,
+    "fifers":                 gen_fifers,
+    "team_legends_batting":   gen_team_legends_batting,
+    "team_legends_bowling":   gen_team_legends_bowling,
 }

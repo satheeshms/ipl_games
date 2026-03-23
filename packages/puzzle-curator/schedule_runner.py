@@ -32,6 +32,7 @@ import argparse
 import json
 import re
 import sys
+from collections import defaultdict
 from datetime import datetime, date
 from pathlib import Path
 
@@ -172,15 +173,28 @@ def load_ipl_data(data_path: Path) -> dict:
         return json.load(f)
 
 
-def load_used_items(output_dir: Path, skip_date: str | None = None) -> set[str]:
-    """Collect all items from existing puzzle files, optionally skipping one date."""
-    used: set[str] = set()
+def load_used_items(output_dir: Path,
+                    skip_date: str | None = None) -> dict[str, set[str]]:
+    """
+    Collect items from existing puzzle files keyed by spec.
+
+    Returns {spec: {item, ...}} so exclusions are per-spec:
+    a player excluded from 'team_legends_batting:MI' is still available
+    for 'team_players:MI:2026' in a future puzzle.
+
+    Only categories that carry a 'spec' field are indexed.  Legacy puzzle
+    files without 'spec' are silently skipped for exclusion purposes.
+    """
+    used: dict[str, set[str]] = defaultdict(set)
     for f in sorted(output_dir.glob("????-??-??.json")):
         if skip_date and f.stem == skip_date:
             continue
         try:
             puzzle = json.loads(f.read_text(encoding="utf-8"))
-            used.update(puzzle.get("items", []))
+            for cat in puzzle.get("categories", []):
+                spec = cat.get("spec", "")
+                if spec:
+                    used[spec].update(cat.get("items", []))
         except (json.JSONDecodeError, KeyError):
             pass
     return used
@@ -200,10 +214,16 @@ def _shuffle(items: list) -> list:
 
 
 def generate_puzzle(row: dict, ipl_data: dict, output_dir: Path,
-                    used_items: set[str], dry_run: bool, force: bool) -> bool:
+                    used_items: dict[str, set[str]], dry_run: bool, force: bool) -> bool:
     """
     Generate and write a puzzle for one schedule row.
     Returns True on success, False on skip/error.
+
+    Exclusion logic:
+    - picked  : items already chosen in THIS puzzle (global within puzzle)
+                prevents the same player appearing in two slots on the same day
+    - used_items[spec] : items used for this spec in ALL past puzzles
+                prevents the same player repeating in the same category type
     """
     date_str = row["date"]
     out_path = output_dir / f"{date_str}.json"
@@ -216,10 +236,11 @@ def generate_puzzle(row: dict, ipl_data: dict, output_dir: Path,
 
     categories = []
     picked: set[str] = set()
-    exclude = used_items | picked
 
     for color, spec in zip(COLORS, row["specs"]):
         spec = spec.strip()
+        # Exclude: items used previously for THIS spec + items already picked today
+        exclude = used_items.get(spec, set()) | picked
         try:
             result = generate_category(ipl_data, spec, exclude)
         except ValueError as e:
@@ -227,12 +248,12 @@ def generate_puzzle(row: dict, ipl_data: dict, output_dir: Path,
             return False
 
         categories.append({
-            "color":  color,
-            "title":  result["title"],
-            "items":  result["items"],
+            "color": color,
+            "title": result["title"],
+            "items": result["items"],
+            "spec":  spec,
         })
         picked.update(result["items"])
-        exclude = used_items | picked
         print(f"  {color:8s} [{spec}] -> {result['title']}: {result['items']}")
 
     if dry_run:
@@ -251,6 +272,7 @@ def generate_puzzle(row: dict, ipl_data: dict, output_dir: Path,
             {
                 "color": cat["color"],
                 "title": cat["title"],
+                "spec":  cat["spec"],
                 "hash":  hash_items(cat["items"]),
             }
             for cat in categories
@@ -261,8 +283,9 @@ def generate_puzzle(row: dict, ipl_data: dict, output_dir: Path,
     out_path.write_text(json.dumps(puzzle, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  Written -> {out_path}")
 
-    # Add this puzzle's items to used_items for subsequent puzzles in the same run
-    used_items.update(all_items)
+    # Update used_items per-spec for subsequent puzzles in the same run
+    for cat in categories:
+        used_items[cat["spec"]].update(cat["items"])
     return True
 
 
@@ -355,8 +378,9 @@ def main() -> int:
 
     # Load used items from existing puzzles (cumulative collision avoidance)
     used_items = load_used_items(output_dir)
+    total_used = sum(len(v) for v in used_items.values())
     print(f"\nExisting puzzles: {len(list(output_dir.glob('????-??-??.json')))} "
-          f"({len(used_items)} items already used)")
+          f"({total_used} items already used across {len(used_items)} specs)")
 
     # Generate
     success = failed = 0
