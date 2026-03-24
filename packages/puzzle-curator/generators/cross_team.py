@@ -111,7 +111,7 @@ def gen_longest_serving(ipl_data: dict, params: list, exclude: set) -> dict:
 # ---------------------------------------------------------------------------
 
 # Indian Test legends who played IPL (curated, not auto-derived)
-_LEGENDS_INDIA = [
+LEGENDS_INDIA = [
     "SR Tendulkar",   # MI 2008-2013
     "R Dravid",       # RR, RCB 2008-2013
     "SC Ganguly",     # KKR 2008-2012
@@ -127,7 +127,7 @@ _LEGENDS_INDIA = [
 ]
 
 # Foreign Test legends who played IPL (curated, not auto-derived)
-_LEGENDS_OVERSEAS = [
+LEGENDS_OVERSEAS = [
     "SK Warne",       # RR 2008-2011
     "AC Gilchrist",   # DCH 2008-2013
     "RT Ponting",     # KKR, MI 2008-2013
@@ -167,7 +167,7 @@ def gen_legends_india(ipl_data: dict, params: list, exclude: set) -> dict:
     Pick 4 Indian Test legends who played IPL.
     Source: Curated hardcoded list, verified against ipl_data['player_teams'].
     """
-    items = _gen_legends(ipl_data, _LEGENDS_INDIA, "india", exclude)
+    items = _gen_legends(ipl_data, LEGENDS_INDIA, "india", exclude)
     return {"title": "Indian Legends of IPL", "items": items}
 
 
@@ -176,7 +176,7 @@ def gen_legends_overseas(ipl_data: dict, params: list, exclude: set) -> dict:
     Pick 4 foreign Test legends who played IPL.
     Source: Curated hardcoded list, verified against ipl_data['player_teams'].
     """
-    items = _gen_legends(ipl_data, _LEGENDS_OVERSEAS, "overseas", exclude)
+    items = _gen_legends(ipl_data, LEGENDS_OVERSEAS, "overseas", exclude)
     return {"title": "Overseas Legends of IPL", "items": items}
 
 

@@ -329,6 +329,35 @@ PURPLE_POOL = [
 # Main scheduler
 # ---------------------------------------------------------------------------
 
+# ---------------------------------------------------------------------------
+# Semantic overlap map — specs that share underlying player pools.
+# When a spec is picked, all specs in its block set are added to
+# used_prefixes so they cannot appear in the same puzzle.
+# ---------------------------------------------------------------------------
+
+SEMANTIC_BLOCKS: dict[str, set[str]] = {
+    # Batting stat cluster — all draw from the same elite batsmen
+    "top_run_scorers":       {"most_fifties", "most_matches", "highest_batting_avg", "orange_cap"},
+    "most_fifties":          {"top_run_scorers", "most_matches", "highest_batting_avg", "orange_cap"},
+    "most_matches":          {"top_run_scorers", "most_fifties", "highest_batting_avg"},
+    "highest_batting_avg":   {"top_run_scorers", "most_fifties", "most_matches"},
+    "orange_cap":            {"top_run_scorers", "most_fifties"},
+    # Bowling stat cluster — all draw from the same elite bowlers
+    "top_wicket_takers":     {"fifers", "purple_cap"},
+    "fifers":                {"top_wicket_takers", "purple_cap"},
+    "purple_cap":            {"top_wicket_takers", "fifers"},
+    # team_legends overlaps with global stat leaderboards
+    "team_legends_batting":  {"top_run_scorers", "most_fifties", "most_matches"},
+    "team_legends_bowling":  {"top_wicket_takers", "fifers"},
+    # allrounders appear in both batting and bowling leaderboards
+    "allrounders":           {"top_run_scorers", "top_wicket_takers"},
+    # catches_by_fielder overlaps with most_matches (same long-career players)
+    "catches_by_fielder":    {"most_matches"},
+    # dismissals_by_keeper overlaps with orange_cap winners (keeper-batsmen)
+    "dismissals_by_keeper":  {"orange_cap"},
+}
+
+
 def spec_prefix(spec: str) -> str:
     """Return the prefix used for same-type blocking within a puzzle.
 
@@ -751,16 +780,18 @@ def build_schedule(data_file: Path | None = None) -> tuple[list[tuple], dict]:
         used_groups   = {get_group(y)}
         used_prefixes = {spec_prefix(y)}
         used_teams    = _teams_from_spec(y)
+        # Apply semantic blocks for yellow immediately
+        for blocked in SEMANTIC_BLOCKS.get(spec_prefix(y), set()):
+            used_prefixes.add(blocked)
 
         def _apply(spec: str):
             used_groups.add(get_group(spec))
-            used_prefixes.add(spec_prefix(spec))
+            prefix = spec_prefix(spec)
+            used_prefixes.add(prefix)
             used_teams.update(_teams_from_spec(spec))
-            # legends overlap with global leaderboards — block in same puzzle
-            if spec.startswith("team_legends_batting:"):
-                used_prefixes.add("top_run_scorers")
-            if spec.startswith("team_legends_bowling:"):
-                used_prefixes.add("top_wicket_takers")
+            # Block all semantically overlapping spec prefixes
+            for blocked in SEMANTIC_BLOCKS.get(prefix, set()):
+                used_prefixes.add(blocked)
 
         g = _pick_green(y, cd, i, used_groups, used_prefixes, used_teams,
                         spec_use_count, caps, green_ptr)

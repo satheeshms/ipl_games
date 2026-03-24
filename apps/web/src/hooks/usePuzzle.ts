@@ -31,7 +31,7 @@ export function usePuzzle(): UsePuzzleResult {
 
       // Try fetching today's puzzle first
       try {
-        const res = await fetch(`${import.meta.env.BASE_URL}puzzles/${today}.json`);
+        const res = await fetch(`${import.meta.env.BASE_URL}puzzles/ipl/${today}.json`);
         if (res.ok) {
           const data: Puzzle = await res.json();
           if (!cancelled) {

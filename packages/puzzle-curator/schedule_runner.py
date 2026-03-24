@@ -36,8 +36,11 @@ from collections import defaultdict
 from datetime import datetime, date
 from pathlib import Path
 
+from ambiguity import check_ambiguity
 from category_generators import generate_category
 from hash_util import hash_items
+
+_MAX_RESAMPLE = 10  # max re-draws per conflicting category before giving up
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -256,6 +259,52 @@ def generate_puzzle(row: dict, ipl_data: dict, output_dir: Path,
         picked.update(result["items"])
         print(f"  {color:8s} [{spec}] -> {result['title']}: {result['items']}")
 
+    # Ambiguity check: ensure no placed item also qualifies for another category
+    conflicts = check_ambiguity(ipl_data, categories)
+    if conflicts:
+        for _attempt in range(_MAX_RESAMPLE):
+            if not conflicts:
+                break
+            # Pick the color whose items cause the most conflicts
+            color_counts: dict[str, int] = {}
+            for _item, placed, _also in conflicts:
+                color_counts[placed] = color_counts.get(placed, 0) + 1
+            target_color = max(color_counts, key=color_counts.get)
+            target_idx = COLORS.index(target_color)
+            target_spec = categories[target_idx]["spec"]
+
+            other_items = {
+                item
+                for cat in categories if cat["color"] != target_color
+                for item in cat["items"]
+            }
+            resample_exclude = used_items.get(target_spec, set()) | other_items
+
+            try:
+                new_result = generate_category(ipl_data, target_spec, resample_exclude)
+                old_items = categories[target_idx]["items"]
+                categories[target_idx]["items"] = new_result["items"]
+                print(f"  Resampled {target_color.upper()} [{target_spec}]:")
+                print(f"    was: {old_items}")
+                print(f"    now: {new_result['items']}")
+            except ValueError:
+                break  # pool exhausted — can't improve
+
+            conflicts = check_ambiguity(ipl_data, categories)
+
+    if conflicts:
+        print("  AMBIGUITY WARNING — unresolved after resampling:")
+        for item, placed, also in conflicts:
+            print(f"    '{item}' placed in {placed.upper()} also qualifies for {also.upper()}")
+        print("  Use --reshuffle or --set-items to fix manually.")
+    else:
+        print("  AMBIGUITY CHECK: PASS")
+
+    # Always print final state so it matches what gets written to the file
+    print("\n  Final categories:")
+    for cat in categories:
+        print(f"  {cat['color']:8s} [{cat['spec']}] -> {cat['title']}: {cat['items']}")
+
     if dry_run:
         return True
 
@@ -321,7 +370,124 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--date",     metavar="YYYY-MM-DD", help="Generate only this date")
     parser.add_argument("--from",     dest="from_date", metavar="YYYY-MM-DD")
     parser.add_argument("--to",       dest="to_date",   metavar="YYYY-MM-DD")
+    parser.add_argument(
+        "--reshuffle",
+        metavar="COLOR",
+        choices=COLORS,
+        help="Re-sample one category in the existing puzzle for --date (new random draw, same spec)",
+    )
+    parser.add_argument(
+        "--set-items",
+        metavar="COLOR:p1,p2,p3,p4",
+        help="Replace 4 items in one category and regenerate its hash (requires --date)",
+    )
     return parser
+
+
+def cmd_reshuffle(args: argparse.Namespace, ipl_data: dict,
+                  output_dir: Path, used_items: dict[str, set[str]]) -> int:
+    """Re-sample one category in an existing puzzle file (same spec, new random draw)."""
+    date_str = args.date
+    out_path = output_dir / f"{date_str}.json"
+    target_color = args.reshuffle
+
+    if not out_path.exists():
+        print(f"ERROR: puzzle not found: {out_path}")
+        return 1
+
+    puzzle = json.loads(out_path.read_text(encoding="utf-8"))
+    categories = puzzle.get("categories", [])
+
+    target_cat = next((c for c in categories if c["color"] == target_color), None)
+    if target_cat is None:
+        print(f"ERROR: no '{target_color}' category in puzzle {date_str}")
+        return 1
+
+    spec = target_cat.get("spec", "")
+    if not spec:
+        print(f"ERROR: '{target_color}' category has no spec field — cannot reshuffle")
+        return 1
+
+    old_items = target_cat.get("items", [])
+
+    # Exclude: items from the other 3 categories + items used by this spec in prior puzzles
+    other_items = {
+        item
+        for c in categories if c["color"] != target_color
+        for item in c.get("items", [])
+    }
+    resample_exclude = used_items.get(spec, set()) | other_items
+
+    try:
+        new_result = generate_category(ipl_data, spec, resample_exclude)
+    except ValueError as e:
+        print(f"ERROR: could not resample '{target_color}' ({spec}): {e}")
+        return 1
+
+    new_items = new_result["items"]
+    print(f"\nReshuffling {target_color.upper()} [{spec}]")
+    print(f"  Old: {old_items}")
+    print(f"  New: {new_items}")
+
+    target_cat["items"] = new_items
+    target_cat["hash"] = hash_items(new_items)
+
+    all_items = [item for c in categories for item in c.get("items", [])]
+    puzzle["items"] = _shuffle(all_items)
+
+    out_path.write_text(json.dumps(puzzle, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"  Written -> {out_path}")
+    return 0
+
+
+def cmd_set_items(args: argparse.Namespace, output_dir: Path) -> int:
+    """Replace 4 items in one category and regenerate its hash."""
+    date_str = args.date
+    out_path = output_dir / f"{date_str}.json"
+
+    if not out_path.exists():
+        print(f"ERROR: puzzle not found: {out_path}")
+        return 1
+
+    # Parse "COLOR:p1,p2,p3,p4" — split on first colon only
+    raw = args.set_items
+    try:
+        colon_idx = raw.index(":")
+    except ValueError:
+        print("ERROR: --set-items format is 'COLOR:p1,p2,p3,p4'")
+        return 1
+    color = raw[:colon_idx].strip()
+    new_items = [s.strip() for s in raw[colon_idx + 1:].split(",")]
+
+    if color not in COLORS:
+        print(f"ERROR: invalid color '{color}'. Must be one of: {COLORS}")
+        return 1
+    if len(new_items) != 4:
+        print(f"ERROR: expected exactly 4 items, got {len(new_items)}: {new_items}")
+        return 1
+
+    puzzle = json.loads(out_path.read_text(encoding="utf-8"))
+    categories = puzzle.get("categories", [])
+
+    target_cat = next((c for c in categories if c["color"] == color), None)
+    if target_cat is None:
+        print(f"ERROR: no '{color}' category in puzzle {date_str}")
+        return 1
+
+    old_items = target_cat.get("items", [])
+    print(f"\nSetting items for {color.upper()}")
+    print(f"  Old: {old_items}")
+    print(f"  New: {new_items}")
+
+    target_cat["items"] = new_items
+    target_cat["hash"] = hash_items(new_items)
+
+    all_items = [item for c in categories for item in c.get("items", [])]
+    puzzle["items"] = _shuffle(all_items)
+
+    out_path.write_text(json.dumps(puzzle, indent=2, ensure_ascii=False), encoding="utf-8")
+    print(f"  Written -> {out_path}")
+    return 0
 
 
 def main() -> int:
@@ -331,6 +497,24 @@ def main() -> int:
     schedule_path = Path(args.schedule)
     data_path     = Path(args.data_file)
     output_dir    = Path(args.output)
+
+    # --- Surgical fix modes (early return, no schedule processing needed) ---
+
+    if args.reshuffle:
+        if not args.date:
+            print("ERROR: --reshuffle requires --date")
+            return 1
+        ipl_data = load_ipl_data(data_path)
+        used_items = load_used_items(output_dir, skip_date=args.date)
+        return cmd_reshuffle(args, ipl_data, output_dir, used_items)
+
+    if args.set_items:
+        if not args.date:
+            print("ERROR: --set-items requires --date")
+            return 1
+        return cmd_set_items(args, output_dir)
+
+    # --- Normal schedule-based generation ---
 
     if not schedule_path.exists():
         print(f"ERROR: schedule not found: {schedule_path}")

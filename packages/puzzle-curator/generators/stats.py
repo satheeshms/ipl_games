@@ -66,7 +66,7 @@ def gen_dismissals_by_keeper(ipl_data: dict, params: list, exclude: set) -> dict
         raise ValueError("dismissals_by_keeper: no data in ipl_data['dismissals_by_keeper']")
     names = [e["player_name"] for e in entries]
     items = _pick(names, exclude, "dismissals_by_keeper")
-    return {"title": "Most Dismissals by a Keeper", "items": items}
+    return {"title": "Most IPL Dismissals by a Keeper (50+ matches)", "items": items}
 
 
 def gen_allrounders(ipl_data: dict, params: list, exclude: set) -> dict:
@@ -79,7 +79,7 @@ def gen_allrounders(ipl_data: dict, params: list, exclude: set) -> dict:
         raise ValueError("allrounders: no data in ipl_data['allrounders']")
     names = [e["name"] for e in entries]
     items = _pick(names, exclude, "allrounders")
-    return {"title": "IPL All-Rounders", "items": items}
+    return {"title": "IPL All-Rounders (1000+ Runs & 50+ Wickets)", "items": items}
 
 
 # ---------------------------------------------------------------------------
@@ -98,7 +98,7 @@ def gen_top_run_scorers(ipl_data: dict, params: list, exclude: set) -> dict:
     sorted_entries = sorted(entries, key=lambda e: e.get("runs", 0), reverse=True)
     names = [e["player_name"] for e in sorted_entries]
     items = _pick(names, exclude, "top_run_scorers")
-    return {"title": "All-Time Top Run Scorers scrored 3000+ runs", "items": items}
+    return {"title": "IPL Career Run Scorers (3000+ Runs)", "items": items}
 
 
 def gen_top_wicket_takers(ipl_data: dict, params: list, exclude: set) -> dict:
@@ -112,7 +112,7 @@ def gen_top_wicket_takers(ipl_data: dict, params: list, exclude: set) -> dict:
     sorted_entries = sorted(entries, key=lambda e: e.get("wickets", 0), reverse=True)
     names = [e["player_name"] for e in sorted_entries]
     items = _pick(names, exclude, "top_wicket_takers")
-    return {"title": "All-Time Top Wicket Takers", "items": items}
+    return {"title": "IPL Career Wicket Takers (100+ Wickets)", "items": items}
 
 
 def gen_most_fifties(ipl_data: dict, params: list, exclude: set) -> dict:
@@ -221,7 +221,7 @@ def gen_most_ducks(ipl_data: dict, params: list, exclude: set) -> dict:
         raise ValueError("most_ducks: no data in ipl_data['most_ducks']")
     names = [e["player_name"] for e in entries if "player_name" in e]
     items = _pick(names, exclude, "most_ducks")
-    return {"title": "Most IPL Ducks", "items": items}
+    return {"title": "Most IPL Ducks (10+ Ducks)", "items": items}
 
 
 def gen_fifers(ipl_data: dict, params: list, exclude: set) -> dict:

@@ -410,14 +410,16 @@ def generate_category(ipl_data: dict, spec: str, exclude: set[str]) -> dict:
     # Special dispatch: coaches:SEASON (1 param) vs coaches:TEAM:SEASON (2 params)
     if category_type == "coaches":
         if len(params) == 1:
-            return gen_coaches(ipl_data, params, exclude)
+            result = gen_coaches(ipl_data, params, exclude)
         elif len(params) == 2:
-            return gen_coaches_team_season(ipl_data, params, exclude)
+            result = gen_coaches_team_season(ipl_data, params, exclude)
         else:
             raise ValueError(
                 "coaches spec format: 'coaches:SEASON' or 'coaches:TEAM:SEASON'. "
                 f"Got {len(params)} param(s)."
             )
+        result["spec"] = spec
+        return result
 
     gen_fn = GENERATORS.get(category_type)
     if gen_fn is None:
@@ -426,4 +428,6 @@ def generate_category(ipl_data: dict, spec: str, exclude: set[str]) -> dict:
             f"Available types: {sorted(GENERATORS.keys())}"
         )
 
-    return gen_fn(ipl_data, params, exclude)
+    result = gen_fn(ipl_data, params, exclude)
+    result["spec"] = spec
+    return result

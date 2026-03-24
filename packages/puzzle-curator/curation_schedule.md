@@ -19,8 +19,8 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 
 | Ed | Date | Day | Match | Yellow | Green | Blue | Purple | Status |
 |---|---|---|---|---|---|---|---|---|
-| 1 | 24 Mar | Tue | — | `team_players:MI:2008` | `country:Australia` | `top_run_scorers` | `played_both:CSK:RCB` | [ ] |
-| 2 | 25 Mar | Wed | — | `team_players:CSK:2025` | `state:Maharashtra` | `top_wicket_takers` | `purple_cap` | [ ] |
+| 1 | 24 Mar | Tue | — | `team_players:MI:2026` | `country:Australia` | `top_run_scorers` | `played_both:CSK:RCB` | [ ] |
+| 2 | 25 Mar | Wed | — | `team_players:CSK:2025` | `state:Maharashtra` | `longest_serving` | `purple_cap` | [ ] |
 | 3 | 26 Mar | Thu | — | `team_players:RCB:2026` | `team_legends_batting:RR` | `ranji:Mumbai` | `multi_team:5` | [ ] |
 | 4 | 27 Mar | Fri | — | `head_coaches:2025` | `legends:india` | `team_players:KKR:2008`  | `most_ducks` | [ ] |
 
@@ -33,7 +33,7 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 | 7 | 30 Mar | Mon | RR vs CSK | `team_players:RR:2026` | `costliest_player` | `state:Maharashtra` | `played_both:CSK:MI` | [ ] |
 | 8 | 31 Mar | Tue | PBKS vs GT | `team_players:PBKS:2026` | `winning_captain` | `ranji:Mumbai` | `multi_team:5` | [ ] |
 | 9 | 1 Apr | Wed | LSG vs DC | `team_players:LSG:2026` | `player_of_tournament` | `head_coaches` | `multi_team:7` | [ ] |
-| 10 | 2 Apr | Thu | KKR vs SRH | `team_players:KKR:2026` | `country:South Africa` | `bowling_records` | `longest_serving` | [ ] |
+| 10 | 2 Apr | Thu | KKR vs SRH | `team_players:KKR:2026` | `country:South Africa` | `bowling_records` | `top_wicket_takers` | [ ] |
 | 11 | 3 Apr | Fri | CSK vs PBKS | `team_players:CSK:2026` | `state:Maharashtra` | `season_records` | `orange_cap` | [ ] |
 | 12 | 4 Apr | Sat | DC vs MI | `team_players:DC:2026` | `team_legends_batting:CSK` | `ranji:Mumbai` | `purple_cap` | [ ] |
 | 13 | 5 Apr | Sun | SRH vs LSG | `team_players:SRH:2026` | `legends:india` | `head_coaches` | `winning_captain` | [ ] |
