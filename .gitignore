@@ -8,3 +8,4 @@ packages/puzzle-curator/__pycache__/*
 packages/puzzle-curator/generators/__pycache__/*
 packages/puzzle-curator/__pycache__/*
 packages/puzzle-curator/__pycache__/hash_util.cpython-312.pyc
+packages/data-pipeline/data/backups/*
