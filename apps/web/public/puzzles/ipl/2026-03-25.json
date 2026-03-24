@@ -1,0 +1,49 @@
+{
+  "id": "2026-03-25",
+  "date": "2026-03-25",
+  "edition": 2,
+  "items": [
+    "K Rabada",
+    "SD Chitnis",
+    "Ayush Mhatre",
+    "Gurjapneet Singh",
+    "MD Shanaka",
+    "CK Kapugedera",
+    "A Nel",
+    "SS Tiwary",
+    "DPMD Jayawardene",
+    "Rahul Tripathi",
+    "HV Patel",
+    "RP Singh",
+    "RR Raje",
+    "KMDN Kulasekara",
+    "Khaleel Ahmed",
+    "B Kumar"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Players from Sri Lanka",
+      "spec": "country:Sri Lanka",
+      "hash": "2e53379cacaf9bdc20e318927304831d7e003403dca5cc5f6b952f04b4450dfb"
+    },
+    {
+      "color": "green",
+      "title": "Mumbai Indians 2008 Squad",
+      "spec": "team_players:MI:2008",
+      "hash": "ec546c7e1a0aff459c600856b36dcf279be104d637472b62468f92ec9c94f9bb"
+    },
+    {
+      "color": "blue",
+      "title": "Chennai Super Kings 2025 Squad",
+      "spec": "team_players:CSK:2025",
+      "hash": "42db31585a8ee6d47ce187d50b1e0b5b14cdf8e61685710c7e069115b8e812d0"
+    },
+    {
+      "color": "purple",
+      "title": "Purple Cap Winners",
+      "spec": "purple_cap",
+      "hash": "35d741508a422acfab6e703cedf0d59fcbb1da8e1827b13f05d035517927081e"
+    }
+  ]
+}

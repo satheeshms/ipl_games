@@ -41,27 +41,23 @@ Ed 1 — 2026-03-24
 
 
 Ed 2 — 2026-03-25
-  yellow   [team_players:CSK:2025] -> Chennai Super Kings 2025 Squad: ['R Ashwin', 'MS Dhoni', 'Nathan Ellis', 'Deepak Hooda']
-  green    [state:Maharashtra] -> Players from Maharashtra: ['SN Thakur', 'S Dube', 'SS Iyer', 'TU Deshpande']
-  blue     [longest_serving] -> Longest Serving IPL Players: ['WP Saha', 'B Kumar', 'V Kohli', 'AB de Villiers']
-  purple   [purple_cap] -> Purple Cap Winners: ['HV Patel', 'YS Chahal', 'Sohail Tanvir', 'M Morkel']
-  Resampled YELLOW [team_players:CSK:2025]:
-    was: ['R Ashwin', 'MS Dhoni', 'Nathan Ellis', 'Deepak Hooda']
-    now: ['Mukesh Choudhary', 'Dewald Brevis', 'Jamie Overton', 'Matheesha Pathirana']
-  Resampled BLUE [longest_serving]:
-    was: ['WP Saha', 'B Kumar', 'V Kohli', 'AB de Villiers']
-    now: ['DS Kulkarni', 'WP Saha', 'RV Uthappa', 'MS Dhoni']
-  Resampled BLUE [longest_serving]:
-    was: ['DS Kulkarni', 'WP Saha', 'RV Uthappa', 'MS Dhoni']
-    now: ['DA Warner', 'A Mishra', 'KD Karthik', 'JD Unadkat']
+  yellow   [country:Sri Lanka] -> Players from Sri Lanka: ['MD Shanaka', 'KMDN Kulasekara', 'DPMD Jayawardene', 'CK Kapugedera']
+  green    [team_players:MI:2008] -> Mumbai Indians 2008 Squad: ['SD Chitnis', 'AM Nayar', 'ST Jayasuriya', 'DJ Thornely']
+  blue     [team_players:CSK:2025] -> Chennai Super Kings 2025 Squad: ['Rahul Tripathi', 'Khaleel Ahmed', 'Gurjapneet Singh', 'Ayush Mhatre']
+  purple   [purple_cap] -> Purple Cap Winners: ['Sohail Tanvir', 'Imran Tahir', 'SL Malinga', 'DJ Bravo']
+  Resampled PURPLE [purple_cap]:
+    was: ['Sohail Tanvir', 'Imran Tahir', 'SL Malinga', 'DJ Bravo']
+    now: ['B Kumar', 'HV Patel', 'RP Singh', 'K Rabada']
+  Resampled GREEN [team_players:MI:2008]:
+    was: ['SD Chitnis', 'AM Nayar', 'ST Jayasuriya', 'DJ Thornely']
+    now: ['RR Raje', 'SD Chitnis', 'A Nel', 'SS Tiwary']
   AMBIGUITY CHECK: PASS
 
   Final categories:
-  yellow   [team_players:CSK:2025] -> Chennai Super Kings 2025 Squad: ['Mukesh Choudhary', 'Dewald Brevis', 'Jamie Overton', 'Matheesha Pathirana']
-  green    [state:Maharashtra] -> Players from Maharashtra: ['SN Thakur', 'S Dube', 'SS Iyer', 'TU Deshpande']
-  blue     [longest_serving] -> Longest Serving IPL Players: ['DA Warner', 'A Mishra', 'KD Karthik', 'JD Unadkat']
-  purple   [purple_cap] -> Purple Cap Winners: ['HV Patel', 'YS Chahal', 'Sohail Tanvir', 'M Morkel'] 
-  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-03-25.json
+  yellow   [country:Sri Lanka] -> Players from Sri Lanka: ['MD Shanaka', 'KMDN Kulasekara', 'DPMD Jayawardene', 'CK Kapugedera']
+  green    [team_players:MI:2008] -> Mumbai Indians 2008 Squad: ['RR Raje', 'SD Chitnis', 'A Nel', 'SS Tiwary']
+  blue     [team_players:CSK:2025] -> Chennai Super Kings 2025 Squad: ['Rahul Tripathi', 'Khaleel Ahmed', 'Gurjapneet Singh', 'Ayush Mhatre']
+  purple   [purple_cap] -> Purple Cap Winners: ['B Kumar', 'HV Patel', 'RP Singh', 'K Rabada']
 
 Title Changes
 

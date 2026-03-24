@@ -1,33 +1,49 @@
 {
-  "id": "dev",
-  "date": "2026-03-14",
+  "id": "2026-03-24",
+  "date": "2026-03-24",
   "edition": 1,
   "items": [
-    "Thala", "Rohit Sharma", "Dwayne Bravo", "MS Dhoni",
-    "Shane Warne", "Hitman", "Yuzvendra Chahal", "King",
-    "Ruturaj Gaikwad", "Harshal Patel", "Adam Gilchrist", "Universe Boss",
-    "Bhuvneshwar Kumar", "Gautam Gambhir", "Deepak Chahar", "Ravindra Jadeja"
+    "Ashwani Kumar",
+    "Sherfane Rutherford",
+    "AF Milne",
+    "Mohammad Izhar",
+    "BB McCullum",
+    "KM Jadhav",
+    "S Dhawan",
+    "Danish Malewar",
+    "M Klinger",
+    "MA Starc",
+    "DA Miller",
+    "DJ Thornely",
+    "SS Iyer",
+    "AM Rahane",
+    "JA Morkel",
+    "JP Inglis"
   ],
   "categories": [
     {
       "color": "yellow",
-      "title": "CSK Players",
-      "hash": "753706144fc233169880b91c9005090779ac9a468be8f76632d9499979e891b3"
+      "title": "Mumbai Indians 2026 Squad",
+      "spec": "team_players:MI:2026",
+      "hash": "a915e9a9aa753eb0c8226adfc89c7ff51fe0de0d80725ce314bd53532c96c15e"
     },
     {
       "color": "green",
-      "title": "Purple Cap Winners",
-      "hash": "6437fb428c7b3343eadf2e14b4304447f0a04c5ca68181dfc3af5e6cbc6ebc04"
+      "title": "Players from Australia",
+      "spec": "country:Australia",
+      "hash": "b3d188b27cd1d819bd302057bf9a32aef5dff6a1a653b8e5c7767c2f313cff83"
     },
     {
       "color": "blue",
-      "title": "IPL Winning Captains (first time)",
-      "hash": "1c220d9dce0fed47b30cac25aba057809f10713da8fc7b4c54dadd89f6129e9e"
+      "title": "IPL Career Run Scorers (3000+ Runs)",
+      "spec": "top_run_scorers",
+      "hash": "9e4171316ed522424211fd8af4052f33bbf394ecbd1b8fe39a3fa6c474c7abe3"
     },
     {
       "color": "purple",
-      "title": "Player Nicknames",
-      "hash": "58d9d8330433ba08338a9f9834d8ff62cbdc165806cbddf6b7edbffea508d23a"
+      "title": "Played for Both CSK & RCB",
+      "spec": "played_both:CSK:RCB",
+      "hash": "e98b18acf92ad3be92f1394741d423cf1b6e320de32f26280c67e905b701ca73"
     }
   ]
 }
