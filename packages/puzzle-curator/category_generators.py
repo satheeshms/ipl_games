@@ -180,45 +180,70 @@ def gen_coaches(ipl_data: dict, params: list, exclude: set) -> dict:
     return {"title": f"{season} Head Coaches", "items": items}
 
 
-def _gen_specialist_coaches(ipl_data: dict, params: list, exclude: set,
-                             role: str, label: str) -> dict:
-    """Shared logic for batting / bowling / fielding coach generators."""
-    if len(params) < 1:
-        raise ValueError(
-            f"{role}_coaches requires 1 param: season. Example: {role}_coaches:2026"
-        )
-    try:
-        season = int(params[0])
-    except ValueError:
-        raise ValueError(f"{role}_coaches: invalid season '{params[0]}' (must be a 4-digit year)")
-
-    names = [
+def gen_head_coaches(ipl_data: dict, params: list, exclude: set) -> dict:
+    """
+    Pick 4 IPL head coaches across all seasons.
+    Spec: head_coaches  (no season param)
+    """
+    names = list({
         c["coach"]
         for c in ipl_data.get("coaches", [])
-        if c["season"] == season and c.get("role") == role
-    ]
-
+        if c.get("role", "head") == "head"
+    })
     if not names:
-        raise ValueError(
-            f"{role}_coaches: no {label} coaches found for season {season}."
-        )
+        raise ValueError("head_coaches: no head coach data found in ipl_data['coaches']")
+    items = _pick(names, exclude, "head_coaches")
+    return {"title": "IPL Head Coaches", "items": items}
 
-    items = _pick(names, exclude, f"{role}_coaches:{season}")
-    return {"title": f"{season} {label} Coaches", "items": items}
+
+def _gen_specialist_coaches(ipl_data: dict, params: list, exclude: set,
+                             role: str, label: str) -> dict:
+    """
+    Shared logic for batting / bowling / fielding coach generators.
+    Without a season param — picks from all seasons (all-time pool).
+    With a season param   — picks only from that season.
+    """
+    if params:
+        try:
+            season = int(params[0])
+        except ValueError:
+            raise ValueError(f"{role}_coaches: invalid season '{params[0]}' (must be a 4-digit year)")
+        names = [
+            c["coach"]
+            for c in ipl_data.get("coaches", [])
+            if c["season"] == season and c.get("role") == role
+        ]
+        if not names:
+            raise ValueError(f"{role}_coaches: no {label} coaches found for season {season}.")
+        label_str = f"{season} {label} Coaches"
+        key = f"{role}_coaches:{season}"
+    else:
+        names = list({
+            c["coach"]
+            for c in ipl_data.get("coaches", [])
+            if c.get("role") == role
+        })
+        if not names:
+            raise ValueError(f"{role}_coaches: no {label} coach data found in ipl_data['coaches']")
+        label_str = f"IPL {label} Coaches"
+        key = f"{role}_coaches"
+
+    items = _pick(names, exclude, key)
+    return {"title": label_str, "items": items}
 
 
 def gen_batting_coaches(ipl_data: dict, params: list, exclude: set) -> dict:
-    """Pick 4 batting coaches from a given season. Params: [season]"""
+    """Pick 4 batting coaches. Params: [] all-seasons or [season]"""
     return _gen_specialist_coaches(ipl_data, params, exclude, "batting", "Batting")
 
 
 def gen_bowling_coaches(ipl_data: dict, params: list, exclude: set) -> dict:
-    """Pick 4 bowling coaches from a given season. Params: [season]"""
+    """Pick 4 bowling coaches. Params: [] all-seasons or [season]"""
     return _gen_specialist_coaches(ipl_data, params, exclude, "bowling", "Bowling")
 
 
 def gen_fielding_coaches(ipl_data: dict, params: list, exclude: set) -> dict:
-    """Pick 4 fielding coaches from a given season. Params: [season]"""
+    """Pick 4 fielding coaches. Params: [] all-seasons or [season]"""
     return _gen_specialist_coaches(ipl_data, params, exclude, "fielding", "Fielding")
 
 
@@ -333,10 +358,13 @@ def _resolve_team(ipl_data: dict, raw: str) -> str:
 
 
 # ---------------------------------------------------------------------------
-# Generator registry
+# Generator registry — core generators defined in this file
 # ---------------------------------------------------------------------------
 
-GENERATORS: dict[str, callable] = {
+from generators import GENERATORS as _NEW_GENERATORS
+from generators.management import gen_coaches_team_season
+
+_CORE_GENERATORS: dict[str, callable] = {
     "orange_cap":             gen_orange_cap,
     "purple_cap":             gen_purple_cap,
     "player_of_tournament":   gen_player_of_tournament,
@@ -345,7 +373,7 @@ GENERATORS: dict[str, callable] = {
     "ipl_champions":          gen_ipl_champions,
     "team_players":           gen_team_players,
     "team_all_seasons":       gen_team_all_seasons,
-    "coaches":                gen_coaches,
+    "head_coaches":           gen_head_coaches,
     "batting_coaches":        gen_batting_coaches,
     "bowling_coaches":        gen_bowling_coaches,
     "fielding_coaches":       gen_fielding_coaches,
@@ -354,12 +382,10 @@ GENERATORS: dict[str, callable] = {
     "bowling_records":        gen_bowling_records,
     "season_records":         gen_season_records,
     "team_owners":            gen_team_owners,
-    "high_strike_rate":       gen_high_strike_rate,
-    "highest_batting_avg":    gen_highest_batting_avg,
-    "catches_by_fielder":     gen_catches_by_fielder,
-    "dismissals_by_keeper":   gen_dismissals_by_keeper,
-    "allrounders":            gen_allrounders,
 }
+
+# Merge: new generators extend core; core takes precedence on name conflicts
+GENERATORS: dict[str, callable] = {**_NEW_GENERATORS, **_CORE_GENERATORS}
 
 
 def generate_category(ipl_data: dict, spec: str, exclude: set[str]) -> dict:
@@ -367,13 +393,33 @@ def generate_category(ipl_data: dict, spec: str, exclude: set[str]) -> dict:
     Parse a category spec string and invoke the matching generator.
 
     Spec format:  type[:param1[:param2...]]
-    Example:      team_players:CSK:2025
+    Examples:
+      team_players:CSK:2025
+      coaches:2025              — head coaches for a season  (1 param → gen_coaches)
+      coaches:CSK:2025          — all staff for a team/season (2 params → gen_coaches_team_season)
+      legends:india
+      country:Australia
+      winning_squad:2008
 
     Returns {"title": str, "items": [str]} or raises ValueError.
     """
     parts = spec.split(":")
     category_type = parts[0]
     params = parts[1:]
+
+    # Special dispatch: coaches:SEASON (1 param) vs coaches:TEAM:SEASON (2 params)
+    if category_type == "coaches":
+        if len(params) == 1:
+            result = gen_coaches(ipl_data, params, exclude)
+        elif len(params) == 2:
+            result = gen_coaches_team_season(ipl_data, params, exclude)
+        else:
+            raise ValueError(
+                "coaches spec format: 'coaches:SEASON' or 'coaches:TEAM:SEASON'. "
+                f"Got {len(params)} param(s)."
+            )
+        result["spec"] = spec
+        return result
 
     gen_fn = GENERATORS.get(category_type)
     if gen_fn is None:
@@ -382,4 +428,6 @@ def generate_category(ipl_data: dict, spec: str, exclude: set[str]) -> dict:
             f"Available types: {sorted(GENERATORS.keys())}"
         )
 
-    return gen_fn(ipl_data, params, exclude)
+    result = gen_fn(ipl_data, params, exclude)
+    result["spec"] = spec
+    return result

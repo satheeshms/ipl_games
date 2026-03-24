@@ -13,6 +13,7 @@ Usage:
 
 import argparse
 import csv
+import json
 import re
 import sys
 from pathlib import Path
@@ -49,7 +50,18 @@ def _parse_players(raw: str) -> list[str]:
     return names
 
 
-def load_squad_file(conn, path: Path) -> dict:
+def load_name_map(data_dir: Path) -> dict[str, str]:
+    """Load player_name_map.json — maps expanded squad names to canonical DB names."""
+    map_path = data_dir / "player_name_map.json"
+    if not map_path.exists():
+        return {}
+    with open(map_path, encoding="utf-8") as f:
+        data = json.load(f)
+    # Strip the _comment key if present
+    return {k: v for k, v in data.items() if not k.startswith("_")}
+
+
+def load_squad_file(conn, path: Path, name_map: dict[str, str] | None = None) -> dict:
     """Load one squad CSV file. Returns counts dict."""
     season = _infer_season(path)
     if season is None:
@@ -95,12 +107,15 @@ def load_squad_file(conn, path: Path) -> dict:
             coaches_added += 1
 
         for player_name in _parse_players(raw_squad):
+            # Resolve alias: map expanded name → canonical DB name if known
+            canonical_name = (name_map or {}).get(player_name, player_name)
+
             # Insert player (INSERT OR IGNORE — no duplicate if already exists)
             conn.execute(
-                "INSERT OR IGNORE INTO players (name) VALUES (?)", (player_name,)
+                "INSERT OR IGNORE INTO players (name) VALUES (?)", (canonical_name,)
             )
             player_id = conn.execute(
-                "SELECT id FROM players WHERE name = ?", (player_name,)
+                "SELECT id FROM players WHERE name = ?", (canonical_name,)
             ).fetchone()[0]
             players_added += 1
 
@@ -136,9 +151,13 @@ def load_squads(conn, data_dir: Path) -> list[dict]:
         print("  [squad_loader] No ipl20??-squad files found.")
         return []
 
+    name_map = load_name_map(data_dir)
+    if name_map:
+        print(f"  [squad_loader] Loaded {len(name_map)} name aliases from player_name_map.json")
+
     results = []
     for path in squad_files:
-        result = load_squad_file(conn, path)
+        result = load_squad_file(conn, path, name_map=name_map)
         if result:
             results.append(result)
             print(

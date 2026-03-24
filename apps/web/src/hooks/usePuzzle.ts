@@ -29,9 +29,12 @@ export function usePuzzle(): UsePuzzleResult {
 
       const today = getTodayDateString();
 
+      // In dev, bypass cache so regenerated puzzle files are picked up immediately
+      const fetchOpts: RequestInit = import.meta.env.DEV ? { cache: 'no-store' } : {};
+
       // Try fetching today's puzzle first
       try {
-        const res = await fetch(`${import.meta.env.BASE_URL}puzzles/${today}.json`);
+        const res = await fetch(`${import.meta.env.BASE_URL}puzzles/ipl/${today}.json`, fetchOpts);
         if (res.ok) {
           const data: Puzzle = await res.json();
           if (!cancelled) {
@@ -46,7 +49,7 @@ export function usePuzzle(): UsePuzzleResult {
 
       // Fall back to dev.json
       try {
-        const res = await fetch(`${import.meta.env.BASE_URL}puzzles/dev.json`);
+        const res = await fetch(`${import.meta.env.BASE_URL}puzzles/dev.json`, fetchOpts);
         if (!res.ok) {
           throw new Error(`Failed to load dev puzzle: ${res.status} ${res.statusText}`);
         }
