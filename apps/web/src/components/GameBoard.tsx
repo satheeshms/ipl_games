@@ -8,6 +8,7 @@ import { LivesIndicator } from './LivesIndicator';
 import { ToastNotification } from './ToastNotification';
 import { ActionBar } from './ActionBar';
 import { ResultsModal } from './ResultsModal';
+import { AdBanner } from './AdBanner';
 
 interface GameBoardProps {
   puzzle: Puzzle;
@@ -162,6 +163,9 @@ export function GameBoard({ puzzle }: GameBoardProps) {
         canSubmit={state.selected.length === 4 && state.status === 'playing'}
         canDeselectAll={state.selected.length > 0}
       />
+
+      {/* Ad banner */}
+      <AdBanner slot="XXXXXXXXXX" className="w-full mt-2" />
 
       {/* Results modal */}
       {isGameOver && !modalClosed && (

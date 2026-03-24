@@ -1,4 +1,5 @@
 import type { GameStatus, Puzzle, Guess } from '../types';
+import { AdBanner } from './AdBanner';
 
 interface ResultsModalProps {
   status: GameStatus;
@@ -16,11 +17,12 @@ export function ResultsModal({ status, onClose }: ResultsModalProps) {
         <p className="text-2xl font-bold text-white mb-2">
           {status === 'won' ? 'You won! 🎉' : 'Better luck next time!'}
         </p>
-        <p className="text-white/60 text-sm mb-6">
+        <p className="text-white/60 text-sm mb-4">
           {status === 'won'
             ? 'Great job solving the puzzle!'
             : 'The puzzle has been revealed above.'}
         </p>
+        <AdBanner slot="YYYYYYYYYY" format="rectangle" className="w-full mb-4" />
         <button
           onClick={onClose}
           className="rounded-full bg-white px-8 py-2 text-sm font-semibold text-[#1a1a2e] hover:bg-white/90 transition-colors"
