@@ -1,0 +1,49 @@
+{
+  "id": "2026-03-26",
+  "date": "2026-03-26",
+  "edition": 3,
+  "items": [
+    "Paddy Upton",
+    "Andrew McDonald",
+    "Greg Shipperd",
+    "Mandeep Singh",
+    "RV Gomez",
+    "WP Saha",
+    "Sachin Baby",
+    "Diageo",
+    "Preity Zinta",
+    "Basil Thampi",
+    "Sanjiv Goenka",
+    "Robin Singh",
+    "Kavya Maran",
+    "SV Samson",
+    "MC Henriques",
+    "DJ Hooda"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "IPL Head Coaches",
+      "spec": "head_coaches:2008",
+      "hash": "a36ede51b42f30210553ec2e2be88b94ea88cc5c1752ac1797410ec8788ccbe3"
+    },
+    {
+      "color": "green",
+      "title": "IPL Franchise Owners",
+      "spec": "team_owners",
+      "hash": "730dc12aba1a53d1673747c12723ee3ef3877bb9245cf03a343ba554d5adfe3d"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Kerala",
+      "spec": "state:Kerala",
+      "hash": "61e6a8ee3c520c49a22837c985a1a0823154bffdb3fcd5405f4e61cd5ad54aac"
+    },
+    {
+      "color": "purple",
+      "title": "Played for 5+ IPL Teams",
+      "spec": "multi_team:5",
+      "hash": "d7771c611df48e1c08dddae1709c1d757069d2949f83b50e699054843ae02b21"
+    }
+  ]
+}
