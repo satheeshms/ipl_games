@@ -80,7 +80,8 @@ export function HelpModal({ onClose }: HelpModalProps) {
           </button>
 
           <h2 id="help-modal-title" className="text-xl font-bold text-center mb-1">How to Play</h2>
-          <p className="text-white/60 text-sm text-center mb-5">Cluster 4 - IPL Edition</p>
+          <p className="text-white/60 text-sm text-center mb-1">Cluster 4 - IPL Edition</p>
+          <p className="text-white/40 text-xs text-center mb-5">Puzzles span the entire IPL history — from 2008 to present</p>
 
           {/* Rules */}
           <ol className="space-y-3 text-sm mb-6">

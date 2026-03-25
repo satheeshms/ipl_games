@@ -59,6 +59,22 @@ Ed 2 — 2026-03-25
   blue     [team_players:CSK:2025] -> Chennai Super Kings 2025 Squad: ['Rahul Tripathi', 'Khaleel Ahmed', 'Gurjapneet Singh', 'Ayush Mhatre']
   purple   [purple_cap] -> Purple Cap Winners: ['B Kumar', 'HV Patel', 'RP Singh', 'K Rabada']
 
+Existing puzzles: 3 (4 items already used across 12 specs)
+
+Ed 3 — 2026-03-26
+  yellow   [head_coaches:2008] -> IPL Head Coaches: ['Paddy Upton', 'Andrew McDonald', 'Robin Singh', 'Greg Shipperd']
+  green    [team_owners] -> IPL Franchise Owners: ['Diageo', 'Kavya Maran', 'Sanjiv Goenka', 'Preity Zinta']
+  blue     [state:Kerala] -> Players from Kerala: ['Basil Thampi', 'SV Samson', 'RV Gomez', 'Sachin Baby']
+  purple   [multi_team:5] -> Played for 5+ IPL Teams: ['WP Saha', 'DJ Hooda', 'Mandeep Singh', 'MC Henriques']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [head_coaches:2008] -> IPL Head Coaches: ['Paddy Upton', 'Andrew McDonald', 'Robin Singh', 'Greg Shipperd']
+  green    [team_owners] -> IPL Franchise Owners: ['Diageo', 'Kavya Maran', 'Sanjiv Goenka', 'Preity Zinta']
+  blue     [state:Kerala] -> Players from Kerala: ['Basil Thampi', 'SV Samson', 'RV Gomez', 'Sachin Baby']  
+  purple   [multi_team:5] -> Played for 5+ IPL Teams: ['WP Saha', 'DJ Hooda', 'Mandeep Singh', 'MC Henriques']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-03-26.json
+
 Title Changes
 
  ┌──────────────────────┬───────────────────────────────┬─────────────────────────────────────────────────┐   
