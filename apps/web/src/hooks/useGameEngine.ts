@@ -179,7 +179,7 @@ export function useGameEngine(): UseGameEngineResult {
   }, [state]);
 
   // ------------------------------------------------------------------
-  // loadPuzzle — loads saved state then dispatches LOAD_PUZZLE
+  // loadPuzzle — restores saved state if available, otherwise fresh start
   // ------------------------------------------------------------------
   const loadPuzzle = useCallback((puzzle: Puzzle) => {
     const savedState = loadState(puzzle.id);
