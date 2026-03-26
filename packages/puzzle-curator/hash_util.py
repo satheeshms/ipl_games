@@ -8,6 +8,7 @@ Must produce identical output to the browser's lib/hash.ts:
 """
 
 import hashlib
+from itertools import combinations
 
 
 def hash_items(items: list[str]) -> str:
@@ -20,6 +21,14 @@ def hash_items(items: list[str]) -> str:
     sorted_items = sorted(items, key=str.casefold)
     input_str = "|".join(sorted_items)
     return hashlib.sha256(input_str.encode("utf-8")).hexdigest()
+
+
+def find_category_items(all_items: list[str], target_hash: str) -> list[str]:
+    """Return the 4 items from all_items whose hash matches target_hash, or []."""
+    for combo in combinations(all_items, 4):
+        if hash_items(list(combo)) == target_hash:
+            return list(combo)
+    return []
 
 
 # ---------------------------------------------------------------------------

@@ -1,0 +1,49 @@
+{
+  "id": "2026-03-27",
+  "date": "2026-03-27",
+  "edition": 4,
+  "items": [
+    "Karim Janat",
+    "Naveen-ul-Haq",
+    "KD Karthik",
+    "BB McCullum",
+    "Noor Ahmad",
+    "Yuvraj Singh",
+    "BJ Hodge",
+    "AM Rahane",
+    "A Mishra",
+    "Z Khan",
+    "VVS Laxman",
+    "AT Rayudu",
+    "Mohammad Hafeez",
+    "DJ Hussey",
+    "Rahmanullah Gurbaz",
+    "A Kumble"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Indian Legends of IPL",
+      "spec": "legends:india",
+      "hash": "612b54b2cbb071f90ede17f293833adba7bfe7c4343d871b4ecdd3b7ba155440"
+    },
+    {
+      "color": "green",
+      "title": "Players from Afghanistan",
+      "spec": "country:Afghanistan",
+      "hash": "39f69c9bbef2470f3d61aac555af4b78335cad6e9c09400ea6944528ace2fc3d"
+    },
+    {
+      "color": "blue",
+      "title": "Kolkata Knight Riders 2008 Squad",
+      "spec": "team_players:KKR:2008",
+      "hash": "ea9df65971f7557e84d9291eff1268158feee3dde1ee1fbfc8fd959a0b64168f"
+    },
+    {
+      "color": "purple",
+      "title": "Most IPL Ducks (10+ Ducks)",
+      "spec": "most_ducks",
+      "hash": "4a55bb11e9ebf479d8a6ab0e2f641adbc0c9c312fdf7e3a8b7bd058ef71dc3d5"
+    }
+  ]
+}

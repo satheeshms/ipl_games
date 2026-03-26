@@ -75,24 +75,19 @@ Ed 3 — 2026-03-26
   purple   [multi_team:5] -> Played for 5+ IPL Teams: ['WP Saha', 'DJ Hooda', 'Mandeep Singh', 'MC Henriques']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-03-26.json
 
-Title Changes
+Ed 4 — 2026-03-27
+  yellow   [legends:india] -> Indian Legends of IPL: ['Z Khan', 'Yuvraj Singh', 'YK Pathan', 'SC Ganguly']  
+  green    [country:Afghanistan] -> Players from Afghanistan: ['Noor Ahmad', 'Naveen-ul-Haq', 'Karim Janat', 'Rahmanullah Gurbaz']
+  blue     [team_players:KKR:2008] -> Kolkata Knight Riders 2008 Squad: ['DJ Hussey', 'Mohammad Hafeez', 'BJ Hodge', 'BB McCullum']
+  purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['A Mishra', 'AT Rayudu', 'AM Rahane', 'KD Karthik'] 
+  Resampled YELLOW [legends:india]:
+    was: ['Z Khan', 'Yuvraj Singh', 'YK Pathan', 'SC Ganguly']
+    now: ['A Kumble', 'Z Khan', 'VVS Laxman', 'Yuvraj Singh']
+  AMBIGUITY CHECK: PASS
 
- ┌──────────────────────┬───────────────────────────────┬─────────────────────────────────────────────────┐   
- │         Spec         │         Current Title         │                    New Title                    │   
- ├──────────────────────┼───────────────────────────────┼─────────────────────────────────────────────────┤   
- │ high_strike_rate     │ "High Strike Rate Batsmen"    │ "IPL High Strike Rate Batsmen (150+ SR)"        │   
- ├──────────────────────┼───────────────────────────────┼─────────────────────────────────────────────────┤   
- │ highest_batting_avg  │ "Highest Batting Average"     │ "IPL Career Batting Average Leaders (30+ avg)"  │   
- ├──────────────────────┼───────────────────────────────┼─────────────────────────────────────────────────┤   
- │ catches_by_fielder   │ "Most Catches by a Fielder"   │ "Most IPL Catches by a Fielder (50+ matches)"   │   
- ├──────────────────────┼───────────────────────────────┼─────────────────────────────────────────────────┤   
- │ dismissals_by_keeper │ "Most Dismissals by a Keeper" │ "Most IPL Dismissals by a Keeper (50+ matches)" │   
- ├──────────────────────┼───────────────────────────────┼─────────────────────────────────────────────────┤   
- │ allrounders          │ "IPL All-Rounders"            │ "IPL All-Rounders (1000+ Runs & 50+ Wickets)"   │   
- ├──────────────────────┼───────────────────────────────┼─────────────────────────────────────────────────┤   
- │ top_run_scorers      │ "All-Time Top Run Scorers"    │ "IPL Career Run Scorers (3000+ Runs)"           │   
- ├──────────────────────┼───────────────────────────────┼─────────────────────────────────────────────────┤   
- │ top_wicket_takers    │ "All-Time Top Wicket Takers"  │ "IPL Career Wicket Takers (100+ Wickets)"       │   
- ├──────────────────────┼───────────────────────────────┼─────────────────────────────────────────────────┤   
- │ most_ducks           │ "Most IPL Ducks"              │ "Most IPL Ducks (10+ Ducks)"                    │   
- └──────────────────────┴───────────────────────────────┴─────────────────────────────────────────────────┘  
+  Final categories:
+  yellow   [legends:india] -> Indian Legends of IPL: ['A Kumble', 'Z Khan', 'VVS Laxman', 'Yuvraj Singh']   
+  green    [country:Afghanistan] -> Players from Afghanistan: ['Noor Ahmad', 'Naveen-ul-Haq', 'Karim Janat', 'Rahmanullah Gurbaz']
+  blue     [team_players:KKR:2008] -> Kolkata Knight Riders 2008 Squad: ['DJ Hussey', 'Mohammad Hafeez', 'BJ Hodge', 'BB McCullum']
+  purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['A Mishra', 'AT Rayudu', 'AM Rahane', 'KD Karthik'] 
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-03-27.json
