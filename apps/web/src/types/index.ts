@@ -31,4 +31,5 @@ export interface GameState {
   guessHistory: Guess[];
   status: GameStatus;
   oneAway: boolean;         // transient flag for "One Away!" toast
+  hintedColors: Color[];    // colors whose titles have been revealed as hints (max 2)
 }

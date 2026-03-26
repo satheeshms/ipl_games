@@ -17,6 +17,7 @@ type GameAction =
   | { type: 'REVEAL_CATEGORY'; payload: { color: Color } }
   | { type: 'WRONG_GUESS'; payload: { oneAway: boolean } }
   | { type: 'CLEAR_ONE_AWAY' }
+  | { type: 'USE_HINT'; payload: { color: Color } }
   | { type: 'GAME_OVER'; payload: { status: 'won' | 'lost' } };
 
 // ---------------------------------------------------------------------------
@@ -32,6 +33,7 @@ const initialState: GameState = {
   guessHistory: [],
   status: 'idle',
   oneAway: false,
+  hintedColors: [],
 };
 
 // ---------------------------------------------------------------------------
@@ -123,6 +125,10 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       return { ...state, oneAway: false };
     }
 
+    case 'USE_HINT': {
+      return { ...state, hintedColors: [...state.hintedColors, action.payload.color] };
+    }
+
     case 'GAME_OVER': {
       return { ...state, status: action.payload.status };
     }
@@ -148,6 +154,7 @@ interface UseGameEngineResult {
   clearOneAway: () => void;
   revealCategory: (color: Color) => void;
   wrongGuess: (oneAway: boolean) => void;
+  useHint: (color: Color) => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -167,6 +174,7 @@ export function useGameEngine(): UseGameEngineResult {
       lives: state.lives,
       guessHistory: state.guessHistory,
       status: state.status,
+      hintedColors: state.hintedColors,
     });
   }, [state]);
 
@@ -202,6 +210,10 @@ export function useGameEngine(): UseGameEngineResult {
 
   const clearOneAway = useCallback(() => {
     dispatch({ type: 'CLEAR_ONE_AWAY' });
+  }, []);
+
+  const useHint = useCallback((color: Color) => {
+    dispatch({ type: 'USE_HINT', payload: { color } });
   }, []);
 
   // ------------------------------------------------------------------
@@ -298,5 +310,6 @@ export function useGameEngine(): UseGameEngineResult {
     clearOneAway,
     revealCategory,
     wrongGuess,
+    useHint,
   };
 }

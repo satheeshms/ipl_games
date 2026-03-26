@@ -4,6 +4,7 @@ interface ResultsModalProps {
   status: GameStatus;
   puzzle: Puzzle;
   guessHistory: Guess[];
+  hintsUsed: number;
   onClose: () => void;
 }
 
