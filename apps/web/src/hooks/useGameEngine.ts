@@ -46,12 +46,13 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
       const { puzzle, savedState } = action.payload;
 
       // If we have a valid saved state, restore it
+      const isTerminal = savedState?.status === 'won' || savedState?.status === 'lost';
       if (
         savedState &&
         savedState.gridItems &&
-        savedState.gridItems.length > 0 &&
         savedState.status &&
-        savedState.status !== 'idle'
+        savedState.status !== 'idle' &&
+        (savedState.gridItems.length > 0 || isTerminal)
       ) {
         return {
           ...initialState,
