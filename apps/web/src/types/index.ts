@@ -20,6 +20,7 @@ export interface Guess {
   items: string[];          // 4 selected items
   correct: boolean;
   categoryColor?: Color;    // set if correct
+  oneAwayColor?: Color;     // set if wrong but 3/4 items matched this category
 }
 
 export interface GameState {

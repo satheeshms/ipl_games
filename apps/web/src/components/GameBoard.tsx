@@ -22,7 +22,7 @@ interface GameBoardProps {
   puzzle: Puzzle;
 }
 
-async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<boolean> {
+async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<{ color: Color } | null> {
   const remainingItems = gridItems.filter(gi => !selected.includes(gi));
   for (const category of categories) {
     for (let removeIdx = 0; removeIdx < selected.length; removeIdx++) {
@@ -30,11 +30,11 @@ async function checkOneAway(selected: string[], gridItems: string[], categories:
       for (const candidate of remainingItems) {
         // eslint-disable-next-line no-await-in-loop
         const comboHash = await hashItems([...threesome, candidate]);
-        if (comboHash === category.hash) return true;
+        if (comboHash === category.hash) return { color: category.color };
       }
     }
   }
-  return false;
+  return null;
 }
 
 export function GameBoard({ puzzle }: GameBoardProps) {
@@ -104,8 +104,8 @@ export function GameBoard({ puzzle }: GameBoardProps) {
       setTimeout(() => setShakingItems([]), 650);
 
       // One-away check
-      const oneAway = await checkOneAway(selectedItems, state.gridItems, state.puzzle.categories);
-      engine.wrongGuess(oneAway);
+      const match = await checkOneAway(selectedItems, state.gridItems, state.puzzle.categories);
+      engine.wrongGuess(match !== null, match?.color);
     }
   }, [state, engine]);
 
