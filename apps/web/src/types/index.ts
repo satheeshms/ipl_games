@@ -20,6 +20,7 @@ export interface Guess {
   items: string[];          // 4 selected items
   correct: boolean;
   categoryColor?: Color;    // set if correct
+  oneAwayColor?: Color;     // set if wrong but 3/4 items matched this category
 }
 
 export interface GameState {
@@ -31,4 +32,5 @@ export interface GameState {
   guessHistory: Guess[];
   status: GameStatus;
   oneAway: boolean;         // transient flag for "One Away!" toast
+  hintedColors: Color[];    // colors whose titles have been revealed as hints (max 2)
 }

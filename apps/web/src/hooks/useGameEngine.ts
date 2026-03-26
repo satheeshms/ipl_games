@@ -15,8 +15,9 @@ type GameAction =
   | { type: 'DESELECT_ALL' }
   | { type: 'SHUFFLE' }
   | { type: 'REVEAL_CATEGORY'; payload: { color: Color } }
-  | { type: 'WRONG_GUESS'; payload: { oneAway: boolean } }
+  | { type: 'WRONG_GUESS'; payload: { oneAway: boolean; oneAwayColor?: Color } }
   | { type: 'CLEAR_ONE_AWAY' }
+  | { type: 'USE_HINT'; payload: { color: Color } }
   | { type: 'GAME_OVER'; payload: { status: 'won' | 'lost' } };
 
 // ---------------------------------------------------------------------------
@@ -32,6 +33,7 @@ const initialState: GameState = {
   guessHistory: [],
   status: 'idle',
   oneAway: false,
+  hintedColors: [],
 };
 
 // ---------------------------------------------------------------------------
@@ -114,13 +116,17 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         oneAway: action.payload.oneAway,
         guessHistory: [
           ...state.guessHistory,
-          { items: [...state.selected], correct: false },
+          { items: [...state.selected], correct: false, oneAwayColor: action.payload.oneAwayColor },
         ],
       };
     }
 
     case 'CLEAR_ONE_AWAY': {
       return { ...state, oneAway: false };
+    }
+
+    case 'USE_HINT': {
+      return { ...state, hintedColors: [...state.hintedColors, action.payload.color] };
     }
 
     case 'GAME_OVER': {
@@ -147,7 +153,8 @@ interface UseGameEngineResult {
   loadPuzzle: (puzzle: Puzzle) => void;
   clearOneAway: () => void;
   revealCategory: (color: Color) => void;
-  wrongGuess: (oneAway: boolean) => void;
+  wrongGuess: (oneAway: boolean, oneAwayColor?: Color) => void;
+  useHint: (color: Color) => void;
 }
 
 // ---------------------------------------------------------------------------
@@ -167,11 +174,12 @@ export function useGameEngine(): UseGameEngineResult {
       lives: state.lives,
       guessHistory: state.guessHistory,
       status: state.status,
+      hintedColors: state.hintedColors,
     });
   }, [state]);
 
   // ------------------------------------------------------------------
-  // loadPuzzle — loads saved state then dispatches LOAD_PUZZLE
+  // loadPuzzle — restores saved state if available, otherwise fresh start
   // ------------------------------------------------------------------
   const loadPuzzle = useCallback((puzzle: Puzzle) => {
     const savedState = loadState(puzzle.id);
@@ -202,6 +210,10 @@ export function useGameEngine(): UseGameEngineResult {
 
   const clearOneAway = useCallback(() => {
     dispatch({ type: 'CLEAR_ONE_AWAY' });
+  }, []);
+
+  const useHint = useCallback((color: Color) => {
+    dispatch({ type: 'USE_HINT', payload: { color } });
   }, []);
 
   // ------------------------------------------------------------------
@@ -279,8 +291,8 @@ export function useGameEngine(): UseGameEngineResult {
   // ------------------------------------------------------------------
   // wrongGuess — dispatches WRONG_GUESS then checks for game over
   // ------------------------------------------------------------------
-  const wrongGuess = useCallback((oneAway: boolean) => {
-    dispatch({ type: 'WRONG_GUESS', payload: { oneAway } });
+  const wrongGuess = useCallback((oneAway: boolean, oneAwayColor?: Color) => {
+    dispatch({ type: 'WRONG_GUESS', payload: { oneAway, oneAwayColor } });
     // lives - 1 because the reducer hasn't run yet at this point
     if (state.lives - 1 === 0) {
       dispatch({ type: 'GAME_OVER', payload: { status: 'lost' } });
@@ -298,5 +310,6 @@ export function useGameEngine(): UseGameEngineResult {
     clearOneAway,
     revealCategory,
     wrongGuess,
+    useHint,
   };
 }

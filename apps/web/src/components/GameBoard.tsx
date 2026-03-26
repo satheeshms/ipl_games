@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import type { Puzzle, PuzzleCategory } from '../types';
+import type { Color, Puzzle, PuzzleCategory } from '../types';
 import { useGameEngine } from '../hooks/useGameEngine';
 import { hashItems } from '../lib/hash';
 import { CategoryBanner } from './CategoryBanner';
@@ -9,11 +9,20 @@ import { ToastNotification } from './ToastNotification';
 import { ActionBar } from './ActionBar';
 import { ResultsModal } from './ResultsModal';
 
+const HINT_COLOR_ORDER: Color[] = ['yellow', 'green', 'blue', 'purple'];
+
+const COLOR_LABEL: Record<Color, string> = {
+  yellow: 'Yellow',
+  green: 'Green',
+  blue: 'Blue',
+  purple: 'Purple',
+};
+
 interface GameBoardProps {
   puzzle: Puzzle;
 }
 
-async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<boolean> {
+async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<{ color: Color } | null> {
   const remainingItems = gridItems.filter(gi => !selected.includes(gi));
   for (const category of categories) {
     for (let removeIdx = 0; removeIdx < selected.length; removeIdx++) {
@@ -21,11 +30,11 @@ async function checkOneAway(selected: string[], gridItems: string[], categories:
       for (const candidate of remainingItems) {
         // eslint-disable-next-line no-await-in-loop
         const comboHash = await hashItems([...threesome, candidate]);
-        if (comboHash === category.hash) return true;
+        if (comboHash === category.hash) return { color: category.color };
       }
     }
   }
-  return false;
+  return null;
 }
 
 export function GameBoard({ puzzle }: GameBoardProps) {
@@ -95,8 +104,8 @@ export function GameBoard({ puzzle }: GameBoardProps) {
       setTimeout(() => setShakingItems([]), 650);
 
       // One-away check
-      const oneAway = await checkOneAway(selectedItems, state.gridItems, state.puzzle.categories);
-      engine.wrongGuess(oneAway);
+      const match = await checkOneAway(selectedItems, state.gridItems, state.puzzle.categories);
+      engine.wrongGuess(match !== null, match?.color);
     }
   }, [state, engine]);
 
@@ -115,6 +124,31 @@ export function GameBoard({ puzzle }: GameBoardProps) {
   useEffect(() => {
     setModalClosed(false);
   }, [puzzle.id]);
+
+  // Hint: reveal the title of the next hintable category (skipping already-found ones)
+  const handleHint = useCallback(() => {
+    if (state.hintedColors.length >= 2 || state.status !== 'playing') return;
+    const targetColor = HINT_COLOR_ORDER.find(
+      c => !state.hintedColors.includes(c) && !state.revealedCategories.includes(c)
+    );
+    if (!targetColor) return;
+    engine.useHint(targetColor);
+  }, [state.hintedColors, state.revealedCategories, state.status, engine]);
+
+  // Derive which hint titles are currently visible (hinted but not yet correctly guessed)
+  const visibleHints = state.hintedColors
+    .filter(c => !state.revealedCategories.includes(c))
+    .map(c => {
+      const category = puzzle.categories.find(cat => cat.color === c);
+      return category ? { color: c, title: category.title } : null;
+    })
+    .filter((h): h is { color: Color; title: string } => h !== null);
+
+  const hintsRemaining = 2 - state.hintedColors.length;
+  const canHint =
+    state.status === 'playing' &&
+    state.hintedColors.length < 2 &&
+    HINT_COLOR_ORDER.some(c => !state.hintedColors.includes(c) && !state.revealedCategories.includes(c));
 
   const isGameOver = state.status === 'won' || state.status === 'lost';
   const gridDisabled = state.status !== 'playing';
@@ -148,6 +182,24 @@ export function GameBoard({ puzzle }: GameBoardProps) {
         />
       )}
 
+      {/* Hint panel */}
+      {visibleHints.length > 0 && (
+        <div className="w-full flex flex-col gap-2">
+          {visibleHints.map(hint => (
+            <div
+              key={hint.color}
+              className="w-full rounded-lg px-4 py-2 text-sm font-medium text-white/90 bg-white/10 border border-white/20 flex items-center gap-2"
+            >
+              <span className="text-base">💡</span>
+              <span>
+                <span className="font-semibold capitalize">{COLOR_LABEL[hint.color]}:</span>{' '}
+                {hint.title}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+
       {/* Lives indicator */}
       <LivesIndicator lives={state.lives} />
 
@@ -159,8 +211,11 @@ export function GameBoard({ puzzle }: GameBoardProps) {
         onShuffle={engine.shuffle}
         onDeselectAll={engine.deselectAll}
         onSubmit={handleSubmit}
+        onHint={handleHint}
         canSubmit={state.selected.length === 4 && state.status === 'playing'}
         canDeselectAll={state.selected.length > 0}
+        hintsRemaining={hintsRemaining}
+        canHint={canHint}
       />
 
       {/* Results modal */}
@@ -169,6 +224,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
           status={state.status}
           puzzle={puzzle}
           guessHistory={state.guessHistory}
+          hintsUsed={state.hintedColors.length}
           onClose={() => setModalClosed(true)}
         />
       )}

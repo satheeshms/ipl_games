@@ -2,11 +2,14 @@ interface ActionBarProps {
   onShuffle: () => void;
   onDeselectAll: () => void;
   onSubmit: () => void;
+  onHint: () => void;
   canSubmit: boolean;
   canDeselectAll: boolean;
+  hintsRemaining: number;
+  canHint: boolean;
 }
 
-export function ActionBar({ onShuffle, onDeselectAll, onSubmit, canSubmit, canDeselectAll }: ActionBarProps) {
+export function ActionBar({ onShuffle, onDeselectAll, onSubmit, onHint, canSubmit, canDeselectAll, hintsRemaining, canHint }: ActionBarProps) {
   return (
     <div className="flex items-center justify-center gap-3 flex-wrap" role="group" aria-label="Game actions">
       <button
@@ -28,6 +31,18 @@ export function ActionBar({ onShuffle, onDeselectAll, onSubmit, canSubmit, canDe
                    disabled:opacity-40 disabled:cursor-not-allowed"
       >
         Deselect All
+      </button>
+
+      <button
+        onClick={onHint}
+        disabled={!canHint}
+        aria-disabled={!canHint}
+        aria-label={`Use hint, ${hintsRemaining} remaining`}
+        className="rounded-full border border-white/40 px-6 py-2 text-sm font-medium text-white/80
+                   hover:border-white/70 hover:text-white transition-colors duration-150
+                   disabled:opacity-40 disabled:cursor-not-allowed"
+      >
+        Hint ({hintsRemaining})
       </button>
 
       <button

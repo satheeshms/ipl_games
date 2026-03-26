@@ -5,7 +5,7 @@ const KEY = (id: string) => `ipl-cluster4-${id}`;
 // Fields to persist
 type PersistedState = Pick<
   GameState,
-  'gridItems' | 'selected' | 'revealedCategories' | 'lives' | 'guessHistory' | 'status'
+  'gridItems' | 'selected' | 'revealedCategories' | 'lives' | 'guessHistory' | 'status' | 'hintedColors'
 >;
 
 export function saveState(puzzleId: string, state: PersistedState): void {

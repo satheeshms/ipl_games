@@ -30,7 +30,7 @@ export function ItemTile({ item, isSelected, onSelect, onDeselect, disabled, sha
       transition={bouncing ? { duration: 0.4 } : { duration: 0.15 }}
       className={[
         'rounded-lg py-4 px-2 text-white text-sm font-semibold text-center',
-        'uppercase tracking-wider',
+        'uppercase tracking-wider leading-tight break-words',
         'transition-colors duration-150 select-none min-h-[48px]',
         'focus:outline-none focus-visible:ring-2 focus-visible:ring-game-accent/50',
         isSelected

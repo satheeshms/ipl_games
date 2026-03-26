@@ -53,6 +53,7 @@ const basePlayingState: GameState = {
   guessHistory: [],
   status: 'playing',
   oneAway: false,
+  hintedColors: [],
 };
 
 // ---------------------------------------------------------------------------
@@ -74,6 +75,7 @@ describe('gameReducer', () => {
         guessHistory: [],
         status: 'idle',
         oneAway: false,
+        hintedColors: [],
       };
 
       const next = gameReducer(initialState, {
@@ -102,6 +104,7 @@ describe('gameReducer', () => {
         guessHistory: [],
         status: 'idle',
         oneAway: false,
+        hintedColors: [],
       };
 
       const savedState: Partial<GameState> = {
@@ -139,6 +142,7 @@ describe('gameReducer', () => {
         guessHistory: [],
         status: 'idle',
         oneAway: false,
+        hintedColors: [],
       };
 
       // savedState has empty gridItems — treated as invalid
