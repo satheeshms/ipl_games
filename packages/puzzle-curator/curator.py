@@ -14,7 +14,7 @@ import sys
 from datetime import date as dt_date
 from pathlib import Path
 
-from hash_util import hash_items, verify_known_hashes
+from hash_util import hash_items, verify_known_hashes, find_category_items
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -573,7 +573,10 @@ def load_used_items(output_dir: Path) -> DedupeIndex:
             if team:
                 _update_latest(idx.team_dates, team, date)
 
-            for item in cat.get("items", []):
+            cat_items = cat.get("items") or find_category_items(
+                puzzle.get("items", []), cat.get("hash", "")
+            )
+            for item in cat_items:
                 key = (group, item)
                 if key not in idx.used_items:
                     idx.used_items[key] = date
@@ -746,7 +749,6 @@ def cmd_create(args: argparse.Namespace) -> int:
             "color": cat["color"],
             "title": cat["title"],
             "hash":  h,
-            "items": cat["items"],  # stored for curator dedup; not used by game UI
         }
         if cat["group"]:
             entry["group"] = cat["group"]

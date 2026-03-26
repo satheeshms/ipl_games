@@ -43,8 +43,11 @@ export function GameBoard({ puzzle }: GameBoardProps) {
 
   // Toast message state (null = hidden)
   const [toastMessage, setToastMessage] = useState<string | null>(null);
-  // Whether the modal has been explicitly closed by the user
-  const [modalClosed, setModalClosed] = useState(false);
+  // Whether the modal has been explicitly closed by the user (persisted per puzzle)
+  const modalClosedKey = `ipl-cluster4-modal-closed-${puzzle.id}`;
+  const [modalClosed, setModalClosed] = useState(() => {
+    try { return localStorage.getItem(modalClosedKey) === '1'; } catch { return false; }
+  });
   // Animation state
   const [shakingItems, setShakingItems] = useState<string[]>([]);
   const [bouncingItems, setBouncingItems] = useState<string[]>([]);
@@ -120,9 +123,13 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     return () => window.removeEventListener('keydown', onKeyDown);
   }, [state.selected.length, state.status, handleSubmit]);
 
-  // When the puzzle resets (new puzzle.id), reset modal closed state
+  // When the puzzle resets (new puzzle.id), re-read the persisted closed state
   useEffect(() => {
-    setModalClosed(false);
+    try {
+      setModalClosed(localStorage.getItem(modalClosedKey) === '1');
+    } catch {
+      setModalClosed(false);
+    }
   }, [puzzle.id]);
 
   // Hint: reveal the title of the next hintable category (skipping already-found ones)
@@ -225,7 +232,10 @@ export function GameBoard({ puzzle }: GameBoardProps) {
           puzzle={puzzle}
           guessHistory={state.guessHistory}
           hintsUsed={state.hintedColors.length}
-          onClose={() => setModalClosed(true)}
+          onClose={() => {
+            try { localStorage.setItem(modalClosedKey, '1'); } catch { /* ignore */ }
+            setModalClosed(true);
+          }}
         />
       )}
     </div>

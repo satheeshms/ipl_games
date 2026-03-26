@@ -38,7 +38,7 @@ from pathlib import Path
 
 from ambiguity import check_ambiguity
 from category_generators import generate_category
-from hash_util import hash_items
+from hash_util import hash_items, find_category_items
 
 _MAX_RESAMPLE = 10  # max re-draws per conflicting category before giving up
 
@@ -197,7 +197,10 @@ def load_used_items(output_dir: Path,
             for cat in puzzle.get("categories", []):
                 spec = cat.get("spec", "")
                 if spec:
-                    used[spec].update(cat.get("items", []))
+                    cat_items = cat.get("items") or find_category_items(
+                        puzzle.get("items", []), cat.get("hash", "")
+                    )
+                    used[spec].update(cat_items)
         except (json.JSONDecodeError, KeyError):
             pass
     return used
@@ -408,13 +411,18 @@ def cmd_reshuffle(args: argparse.Namespace, ipl_data: dict,
         print(f"ERROR: '{target_color}' category has no spec field — cannot reshuffle")
         return 1
 
-    old_items = target_cat.get("items", [])
+    old_items = target_cat.get("items") or find_category_items(
+        puzzle.get("items", []), target_cat.get("hash", "")
+    )
+    if not old_items:
+        print(f"ERROR: could not identify items for '{target_color}' category")
+        return 1
 
     # Exclude: items from the other 3 categories + items used by this spec in prior puzzles
     other_items = {
         item
         for c in categories if c["color"] != target_color
-        for item in c.get("items", [])
+        for item in (c.get("items") or find_category_items(puzzle.get("items", []), c.get("hash", "")))
     }
     resample_exclude = used_items.get(spec, set()) | other_items
 
@@ -429,11 +437,18 @@ def cmd_reshuffle(args: argparse.Namespace, ipl_data: dict,
     print(f"  Old: {old_items}")
     print(f"  New: {new_items}")
 
-    target_cat["items"] = new_items
     target_cat["hash"] = hash_items(new_items)
 
-    all_items = [item for c in categories for item in c.get("items", [])]
-    puzzle["items"] = _shuffle(all_items)
+    # Rebuild top-level items: remove old items, add new ones, reshuffle.
+    # Use the existing top-level list as source of truth so categories with
+    # no 'items' field don't get silently dropped.
+    old_set = set(old_items)
+    remaining = [i for i in puzzle.get("items", []) if i not in old_set]
+    puzzle["items"] = _shuffle(remaining + new_items)
+
+    # Strip 'items' from all categories — items live only at the top level.
+    for cat in categories:
+        cat.pop("items", None)
 
     out_path.write_text(json.dumps(puzzle, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  Written -> {out_path}")
@@ -474,16 +489,23 @@ def cmd_set_items(args: argparse.Namespace, output_dir: Path) -> int:
         print(f"ERROR: no '{color}' category in puzzle {date_str}")
         return 1
 
-    old_items = target_cat.get("items", [])
+    old_items = target_cat.get("items") or find_category_items(
+        puzzle.get("items", []), target_cat.get("hash", "")
+    )
     print(f"\nSetting items for {color.upper()}")
     print(f"  Old: {old_items}")
     print(f"  New: {new_items}")
 
-    target_cat["items"] = new_items
     target_cat["hash"] = hash_items(new_items)
 
-    all_items = [item for c in categories for item in c.get("items", [])]
-    puzzle["items"] = _shuffle(all_items)
+    # Rebuild top-level items: remove old items, add new ones, reshuffle.
+    old_set = set(old_items)
+    remaining = [i for i in puzzle.get("items", []) if i not in old_set]
+    puzzle["items"] = _shuffle(remaining + new_items)
+
+    # Strip 'items' from all categories — items live only at the top level.
+    for cat in categories:
+        cat.pop("items", None)
 
     out_path.write_text(json.dumps(puzzle, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  Written -> {out_path}")

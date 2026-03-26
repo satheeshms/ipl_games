@@ -22,7 +22,7 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 | 1 | 24 Mar | Tue | — | `team_players:MI:2026` | `country:Australia` | `top_run_scorers` | `played_both:CSK:RCB` | [x] |
 | 2 | 25 Mar | Wed | — | `country:Sri Lanka` | `team_players:MI:2008` |`team_players:CSK:2025` | `purple_cap` | [x] |
 | 3 | 26 Mar | Thu | — | `head_coaches:2008` | `team_owners` | `state:Kerala` | `multi_team:5` | [x] |
-| 4 | 27 Mar | Fri | — | `head_coaches:2008` | `legends:india` | `team_players:KKR:2008`  | `most_ducks` | [ ] |
+| 4 | 27 Mar | Fri | — | `legends:india` | `country:Afghanistan` | `team_players:KKR:2008`  | `most_ducks` | [ ] |
 
 ## Phase 1 — Match Days (28 Mar - 12 Apr)
 

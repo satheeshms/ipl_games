@@ -26,12 +26,15 @@ export function loadState(puzzleId: string): PersistedState | null {
   }
 }
 
+const MODAL_CLOSED_KEY = (id: string) => `ipl-cluster4-modal-closed-${id}`;
+
 export function clearStaleStates(currentId: string): void {
   try {
     const prefix = 'ipl-cluster4-';
+    const keep = new Set([KEY(currentId), MODAL_CLOSED_KEY(currentId)]);
     for (let i = localStorage.length - 1; i >= 0; i--) {
       const key = localStorage.key(i);
-      if (key && key.startsWith(prefix) && key !== KEY(currentId)) {
+      if (key && key.startsWith(prefix) && !keep.has(key)) {
         localStorage.removeItem(key);
       }
     }
