@@ -3,6 +3,7 @@ import { usePuzzle } from '../hooks/usePuzzle';
 import { Header } from '../components/Header';
 import { GameBoard } from '../components/GameBoard';
 import { HelpModal } from '../components/HelpModal';
+import { NavDrawer } from '../components/NavDrawer';
 import { getGameBySlug } from '../games';
 
 interface GamePageProps {
@@ -11,9 +12,10 @@ interface GamePageProps {
 
 export function GamePage({ slug }: GamePageProps) {
   const game = getGameBySlug(slug)!;
-  const { puzzle, loading, error } = usePuzzle();
+  const { puzzle, loading, error } = usePuzzle(game.puzzleDir);
   const helpSeenKey = `${game.storagePrefix}-help-seen`;
   const [showHelp, setShowHelp] = useState(false);
+  const [showDrawer, setShowDrawer] = useState(false);
 
   useEffect(() => {
     if (!loading && puzzle && !localStorage.getItem(helpSeenKey)) {
@@ -28,9 +30,13 @@ export function GamePage({ slug }: GamePageProps) {
 
   return (
     <div className="min-h-screen stadium-bg flex flex-col">
-      {puzzle && (
-        <Header edition={puzzle.edition} date={puzzle.date} onHelp={() => setShowHelp(true)} />
-      )}
+      <Header
+        game={game}
+        edition={puzzle?.edition}
+        date={puzzle?.date}
+        onHelp={() => setShowHelp(true)}
+        onMenuClick={() => setShowDrawer(true)}
+      />
 
       <main className="flex-1 flex flex-col items-center justify-start pt-4">
         {loading && (
@@ -46,10 +52,13 @@ export function GamePage({ slug }: GamePageProps) {
           </div>
         )}
 
-        {!loading && !error && puzzle && <GameBoard puzzle={puzzle} />}
+        {!loading && !error && puzzle && (
+          <GameBoard puzzle={puzzle} storagePrefix={game.storagePrefix} />
+        )}
       </main>
 
       {showHelp && <HelpModal onClose={closeHelp} />}
+      <NavDrawer open={showDrawer} activeSlug={slug} onClose={() => setShowDrawer(false)} />
     </div>
   );
 }

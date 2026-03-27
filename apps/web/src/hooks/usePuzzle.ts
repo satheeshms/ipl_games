@@ -15,7 +15,7 @@ function getTodayDateString(): string {
   return `${year}-${month}-${day}`;
 }
 
-export function usePuzzle(): UsePuzzleResult {
+export function usePuzzle(puzzleDir: string): UsePuzzleResult {
   const [puzzle, setPuzzle] = useState<Puzzle | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -34,7 +34,7 @@ export function usePuzzle(): UsePuzzleResult {
 
       // Try fetching today's puzzle first
       try {
-        const res = await fetch(`${import.meta.env.BASE_URL}puzzles/ipl/${today}.json`, fetchOpts);
+        const res = await fetch(`${import.meta.env.BASE_URL}${puzzleDir}/${today}.json`, fetchOpts);
         if (res.ok) {
           const data: Puzzle = await res.json();
           if (!cancelled) {
@@ -47,9 +47,9 @@ export function usePuzzle(): UsePuzzleResult {
         // Fall through to dev.json fallback
       }
 
-      // Fall back to dev.json
+      // Fall back to dev.json within the same puzzle directory
       try {
-        const res = await fetch(`${import.meta.env.BASE_URL}puzzles/dev.json`, fetchOpts);
+        const res = await fetch(`${import.meta.env.BASE_URL}${puzzleDir}/dev.json`, fetchOpts);
         if (!res.ok) {
           throw new Error(`Failed to load dev puzzle: ${res.status} ${res.statusText}`);
         }
@@ -71,7 +71,7 @@ export function usePuzzle(): UsePuzzleResult {
     return () => {
       cancelled = true;
     };
-  }, []);
+  }, [puzzleDir]);
 
   return { puzzle, loading, error };
 }

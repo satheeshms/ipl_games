@@ -1,6 +1,6 @@
 import type { GameState } from '../types';
 
-const KEY = (id: string) => `ipl-cluster4-${id}`;
+const KEY = (prefix: string, id: string) => `${prefix}-${id}`;
 
 // Fields to persist
 type PersistedState = Pick<
@@ -8,17 +8,17 @@ type PersistedState = Pick<
   'gridItems' | 'selected' | 'revealedCategories' | 'lives' | 'guessHistory' | 'status' | 'hintedColors'
 >;
 
-export function saveState(puzzleId: string, state: PersistedState): void {
+export function saveState(prefix: string, puzzleId: string, state: PersistedState): void {
   try {
-    localStorage.setItem(KEY(puzzleId), JSON.stringify(state));
+    localStorage.setItem(KEY(prefix, puzzleId), JSON.stringify(state));
   } catch {
     // localStorage unavailable — ignore
   }
 }
 
-export function loadState(puzzleId: string): PersistedState | null {
+export function loadState(prefix: string, puzzleId: string): PersistedState | null {
   try {
-    const raw = localStorage.getItem(KEY(puzzleId));
+    const raw = localStorage.getItem(KEY(prefix, puzzleId));
     if (!raw) return null;
     return JSON.parse(raw) as PersistedState;
   } catch {
@@ -26,15 +26,13 @@ export function loadState(puzzleId: string): PersistedState | null {
   }
 }
 
-const MODAL_CLOSED_KEY = (id: string) => `ipl-cluster4-modal-closed-${id}`;
-
-export function clearStaleStates(currentId: string): void {
+export function clearStaleStates(prefix: string, currentId: string): void {
   try {
-    const prefix = 'ipl-cluster4-';
-    const keep = new Set([KEY(currentId), MODAL_CLOSED_KEY(currentId)]);
+    const keyPrefix = `${prefix}-`;
+    const keep = new Set([KEY(prefix, currentId)]);
     for (let i = localStorage.length - 1; i >= 0; i--) {
       const key = localStorage.key(i);
-      if (key && key.startsWith(prefix) && !keep.has(key)) {
+      if (key && key.startsWith(keyPrefix) && !keep.has(key)) {
         localStorage.removeItem(key);
       }
     }

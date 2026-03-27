@@ -162,13 +162,13 @@ interface UseGameEngineResult {
 // Hook
 // ---------------------------------------------------------------------------
 
-export function useGameEngine(): UseGameEngineResult {
+export function useGameEngine(storagePrefix: string): UseGameEngineResult {
   const [state, dispatch] = useReducer(gameReducer, initialState);
 
   // Persist state to localStorage after every meaningful change
   useEffect(() => {
     if (!state.puzzle || state.status === 'idle') return;
-    saveState(state.puzzle.id, {
+    saveState(storagePrefix, state.puzzle.id, {
       gridItems: state.gridItems,
       selected: state.selected,
       revealedCategories: state.revealedCategories,
@@ -177,18 +177,18 @@ export function useGameEngine(): UseGameEngineResult {
       status: state.status,
       hintedColors: state.hintedColors,
     });
-  }, [state]);
+  }, [state, storagePrefix]);
 
   // ------------------------------------------------------------------
   // loadPuzzle — restores saved state if available, otherwise fresh start
   // ------------------------------------------------------------------
   const loadPuzzle = useCallback((puzzle: Puzzle) => {
-    const savedState = loadState(puzzle.id);
+    const savedState = loadState(storagePrefix, puzzle.id);
     dispatch({
       type: 'LOAD_PUZZLE',
       payload: { puzzle, savedState: savedState ?? undefined },
     });
-  }, []);
+  }, [storagePrefix]);
 
   // ------------------------------------------------------------------
   // Simple sync dispatchers

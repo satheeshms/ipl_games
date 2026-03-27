@@ -20,6 +20,7 @@ const COLOR_LABEL: Record<Color, string> = {
 
 interface GameBoardProps {
   puzzle: Puzzle;
+  storagePrefix: string;
 }
 
 async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<{ color: Color } | null> {
@@ -37,14 +38,14 @@ async function checkOneAway(selected: string[], gridItems: string[], categories:
   return null;
 }
 
-export function GameBoard({ puzzle }: GameBoardProps) {
-  const engine = useGameEngine();
+export function GameBoard({ puzzle, storagePrefix }: GameBoardProps) {
+  const engine = useGameEngine(storagePrefix);
   const { state } = engine;
 
   // Toast message state (null = hidden)
   const [toastMessage, setToastMessage] = useState<string | null>(null);
   // Whether the modal has been explicitly closed by the user (persisted per puzzle)
-  const modalClosedKey = `ipl-cluster4-modal-closed-${puzzle.id}`;
+  const modalClosedKey = `${storagePrefix}-modal-closed-${puzzle.id}`;
   const [modalClosed, setModalClosed] = useState(() => {
     try { return localStorage.getItem(modalClosedKey) === '1'; } catch { return false; }
   });
