@@ -381,25 +381,25 @@ A `dev.json` for Kerala Elections is created for local development when puzzle c
 
 ## 13. Implementation Phases
 
-### Phase 1 — Routing Foundation
-- [ ] Install `react-router-dom`
-- [ ] Create `src/games.ts` with registry
-- [ ] Refactor `src/App.tsx` to use `HashRouter` + `Routes`
-- [ ] Create `src/pages/HomePage.tsx` and `src/components/GameCard.tsx`
-- [ ] Create `src/pages/GamePage.tsx` (thin wrapper)
-- [ ] Verify existing IPL game still works at `/#/sports/ipl`
+### Phase 1 — Routing Foundation ✅
+- [x] Install `react-router-dom`
+- [x] Create `src/games.ts` with registry
+- [x] Refactor `src/App.tsx` to use `HashRouter` + `Routes`
+- [x] Create `src/pages/HomePage.tsx` and `src/components/GameCard.tsx`
+- [x] Create `src/pages/GamePage.tsx` (thin wrapper)
+- [x] Verify existing IPL game still works at `/#/sports/ipl`
 
-### Phase 2 — Generalized Game Loading
-- [ ] Update `usePuzzle` to accept `puzzleDir` param
-- [ ] Pass `storagePrefix` from `GamePage` → `GameBoard` → `useGameEngine`
-- [ ] Update `lib/storage.ts` to accept prefix param
-- [ ] Verify IPL localStorage keys unchanged (`ipl-cluster4-*`)
+### Phase 2 — Generalized Game Loading ✅
+- [x] Update `usePuzzle` to accept `puzzleDir` param
+- [x] Pass `storagePrefix` from `GamePage` → `GameBoard` → `useGameEngine`
+- [x] Update `lib/storage.ts` to accept prefix param
+- [x] Verify IPL localStorage keys unchanged (`ipl-cluster4-*`)
 
-### Phase 3 — Header & Nav Drawer
-- [ ] Update `Header.tsx` props: accept `game` config, add burger button
-- [ ] Create `NavDrawer.tsx` with focus-trap, Escape key, overlay dismiss
-- [ ] Wire `NavDrawer` open/close state in `GamePage`
-- [ ] Accessibility audit: ARIA roles, focus management
+### Phase 3 — Header & Nav Drawer ✅
+- [x] Update `Header.tsx` props: accept `game` config, add burger button
+- [x] Create `NavDrawer.tsx` with focus-trap, Escape key, overlay dismiss
+- [x] Wire `NavDrawer` open/close state in `GamePage`
+- [x] Accessibility audit: ARIA roles, focus management
 
 ### Phase 4 — Kerala Elections Scaffold
 - [ ] Create `public/puzzles/kerala-elections/` with `.gitkeep`
