@@ -1,0 +1,49 @@
+{
+  "id": "2026-03-28",
+  "date": "2026-03-28",
+  "edition": 5,
+  "items": [
+    "Y Venugopal Rao",
+    "Mayank Agarwal",
+    "SA Yadav",
+    "Krunal Pandya",
+    "K Nitish Kumar Reddy",
+    "SK Raina",
+    "Trent Woodhill",
+    "Nuwan Thushara",
+    "DB Ravi Teja",
+    "Vijay Dahiya",
+    "TL Suman",
+    "KD Karthik",
+    "Rajat Patidar",
+    "Ricky Ponting",
+    "RR Pant",
+    "Justin Langer"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Royal Challengers Bengaluru 2025 Squad",
+      "spec": "team_players:RCB:2025",
+      "hash": "d830a23309ffbdfd8a5310721b1fe262366ce8569866207640707fd145bc09d9"
+    },
+    {
+      "color": "green",
+      "title": "Players from Andhra Pradesh",
+      "spec": "state:Andhra Pradesh",
+      "hash": "3c4ad11c3c13f6a0f2f8d565cb67e2a75b6b2a3407151f8a4c349753b8cd522d"
+    },
+    {
+      "color": "blue",
+      "title": "IPL Batting Coaches",
+      "spec": "batting_coaches",
+      "hash": "940098679913fd1e271e941151c123d0c3415dbd4a421e5af8270b3c0ffb18ba"
+    },
+    {
+      "color": "purple",
+      "title": "Most IPL Fifties",
+      "spec": "most_fifties",
+      "hash": "48bc632c868f2e704b26757015e068627688e8a9022fc15f025bac1bce5955fc"
+    }
+  ]
+}

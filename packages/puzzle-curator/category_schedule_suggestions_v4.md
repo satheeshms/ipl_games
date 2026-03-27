@@ -91,3 +91,37 @@ Ed 4 — 2026-03-27
   blue     [team_players:KKR:2008] -> Kolkata Knight Riders 2008 Squad: ['DJ Hussey', 'Mohammad Hafeez', 'BJ Hodge', 'BB McCullum']
   purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['A Mishra', 'AT Rayudu', 'AM Rahane', 'KD Karthik'] 
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-03-27.json
+  
+Ed 5 — 2026-03-28
+  yellow   [team_players:RCB:2025] -> Royal Challengers Bengaluru 2025 Squad: ['Rajat Patidar', 'Nuwan Thushara', 'Mayank Agarwal', 'Krunal Pandya']
+  green    [state:Andhra Pradesh] -> Players from Andhra Pradesh: ['AT Rayudu', 'Y Venugopal Rao', 'GH Vihari', 'DB Ravi Teja']
+  blue     [batting_coaches] -> IPL Batting Coaches: ['Vijay Dahiya', 'Trent Woodhill', 'Justin Langer', 'Ricky Ponting']
+  purple   [most_fifties] -> Most IPL Fifties: ['SA Yadav', 'KD Karthik', 'RR Pant', 'SK Raina']
+  Resampled GREEN [state:Andhra Pradesh]:
+    was: ['AT Rayudu', 'Y Venugopal Rao', 'GH Vihari', 'DB Ravi Teja']
+    now: ['PC Valthaty', 'GH Vihari', 'TL Suman', 'AT Rayudu']
+  Resampled GREEN [state:Andhra Pradesh]:
+    was: ['PC Valthaty', 'GH Vihari', 'TL Suman', 'AT Rayudu']
+    now: ['DB Ravi Teja', 'K Nitish Kumar Reddy', 'Y Venugopal Rao', 'TL Suman']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RCB:2025] -> Royal Challengers Bengaluru 2025 Squad: ['Rajat Patidar', 'Nuwan Thushara', 'Mayank Agarwal', 'Krunal Pandya']
+  green    [state:Andhra Pradesh] -> Players from Andhra Pradesh: ['DB Ravi Teja', 'K Nitish Kumar Reddy', 'Y Venugopal Rao', 'TL Suman']
+  blue     [batting_coaches] -> IPL Batting Coaches: ['Vijay Dahiya', 'Trent Woodhill', 'Justin Langer', 'Ricky Ponting']
+  purple   [most_fifties] -> Most IPL Fifties: ['SA Yadav', 'KD Karthik', 'RR Pant', 'SK Raina']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-03-28.json
+
+  Ed 6 — 2026-03-29
+  yellow   [team_players:MI:2025] -> Mumbai Indians 2025 Squad: ['KL Shrijith', 'Naman Dhir', 'Mujeeb Ur Rahman', 'Karn Sharma']
+  green    [state:West Bengal] -> Players from West Bengal: ['SP Goswami', 'AB Dinda', 'AA Jhunjhunwala', 'WP Saha']
+  blue     [country:New Zealand] -> Players from New Zealand: ['R Ravindra', 'KS Williamson', 'C Munro', 'IS Sodhi']
+  purple   [costliest_player] -> Costliest Auction Picks: ['BA Stokes', 'Ishan Kishan', 'Yuvraj Singh', 'MS Dhoni']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:MI:2025] -> Mumbai Indians 2025 Squad: ['KL Shrijith', 'Naman Dhir', 'Mujeeb Ur Rahman', 'Karn Sharma']
+  green    [state:West Bengal] -> Players from West Bengal: ['SP Goswami', 'AB Dinda', 'AA Jhunjhunwala', 'WP Saha']
+  blue     [country:New Zealand] -> Players from New Zealand: ['R Ravindra', 'KS Williamson', 'C Munro', 'IS Sodhi']
+  purple   [costliest_player] -> Costliest Auction Picks: ['BA Stokes', 'Ishan Kishan', 'Yuvraj Singh', 'MS Dhoni']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-03-29.json
