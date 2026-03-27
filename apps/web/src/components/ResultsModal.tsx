@@ -42,6 +42,8 @@ export function ResultsModal({ status, puzzle, guessHistory, hintsUsed, onClose 
 
   const hintsLine = hintsUsed > 0 ? `💡 Hints used: ${hintsUsed}/2` : 'No hints used';
 
+  const gameUrl = window.location.origin + window.location.pathname;
+
   const shareText = [
     `Cluster 4 – IPL #${puzzle.edition}`,
     formattedDate,
@@ -49,6 +51,8 @@ export function ResultsModal({ status, puzzle, guessHistory, hintsUsed, onClose 
     ...emojiRows,
     '',
     hintsLine,
+    '',
+    gameUrl,
   ].join('\n');
 
   async function handleShare() {
@@ -83,7 +87,15 @@ export function ResultsModal({ status, puzzle, guessHistory, hintsUsed, onClose 
         </div>
 
         {/* Hints line */}
-        <p className="text-white/50 text-xs mb-5">{hintsLine}</p>
+        <p className="text-white/50 text-xs mb-3">{hintsLine}</p>
+
+        {/* Game link */}
+        <a
+          href={gameUrl}
+          className="block text-game-accent text-xs mb-5 hover:underline break-all"
+        >
+          {gameUrl}
+        </a>
 
         {/* Action buttons */}
         <div className="flex gap-3 justify-center">
