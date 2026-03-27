@@ -47,4 +47,4 @@ ipl_games/
 - Follow spec-driven development (SDD). Specs stored in `specs/` directory with `requirements.md` and `implementation_plan.md`
 - Any changes must update the spec before generating code
 - Create a new branch when working on a Github issue, create a daily puzzle.
-- Create a new branch when commiting on main branch
+- Should NOT merge to main. Always create a PR
