@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import type { GameStatus, Puzzle, Guess } from '../types';
+import type { GameConfig } from '../games';
 
 const COLOR_EMOJI: Record<string, string> = {
   yellow: '🟨',
@@ -21,6 +22,7 @@ function buildRow(guess: Guess, index: number): string {
 }
 
 interface ResultsModalProps {
+  game: GameConfig;
   status: GameStatus;
   puzzle: Puzzle;
   guessHistory: Guess[];
@@ -28,7 +30,7 @@ interface ResultsModalProps {
   onClose: () => void;
 }
 
-export function ResultsModal({ status, puzzle, guessHistory, hintsUsed, onClose }: ResultsModalProps) {
+export function ResultsModal({ game, status, puzzle, guessHistory, hintsUsed, onClose }: ResultsModalProps) {
   const [copied, setCopied] = useState(false);
 
   if (status !== 'won' && status !== 'lost') return null;
@@ -45,7 +47,7 @@ export function ResultsModal({ status, puzzle, guessHistory, hintsUsed, onClose 
   const gameUrl = window.location.origin + window.location.pathname;
 
   const shareText = [
-    `Cluster 4 – IPL #${puzzle.edition}`,
+    `Cluster 4 – ${game.label} #${puzzle.edition}`,
     formattedDate,
     '',
     ...emojiRows,
@@ -76,7 +78,7 @@ export function ResultsModal({ status, puzzle, guessHistory, hintsUsed, onClose 
           {status === 'won' ? 'You won! 🎉' : 'Better luck next time!'}
         </p>
         <p className="text-white/50 text-xs mb-4">
-          Cluster 4 · IPL #{puzzle.edition} · {formattedDate}
+          {game.label} #{puzzle.edition} · {formattedDate}
         </p>
 
         {/* Emoji grid */}

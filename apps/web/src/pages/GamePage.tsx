@@ -53,11 +53,11 @@ export function GamePage({ slug }: GamePageProps) {
         )}
 
         {!loading && !error && puzzle && (
-          <GameBoard puzzle={puzzle} storagePrefix={game.storagePrefix} />
+          <GameBoard game={game} puzzle={puzzle} storagePrefix={game.storagePrefix} />
         )}
       </main>
 
-      {showHelp && <HelpModal onClose={closeHelp} />}
+      {showHelp && <HelpModal game={game} onClose={closeHelp} />}
       <NavDrawer open={showDrawer} activeSlug={slug} onClose={() => setShowDrawer(false)} />
     </div>
   );

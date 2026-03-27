@@ -408,35 +408,25 @@ A `dev.json` for Kerala Elections is created for local development when puzzle c
 
 ### Phase 5 — Game-Aware Components & Polish
 
-#### 5a — Lives Indicator (generic circles)
-- [ ] Remove cricket wicket icon; replace with filled/empty circle dots
+#### 5a — Lives Indicator (generic circles) ✅
+- [x] Remove cricket wicket icon; replace with filled/empty circle dots
   - Filled circle `●` = life remaining; greyed circle `○` = life lost
   - Label changes from "Wickets remaining" to "Lives remaining" for all games
   - `LivesIndicator` requires no game prop — circles are universal
   - Update `aria-label` from `N wicket(s) remaining` → `N life/lives remaining`
 
-#### 5b — Help Modal (game-aware content)
-- [ ] Accept `game: GameConfig` prop; derive title and descriptions from it
-- [ ] Replace hardcoded `"Cluster 4 - IPL Edition"` subtitle with `game.label`
-- [ ] Replace hardcoded IPL tagline (`"Puzzles span the entire IPL history…"`) with a
-  `tagline` field per game — add `tagline` to `GameConfig` in `games.ts`:
-  - IPL: `"Puzzles span the entire IPL history — from 2008 to present"`
-  - Kerala Elections: `"Puzzles cover Kerala politics, elections & public life"`
-- [ ] Replace IPL-specific difficulty examples with generic ones:
-  - Yellow: `"Straightforward groupings"` (remove "CSK Players" example)
-  - Green: `"Requires some domain knowledge"`
-  - Blue: `"Nuanced facts or lesser-known trivia"` (unchanged)
-  - Purple: `"Wordplay, puns, or obscure connections"` (unchanged)
-- [ ] Pass `game` from `GamePage` → `HelpModal`
+#### 5b — Help Modal (game-aware content) ✅
+- [x] Accept `game: GameConfig` prop; derive title and descriptions from it
+- [x] Replace hardcoded `"Cluster 4 - IPL Edition"` subtitle with `game.label`
+- [x] Replace hardcoded IPL tagline with `tagline` field per game in `games.ts`
+- [x] Replace IPL-specific difficulty examples with generic ones
+- [x] Pass `game` from `GamePage` → `HelpModal`
 
-#### 5c — Results Modal (game-aware share text)
-- [ ] Accept `game: GameConfig` prop
-- [ ] Replace hardcoded `"Cluster 4 – IPL #N"` header with `"${game.label} #${edition}"`
-- [ ] Replace hardcoded `"Cluster 4 · IPL #N"` subtitle with `"${game.label} #${edition}"`
-- [ ] Share text game line becomes dynamic:
-  - IPL: `Cluster 4 – IPL Edition #3`
-  - Kerala Elections: `Cluster 4 – Kerala Elections #1`
-- [ ] Pass `game` from `GamePage` → `GameBoard` → `ResultsModal`
+#### 5c — Results Modal (game-aware share text) ✅
+- [x] Accept `game: GameConfig` prop
+- [x] Replace hardcoded `"Cluster 4 – IPL #N"` header with `"Cluster 4 – ${game.label} #N"`
+- [x] Replace hardcoded `"Cluster 4 · IPL #N"` subtitle with `"${game.label} #N"`
+- [x] Pass `game` from `GamePage` → `GameBoard` → `ResultsModal`
 
 #### 5d — Remaining Polish
 - [ ] Home screen responsive layout (mobile single-column, tablet 2-column)

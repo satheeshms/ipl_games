@@ -3,6 +3,7 @@ export interface GameConfig {
   category: string;
   label: string;
   description: string;
+  tagline: string;
   icon: string;
   path: string;
   status: 'active' | 'coming-soon';
@@ -16,6 +17,7 @@ export const GAMES: GameConfig[] = [
     category: 'Sports',
     label: 'IPL Edition',
     description: 'Group 16 IPL cricket items into 4 hidden categories.',
+    tagline: 'Puzzles span the entire IPL history — from 2008 to present',
     icon: '🏏',
     path: '/sports/ipl',
     status: 'active',
@@ -27,9 +29,10 @@ export const GAMES: GameConfig[] = [
     category: 'Politics',
     label: 'Kerala Elections Edition',
     description: 'Group 16 Kerala politics items into 4 hidden categories.',
+    tagline: 'Puzzles cover Kerala politics, elections & public life',
     icon: '🗳️',
     path: '/politics/kerala-elections',
-    status: 'coming-soon',
+    status: 'active',
     puzzleDir: 'puzzles/kerala-elections',
     storagePrefix: 'kerala-elections',
   },

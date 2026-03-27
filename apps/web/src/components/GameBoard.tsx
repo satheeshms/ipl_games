@@ -1,5 +1,6 @@
 import { useEffect, useState, useCallback } from 'react';
 import type { Color, Puzzle, PuzzleCategory } from '../types';
+import type { GameConfig } from '../games';
 import { useGameEngine } from '../hooks/useGameEngine';
 import { hashItems } from '../lib/hash';
 import { CategoryBanner } from './CategoryBanner';
@@ -19,6 +20,7 @@ const COLOR_LABEL: Record<Color, string> = {
 };
 
 interface GameBoardProps {
+  game: GameConfig;
   puzzle: Puzzle;
   storagePrefix: string;
 }
@@ -38,7 +40,7 @@ async function checkOneAway(selected: string[], gridItems: string[], categories:
   return null;
 }
 
-export function GameBoard({ puzzle, storagePrefix }: GameBoardProps) {
+export function GameBoard({ game, puzzle, storagePrefix }: GameBoardProps) {
   const engine = useGameEngine(storagePrefix);
   const { state } = engine;
 
@@ -229,6 +231,7 @@ export function GameBoard({ puzzle, storagePrefix }: GameBoardProps) {
       {/* Results modal */}
       {isGameOver && !modalClosed && (
         <ResultsModal
+          game={game}
           status={state.status}
           puzzle={puzzle}
           guessHistory={state.guessHistory}

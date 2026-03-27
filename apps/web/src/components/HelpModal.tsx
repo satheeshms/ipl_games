@@ -1,7 +1,9 @@
 import { useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+import type { GameConfig } from '../games';
 
 interface HelpModalProps {
+  game: GameConfig;
   onClose: () => void;
 }
 
@@ -9,12 +11,12 @@ const DIFFICULTY_LEVELS = [
   {
     color: '#F9DF6D',
     label: 'Yellow — Easiest',
-    description: 'Straightforward IPL groupings (e.g. "CSK Players")',
+    description: 'Straightforward groupings',
   },
   {
     color: '#A0C35A',
     label: 'Green — Moderate',
-    description: 'Requires IPL knowledge (e.g. "Purple Cap Winners")',
+    description: 'Requires some domain knowledge',
   },
   {
     color: '#B0C4EF',
@@ -28,7 +30,7 @@ const DIFFICULTY_LEVELS = [
   },
 ];
 
-export function HelpModal({ onClose }: HelpModalProps) {
+export function HelpModal({ game, onClose }: HelpModalProps) {
   const closeRef = useRef<HTMLButtonElement>(null);
 
   // Focus the close button when modal opens
@@ -80,14 +82,14 @@ export function HelpModal({ onClose }: HelpModalProps) {
           </button>
 
           <h2 id="help-modal-title" className="text-xl font-bold text-center mb-1">How to Play</h2>
-          <p className="text-white/60 text-sm text-center mb-1">Cluster 4 - IPL Edition</p>
-          <p className="text-white/40 text-xs text-center mb-5">Puzzles span the entire IPL history — from 2008 to present</p>
+          <p className="text-white/60 text-sm text-center mb-1">{game.label}</p>
+          <p className="text-white/40 text-xs text-center mb-5">{game.tagline}</p>
 
           {/* Rules */}
           <ol className="space-y-3 text-sm mb-6">
             <li className="flex gap-3">
               <span className="text-white/50 font-bold shrink-0">1.</span>
-              <span>Find <strong>4 groups of 4 items</strong> that share a common IPL theme.</span>
+              <span>Find <strong>4 groups of 4 items</strong> that share a common theme.</span>
             </li>
             <li className="flex gap-3">
               <span className="text-white/50 font-bold shrink-0">2.</span>
