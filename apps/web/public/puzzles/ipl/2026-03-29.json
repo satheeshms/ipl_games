@@ -1,0 +1,49 @@
+{
+  "id": "2026-03-29",
+  "date": "2026-03-29",
+  "edition": 6,
+  "items": [
+    "MS Dhoni",
+    "Mujeeb Ur Rahman",
+    "Yuvraj Singh",
+    "SP Goswami",
+    "AB Dinda",
+    "Naman Dhir",
+    "R Ravindra",
+    "KS Williamson",
+    "Karn Sharma",
+    "KL Shrijith",
+    "WP Saha",
+    "IS Sodhi",
+    "Ishan Kishan",
+    "BA Stokes",
+    "AA Jhunjhunwala",
+    "C Munro"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Mumbai Indians 2025 Squad",
+      "spec": "team_players:MI:2025",
+      "hash": "c1b85f4f21fe9fb1f6675c219ee7d87aa3181bc6c897fdc64f5f57cd2ef7122e"
+    },
+    {
+      "color": "green",
+      "title": "Players from West Bengal",
+      "spec": "state:West Bengal",
+      "hash": "c4438de31b839e27d07ebc8092793eeaa1419f6d9c4d92bec1521c5d55c2ceff"
+    },
+    {
+      "color": "blue",
+      "title": "Players from New Zealand",
+      "spec": "country:New Zealand",
+      "hash": "2876e0528cf85b923c78345d2c0ad7b3a192be69b6027fa28daa68d5f18927ba"
+    },
+    {
+      "color": "purple",
+      "title": "Costliest Auction Picks",
+      "spec": "costliest_player",
+      "hash": "72522e367d224e94416cb09ffaadd2c9323645c579e1ffe5c9546c9a2ca89542"
+    }
+  ]
+}
