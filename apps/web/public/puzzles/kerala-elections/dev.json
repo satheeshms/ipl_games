@@ -1,0 +1,45 @@
+{
+  "id": "dev",
+  "date": "2026-03-27",
+  "edition": 1,
+  "items": [
+    "Thiruvananthapuram",
+    "Pinarayi Vijayan",
+    "CPI(M)",
+    "Thrikkakara",
+    "Kollam",
+    "Oommen Chandy",
+    "CPI",
+    "Nemom",
+    "Pathanamthitta",
+    "V. S. Achuthanandan",
+    "Kerala Congress (M)",
+    "Malampuzha",
+    "Alappuzha",
+    "A. K. Antony",
+    "NCP",
+    "Guruvayur"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Southern Kerala Districts",
+      "hash": "519a89f2bf1f9b22979b348d7ba982cd0b9d6c2daecc3f50b97923306ca45d5f"
+    },
+    {
+      "color": "green",
+      "title": "Kerala Chief Ministers (1995–2026)",
+      "hash": "fca169714f36c03f9f375ce21ca44f27215b2fda85790f131206679707029b92"
+    },
+    {
+      "color": "blue",
+      "title": "LDF Alliance Parties (2021)",
+      "hash": "4f5ed23f93128f08159d448d04255fbdfa5ea2a9af4463184e6b71461da3e993"
+    },
+    {
+      "color": "purple",
+      "title": "High-Profile Constituencies (2021 Election)",
+      "hash": "d9d5d7ef618b7ca3c5792662c4c627f322f036a6b111cb2dec54f28c0770eb9f"
+    }
+  ]
+}

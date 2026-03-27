@@ -401,10 +401,10 @@ A `dev.json` for Kerala Elections is created for local development when puzzle c
 - [x] Wire `NavDrawer` open/close state in `GamePage`
 - [x] Accessibility audit: ARIA roles, focus management
 
-### Phase 4 — Kerala Elections Scaffold
-- [ ] Create `public/puzzles/kerala-elections/` with `.gitkeep`
-- [ ] Create `public/puzzles/kerala-elections/dev.json` (sample puzzle for local dev)
-- [ ] Set `status: 'coming-soon'` in registry until first real puzzle is curated
+### Phase 4 — Kerala Elections Scaffold ✅
+- [x] Create `public/puzzles/kerala-elections/` with `.gitkeep`
+- [x] Create `public/puzzles/kerala-elections/dev.json` (sample puzzle for local dev)
+- [x] Set `status: 'coming-soon'` in registry until first real puzzle is curated
 
 ### Phase 5 — Polish & Testing
 - [ ] Home screen responsive layout (mobile single-column, tablet 2-column)
