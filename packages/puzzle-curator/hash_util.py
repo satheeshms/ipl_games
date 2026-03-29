@@ -8,7 +8,9 @@ Must produce identical output to the browser's lib/hash.ts:
 """
 
 import hashlib
+import json
 from itertools import combinations
+from pathlib import Path
 
 
 def hash_items(items: list[str]) -> str:
@@ -63,6 +65,39 @@ def verify_known_hashes() -> bool:
             print(f"  HASH MISMATCH for '{name}': got {got}")
             all_ok = False
     return all_ok
+
+
+# ---------------------------------------------------------------------------
+# Known-names helpers
+# ---------------------------------------------------------------------------
+
+# Default path relative to this file (packages/puzzle-curator/ -> packages/data-pipeline/data/)
+_DEFAULT_OVERRIDE = Path(__file__).parent.parent / "data-pipeline" / "data" / "known_names_override.json"
+
+
+def load_known_names(override_path: str | Path | None = None) -> dict[str, str]:
+    """Load the known-names override file and return a canonical->known_name map.
+
+    This is the single source of truth for display names used in puzzle JSON.
+    Returns an empty dict if the file does not exist.
+    """
+    path = Path(override_path) if override_path else _DEFAULT_OVERRIDE
+    if not path.exists():
+        return {}
+    with path.open(encoding="utf-8") as f:
+        return json.load(f)
+
+
+def build_display_names(items: list[str], known_names: dict[str, str]) -> dict[str, str]:
+    """Return a display_names mapping for items that have a known name different
+    from their canonical form.  Items with no entry or with the same value are
+    omitted — the UI falls back to the canonical name for those.
+    """
+    return {
+        item: known_names[item]
+        for item in items
+        if item in known_names and known_names[item] != item
+    }
 
 
 if __name__ == "__main__":
