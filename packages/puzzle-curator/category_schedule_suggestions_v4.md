@@ -125,3 +125,92 @@ Ed 5 — 2026-03-28
   blue     [country:New Zealand] -> Players from New Zealand: ['R Ravindra', 'KS Williamson', 'C Munro', 'IS Sodhi']
   purple   [costliest_player] -> Costliest Auction Picks: ['BA Stokes', 'Ishan Kishan', 'Yuvraj Singh', 'MS Dhoni']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-03-29.json
+
+  Ed 7 — 2026-03-30
+  yellow   [team_players:RR:2026] -> Rajasthan Royals 2026 Squad: ['Aman Rao', 'Ravi Singh', 'Dhruv Jurel', 'Lhuan-dre Pretorius']
+  green    [player_of_tournament] -> Player of the Tournament: ['AD Russell', 'JC Archer', 'V Kohli', 'SP Narine']
+  blue     [team_legends_bowling:CSK] -> Chennai Super Kings Bowling Legends: ['Harbhajan Singh', 'RA Jadeja', 'PP Chawla', 'A Nehra']
+  purple   [high_strike_rate] -> IPL High Strike Rate Batsmen (150+ SR): ['GJ Maxwell', 'PD Salt', 'TM Head', 'N Pooran']
+  Resampled GREEN [player_of_tournament]:
+    was: ['AD Russell', 'JC Archer', 'V Kohli', 'SP Narine']
+    now: ['Shubman Gill', 'AC Gilchrist', 'JC Archer', 'V Kohli']
+  Resampled BLUE [team_legends_bowling:CSK]:
+    was: ['Harbhajan Singh', 'RA Jadeja', 'PP Chawla', 'A Nehra']
+    now: ['R Ashwin', 'PP Chawla', 'DJ Bravo', 'Harbhajan Singh']
+  Resampled PURPLE [high_strike_rate]:
+    was: ['GJ Maxwell', 'PD Salt', 'TM Head', 'N Pooran']
+    now: ['JM Sharma', 'LS Livingstone', 'TM Head', 'RM Patidar']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RR:2026] -> Rajasthan Royals 2026 Squad: ['Aman Rao', 'Ravi Singh', 'Dhruv Jurel', 'Lhuan-dre Pretorius']
+  green    [player_of_tournament] -> Player of the Tournament: ['Shubman Gill', 'AC Gilchrist', 'JC Archer', 'V Kohli']
+  blue     [team_legends_bowling:CSK] -> Chennai Super Kings Bowling Legends: ['R Ashwin', 'PP Chawla', 'DJ Bravo', 'Harbhajan Singh']
+  purple   [high_strike_rate] -> IPL High Strike Rate Batsmen (150+ SR): ['JM Sharma', 'LS Livingstone', 'TM Head', 'RM Patidar']
+
+Ed 8 — 2026-03-31
+  yellow   [team_players:PBKS:2026] -> Punjab Kings 2026 Squad: ['YS Chahal', 'Prabhsimran Singh', 'Lockie Ferguson', 'Yash Thakur']
+  green    [winning_captain] -> IPL Winning Captains: ['DA Warner', 'RG Sharma', 'Rajat Patidar', 'HH Pandya']
+  blue     [state:Gujarat] -> Players from Gujarat: ['MM Patel', 'PA Patel', 'RA Jadeja', 'IK Pathan']
+  purple   [multi_team:5] -> Played for 5+ IPL Teams: ['GJ Maxwell', 'RA Tripathi', 'AJ Finch', 'MK Pandey']
+  Resampled BLUE [state:Gujarat]:
+    was: ['MM Patel', 'PA Patel', 'RA Jadeja', 'IK Pathan']
+    now: ['BA Bhatt', 'HV Patel', 'JD Unadkat', 'KH Pandya']
+  Resampled GREEN [winning_captain]:
+    was: ['DA Warner', 'RG Sharma', 'Rajat Patidar', 'HH Pandya']
+    now: ['SK Warne', 'DA Warner', 'Rajat Patidar', 'MS Dhoni']
+  Resampled BLUE [state:Gujarat]:
+    was: ['BA Bhatt', 'HV Patel', 'JD Unadkat', 'KH Pandya']
+    now: ['C Sakariya', 'CA Pujara', 'SK Trivedi', 'IK Pathan']
+  Resampled BLUE [state:Gujarat]:
+    was: ['C Sakariya', 'CA Pujara', 'SK Trivedi', 'IK Pathan']
+    now: ['YK Pathan', 'C Sakariya', 'MM Patel', 'JJ Bumrah']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:PBKS:2026] -> Punjab Kings 2026 Squad: ['YS Chahal', 'Prabhsimran Singh', 'Lockie Ferguson', 'Yash Thakur']
+  green    [winning_captain] -> IPL Winning Captains: ['SK Warne', 'DA Warner', 'Rajat Patidar', 'MS Dhoni']
+  blue     [state:Gujarat] -> Players from Gujarat: ['YK Pathan', 'C Sakariya', 'MM Patel', 'JJ Bumrah']
+  purple   [multi_team:5] -> Played for 5+ IPL Teams: ['GJ Maxwell', 'RA Tripathi', 'AJ Finch', 'MK Pandey']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-03-31.json
+
+  Ed 9 — 2026-04-01
+  yellow   [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['RR Pant', 'Nicholas Pooran', 'Josh Inglis', 'Wanindu Hasaranga']
+  green    [bowling_coaches] -> IPL Bowling Coaches: ['Ryan Harris', 'Bharat Arun', 'Charl Langeveldt / Sunil Joshi', 'Muttiah Muralitharan']
+  blue     [orange_cap] -> Orange Cap Winners: ['KL Rahul', 'SR Tendulkar', 'B Sai Sudharsan', 'JC Buttler']
+  purple   [played_both:LSG:DC] -> Played for Both LSG & DC: ['DA Miller', 'Avesh Khan', 'SN Thakur', 'MP Stoinis']
+  Resampled YELLOW [team_players:LSG:2026]:
+    was: ['RR Pant', 'Nicholas Pooran', 'Josh Inglis', 'Wanindu Hasaranga']
+    now: ['Shahbaz Ahamad', 'RR Pant', 'Josh Inglis', 'Aiden Markram']
+  Resampled YELLOW [team_players:LSG:2026]:
+    was: ['Shahbaz Ahamad', 'RR Pant', 'Josh Inglis', 'Aiden Markram']
+    now: ['Ayush Badoni', 'Anrich Nortje', 'Akshat Raghuwanshi', 'Shahbaz Ahamad']      
+  Resampled YELLOW [team_players:LSG:2026]:
+    was: ['Ayush Badoni', 'Anrich Nortje', 'Akshat Raghuwanshi', 'Shahbaz Ahamad']      
+    now: ['Shahbaz Ahamad', 'Himmat Singh', 'Wanindu Hasaranga', 'Mayank Yadav']        
+  Resampled BLUE [orange_cap]:
+    was: ['KL Rahul', 'SR Tendulkar', 'B Sai Sudharsan', 'JC Buttler']
+    now: ['ML Hayden', 'DA Warner', 'B Sai Sudharsan', 'RD Gaikwad']
+  Resampled PURPLE [played_both:LSG:DC]:
+    was: ['DA Miller', 'Avesh Khan', 'SN Thakur', 'MP Stoinis']
+    now: ['Q de Kock', 'JD Unadkat', 'MK Pandey', 'RR Pant']
+  Resampled PURPLE [played_both:LSG:DC]:
+    was: ['Q de Kock', 'JD Unadkat', 'MK Pandey', 'RR Pant']
+    now: ['MK Pandey', 'KL Rahul', 'Anrich Nortje', 'Q de Kock']
+  Resampled PURPLE [played_both:LSG:DC]:
+    was: ['MK Pandey', 'KL Rahul', 'Anrich Nortje', 'Q de Kock']
+    now: ['RR Pant', 'Q de Kock', 'MP Stoinis', 'JD Unadkat']
+  Resampled PURPLE [played_both:LSG:DC]:
+    was: ['RR Pant', 'Q de Kock', 'MP Stoinis', 'JD Unadkat']
+    now: ['A Mishra', 'RR Pant', 'JD Unadkat', 'KL Rahul']
+  Resampled PURPLE [played_both:LSG:DC]:
+    was: ['A Mishra', 'RR Pant', 'JD Unadkat', 'KL Rahul']
+    now: ['SN Thakur', 'JD Unadkat', 'Q de Kock', 'MK Pandey']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Shahbaz Ahamad', 'Himmat Singh', 'Wanindu Hasaranga', 'Mayank Yadav']
+  green    [bowling_coaches] -> IPL Bowling Coaches: ['Ryan Harris', 'Bharat Arun', 'Charl Langeveldt / Sunil Joshi', 'Muttiah Muralitharan']
+  blue     [orange_cap] -> Orange Cap Winners: ['ML Hayden', 'DA Warner', 'B Sai Sudharsan', 'RD Gaikwad']
+  purple   [played_both:LSG:DC] -> Played for Both LSG & DC: ['SN Thakur', 'JD Unadkat', 'Q de Kock', 'MK Pandey']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-01.json

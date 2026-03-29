@@ -1,0 +1,63 @@
+{
+  "id": "2026-03-31",
+  "date": "2026-03-31",
+  "edition": 8,
+  "items": [
+    "MK Pandey",
+    "Prabhsimran Singh",
+    "JJ Bumrah",
+    "MM Patel",
+    "Lockie Ferguson",
+    "YK Pathan",
+    "DA Warner",
+    "RA Tripathi",
+    "GJ Maxwell",
+    "MS Dhoni",
+    "C Sakariya",
+    "SK Warne",
+    "Yash Thakur",
+    "Rajat Patidar",
+    "YS Chahal",
+    "AJ Finch"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Punjab Kings 2026 Squad",
+      "spec": "team_players:PBKS:2026",
+      "hash": "9af80ab6c700a409a42567981a5dc705febd3145ed1efb20c20f343869695d60"
+    },
+    {
+      "color": "green",
+      "title": "IPL Winning Captains",
+      "spec": "winning_captain",
+      "hash": "25fdde067d4368931dd7f4173f2814b4eb223a23d368cf5eebdecd14947a7830"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Gujarat",
+      "spec": "state:Gujarat",
+      "hash": "7b7d50a662a5d46383aeb50af904499a86b321437fd321156b89666f0ed85230"
+    },
+    {
+      "color": "purple",
+      "title": "Played for 5+ IPL Teams",
+      "spec": "multi_team:5",
+      "hash": "2f78078b6400a37a4da41da69c2c978d3aa9bcc3c368bb62117ce6130f95554a"
+    }
+  ],
+  "display_names": {
+    "MK Pandey": "Manish Pandey",
+    "JJ Bumrah": "Jasprit Bumrah",
+    "MM Patel": "Munaf Patel",
+    "YK Pathan": "Yusuf Pathan",
+    "DA Warner": "David Warner",
+    "RA Tripathi": "Rahul Tripathi",
+    "GJ Maxwell": "Glenn Maxwell",
+    "MS Dhoni": "Mahendra Singh Dhoni",
+    "C Sakariya": "Chetan Sakariya",
+    "SK Warne": "Shane Warne",
+    "YS Chahal": "Yuzvendra Chahal",
+    "AJ Finch": "Aaron Finch"
+  }
+}

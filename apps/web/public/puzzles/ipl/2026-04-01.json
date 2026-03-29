@@ -1,0 +1,59 @@
+{
+  "id": "2026-04-01",
+  "date": "2026-04-01",
+  "edition": 9,
+  "items": [
+    "Q de Kock",
+    "Himmat Singh",
+    "Muttiah Muralitharan",
+    "Ryan Harris",
+    "Mayank Yadav",
+    "ML Hayden",
+    "SN Thakur",
+    "Shahbaz Ahamad",
+    "MK Pandey",
+    "Wanindu Hasaranga",
+    "DA Warner",
+    "Bharat Arun",
+    "RD Gaikwad",
+    "B Sai Sudharsan",
+    "JD Unadkat",
+    "Charl Langeveldt / Sunil Joshi"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Lucknow Super Giants 2026 Squad",
+      "spec": "team_players:LSG:2026",
+      "hash": "f9abfdfa036142f50666498979590d6ed7ec3e4b7b163036ae9305694019fc79"
+    },
+    {
+      "color": "green",
+      "title": "IPL Bowling Coaches",
+      "spec": "bowling_coaches",
+      "hash": "f8344ba13213d556523fccf6fe8a002b50116a30e0854e8f12244ee85e1b8fe9"
+    },
+    {
+      "color": "blue",
+      "title": "Orange Cap Winners",
+      "spec": "orange_cap",
+      "hash": "eb7cd1c5fc5cd293d804ca1c374228c28b0fab2857e98e4cfb6e59f46a9f4307"
+    },
+    {
+      "color": "purple",
+      "title": "Played for Both LSG & DC",
+      "spec": "played_both:LSG:DC",
+      "hash": "21922231f35532fe75aeda72b5279e4dce85a697c7c714f44018e31922d4e0cb"
+    }
+  ],
+  "display_names": {
+    "Q de Kock": "Quinton de Kock",
+    "ML Hayden": "Matthew Hayden",
+    "SN Thakur": "Shardul Thakur",
+    "MK Pandey": "Manish Pandey",
+    "DA Warner": "David Warner",
+    "RD Gaikwad": "Ruturaj Gaikwad",
+    "JD Unadkat": "Jaydev Unadkat",
+    "Charl Langeveldt / Sunil Joshi": "Sunil Joshi"
+  }
+}
