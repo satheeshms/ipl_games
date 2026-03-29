@@ -179,7 +179,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     .filter((c): c is NonNullable<typeof c> => c !== undefined);
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full max-w-lg mx-auto px-4 py-6" role="main" aria-label="Cluster 4 - IPL Edition puzzle">
+    <div className="flex flex-col items-center gap-3 w-full max-w-lg mx-auto px-4 py-4" role="main" aria-label="Cluster 4 - IPL Edition puzzle">
       {/* Revealed category banners */}
       {revealedPuzzleCategories.map(category => (
         <CategoryBanner
@@ -222,35 +222,27 @@ export function GameBoard({ puzzle }: GameBoardProps) {
         </div>
       )}
 
-      {/* Lives indicator */}
-      <LivesIndicator lives={state.lives} />
+      {/* Lives + action bar grouped tightly */}
+      <div className="flex flex-col items-center gap-2 w-full">
+        <LivesIndicator lives={state.lives} />
 
-      {/* Toast notification */}
-      <ToastNotification message={toastMessage} />
+        {/* Toast notification */}
+        <ToastNotification message={toastMessage} />
 
-      {/* Action bar */}
-      <ActionBar
-        onShuffle={engine.shuffle}
-        onDeselectAll={engine.deselectAll}
-        onSubmit={handleSubmit}
-        onHint={handleHint}
-        canSubmit={state.selected.length === 4 && state.status === 'playing'}
-        canDeselectAll={state.selected.length > 0}
-        hintsRemaining={hintsRemaining}
-        canHint={canHint}
-      />
-
-      {/* Share button — shown when game is over and modal has been dismissed */}
-      {isGameOver && modalClosed && (
-        <button
-          onClick={handleShareResult}
-          aria-label="Share your result"
-          className="rounded-full bg-game-accent px-8 py-2.5 text-sm font-semibold text-[#1a1a2e]
-                     hover:opacity-90 transition-opacity"
-        >
-          Share Result
-        </button>
-      )}
+        {/* Action bar — shows game controls while playing, Share Result when game over */}
+        <ActionBar
+          onShuffle={engine.shuffle}
+          onDeselectAll={engine.deselectAll}
+          onSubmit={handleSubmit}
+          onHint={handleHint}
+          onShare={handleShareResult}
+          canSubmit={state.selected.length === 4 && state.status === 'playing'}
+          canDeselectAll={state.selected.length > 0}
+          hintsRemaining={hintsRemaining}
+          canHint={canHint}
+          isGameOver={isGameOver && modalClosed}
+        />
+      </div>
 
       {/* Results modal */}
       {isGameOver && !modalClosed && (
