@@ -14,7 +14,7 @@ import sys
 from datetime import date as dt_date
 from pathlib import Path
 
-from hash_util import hash_items, verify_known_hashes, find_category_items
+from hash_util import hash_items, verify_known_hashes, find_category_items, load_known_names, build_display_names
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -777,6 +777,8 @@ def cmd_create(args: argparse.Namespace) -> int:
 
     # 8. Write puzzle JSON
     print(f"\n[8/8] Writing puzzle file …")
+    known_names = load_known_names()
+    display_names = build_display_names(shuffled_items, known_names)
     puzzle: dict = {
         "id": args.date,
         "date": args.date,
@@ -784,6 +786,8 @@ def cmd_create(args: argparse.Namespace) -> int:
         "items": shuffled_items,
         "categories": categories_out,
     }
+    if display_names:
+        puzzle["display_names"] = display_names
 
     output_dir.mkdir(parents=True, exist_ok=True)
     out_path = output_dir / f"{args.date}.json"

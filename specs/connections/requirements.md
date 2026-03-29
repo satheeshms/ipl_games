@@ -121,7 +121,7 @@ Puzzle creators are expected to expand this list each season using the data pipe
     {
       "title": "IPL Winning Captains (first time)",
       "color": "blue",
-      "items": ["Shane Warne", "Adam Gilchrist", "Gautam Gambhir", "Rohit Sharma"]
+      "items": ["SK Yadav", "G Gambhir", "Rohit Sharma", "Shane Warne"]
     },
     {
       "title": "Player Nicknames",
@@ -129,9 +129,17 @@ Puzzle creators are expected to expand this list each season using the data pipe
       "items": ["Thala", "Hitman", "King", "Universe Boss"]
     }
   ],
+  "display_names": {
+    "SK Yadav": "Suryakumar Yadav",
+    "G Gambhir": "Gautam Gambhir"
+  },
   "answerHash": "<sha256 of canonical answer string>"
 }
 ```
+
+- `display_names` is an **optional** map from canonical item name → known popular name, for display in the UI only.
+- Only items that differ from their canonical name need an entry; absent items fall back to the canonical name.
+- `display_names` values are **never** used in hash computation, cap/cooldown checks, or collision detection — the canonical `items` strings are always used for those.
 
 ### 5.3 Answer Verification (Client-Side)
 
@@ -221,8 +229,32 @@ IPL Cluster 4 #42 — 14 Mar 2026
 | Kaggle IPL datasets | Historical season data, awards, records |
 | CricAPI / Cricsheet | Live/recent season player and match data |
 | Manual curation | Nicknames, slogans, wordplay categories |
+| Cricsheet People Register (automated) | Known/popular player names — downloadable CSV with 17k+ players and name variants |
+| Wikipedia API (automated fallback) | Known player names where Cricsheet has no match |
+| Wikidata SPARQL (automated fallback) | Structured player data when Wikipedia search is ambiguous |
+| Manual override JSON | Known names for edge cases automated sources get wrong |
 
-### 9.2 Pipeline Output
+### 9.2 Known Player Names
+
+The database stores an optional `known_name` for each player — the popular name recognisable to fans — separate from the canonical `name` used as the system identifier.
+
+- **Canonical name** (`players.name`): stat-format abbreviation as loaded from Kaggle/ESPNCricinfo (e.g. `SK Yadav`). Used as the unique identity key for hashing, cap checks, cooldown tracking, and cross-puzzle collision detection. **Never changed.**
+- **Known name** (`players.known_name`): full popular name (e.g. `Suryakumar Yadav`). Display-only. Nullable — absent means fall back to canonical name.
+
+#### Collection process (run once, then maintained)
+
+1. **Automated — Cricsheet People Register** (`fetch_known_names.py`): primary source. Download `people.csv` from cricsheet.org (free, no scraping). Cross-reference canonical player names against the register using fuzzy/normalised matching; extract the full known name. ESPNCricinfo and CricketArchive IDs in the register further disambiguate players with common names.
+2. **Automated — Wikipedia API fallback**: for players not matched in Cricsheet, search `en.wikipedia.org/w/api.php?action=query&list=search&srsearch=<name>+cricketer` and extract the full name from the page summary. Rate-limit: stay well under 200 req/s.
+3. **Automated — Wikidata SPARQL fallback**: for remaining unmatched players, query Wikidata for cricket players (P106 = Q12299841) with name similarity. More comprehensive than Wikipedia search for lesser-known players.
+4. **Confidence tiering**: high-confidence matches (unique result + nationality/team consistent) are auto-accepted; low-confidence are flagged for manual review.
+5. **Manual override** (`data/known_names_override.json`): curator-maintained map of canonical → known name; takes precedence over all automated results and is never overwritten by scripts.
+6. **Output**: `data/known_names.json` — canonical name → `{ known_name, source, confidence }`.
+
+> **Note:** ESPNCricinfo and Cricbuzz are both protected by Akamai CDN and must not be scraped.
+
+Priority order for initial collection: players already used in puzzles (33, manually verify) → well-known IPL names (~100) → remaining ~450 initial-style names.
+
+### 9.3 Pipeline Output
 
 - Structured data stored in a normalized format (JSON / SQLite).
 - Data refreshed at start of each IPL season + after major milestones.

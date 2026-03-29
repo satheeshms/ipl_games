@@ -45,5 +45,17 @@
       "spec": "costliest_player",
       "hash": "72522e367d224e94416cb09ffaadd2c9323645c579e1ffe5c9546c9a2ca89542"
     }
-  ]
+  ],
+  "display_names": {
+    "MS Dhoni": "Mahendra Singh Dhoni",
+    "SP Goswami": "Shreevats Goswami",
+    "AB Dinda": "Ashok Dinda",
+    "R Ravindra": "Rachin Ravindra",
+    "KL Shrijith": "K L Shrijith",
+    "WP Saha": "Wriddhiman Saha",
+    "IS Sodhi": "Ish Sodhi",
+    "BA Stokes": "Ben Stokes",
+    "AA Jhunjhunwala": "Abhishek Jhunjhunwala",
+    "C Munro": "Colin Munro"
+  }
 }

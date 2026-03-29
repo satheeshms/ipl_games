@@ -12,6 +12,8 @@ export interface Puzzle {
   edition: number;
   items: string[];
   categories: PuzzleCategory[];
+  /** Display-only map: canonical item name -> known popular name. Never used for hashing. */
+  display_names?: Record<string, string>;
 }
 
 export type GameStatus = 'idle' | 'playing' | 'won' | 'lost';

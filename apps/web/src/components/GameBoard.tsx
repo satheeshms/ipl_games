@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import type { Color, Puzzle, PuzzleCategory } from '../types';
 import { useGameEngine } from '../hooks/useGameEngine';
 import { hashItems } from '../lib/hash';
+import { buildShareText } from '../lib/shareText';
 import { CategoryBanner } from './CategoryBanner';
 import { ItemGrid } from './ItemGrid';
 import { LivesIndicator } from './LivesIndicator';
@@ -158,6 +159,18 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     HINT_COLOR_ORDER.some(c => !state.hintedColors.includes(c) && !state.revealedCategories.includes(c));
 
   const isGameOver = state.status === 'won' || state.status === 'lost';
+
+  const handleShareResult = useCallback(async () => {
+    if (!state.puzzle) return;
+    const text = buildShareText(state.puzzle, state.guessHistory, state.hintedColors.length);
+    try {
+      await navigator.clipboard.writeText(text);
+      setToastMessage('Copied!');
+      setTimeout(() => setToastMessage(null), 2000);
+    } catch {
+      // clipboard unavailable — no-op
+    }
+  }, [state.puzzle, state.guessHistory, state.hintedColors.length]);
   const gridDisabled = state.status !== 'playing';
 
   // Find revealed categories (in reveal order) from puzzle definition
@@ -166,13 +179,14 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     .filter((c): c is NonNullable<typeof c> => c !== undefined);
 
   return (
-    <div className="flex flex-col items-center gap-4 w-full max-w-lg mx-auto px-4 py-6" role="main" aria-label="Cluster 4 - IPL Edition puzzle">
+    <div className="flex flex-col items-center gap-3 w-full max-w-lg mx-auto px-4 py-4" role="main" aria-label="Cluster 4 - IPL Edition puzzle">
       {/* Revealed category banners */}
       {revealedPuzzleCategories.map(category => (
         <CategoryBanner
           key={category.color}
           category={category}
           guessHistory={state.guessHistory}
+          displayNames={puzzle.display_names}
         />
       ))}
 
@@ -180,6 +194,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
       {state.gridItems.length > 0 && (
         <ItemGrid
           items={state.gridItems}
+          displayNames={puzzle.display_names}
           selected={state.selected}
           onSelect={engine.selectItem}
           onDeselect={engine.deselectItem}
@@ -207,23 +222,27 @@ export function GameBoard({ puzzle }: GameBoardProps) {
         </div>
       )}
 
-      {/* Lives indicator */}
-      <LivesIndicator lives={state.lives} />
+      {/* Lives + action bar grouped tightly */}
+      <div className="flex flex-col items-center gap-2 w-full">
+        <LivesIndicator lives={state.lives} />
 
-      {/* Toast notification */}
-      <ToastNotification message={toastMessage} />
+        {/* Toast notification */}
+        <ToastNotification message={toastMessage} />
 
-      {/* Action bar */}
-      <ActionBar
-        onShuffle={engine.shuffle}
-        onDeselectAll={engine.deselectAll}
-        onSubmit={handleSubmit}
-        onHint={handleHint}
-        canSubmit={state.selected.length === 4 && state.status === 'playing'}
-        canDeselectAll={state.selected.length > 0}
-        hintsRemaining={hintsRemaining}
-        canHint={canHint}
-      />
+        {/* Action bar — shows game controls while playing, Share Result when game over */}
+        <ActionBar
+          onShuffle={engine.shuffle}
+          onDeselectAll={engine.deselectAll}
+          onSubmit={handleSubmit}
+          onHint={handleHint}
+          onShare={handleShareResult}
+          canSubmit={state.selected.length === 4 && state.status === 'playing'}
+          canDeselectAll={state.selected.length > 0}
+          hintsRemaining={hintsRemaining}
+          canHint={canHint}
+          isGameOver={isGameOver && modalClosed}
+        />
+      </div>
 
       {/* Results modal */}
       {isGameOver && !modalClosed && (

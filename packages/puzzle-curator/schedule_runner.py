@@ -38,7 +38,7 @@ from pathlib import Path
 
 from ambiguity import check_ambiguity
 from category_generators import generate_category
-from hash_util import hash_items, find_category_items
+from hash_util import hash_items, find_category_items, load_known_names, build_display_names
 
 _MAX_RESAMPLE = 10  # max re-draws per conflicting category before giving up
 
@@ -210,6 +210,9 @@ def _next_edition(output_dir: Path) -> int:
     return len(list(output_dir.glob("????-??-??.json"))) + 1
 
 
+_known_names: dict[str, str] = load_known_names()
+
+
 def _shuffle(items: list) -> list:
     import random
     a = list(items)
@@ -315,11 +318,12 @@ def generate_puzzle(row: dict, ipl_data: dict, output_dir: Path,
     all_items = [item for cat in categories for item in cat["items"]]
     edition = row["edition"]
 
+    shuffled = _shuffle(all_items)
     puzzle = {
         "id":       date_str,
         "date":     date_str,
         "edition":  edition,
-        "items":    _shuffle(all_items),
+        "items":    shuffled,
         "categories": [
             {
                 "color": cat["color"],
@@ -330,6 +334,9 @@ def generate_puzzle(row: dict, ipl_data: dict, output_dir: Path,
             for cat in categories
         ],
     }
+    display_names = build_display_names(shuffled, _known_names)
+    if display_names:
+        puzzle["display_names"] = display_names
 
     output_dir.mkdir(parents=True, exist_ok=True)
     out_path.write_text(json.dumps(puzzle, indent=2, ensure_ascii=False), encoding="utf-8")
@@ -450,6 +457,12 @@ def cmd_reshuffle(args: argparse.Namespace, ipl_data: dict,
     for cat in categories:
         cat.pop("items", None)
 
+    display_names = build_display_names(puzzle.get("items", []), _known_names)
+    if display_names:
+        puzzle["display_names"] = display_names
+    else:
+        puzzle.pop("display_names", None)
+
     out_path.write_text(json.dumps(puzzle, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  Written -> {out_path}")
     return 0
@@ -506,6 +519,12 @@ def cmd_set_items(args: argparse.Namespace, output_dir: Path) -> int:
     # Strip 'items' from all categories — items live only at the top level.
     for cat in categories:
         cat.pop("items", None)
+
+    display_names = build_display_names(puzzle.get("items", []), _known_names)
+    if display_names:
+        puzzle["display_names"] = display_names
+    else:
+        puzzle.pop("display_names", None)
 
     out_path.write_text(json.dumps(puzzle, indent=2, ensure_ascii=False), encoding="utf-8")
     print(f"  Written -> {out_path}")

@@ -1,0 +1,61 @@
+{
+  "id": "2026-03-30",
+  "date": "2026-03-30",
+  "edition": 7,
+  "items": [
+    "DJ Bravo",
+    "AC Gilchrist",
+    "LS Livingstone",
+    "JM Sharma",
+    "Lhuan-dre Pretorius",
+    "Shubman Gill",
+    "V Kohli",
+    "Harbhajan Singh",
+    "RM Patidar",
+    "Ravi Singh",
+    "PP Chawla",
+    "JC Archer",
+    "R Ashwin",
+    "TM Head",
+    "Aman Rao",
+    "Dhruv Jurel"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Rajasthan Royals 2026 Squad",
+      "spec": "team_players:RR:2026",
+      "hash": "928e73e654db9ac06adf2da60a4049a8544a0bbac1198fd6da5c439504416692"
+    },
+    {
+      "color": "green",
+      "title": "Player of the Tournament",
+      "spec": "player_of_tournament",
+      "hash": "f1e7e7a33cd447e5c78ecabf0545809346aed6f802dca82485c9044608d778f2"
+    },
+    {
+      "color": "blue",
+      "title": "Chennai Super Kings Bowling Legends",
+      "spec": "team_legends_bowling:CSK",
+      "hash": "9dd825241616f5acf6f0b665c4ac8c9009eef226d2ba56020f9b6f3db4aa5b8d"
+    },
+    {
+      "color": "purple",
+      "title": "IPL High Strike Rate Batsmen (150+ SR)",
+      "spec": "high_strike_rate",
+      "hash": "0cee56342175d86ac87b094eadf36907f17c83d9d76074937871b85d58d1d4e2"
+    }
+  ],
+  "display_names": {
+    "DJ Bravo": "Dwayne Bravo",
+    "AC Gilchrist": "Adam Gilchrist",
+    "LS Livingstone": "Liam Livingstone",
+    "JM Sharma": "Jitesh Sharma",
+    "V Kohli": "Virat Kohli",
+    "RM Patidar": "Rajat Patidar",
+    "PP Chawla": "Piyush Chawla",
+    "JC Archer": "Jofra Archer",
+    "R Ashwin": "Ravichandran Ashwin",
+    "TM Head": "Travis Head"
+  }
+}

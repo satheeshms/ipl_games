@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 
 interface ItemTileProps {
   item: string;
+  displayName?: string;
   isSelected: boolean;
   onSelect: () => void;
   onDeselect: () => void;
@@ -10,7 +11,16 @@ interface ItemTileProps {
   bouncing?: boolean;
 }
 
-export function ItemTile({ item, isSelected, onSelect, onDeselect, disabled, shaking = false, bouncing = false }: ItemTileProps) {
+function labelFontSize(label: string): string {
+  if (label.length > 22) return 'text-[0.6rem]';
+  if (label.length > 16) return 'text-[0.7rem]';
+  if (label.length > 11) return 'text-xs';
+  return 'text-sm';
+}
+
+export function ItemTile({ item, displayName, isSelected, onSelect, onDeselect, disabled, shaking = false, bouncing = false }: ItemTileProps) {
+  const label = displayName ?? item;
+
   function handleClick() {
     if (disabled) return;
     if (isSelected) {
@@ -25,13 +35,13 @@ export function ItemTile({ item, isSelected, onSelect, onDeselect, disabled, sha
       onClick={handleClick}
       disabled={disabled}
       aria-pressed={isSelected}
-      aria-label={`${item}${isSelected ? ', selected' : ''}`}
+      aria-label={`${label}${isSelected ? ', selected' : ''}`}
       animate={bouncing ? { scale: [1, 1.1, 0.95, 1.05, 1] } : { scale: 1 }}
       transition={bouncing ? { duration: 0.4 } : { duration: 0.15 }}
       className={[
-        'rounded-lg py-4 px-2 text-white text-sm font-semibold text-center',
-        'uppercase tracking-wider leading-tight break-words',
-        'transition-colors duration-150 select-none min-h-[48px]',
+        `rounded-lg px-2 text-white ${labelFontSize(label)} font-semibold text-center`,
+        'h-16 flex items-center justify-center leading-tight',
+        'transition-colors duration-150 select-none',
         'focus:outline-none focus-visible:ring-2 focus-visible:ring-game-accent/50',
         isSelected
           ? 'bg-game-tile-selected border-2 border-game-accent'
@@ -40,7 +50,7 @@ export function ItemTile({ item, isSelected, onSelect, onDeselect, disabled, sha
         shaking ? 'shake' : '',
       ].join(' ')}
     >
-      {item}
+      {label}
     </motion.button>
   );
 }

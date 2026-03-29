@@ -143,6 +143,8 @@ export interface Puzzle {
   edition: number;
   items: string[];
   categories: PuzzleCategory[];
+  /** Optional map from canonical item name → known popular name (display only). */
+  display_names?: Record<string, string>;
 }
 
 export type GameStatus = 'idle' | 'playing' | 'won' | 'lost';
@@ -348,14 +350,17 @@ VitePWA({
 |---|---|---|
 | `kaggle_loader.py` | Kaggle IPL dataset CSV | Normalized player/team/award records (awards loaded from manual_awards.json — orange_cap, purple_cap, player_of_tournament, costliest_player sourced from Wikipedia/official records) |
 | `squad_loader.py` | `ipl20??-squad` CSV files (Team, Complete Squad List) | Players + player_teams for 2025/2026 seasons; season inferred from filename |
-| `espncricinfo.py` | Web scraping (respectful, rate-limited) | Recent season stats, squad lists |
-| `normalizer.py` | All scrapers | `data/ipl_data.json` + `data/ipl.db` (SQLite) |
+| `espncricinfo.py` | Web scraping (respectful, rate-limited) | Recent season stats, squad lists — **note: Akamai CDN may block; use only where viable** |
+| `fetch_known_names.py` | Cricsheet People Register → Wikipedia API → Wikidata SPARQL | `data/known_names.json` — canonical name → known popular name with source + confidence |
+| `normalizer.py` | All scrapers + known_names.json | `data/ipl_data.json` + `data/ipl.db` (SQLite) |
 
 ### Data Schema (SQLite)
 
 ```sql
 -- Key tables (curator queries these)
-players(id, name, nicknames, nationality, batting_hand, bowling_hand)
+players(id, name, known_name, nicknames, nationality, batting_hand, bowling_hand)
+-- known_name: optional popular/display name (e.g. "Suryakumar Yadav" for canonical "SK Yadav")
+-- Populated by fetch_known_names.py; never used for hashing or identity checks
 teams(id, name, short_name, city, home_venue, active_from, active_to)
 player_teams(player_id, team_id, season)
 awards(type, player_id, season)          -- type: orange_cap, purple_cap, player_of_tournament, costliest_player
@@ -480,6 +485,31 @@ def hash_items(items: list[str]) -> str:
 - [x] `normalizer.py`: unified schema
 - [ ] `espncricinfo.py`: basic squad/award scraper (rate-limited)
 - [ ] Manual data entry: nicknames, slogans, wordplay items
+
+### Phase 8a — Known Player Names Data Collection
+
+> ESPNCricinfo and Cricbuzz are both Akamai-CDN-protected and must not be scraped.
+
+- [ ] Add `known_name` column to `players` table in `schema.py`
+- [ ] Create `data/known_names_override.json` — manually curate the 33 initial-style players already used in puzzles (highest priority; verify by hand)
+- [ ] Download `people.csv` from cricsheet.org into `data/cricsheet_people.csv`
+- [ ] Write `fetch_known_names.py`:
+  - Reads all initial-style canonical names from `ipl.db`
+  - Skips names already present in `known_names_override.json`
+  - **Step 1 — Cricsheet Register**: fuzzy-match each canonical name against `cricsheet_people.csv`; use Cricinfo/CricketArchive IDs in the register to disambiguate. Assign `confidence=high` on unique unambiguous match.
+  - **Step 2 — Wikipedia API fallback**: for unmatched names, call `en.wikipedia.org/w/api.php?action=query&list=search&srsearch=<name>+cricketer` then fetch page summary. Respectful rate limiting (≤1 req/s).
+  - **Step 3 — Wikidata SPARQL fallback**: for still-unmatched names, query Wikidata SPARQL for cricket players (occupation P106=Q12299841) with name similarity.
+  - Assigns `confidence`: `high` (unique match + nationality/team consistent) or `low` (flagged for manual review)
+  - Outputs `data/known_names.json` — `{ "<canonical>": { "known_name": "...", "source": "cricsheet|wikipedia|wikidata|override", "confidence": "high|low" } }`
+- [ ] Review all `low`-confidence entries; promote corrections to `known_names_override.json`
+- [ ] Update `normalizer.py` to merge `known_names.json` + override into `players.known_name` on DB/JSON export
+- [ ] Update `normalizer.py` to include `known_name` alongside `player_name` in all `ipl_data.json` sections
+- [ ] Update `curator.py` to auto-populate `display_names` in puzzle JSON for any item that has a `known_name`
+
+### Phase 8b — Known Names UI
+- [ ] Add `display_names?: Record<string, string>` to `Puzzle` type in `src/types/index.ts`
+- [ ] Update `ItemTile.tsx` to render `display_names[item] ?? item` — display only, no logic change
+- [ ] Hash computation, game state, localStorage, and share text continue to use canonical `item` strings
 
 ### Phase 9 — Puzzle Curator (Week 5)
 - [x] `curator.py create` interactive flow

@@ -1,24 +1,6 @@
 import { useState } from 'react';
 import type { GameStatus, Puzzle, Guess } from '../types';
-
-const COLOR_EMOJI: Record<string, string> = {
-  yellow: '🟨',
-  green:  '🟩',
-  blue:   '🟦',
-  purple: '🟪',
-};
-
-function buildRow(guess: Guess, index: number): string {
-  if (guess.correct && guess.categoryColor) return COLOR_EMOJI[guess.categoryColor].repeat(4);
-  if (guess.oneAwayColor) {
-    const cells = [COLOR_EMOJI[guess.oneAwayColor], COLOR_EMOJI[guess.oneAwayColor], COLOR_EMOJI[guess.oneAwayColor], '⬛'];
-    // rotate ⬛ to a different position per row index
-    const pos = index % 4;
-    [cells[3], cells[pos]] = [cells[pos], cells[3]];
-    return cells.join('');
-  }
-  return '⬛'.repeat(4);
-}
+import { buildShareText, buildEmojiRows } from '../lib/shareText';
 
 interface ResultsModalProps {
   status: GameStatus;
@@ -37,23 +19,10 @@ export function ResultsModal({ status, puzzle, guessHistory, hintsUsed, onClose 
     day: 'numeric', month: 'short', year: 'numeric',
   });
 
-  // Build one emoji row per guess
-  const emojiRows = guessHistory.map((guess, i) => buildRow(guess, i));
-
+  const emojiRows = buildEmojiRows(guessHistory);
+  const shareText = buildShareText(puzzle, guessHistory, hintsUsed);
   const hintsLine = hintsUsed > 0 ? `💡 Hints used: ${hintsUsed}/2` : 'No hints used';
-
   const gameUrl = window.location.origin + window.location.pathname;
-
-  const shareText = [
-    `Cluster 4 – IPL #${puzzle.edition}`,
-    formattedDate,
-    '',
-    ...emojiRows,
-    '',
-    hintsLine,
-    '',
-    gameUrl,
-  ].join('\n');
 
   async function handleShare() {
     try {
