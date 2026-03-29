@@ -47,15 +47,17 @@ export function HelpModal({ onClose }: HelpModalProps) {
 
   return (
     <AnimatePresence>
-      {/* Backdrop */}
+      {/* Backdrop — acts as the scroll container so the panel is always reachable */}
       <motion.div
         key="backdrop"
-        className="fixed inset-0 bg-black/70 z-40 flex items-center justify-center px-4"
+        className="fixed inset-0 bg-black/70 z-40 overflow-y-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClose}
       >
+        {/* Centering wrapper: centres on tall screens, scrolls on short ones */}
+        <div className="flex min-h-full items-center justify-center px-4 py-4">
         {/* Panel */}
         <motion.div
           key="panel"
@@ -138,6 +140,7 @@ export function HelpModal({ onClose }: HelpModalProps) {
             Let's Play!
           </button>
         </motion.div>
+        </div>
       </motion.div>
     </AnimatePresence>
   );

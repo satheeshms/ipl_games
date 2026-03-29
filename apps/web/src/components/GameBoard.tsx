@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import type { Color, Puzzle, PuzzleCategory } from '../types';
 import { useGameEngine } from '../hooks/useGameEngine';
 import { hashItems } from '../lib/hash';
+import { buildShareText } from '../lib/shareText';
 import { CategoryBanner } from './CategoryBanner';
 import { ItemGrid } from './ItemGrid';
 import { LivesIndicator } from './LivesIndicator';
@@ -158,6 +159,18 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     HINT_COLOR_ORDER.some(c => !state.hintedColors.includes(c) && !state.revealedCategories.includes(c));
 
   const isGameOver = state.status === 'won' || state.status === 'lost';
+
+  const handleShareResult = useCallback(async () => {
+    if (!state.puzzle) return;
+    const text = buildShareText(state.puzzle, state.guessHistory, state.hintedColors.length);
+    try {
+      await navigator.clipboard.writeText(text);
+      setToastMessage('Copied!');
+      setTimeout(() => setToastMessage(null), 2000);
+    } catch {
+      // clipboard unavailable — no-op
+    }
+  }, [state.puzzle, state.guessHistory, state.hintedColors.length]);
   const gridDisabled = state.status !== 'playing';
 
   // Find revealed categories (in reveal order) from puzzle definition
@@ -173,6 +186,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
           key={category.color}
           category={category}
           guessHistory={state.guessHistory}
+          displayNames={puzzle.display_names}
         />
       ))}
 
@@ -225,6 +239,18 @@ export function GameBoard({ puzzle }: GameBoardProps) {
         hintsRemaining={hintsRemaining}
         canHint={canHint}
       />
+
+      {/* Share button — shown when game is over and modal has been dismissed */}
+      {isGameOver && modalClosed && (
+        <button
+          onClick={handleShareResult}
+          aria-label="Share your result"
+          className="rounded-full bg-game-accent px-8 py-2.5 text-sm font-semibold text-[#1a1a2e]
+                     hover:opacity-90 transition-opacity"
+        >
+          Share Result
+        </button>
+      )}
 
       {/* Results modal */}
       {isGameOver && !modalClosed && (

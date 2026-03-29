@@ -11,11 +11,13 @@ const COLOR_MAP: Record<string, string> = {
 interface CategoryBannerProps {
   category: PuzzleCategory;
   guessHistory: Guess[];
+  displayNames?: Record<string, string>;
 }
 
-export function CategoryBanner({ category, guessHistory }: CategoryBannerProps) {
+export function CategoryBanner({ category, guessHistory, displayNames }: CategoryBannerProps) {
   const guess = guessHistory.find(g => g.correct && g.categoryColor === category.color);
   const items = guess?.items ?? [];
+  const labels = items.map(item => displayNames?.[item] ?? item);
 
   return (
     <motion.div
@@ -26,7 +28,7 @@ export function CategoryBanner({ category, guessHistory }: CategoryBannerProps) 
       style={{ backgroundColor: COLOR_MAP[category.color] }}
     >
       <p className="text-sm font-bold text-gray-900 uppercase tracking-wider">{category.title}</p>
-      <p className="text-sm text-gray-800">{items.join(', ')}</p>
+      <p className="text-sm text-gray-800">{labels.join(', ')}</p>
     </motion.div>
   );
 }
