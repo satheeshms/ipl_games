@@ -180,6 +180,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
       {state.gridItems.length > 0 && (
         <ItemGrid
           items={state.gridItems}
+          displayNames={puzzle.display_names}
           selected={state.selected}
           onSelect={engine.selectItem}
           onDeselect={engine.deselectItem}

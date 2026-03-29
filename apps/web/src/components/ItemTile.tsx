@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 
 interface ItemTileProps {
   item: string;
+  displayName?: string;
   isSelected: boolean;
   onSelect: () => void;
   onDeselect: () => void;
@@ -10,7 +11,9 @@ interface ItemTileProps {
   bouncing?: boolean;
 }
 
-export function ItemTile({ item, isSelected, onSelect, onDeselect, disabled, shaking = false, bouncing = false }: ItemTileProps) {
+export function ItemTile({ item, displayName, isSelected, onSelect, onDeselect, disabled, shaking = false, bouncing = false }: ItemTileProps) {
+  const label = displayName ?? item;
+
   function handleClick() {
     if (disabled) return;
     if (isSelected) {
@@ -25,7 +28,7 @@ export function ItemTile({ item, isSelected, onSelect, onDeselect, disabled, sha
       onClick={handleClick}
       disabled={disabled}
       aria-pressed={isSelected}
-      aria-label={`${item}${isSelected ? ', selected' : ''}`}
+      aria-label={`${label}${isSelected ? ', selected' : ''}`}
       animate={bouncing ? { scale: [1, 1.1, 0.95, 1.05, 1] } : { scale: 1 }}
       transition={bouncing ? { duration: 0.4 } : { duration: 0.15 }}
       className={[
@@ -40,7 +43,7 @@ export function ItemTile({ item, isSelected, onSelect, onDeselect, disabled, sha
         shaking ? 'shake' : '',
       ].join(' ')}
     >
-      {item}
+      {label}
     </motion.button>
   );
 }
