@@ -1,5 +1,5 @@
 import { useEffect, useState, useCallback } from 'react';
-import type { Color, Puzzle, PuzzleCategory } from '../types';
+import type { Color, GameMode, Puzzle, PuzzleCategory } from '../types';
 import { useGameEngine } from '../hooks/useGameEngine';
 import { hashItems } from '../lib/hash';
 import { track } from '../lib/analytics';
@@ -22,9 +22,11 @@ const COLOR_LABEL: Record<Color, string> = {
 
 interface GameBoardProps {
   puzzle: Puzzle;
+  gameMode: GameMode;
+  onFirstGuess: () => void;
 }
 
-async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<{ color: Color } | null> {
+async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<{ color: Color; wrongItem: string } | null> {
   const remainingItems = gridItems.filter(gi => !selected.includes(gi));
   for (const category of categories) {
     for (let removeIdx = 0; removeIdx < selected.length; removeIdx++) {
@@ -32,14 +34,14 @@ async function checkOneAway(selected: string[], gridItems: string[], categories:
       for (const candidate of remainingItems) {
         // eslint-disable-next-line no-await-in-loop
         const comboHash = await hashItems([...threesome, candidate]);
-        if (comboHash === category.hash) return { color: category.color };
+        if (comboHash === category.hash) return { color: category.color, wrongItem: selected[removeIdx] };
       }
     }
   }
   return null;
 }
 
-export function GameBoard({ puzzle }: GameBoardProps) {
+export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
   const engine = useGameEngine();
   const { state } = engine;
 
@@ -79,6 +81,9 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     // Capture before any state change
     const selectedItems = [...state.selected];
     const attemptNumber = state.guessHistory.length + 1;
+
+    // Notify App that game has started (first guess)
+    if (state.guessHistory.length === 0) onFirstGuess();
 
     // Duplicate check
     const sortedSelected = [...selectedItems].sort();
@@ -126,7 +131,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
         track('game_completed', { puzzle_id: state.puzzle.id, result: 'lost', groups_made: state.revealedCategories.length, total_attempts: attemptNumber });
       }
 
-      engine.wrongGuess(match !== null, match?.color);
+      engine.wrongGuess(match !== null, match?.color, match?.wrongItem);
     }
   }, [state, engine]);
 
@@ -179,7 +184,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
 
   const handleShareResult = useCallback(async () => {
     if (!state.puzzle) return;
-    const text = buildShareText(state.puzzle, state.guessHistory, state.hintedColors.length);
+    const text = buildShareText(state.puzzle, state.guessHistory, state.hintedColors.length, gameMode);
     try {
       await navigator.clipboard.writeText(text);
       setToastMessage('Copied!');
@@ -218,6 +223,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
           disabled={gridDisabled}
           shakingItems={shakingItems}
           bouncingItems={bouncingItems}
+          highlightedItem={gameMode === 'easy' && state.oneAway ? state.oneAwayWrongItem : undefined}
         />
       )}
 

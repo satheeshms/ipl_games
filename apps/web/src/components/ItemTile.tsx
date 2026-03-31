@@ -9,6 +9,7 @@ interface ItemTileProps {
   disabled: boolean;
   shaking?: boolean;
   bouncing?: boolean;
+  highlighted?: boolean;
 }
 
 function labelFontSize(label: string): string {
@@ -18,7 +19,7 @@ function labelFontSize(label: string): string {
   return 'text-sm';
 }
 
-export function ItemTile({ item, displayName, isSelected, onSelect, onDeselect, disabled, shaking = false, bouncing = false }: ItemTileProps) {
+export function ItemTile({ item, displayName, isSelected, onSelect, onDeselect, disabled, shaking = false, bouncing = false, highlighted = false }: ItemTileProps) {
   const label = displayName ?? item;
 
   function handleClick() {
@@ -45,6 +46,8 @@ export function ItemTile({ item, displayName, isSelected, onSelect, onDeselect, 
         'focus:outline-none focus-visible:ring-2 focus-visible:ring-game-accent/50',
         isSelected
           ? 'bg-game-tile-selected border-2 border-game-accent'
+          : highlighted
+          ? 'bg-red-900/40 border-2 border-red-400'
           : 'bg-game-tile border border-white/10 hover:bg-game-tile-hover hover:border-game-accent/40',
         disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer',
         shaking ? 'shake' : '',

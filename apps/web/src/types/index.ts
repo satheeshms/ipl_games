@@ -1,4 +1,5 @@
 export type Color = 'yellow' | 'green' | 'blue' | 'purple';
+export type GameMode = 'easy' | 'pro';
 
 export interface PuzzleCategory {
   color: Color;
@@ -34,5 +35,6 @@ export interface GameState {
   guessHistory: Guess[];
   status: GameStatus;
   oneAway: boolean;         // transient flag for "One Away!" toast
+  oneAwayWrongItem?: string; // set when one-away detected: the item that needs swapping
   hintedColors: Color[];    // colors whose titles have been revealed as hints (max 2)
 }

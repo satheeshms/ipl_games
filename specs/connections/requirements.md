@@ -296,8 +296,24 @@ Priority order for initial collection: players already used in puzzles (33, manu
 ## 12. Future Considerations
 
 - Archive of past puzzles with replay capability.
-- Difficulty selection (Rookie / Pro / Legend mode).
 - Team-themed daily puzzles (e.g., "CSK Week").
-- Hint system (costs a life to reveal one item's category).
 - Integration with live IPL match events for special edition puzzles.
 - Localization in Hindi and regional languages.
+
+---
+
+## 13. Game Modes
+
+### 13.1 Easy / Pro Toggle
+
+- The game supports two modes: **Easy** and **Pro**.
+- **Pro** (default): identical to current behavior.
+- **Easy**: when a "One Away" situation is detected, the single wrong item in the player's selection is visually highlighted in the grid, giving the player a hint about which tile to swap.
+- Mode is selected in the **Header** alongside the help icon.
+- The toggle is **disabled once the game has started** (first guess submitted) — mode cannot be changed mid-game.
+- Mode persists in `localStorage` (key: `ipl-cluster4-gamemode`) across sessions.
+
+### 13.2 Share Text Includes Game Mode
+
+- Share result text appends `· Easy Mode` when the game was played in Easy mode.
+- Pro mode share text is unchanged (no label added — Pro is the default/baseline).

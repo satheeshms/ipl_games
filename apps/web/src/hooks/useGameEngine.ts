@@ -16,7 +16,7 @@ type GameAction =
   | { type: 'DESELECT_ALL' }
   | { type: 'SHUFFLE' }
   | { type: 'REVEAL_CATEGORY'; payload: { color: Color } }
-  | { type: 'WRONG_GUESS'; payload: { oneAway: boolean; oneAwayColor?: Color } }
+  | { type: 'WRONG_GUESS'; payload: { oneAway: boolean; oneAwayColor?: Color; oneAwayWrongItem?: string } }
   | { type: 'CLEAR_ONE_AWAY' }
   | { type: 'USE_HINT'; payload: { color: Color } }
   | { type: 'GAME_OVER'; payload: { status: 'won' | 'lost' } };
@@ -116,6 +116,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         lives: state.lives - 1,
         selected: [],
         oneAway: action.payload.oneAway,
+        oneAwayWrongItem: action.payload.oneAwayWrongItem,
         guessHistory: [
           ...state.guessHistory,
           { items: [...state.selected], correct: false, oneAwayColor: action.payload.oneAwayColor },
@@ -124,7 +125,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     }
 
     case 'CLEAR_ONE_AWAY': {
-      return { ...state, oneAway: false };
+      return { ...state, oneAway: false, oneAwayWrongItem: undefined };
     }
 
     case 'USE_HINT': {
@@ -155,7 +156,7 @@ interface UseGameEngineResult {
   loadPuzzle: (puzzle: Puzzle) => void;
   clearOneAway: () => void;
   revealCategory: (color: Color) => void;
-  wrongGuess: (oneAway: boolean, oneAwayColor?: Color) => void;
+  wrongGuess: (oneAway: boolean, oneAwayColor?: Color, wrongItem?: string) => void;
   useHint: (color: Color) => void;
 }
 
@@ -302,8 +303,8 @@ export function useGameEngine(): UseGameEngineResult {
   // ------------------------------------------------------------------
   // wrongGuess — dispatches WRONG_GUESS then checks for game over
   // ------------------------------------------------------------------
-  const wrongGuess = useCallback((oneAway: boolean, oneAwayColor?: Color) => {
-    dispatch({ type: 'WRONG_GUESS', payload: { oneAway, oneAwayColor } });
+  const wrongGuess = useCallback((oneAway: boolean, oneAwayColor?: Color, wrongItem?: string) => {
+    dispatch({ type: 'WRONG_GUESS', payload: { oneAway, oneAwayColor, oneAwayWrongItem: wrongItem } });
     // lives - 1 because the reducer hasn't run yet at this point
     if (state.lives - 1 === 0) {
       dispatch({ type: 'GAME_OVER', payload: { status: 'lost' } });

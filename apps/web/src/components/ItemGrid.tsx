@@ -9,9 +9,10 @@ interface ItemGridProps {
   disabled: boolean;
   shakingItems?: string[];
   bouncingItems?: string[];
+  highlightedItem?: string;
 }
 
-export function ItemGrid({ items, displayNames, selected, onSelect, onDeselect, disabled, shakingItems = [], bouncingItems = [] }: ItemGridProps) {
+export function ItemGrid({ items, displayNames, selected, onSelect, onDeselect, disabled, shakingItems = [], bouncingItems = [], highlightedItem }: ItemGridProps) {
   return (
     <div className="grid grid-cols-4 gap-2 w-full">
       {items.map(item => (
@@ -25,6 +26,7 @@ export function ItemGrid({ items, displayNames, selected, onSelect, onDeselect, 
           disabled={disabled}
           shaking={shakingItems.includes(item)}
           bouncing={bouncingItems.includes(item)}
+          highlighted={item === highlightedItem}
         />
       ))}
     </div>
