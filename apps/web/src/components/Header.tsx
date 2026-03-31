@@ -28,25 +28,41 @@ export function Header({ edition, date, gameMode, gameStarted, onToggleGameMode,
           <span className="text-sm text-white/50">
             #{edition} &middot; {formatDate(date)}
           </span>
-          <button
-            onClick={gameStarted ? undefined : onToggleGameMode}
-            disabled={gameStarted}
-            aria-label={
-              gameStarted
-                ? 'Game mode locked'
-                : `Switch to ${gameMode === 'easy' ? 'Pro' : 'Easy'} mode`
-            }
+          <div
+            role="group"
+            aria-label={gameStarted ? 'Game mode locked' : 'Game mode'}
             className={[
-              'rounded-full border px-3 py-0.5 text-xs font-semibold transition-colors',
-              gameStarted
-                ? 'border-white/15 text-white/25 cursor-not-allowed'
-                : gameMode === 'easy'
-                ? 'border-amber-400/60 text-amber-300 hover:border-amber-400 hover:text-amber-200'
-                : 'border-white/30 text-white/50 hover:border-white/60 hover:text-white/80',
+              'flex rounded-full border text-xs font-semibold overflow-hidden transition-opacity',
+              gameStarted ? 'border-white/10 opacity-30 pointer-events-none' : 'border-white/25',
             ].join(' ')}
           >
-            {gameMode === 'easy' ? 'Easy' : 'Pro'}
-          </button>
+            <button
+              onClick={() => !gameStarted && gameMode !== 'pro' && onToggleGameMode()}
+              aria-pressed={gameMode === 'pro'}
+              disabled={gameStarted}
+              className={[
+                'px-3 py-1 transition-colors',
+                gameMode === 'pro'
+                  ? 'bg-white/20 text-white'
+                  : 'text-white/40 hover:text-white/70',
+              ].join(' ')}
+            >
+              Pro
+            </button>
+            <button
+              onClick={() => !gameStarted && gameMode !== 'easy' && onToggleGameMode()}
+              aria-pressed={gameMode === 'easy'}
+              disabled={gameStarted}
+              className={[
+                'px-3 py-1 transition-colors',
+                gameMode === 'easy'
+                  ? 'bg-amber-400/30 text-amber-300'
+                  : 'text-white/40 hover:text-white/70',
+              ].join(' ')}
+            >
+              Easy
+            </button>
+          </div>
           <button
             onClick={onHelp}
             aria-label="How to play"
