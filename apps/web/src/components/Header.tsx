@@ -43,7 +43,7 @@ export function Header({ edition, date, gameMode, gameStarted, onToggleGameMode,
               className={[
                 'px-3 py-1 transition-colors',
                 gameMode === 'pro'
-                  ? 'bg-white/20 text-white'
+                  ? 'bg-sky-400/30 text-sky-300'
                   : 'text-white/40 hover:text-white/70',
               ].join(' ')}
             >
