@@ -1,0 +1,61 @@
+{
+  "id": "2026-04-02",
+  "date": "2026-04-02",
+  "edition": 10,
+  "items": [
+    "SK Raina",
+    "V Kohli",
+    "F du Plessis",
+    "DA Warner",
+    "Mayank Markande",
+    "GC Smith",
+    "Ramandeep Singh",
+    "VVS Laxman",
+    "HM Amla",
+    "AC Thomas",
+    "A Ashish Reddy",
+    "TL Suman",
+    "S Badrinath",
+    "Anrich Nortje",
+    "AD Russell",
+    "CH Gayle"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Kolkata Knight Riders 2025 Squad",
+      "spec": "team_players:KKR:2025",
+      "hash": "c342dd0e6d4cbc0765526148092950b65f2b23b3770ef21835023642a8439155"
+    },
+    {
+      "color": "green",
+      "title": "Players from South Africa",
+      "spec": "country:South Africa",
+      "hash": "6cc7467d820b94e5452a98a77477f02cf61c948d0c7a2951bd8851302bc77cc3"
+    },
+    {
+      "color": "blue",
+      "title": "IPL Batting Record Holders",
+      "spec": "batting_records",
+      "hash": "0c9c577ad3b42e6d36ac4fab5eae64ca3f9fe53969a8371c73060ecd9f1b8171"
+    },
+    {
+      "color": "purple",
+      "title": "Ranji Trophy: Hyderabad",
+      "spec": "ranji:Hyderabad",
+      "hash": "3a3395b6f8c70ea88c1cbbf4fe52fc78c140aed92bb4d44f2763828029bb4652"
+    }
+  ],
+  "display_names": {
+    "V Kohli": "Virat Kohli",
+    "F du Plessis": "Faf du Plessis",
+    "DA Warner": "David Warner",
+    "HM Amla": "Hashim Amla",
+    "AC Thomas": "Antonio Thomas",
+    "A Ashish Reddy": "Ashish Reddy",
+    "TL Suman": "Tirumalasetti Suman",
+    "S Badrinath": "Subramaniam Badrinath",
+    "AD Russell": "Andre Russell",
+    "CH Gayle": "Chris Gayle"
+  }
+}
