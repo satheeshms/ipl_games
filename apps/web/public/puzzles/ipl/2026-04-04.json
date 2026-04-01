@@ -1,0 +1,59 @@
+{
+  "id": "2026-04-04",
+  "date": "2026-04-04",
+  "edition": 12,
+  "items": [
+    "Iqbal Abdulla",
+    "PR Shah",
+    "Mukesh Kumar",
+    "RR Raje",
+    "AJ Tye",
+    "Rashid Khan",
+    "RG Sharma",
+    "R Tewatia",
+    "PP Ojha",
+    "Ben Duckett",
+    "Sahil Parakh",
+    "Shubman Gill",
+    "Imran Tahir",
+    "MS Wade",
+    "Prasidh Krishna",
+    "T. Natarajan"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Delhi Capitals 2026 Squad",
+      "spec": "team_players:DC:2026",
+      "hash": "2d9b1317852056d28a70ccea4b4c686b6bb4e08b13c65575bc21dafbdbc44cba"
+    },
+    {
+      "color": "green",
+      "title": "Gujarat Titans 2022 Squad",
+      "spec": "team_players:GT:2022",
+      "hash": "6758e58775ef14a8ee1763e036e647357cbe7dba5d363ccc8968722563648500"
+    },
+    {
+      "color": "blue",
+      "title": "Ranji Trophy: Mumbai",
+      "spec": "ranji:Mumbai",
+      "hash": "b622ba11b4b38077a4b6d07d3c494e49bbe8e11deda8e3df191ef91dade77635"
+    },
+    {
+      "color": "purple",
+      "title": "Purple Cap Winners",
+      "spec": "purple_cap",
+      "hash": "4ad8d7c348e8fc0928ea63a54e204908d84a9fd75bf49a66932946c11658c69e"
+    }
+  ],
+  "display_names": {
+    "PR Shah": "Pinal Shah",
+    "RR Raje": "Ranjit Raje",
+    "AJ Tye": "Andrew Tye",
+    "RG Sharma": "Rohit Sharma",
+    "R Tewatia": "Rahul Tewatia",
+    "PP Ojha": "Pragyan Ojha",
+    "MS Wade": "Matthew Wade",
+    "T. Natarajan": "T Natarajan"
+  }
+}

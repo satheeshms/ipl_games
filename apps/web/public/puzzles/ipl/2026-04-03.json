@@ -1,0 +1,61 @@
+{
+  "id": "2026-04-03",
+  "date": "2026-04-03",
+  "edition": 11,
+  "items": [
+    "Kuldeep Yadav",
+    "RR Powar",
+    "JR Hopes",
+    "Ayush Mhatre",
+    "AB de Villiers",
+    "Shreyas Gopal",
+    "JJ Bumrah",
+    "Akeal Hosein",
+    "V Kohli",
+    "SN Thakur",
+    "Matt Henry",
+    "AR Patel",
+    "RV Uthappa",
+    "TM Srivastava",
+    "S Dhawan",
+    "SE Marsh"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Chennai Super Kings 2026 Squad",
+      "spec": "team_players:CSK:2026",
+      "hash": "10a9857511915aa30a7380b7f040b03006f8f6ec7a27bbc95b959caac459c35a"
+    },
+    {
+      "color": "green",
+      "title": "Punjab Kings 2008 Squad",
+      "spec": "team_players:PBKS:2008",
+      "hash": "c1957e9c4f46130e7dad8f0ca0ab2b8f6439e1c18379b6d45d716f34c41c2140"
+    },
+    {
+      "color": "blue",
+      "title": "IPL Career Wicket Takers (100+ Wickets)",
+      "spec": "top_wicket_takers",
+      "hash": "cdb778da7411c150cf4e68913a825a3e1ef59f6cffcacf5ed379c0278afaf327"
+    },
+    {
+      "color": "purple",
+      "title": "Longest Serving IPL Players",
+      "spec": "longest_serving",
+      "hash": "ab5666c19f9acb80c538715f95024078bf0fd28574050f515ff5b9667a01d77d"
+    }
+  ],
+  "display_names": {
+    "RR Powar": "Ramesh Powar",
+    "JR Hopes": "James Hopes",
+    "JJ Bumrah": "Jasprit Bumrah",
+    "V Kohli": "Virat Kohli",
+    "SN Thakur": "Shardul Thakur",
+    "AR Patel": "Axar Patel",
+    "RV Uthappa": "Robin Uthappa",
+    "TM Srivastava": "Tanmay Srivastava",
+    "S Dhawan": "Shikhar Dhawan",
+    "SE Marsh": "Shaun Marsh"
+  }
+}
