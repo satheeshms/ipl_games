@@ -26,6 +26,26 @@ interface GameBoardProps {
   onFirstGuess: () => void;
 }
 
+// Easy mode: find how many selected items are in the same category (max 2 — 3 is handled by checkOneAway)
+async function findBestMatchCount(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<number> {
+  const remaining = gridItems.filter(gi => !selected.includes(gi));
+  for (const category of categories) {
+    for (let i = 0; i < selected.length - 1; i++) {
+      for (let j = i + 1; j < selected.length; j++) {
+        const pair = [selected[i], selected[j]];
+        for (let k = 0; k < remaining.length - 1; k++) {
+          for (let l = k + 1; l < remaining.length; l++) {
+            // eslint-disable-next-line no-await-in-loop
+            const h = await hashItems([...pair, remaining[k], remaining[l]]);
+            if (h === category.hash) return 2;
+          }
+        }
+      }
+    }
+  }
+  return 1;
+}
+
 async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<{ color: Color; wrongItem: string } | null> {
   const remainingItems = gridItems.filter(gi => !selected.includes(gi));
   for (const category of categories) {
@@ -56,11 +76,11 @@ export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
   const [shakingItems, setShakingItems] = useState<string[]>([]);
   const [bouncingItems, setBouncingItems] = useState<string[]>([]);
 
-  // Load puzzle on mount / when puzzle id changes
+  // Load puzzle when puzzle id or gameMode changes (gameMode affects initial lives)
   useEffect(() => {
-    engine.loadPuzzle(puzzle);
+    engine.loadPuzzle(puzzle, gameMode);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [puzzle.id]);
+  }, [puzzle.id, gameMode]);
 
   // Handle "One Away!" toast
   useEffect(() => {
@@ -132,6 +152,15 @@ export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
       }
 
       engine.wrongGuess(match !== null, match?.color, match?.wrongItem);
+
+      // Easy mode: if not one-away, show how many are from the same group
+      if (gameMode === 'easy' && !match) {
+        const count = await findBestMatchCount(selectedItems, state.gridItems, state.puzzle.categories);
+        if (count === 2) {
+          setToastMessage('2 of 4 from the same group');
+          setTimeout(() => setToastMessage(null), 2500);
+        }
+      }
     }
   }, [state, engine]);
 
@@ -155,15 +184,18 @@ export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
     }
   }, [puzzle.id]);
 
+  const maxHints = gameMode === 'easy' ? 3 : 2;
+  const maxLives = gameMode === 'easy' ? 6 : 4;
+
   // Hint: reveal the title of the next hintable category (skipping already-found ones)
   const handleHint = useCallback(() => {
-    if (state.hintedColors.length >= 2 || state.status !== 'playing') return;
+    if (state.hintedColors.length >= maxHints || state.status !== 'playing') return;
     const targetColor = HINT_COLOR_ORDER.find(
       c => !state.hintedColors.includes(c) && !state.revealedCategories.includes(c)
     );
     if (!targetColor) return;
     engine.useHint(targetColor);
-  }, [state.hintedColors, state.revealedCategories, state.status, engine]);
+  }, [state.hintedColors, state.revealedCategories, state.status, engine, maxHints]);
 
   // Derive which hint titles are currently visible (hinted but not yet correctly guessed)
   const visibleHints = state.hintedColors
@@ -174,10 +206,10 @@ export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
     })
     .filter((h): h is { color: Color; title: string } => h !== null);
 
-  const hintsRemaining = 2 - state.hintedColors.length;
+  const hintsRemaining = maxHints - state.hintedColors.length;
   const canHint =
     state.status === 'playing' &&
-    state.hintedColors.length < 2 &&
+    state.hintedColors.length < maxHints &&
     HINT_COLOR_ORDER.some(c => !state.hintedColors.includes(c) && !state.revealedCategories.includes(c));
 
   const isGameOver = state.status === 'won' || state.status === 'lost';
@@ -247,7 +279,7 @@ export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
 
       {/* Lives + action bar grouped tightly */}
       <div className="flex flex-col items-center gap-2 w-full">
-        <LivesIndicator lives={state.lives} />
+        <LivesIndicator lives={state.lives} maxLives={maxLives} />
 
         {/* Toast notification */}
         <ToastNotification message={toastMessage} />

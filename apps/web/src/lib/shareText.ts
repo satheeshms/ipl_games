@@ -27,7 +27,8 @@ export function buildShareText(puzzle: Puzzle, guessHistory: Guess[], hintsUsed:
     day: 'numeric', month: 'short', year: 'numeric',
   });
   const emojiRows = guessHistory.map((guess, i) => buildRow(guess, i));
-  const hintsLine = hintsUsed > 0 ? `💡 Hints used: ${hintsUsed}/2` : 'No hints used';
+  const maxHints = gameMode === 'easy' ? 3 : 2;
+  const hintsLine = hintsUsed > 0 ? `💡 Hints used: ${hintsUsed}/${maxHints}` : 'No hints used';
   const modeLabel = gameMode === 'easy' ? ' · Easy Mode' : '';
   const gameUrl = window.location.origin + window.location.pathname;
 

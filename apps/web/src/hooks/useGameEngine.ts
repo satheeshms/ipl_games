@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useCallback } from 'react';
-import type { GameState, Color, Puzzle } from '../types';
+import type { GameState, Color, GameMode, Puzzle } from '../types';
 import { shuffle } from '../lib/shuffle';
 import { hashItems } from '../lib/hash';
 import { saveState, loadState } from '../lib/storage';
@@ -10,7 +10,7 @@ import { track } from '../lib/analytics'; // used for game_started only; other e
 // ---------------------------------------------------------------------------
 
 type GameAction =
-  | { type: 'LOAD_PUZZLE'; payload: { puzzle: Puzzle; savedState?: Partial<GameState> } }
+  | { type: 'LOAD_PUZZLE'; payload: { puzzle: Puzzle; savedState?: Partial<GameState>; gameMode: GameMode } }
   | { type: 'SELECT_ITEM'; payload: { item: string } }
   | { type: 'DESELECT_ITEM'; payload: { item: string } }
   | { type: 'DESELECT_ALL' }
@@ -68,6 +68,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         puzzle,
         gridItems: shuffle(puzzle.items),
         status: 'playing',
+        lives: action.payload.gameMode === 'easy' ? 6 : 4,
       };
     }
 
@@ -153,7 +154,7 @@ interface UseGameEngineResult {
   deselectAll: () => void;
   shuffle: () => void;
   submitGuess: () => Promise<void>;
-  loadPuzzle: (puzzle: Puzzle) => void;
+  loadPuzzle: (puzzle: Puzzle, gameMode: GameMode) => void;
   clearOneAway: () => void;
   revealCategory: (color: Color) => void;
   wrongGuess: (oneAway: boolean, oneAwayColor?: Color, wrongItem?: string) => void;
@@ -184,11 +185,11 @@ export function useGameEngine(): UseGameEngineResult {
   // ------------------------------------------------------------------
   // loadPuzzle — restores saved state if available, otherwise fresh start
   // ------------------------------------------------------------------
-  const loadPuzzle = useCallback((puzzle: Puzzle) => {
+  const loadPuzzle = useCallback((puzzle: Puzzle, gameMode: GameMode) => {
     const savedState = loadState(puzzle.id);
     dispatch({
       type: 'LOAD_PUZZLE',
-      payload: { puzzle, savedState: savedState ?? undefined },
+      payload: { puzzle, savedState: savedState ?? undefined, gameMode },
     });
 
     // Track every fresh page load (no saved state or idle)
