@@ -34,6 +34,7 @@ jobs:
         working-directory: ./apps/web
         env:
           VITE_BASE_URL: /
+          VITE_CANONICAL_URL: https://cluster4.games
 
       - name: Deploy to Cloudflare Pages
         run: npx wrangler pages deploy ./apps/web/dist --project-name=ipl-games --branch=${{ github.ref_name }}
