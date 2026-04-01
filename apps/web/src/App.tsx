@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { usePuzzle } from './hooks/usePuzzle';
+import { GameSEO } from './components/GameSEO';
 import { Header } from './components/Header';
 import { GameBoard } from './components/GameBoard';
 import { HelpModal } from './components/HelpModal';
@@ -24,6 +25,7 @@ function App() {
 
   return (
     <div className="min-h-screen stadium-bg flex flex-col">
+      {puzzle && <GameSEO puzzle={puzzle} />}
       {puzzle && <Header edition={puzzle.edition} date={puzzle.date} onHelp={() => setShowHelp(true)} />}
 
       <main className="flex-1 flex flex-col items-center justify-start pt-4">
