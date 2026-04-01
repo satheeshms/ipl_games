@@ -266,3 +266,43 @@ Ed 8 — 2026-03-31
   blue     [top_wicket_takers] -> IPL Career Wicket Takers (100+ Wickets): ['JJ Bumrah', 'AR Patel', 'SN Thakur', 'Kuldeep Yadav']
   purple   [longest_serving] -> Longest Serving IPL Players: ['V Kohli', 'S Dhawan', 'RV Uthappa', 'AB de Villiers']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-03.json
+
+  Ed 12 — 2026-04-04
+  yellow   [team_players:DC:2026] -> Delhi Capitals 2026 Squad: ['Sahil Parakh', 'T. Natarajan', 'Mukesh Kumar', 'Ben Duckett']
+  green    [team_players:GT:2022] -> Gujarat Titans 2022 Squad: ['Shubman Gill', 'B Sai Sudharsan', 'R Tewatia', 'V Shankar']
+  blue     [ranji:Mumbai] -> Ranji Trophy: Mumbai: ['PR Shah', 'Iqbal Abdulla', 'RR Raje', 'RG Sharma']
+  purple   [purple_cap] -> Purple Cap Winners: ['Imran Tahir', 'AJ Tye', 'Prasidh Krishna', 'PP Ojha']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:DC:2026] -> Delhi Capitals 2026 Squad: ['Sahil Parakh', 'T. Natarajan', 'Mukesh Kumar', 'Ben Duckett']
+  green    [team_players:GT:2022] -> Gujarat Titans 2022 Squad: ['Shubman Gill', 'B Sai Sudharsan', 'R Tewatia', 'V Shankar']
+  blue     [ranji:Mumbai] -> Ranji Trophy: Mumbai: ['PR Shah', 'Iqbal Abdulla', 'RR Raje', 'RG Sharma']
+  purple   [purple_cap] -> Purple Cap Winners: ['Imran Tahir', 'AJ Tye', 'Prasidh Krishna', 'PP Ojha']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-04.json
+
+
+Setting items for GREEN
+  Old: ['R Tewatia', 'Mohammed Shami', 'MS Wade', 'Shubman Gill']
+  New: ['Shubman Gill', 'MS Wade', 'Rashid Khan', 'R Tewatia']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-04.json
+
+  Ed 13 — 2026-04-05
+  yellow   [team_players:RCB:2026] -> Royal Challengers Bengaluru 2026 Squad: ['V Kohli', 'Jacob Bethell', 'Jacob Duffy', 'Nuwan Thushara']
+  green    [team_players:SRH:2016] -> Sunrisers Hyderabad 2016 Squad: ['Mustafizur Rahman', 'AP Tare', 'Bipul Sharma', 'DJ Hooda']
+  blue     [fielding_coaches] -> IPL Fielding Coaches: ['Craig McMillan', 'Mike Young', 'Brad Haddin', 'Subhadeep Ghosh']
+  purple   [highest_batting_avg] -> IPL Career Batting Average Leaders (30+ avg): ['Shubman Gill', 'SK Raina', 'SV Samson', 'S Dhawan']
+  Resampled YELLOW [team_players:RCB:2026]:
+    was: ['V Kohli', 'Jacob Bethell', 'Jacob Duffy', 'Nuwan Thushara']
+    now: ['Kanishk Chouhan', 'Jacob Bethell', 'Nuwan Thushara', 'Vihaan Malhotra']
+  Resampled PURPLE [highest_batting_avg]:
+    was: ['Shubman Gill', 'SK Raina', 'SV Samson', 'S Dhawan']
+    now: ['SR Tendulkar', 'RR Pant', 'S Dube', 'AM Rahane']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RCB:2026] -> Royal Challengers Bengaluru 2026 Squad: ['Kanishk Chouhan', 'Jacob Bethell', 'Nuwan Thushara', 'Vihaan Malhotra']
+  green    [team_players:SRH:2016] -> Sunrisers Hyderabad 2016 Squad: ['Mustafizur Rahman', 'AP Tare', 'Bipul Sharma', 'DJ Hooda']
+  blue     [fielding_coaches] -> IPL Fielding Coaches: ['Craig McMillan', 'Mike Young', 'Brad Haddin', 'Subhadeep Ghosh']
+  purple   [highest_batting_avg] -> IPL Career Batting Average Leaders (30+ avg): ['SR Tendulkar', 'RR Pant', 'S Dube', 'AM Rahane']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-05.json

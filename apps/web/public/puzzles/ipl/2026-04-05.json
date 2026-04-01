@@ -1,0 +1,57 @@
+{
+  "id": "2026-04-05",
+  "date": "2026-04-05",
+  "edition": 13,
+  "items": [
+    "Bipul Sharma",
+    "S Dube",
+    "Mustafizur Rahman",
+    "Vihaan Malhotra",
+    "RR Pant",
+    "Craig McMillan",
+    "AM Rahane",
+    "Mike Young",
+    "Nuwan Thushara",
+    "AP Tare",
+    "Brad Haddin",
+    "Subhadeep Ghosh",
+    "DJ Hooda",
+    "Kanishk Chouhan",
+    "SR Tendulkar",
+    "Jacob Bethell"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Royal Challengers Bengaluru 2026 Squad",
+      "spec": "team_players:RCB:2026",
+      "hash": "647d1e4ded0bc352b4de0978fedc7fcf0830891c5e91534fed29a88af897fefa"
+    },
+    {
+      "color": "green",
+      "title": "Sunrisers Hyderabad 2016 Squad",
+      "spec": "team_players:SRH:2016",
+      "hash": "38df10ed1276558670a554cfc06d84b8fdf74fe2d6a3d6c929b3859f7118b1fa"
+    },
+    {
+      "color": "blue",
+      "title": "IPL Fielding Coaches",
+      "spec": "fielding_coaches",
+      "hash": "73317612a16762c63ff8de9cf16d936417521636605ce1234a00986ce5b5c26e"
+    },
+    {
+      "color": "purple",
+      "title": "IPL Career Batting Average Leaders (30+ avg)",
+      "spec": "highest_batting_avg",
+      "hash": "01da06bd926edc92e9322372202d95f5dbcea3e15748ed2d6490000b0f0800e6"
+    }
+  ],
+  "display_names": {
+    "S Dube": "Shivam Dube",
+    "RR Pant": "Rishabh Pant",
+    "AM Rahane": "Ajinkya Rahane",
+    "AP Tare": "Aditya Tare",
+    "DJ Hooda": "Deepak Hooda",
+    "SR Tendulkar": "Sachin Tendulkar"
+  }
+}
