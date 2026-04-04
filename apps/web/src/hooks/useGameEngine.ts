@@ -3,7 +3,7 @@ import type { GameState, Color, Puzzle } from '../types';
 import { shuffle } from '../lib/shuffle';
 import { hashItems } from '../lib/hash';
 import { saveState, loadState } from '../lib/storage';
-import { track } from '../lib/analytics';
+import { track } from '../lib/analytics'; // used for game_started only; other events tracked in GameBoard
 
 // ---------------------------------------------------------------------------
 // Action definitions
@@ -236,8 +236,6 @@ export function useGameEngine(): UseGameEngineResult {
 
     const { selected, puzzle, gridItems, revealedCategories } = state;
 
-    const attemptNumber = state.guessHistory.length + 1;
-
     // Hash the selected items
     const guessHash = await hashItems(selected);
 
@@ -247,29 +245,9 @@ export function useGameEngine(): UseGameEngineResult {
     if (matchedCategory) {
       dispatch({ type: 'REVEAL_CATEGORY', payload: { color: matchedCategory.color } });
 
-      const groupsMadeSoFar = revealedCategories.length + 1;
-
-      track('guess_submitted', {
-        puzzle_id: puzzle.id,
-        attempt_number: attemptNumber,
-        result: 'correct',
-      });
-      track('group_completed', {
-        puzzle_id: puzzle.id,
-        color: matchedCategory.color,
-        attempt_number: attemptNumber,
-        groups_made: groupsMadeSoFar,
-      });
-
       // Check for win: all 4 categories revealed after this one
-      if (groupsMadeSoFar === puzzle.categories.length) {
+      if (revealedCategories.length + 1 === puzzle.categories.length) {
         dispatch({ type: 'GAME_OVER', payload: { status: 'won' } });
-        track('game_completed', {
-          puzzle_id: puzzle.id,
-          result: 'won',
-          groups_made: 4,
-          total_attempts: attemptNumber,
-        });
       }
       return;
     }
@@ -298,23 +276,11 @@ export function useGameEngine(): UseGameEngineResult {
       }
     }
 
-    track('guess_submitted', {
-      puzzle_id: puzzle.id,
-      attempt_number: attemptNumber,
-      result: oneAway ? 'one_away' : 'wrong',
-    });
-
     dispatch({ type: 'WRONG_GUESS', payload: { oneAway } });
 
     // lives - 1 because the reducer hasn't run yet at this point
     if (state.lives - 1 === 0) {
       dispatch({ type: 'GAME_OVER', payload: { status: 'lost' } });
-      track('game_completed', {
-        puzzle_id: puzzle.id,
-        result: 'lost',
-        groups_made: revealedCategories.length,
-        total_attempts: attemptNumber,
-      });
     }
   }, [state]);
 
