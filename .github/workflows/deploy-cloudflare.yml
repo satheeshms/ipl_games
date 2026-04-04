@@ -37,7 +37,8 @@ jobs:
           VITE_CANONICAL_URL: https://cluster4.games
 
       - name: Deploy to Cloudflare Pages
-        run: npx wrangler pages deploy ./apps/web/dist --project-name=ipl-games --branch=${{ github.ref_name }}
+        run: npx wrangler pages deploy ./dist --project-name=ipl-games --branch=${{ github.ref_name }}
+        working-directory: ./apps/web
         env:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
