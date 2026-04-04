@@ -190,9 +190,9 @@ export function useGameEngine(): UseGameEngineResult {
       payload: { puzzle, savedState: savedState ?? undefined },
     });
 
-    // Track only fresh game starts, not state restores
+    // Track every fresh page load (no saved state or idle)
     if (!savedState || savedState.status === 'idle') {
-      track('game_started', { puzzle_id: puzzle.id });
+      track('page_visited', { puzzle_id: puzzle.id });
     }
   }, []);
 
@@ -200,8 +200,12 @@ export function useGameEngine(): UseGameEngineResult {
   // Simple sync dispatchers
   // ------------------------------------------------------------------
   const selectItem = useCallback((item: string) => {
+    // First cell click = player actually started the game
+    if (state.selected.length === 0 && state.guessHistory.length === 0 && state.revealedCategories.length === 0 && state.puzzle) {
+      track('game_started', { puzzle_id: state.puzzle.id });
+    }
     dispatch({ type: 'SELECT_ITEM', payload: { item } });
-  }, []);
+  }, [state]);
 
   const deselectItem = useCallback((item: string) => {
     dispatch({ type: 'DESELECT_ITEM', payload: { item } });

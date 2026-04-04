@@ -14,6 +14,7 @@ interface TrackPayload {
 }
 
 const KNOWN_EVENTS = new Set([
+  'page_visited',
   'game_started',
   'guess_submitted',
   'group_completed',
