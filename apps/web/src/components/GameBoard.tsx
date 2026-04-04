@@ -1,4 +1,4 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import type { Color, GameMode, Puzzle, PuzzleCategory } from '../types';
 import { useGameEngine } from '../hooks/useGameEngine';
 import { hashItems } from '../lib/hash';
@@ -76,9 +76,14 @@ export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
   const [shakingItems, setShakingItems] = useState<string[]>([]);
   const [bouncingItems, setBouncingItems] = useState<string[]>([]);
 
+  const loadedPuzzleId = useRef<string | number | null>(null);
+
   // Load puzzle when puzzle id or gameMode changes (gameMode affects initial lives)
   useEffect(() => {
-    engine.loadPuzzle(puzzle, gameMode);
+    // Force fresh start when only the mode changes (no saved state for wrong mode)
+    const modeChange = loadedPuzzleId.current === puzzle.id;
+    loadedPuzzleId.current = puzzle.id;
+    engine.loadPuzzle(puzzle, gameMode, modeChange);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [puzzle.id, gameMode]);
 

@@ -154,7 +154,7 @@ interface UseGameEngineResult {
   deselectAll: () => void;
   shuffle: () => void;
   submitGuess: () => Promise<void>;
-  loadPuzzle: (puzzle: Puzzle, gameMode: GameMode) => void;
+  loadPuzzle: (puzzle: Puzzle, gameMode: GameMode, forceFresh?: boolean) => void;
   clearOneAway: () => void;
   revealCategory: (color: Color) => void;
   wrongGuess: (oneAway: boolean, oneAwayColor?: Color, wrongItem?: string) => void;
@@ -185,8 +185,8 @@ export function useGameEngine(): UseGameEngineResult {
   // ------------------------------------------------------------------
   // loadPuzzle — restores saved state if available, otherwise fresh start
   // ------------------------------------------------------------------
-  const loadPuzzle = useCallback((puzzle: Puzzle, gameMode: GameMode) => {
-    const savedState = loadState(puzzle.id);
+  const loadPuzzle = useCallback((puzzle: Puzzle, gameMode: GameMode, forceFresh?: boolean) => {
+    const savedState = forceFresh ? undefined : loadState(puzzle.id);
     dispatch({
       type: 'LOAD_PUZZLE',
       payload: { puzzle, savedState: savedState ?? undefined, gameMode },
