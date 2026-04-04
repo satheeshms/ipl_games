@@ -3,6 +3,7 @@ import type { GameState, Color, Puzzle } from '../types';
 import { shuffle } from '../lib/shuffle';
 import { hashItems } from '../lib/hash';
 import { saveState, loadState } from '../lib/storage';
+import { track } from '../lib/analytics'; // used for game_started only; other events tracked in GameBoard
 
 // ---------------------------------------------------------------------------
 // Action definitions
@@ -188,6 +189,11 @@ export function useGameEngine(): UseGameEngineResult {
       type: 'LOAD_PUZZLE',
       payload: { puzzle, savedState: savedState ?? undefined },
     });
+
+    // Track only fresh game starts, not state restores
+    if (!savedState || savedState.status === 'idle') {
+      track('game_started', { puzzle_id: puzzle.id });
+    }
   }, []);
 
   // ------------------------------------------------------------------

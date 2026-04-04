@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback } from 'react';
 import type { Color, Puzzle, PuzzleCategory } from '../types';
 import { useGameEngine } from '../hooks/useGameEngine';
 import { hashItems } from '../lib/hash';
+import { track } from '../lib/analytics';
 import { buildShareText } from '../lib/shareText';
 import { CategoryBanner } from './CategoryBanner';
 import { ItemGrid } from './ItemGrid';
@@ -77,6 +78,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
 
     // Capture before any state change
     const selectedItems = [...state.selected];
+    const attemptNumber = state.guessHistory.length + 1;
 
     // Duplicate check
     const sortedSelected = [...selectedItems].sort();
@@ -96,6 +98,13 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     const matched = state.puzzle.categories.find(c => c.hash === guessHash);
 
     if (matched) {
+      const groupsMadeSoFar = state.revealedCategories.length + 1;
+      track('guess_submitted', { puzzle_id: state.puzzle.id, attempt_number: attemptNumber, result: 'correct' });
+      track('group_completed', { puzzle_id: state.puzzle.id, color: matched.color, attempt_number: attemptNumber, groups_made: groupsMadeSoFar });
+      if (groupsMadeSoFar === state.puzzle.categories.length) {
+        track('game_completed', { puzzle_id: state.puzzle.id, result: 'won', groups_made: 4, total_attempts: attemptNumber });
+      }
+
       // Bounce animation then reveal
       setBouncingItems(selectedItems);
       setTimeout(() => {
@@ -109,6 +118,14 @@ export function GameBoard({ puzzle }: GameBoardProps) {
 
       // One-away check
       const match = await checkOneAway(selectedItems, state.gridItems, state.puzzle.categories);
+      const result = match !== null ? 'one_away' : 'wrong';
+      track('guess_submitted', { puzzle_id: state.puzzle.id, attempt_number: attemptNumber, result });
+
+      const livesAfter = state.lives - 1;
+      if (livesAfter === 0) {
+        track('game_completed', { puzzle_id: state.puzzle.id, result: 'lost', groups_made: state.revealedCategories.length, total_attempts: attemptNumber });
+      }
+
       engine.wrongGuess(match !== null, match?.color);
     }
   }, [state, engine]);
