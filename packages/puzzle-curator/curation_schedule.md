@@ -37,8 +37,8 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 | 11 | 3 Apr | Fri | CSK vs PBKS | `team_players:CSK:2026` | `team_players:PBKS:2008` | `top_wicket_takers` | `longest_serving` | [x] |
 | 12 | 4 Apr | Sat | DC vs MI | `team_players:DC:2026` | `team_players:GT:2022` | `ranji:Mumbai` | `purple_cap` | [x] |
 | 13 | 5 Apr | Sun | SRH vs LSG | `team_players:RCB:2026` | `team_players:SRH:2016` | `fielding_coaches` | `highest_batting_avg` | [x] |
-| 14 | 6 Apr | Mon | KKR vs PBKS | `team_players:KKR:2026` | `legends:overseas` | `season_records`  | `costliest_player` | [ ] |
-| 15 | 7 Apr | Tue | RR vs MI | `team_players:RR:2026` | `team_legends_bowling:MI` | `country:Australia` | `player_of_tournament` | [ ] |
+| 14 | 6 Apr | Mon | KKR vs PBKS | `team_players:KKR:2026` |  `season_records` |`state:Punjab`  | `costliest_player` | [ ] |
+| 15 | 7 Apr | Tue | RR vs MI | `team_players:RR:2008` | `team_legends_bowling:MI` | `country:Australia` | `player_of_tournament` | [ ] |
 | 16 | 8 Apr | Wed | DC vs GT | `team_players:DC:2026` | `orange_cap` | `state:Maharashtra` | `played_both:CSK:MI` | [ ] |
 | 17 | 9 Apr | Thu | KKR vs LSG | `team_players:KKR:2026` | `purple_cap` | `ranji:Mumbai` | `multi_team:5` | [ ] |
 | 18 | 10 Apr | Fri | RR vs RCB | `team_players:RR:2026` | `costliest_player` | `head_coaches` | `multi_team:7` | [ ] |

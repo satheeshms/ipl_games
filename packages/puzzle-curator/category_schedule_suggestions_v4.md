@@ -306,3 +306,61 @@ Setting items for GREEN
   blue     [fielding_coaches] -> IPL Fielding Coaches: ['Craig McMillan', 'Mike Young', 'Brad Haddin', 'Subhadeep Ghosh']
   purple   [highest_batting_avg] -> IPL Career Batting Average Leaders (30+ avg): ['SR Tendulkar', 'RR Pant', 'S Dube', 'AM Rahane']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-05.json
+
+  PS C:\Users\Modern14\git\ipl_games\packages\puzzle-curator> python.exe .\schedule_runner.py --date 2026-04-06 --force
+============================================================
+  IPL Schedule Runner
+============================================================
+  Schedule : C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\curation_schedule.md
+  Data     : C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\data-pipeline\data\ipl_data.json
+  Output   : C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl
+
+Loaded ipl_data.json: 998 players, 90 awards, 8 batting records, 8 bowling records
+Parsed 66 rows from schedule
+
+Rows to process : 1
+Already done    : 0
+Specs not ready : 0
+
+Existing puzzles: 13 (208 items already used across 50 specs)        
+
+Ed 14 — 2026-04-06
+  yellow   [team_players:KKR:2026] -> Kolkata Knight Riders 2026 Squad: ['Umran Malik', 'Ramandeep Singh', 'Matheesha Pathirana', 'Tejasvi Singh']
+  green    [season_records] -> IPL Single Season Record Holders: ['CH Gayle', 'V Kohli', 'JC Buttler', 'DJ Bravo']
+  blue     [state:Punjab] -> Players from Punjab: ['Shubman Gill', 'Yuvraj Singh', 'Abhishek Sharma', 'K Goel']
+  purple   [costliest_player] -> Costliest Auction Picks: ['SM Curran', 'RA Jadeja', 'KP Pietersen', 'JD Unadkat']
+  Resampled YELLOW [team_players:KKR:2026]:
+    was: ['Umran Malik', 'Ramandeep Singh', 'Matheesha Pathirana', 'Tejasvi Singh']
+    now: ['Finn Allen', 'Varun Chakaravarthy', 'Akash Deep', 'Prashant Solanki']
+  Resampled BLUE [state:Punjab]:
+    was: ['Shubman Gill', 'Yuvraj Singh', 'Abhishek Sharma', 'K Goel']
+    now: ['Bipul Sharma', 'MS Gony', 'M Vohra', 'Sandeep Sharma']    
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:KKR:2026] -> Kolkata Knight Riders 2026 Squad: ['Finn Allen', 'Varun Chakaravarthy', 'Akash Deep', 'Prashant Solanki']
+  green    [season_records] -> IPL Single Season Record Holders: ['CH Gayle', 'V Kohli', 'JC Buttler', 'DJ Bravo']
+  blue     [state:Punjab] -> Players from Punjab: ['Bipul Sharma', 'MS Gony', 'M Vohra', 'Sandeep Sharma']
+  purple   [costliest_player] -> Costliest Auction Picks: ['SM Curran', 'RA Jadeja', 'KP Pietersen', 'JD Unadkat']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-06.json
+..\data-pipeline\data\ipl_data.json
+  Output   : C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl
+
+Loaded ipl_data.json: 998 players, 90 awards, 8 batting records, 8 bowling records
+Parsed 66 rows from schedule
+
+Existing puzzles: 14 (224 items already used across 53 specs)
+
+Ed 15 — 2026-04-07
+  yellow   [team_players:RR:2008] -> Rajasthan Royals 2008 Squad: ['GC Smith', 'DS Lehmann', 'D Salunkhe', 'RA Jadeja']     
+  green    [team_legends_bowling:MI] -> Mumbai Indians Bowling Legends: ['Z Khan', 'R Vinay Kumar', 'SL Malinga', 'DJ Bravo']
+  blue     [country:Australia] -> Players from Australia: ['GJ Bailey', 'LA Carseldine', 'LA Pomersbach', 'B Laughlin']     
+  purple   [player_of_tournament] -> Player of the Tournament: ['SR Tendulkar', 'SP Narine', 'JC Buttler', 'SA Yadav']      
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RR:2008] -> Rajasthan Royals 2008 Squad: ['GC Smith', 'DS Lehmann', 'D Salunkhe', 'RA Jadeja']     
+  green    [team_legends_bowling:MI] -> Mumbai Indians Bowling Legends: ['Z Khan', 'R Vinay Kumar', 'SL Malinga', 'DJ Bravo']
+  blue     [country:Australia] -> Players from Australia: ['GJ Bailey', 'LA Carseldine', 'LA Pomersbach', 'B Laughlin']     
+  purple   [player_of_tournament] -> Player of the Tournament: ['SR Tendulkar', 'SP Narine', 'JC Buttler', 'SA Yadav']      
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-07.json      
