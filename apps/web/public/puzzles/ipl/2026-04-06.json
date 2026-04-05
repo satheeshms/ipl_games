@@ -1,0 +1,60 @@
+{
+  "id": "2026-04-06",
+  "date": "2026-04-06",
+  "edition": 14,
+  "items": [
+    "Bipul Sharma",
+    "M Vohra",
+    "Prashant Solanki",
+    "Akash Deep",
+    "DJ Bravo",
+    "CH Gayle",
+    "Sandeep Sharma",
+    "JC Buttler",
+    "RA Jadeja",
+    "SM Curran",
+    "V Kohli",
+    "Finn Allen",
+    "KP Pietersen",
+    "JD Unadkat",
+    "MS Gony",
+    "Varun Chakaravarthy"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Kolkata Knight Riders 2026 Squad",
+      "spec": "team_players:KKR:2026",
+      "hash": "08e932e279438d757970cd3294546d8ab281dfe4a698298b3d0088961579bded"
+    },
+    {
+      "color": "green",
+      "title": "IPL Single Season Record Holders",
+      "spec": "season_records",
+      "hash": "fcac6e98ecb72ee3c4f415b61fb77fcc9bc80863c795997628bf4825d8ebfde1"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Punjab",
+      "spec": "state:Punjab",
+      "hash": "6a6e4a24084f98f6ae33d0935b4577f0a79703e52ec9b3e52dba69511ac90c3a"
+    },
+    {
+      "color": "purple",
+      "title": "Costliest Auction Picks",
+      "spec": "costliest_player",
+      "hash": "844cd730022c2dfe32de4d98703ac75991a50415c5db4bc4b205a073aee58a79"
+    }
+  ],
+  "display_names": {
+    "M Vohra": "Manan Vohra",
+    "DJ Bravo": "Dwayne Bravo",
+    "CH Gayle": "Chris Gayle",
+    "JC Buttler": "Jos Buttler",
+    "SM Curran": "Sam Curran",
+    "V Kohli": "Virat Kohli",
+    "KP Pietersen": "Kevin Pietersen",
+    "JD Unadkat": "Jaydev Unadkat",
+    "MS Gony": "Manpreet Gony"
+  }
+}

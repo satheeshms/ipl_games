@@ -1,0 +1,60 @@
+{
+  "id": "2026-04-07",
+  "date": "2026-04-07",
+  "edition": 15,
+  "items": [
+    "LA Carseldine",
+    "D Salunkhe",
+    "DJ Bravo",
+    "LA Pomersbach",
+    "RA Jadeja",
+    "SR Tendulkar",
+    "DS Lehmann",
+    "SL Malinga",
+    "GJ Bailey",
+    "Z Khan",
+    "R Vinay Kumar",
+    "B Laughlin",
+    "SP Narine",
+    "GC Smith",
+    "SA Yadav",
+    "JC Buttler"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Rajasthan Royals 2008 Squad",
+      "spec": "team_players:RR:2008",
+      "hash": "75259e4242397348c2003cefc2bc8a323c38b09cab8081535c75c00eccfc5822"
+    },
+    {
+      "color": "green",
+      "title": "Mumbai Indians Bowling Legends",
+      "spec": "team_legends_bowling:MI",
+      "hash": "f30954f7b02a30ad2d93de6512216330b685b7c3cbc9ba4553684c7ed6716f9f"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Australia",
+      "spec": "country:Australia",
+      "hash": "2370a0042cfac3bda0f2a5decd31a70d2eb0779bf7a7132d8b2d5264e83dfb0a"
+    },
+    {
+      "color": "purple",
+      "title": "Player of the Tournament",
+      "spec": "player_of_tournament",
+      "hash": "2520b70ad2a5d1dce1bbf9d2fb49068d208ee861d027e3584766745767e48a3a"
+    }
+  ],
+  "display_names": {
+    "LA Carseldine": "Lee Carseldine",
+    "D Salunkhe": "Dinesh Salunkhe",
+    "DJ Bravo": "Dwayne Bravo",
+    "LA Pomersbach": "Luke Pomersbach",
+    "SR Tendulkar": "Sachin Tendulkar",
+    "DS Lehmann": "Darren Lehmann",
+    "Z Khan": "Zaheer Khan",
+    "SP Narine": "Sunil Narine",
+    "JC Buttler": "Jos Buttler"
+  }
+}
