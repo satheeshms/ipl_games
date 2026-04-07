@@ -1,0 +1,59 @@
+{
+  "id": "2026-04-08",
+  "date": "2026-04-08",
+  "edition": 16,
+  "items": [
+    "SL Malinga",
+    "Mohammed Shami",
+    "JDP Oram",
+    "AT Rayudu",
+    "Kumar Kushagra",
+    "Aman Hakim Khan",
+    "Sohail Tanvir",
+    "Sai Kishore",
+    "A Nehra",
+    "SB Bangar",
+    "Ashok Sharma",
+    "RV Uthappa",
+    "M Morkel",
+    "Harmeet Singh",
+    "PV Tambe",
+    "Shubman Gill"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Gujarat Titans 2026 Squad",
+      "spec": "team_players:GT:2026",
+      "hash": "ab73779e7c7c2b76d2a51c14ad84db9550929a5195d8c27bd35f210248923a54"
+    },
+    {
+      "color": "green",
+      "title": "Purple Cap Winners",
+      "spec": "purple_cap",
+      "hash": "438cc66030be260d3df54c441a6ea3eaacd99596aff9bc513e45dea2e2f65716"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Maharashtra",
+      "spec": "state:Maharashtra",
+      "hash": "ed2d80bf698f17d9a3e813a4c32ec912cd1083771c69cef61ae7448ade2714ce"
+    },
+    {
+      "color": "purple",
+      "title": "Played for Both CSK & MI",
+      "spec": "played_both:CSK:MI",
+      "hash": "d60bb5b31d801433b4ead70abbcc268931b4115938abef353843ebbaf751a57b"
+    }
+  ],
+  "display_names": {
+    "SL Malinga": "Lasith Malinga",
+    "JDP Oram": "Jacob Oram",
+    "AT Rayudu": "Ambati Rayudu",
+    "A Nehra": "Ashish Nehra",
+    "SB Bangar": "Sanjay Bangar",
+    "RV Uthappa": "Robin Uthappa",
+    "M Morkel": "Morne Morkel",
+    "PV Tambe": "Pravin Tambe"
+  }
+}

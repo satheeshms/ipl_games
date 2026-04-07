@@ -364,3 +364,62 @@ Ed 15 — 2026-04-07
   blue     [country:Australia] -> Players from Australia: ['GJ Bailey', 'LA Carseldine', 'LA Pomersbach', 'B Laughlin']     
   purple   [player_of_tournament] -> Player of the Tournament: ['SR Tendulkar', 'SP Narine', 'JC Buttler', 'SA Yadav']      
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-07.json      
+
+
+Ed 16 — 2026-04-08
+  yellow   [team_players:GT:2026] -> Gujarat Titans 2026 Squad: ['Shubman Gill', 'Kumar Kushagra', 'Sai Kishore', 'Ashok Sharma']
+  green    [purple_cap] -> Purple Cap Winners: ['YS Chahal', 'DJ Bravo', 'SL Malinga', 'Mohammed Shami']
+  blue     [state:Maharashtra] -> Players from Maharashtra: ['Aman Hakim Khan', 'Harmeet Singh', 'SB Bangar', 'PV Tambe'] 
+  purple   [played_both:CSK:MI] -> Played for Both CSK & MI: ['JDP Oram', 'A Nehra', 'RV Uthappa', 'AT Rayudu']
+  Resampled GREEN [purple_cap]:
+    was: ['YS Chahal', 'DJ Bravo', 'SL Malinga', 'Mohammed Shami']
+    now: ['Mohammed Shami', 'SL Malinga', 'YS Chahal', 'DJ Bravo']
+  Resampled GREEN [purple_cap]:
+    was: ['Mohammed Shami', 'SL Malinga', 'YS Chahal', 'DJ Bravo']
+    now: ['DJ Bravo', 'Sohail Tanvir', 'M Morkel', 'SL Malinga']
+  Resampled GREEN [purple_cap]:
+    was: ['DJ Bravo', 'Sohail Tanvir', 'M Morkel', 'SL Malinga']
+    now: ['M Morkel', 'YS Chahal', 'DJ Bravo', 'Mohammed Shami']
+  Resampled GREEN [purple_cap]:
+    was: ['M Morkel', 'YS Chahal', 'DJ Bravo', 'Mohammed Shami']
+    now: ['Mohammed Shami', 'M Morkel', 'SL Malinga', 'Sohail Tanvir']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:GT:2026] -> Gujarat Titans 2026 Squad: ['Shubman Gill', 'Kumar Kushagra', 'Sai Kishore', 'Ashok Sharma']
+  green    [purple_cap] -> Purple Cap Winners: ['Mohammed Shami', 'M Morkel', 'SL Malinga', 'Sohail Tanvir']
+  blue     [state:Maharashtra] -> Players from Maharashtra: ['Aman Hakim Khan', 'Harmeet Singh', 'SB Bangar', 'PV Tambe'] 
+  purple   [played_both:CSK:MI] -> Played for Both CSK & MI: ['JDP Oram', 'A Nehra', 'RV Uthappa', 'AT Rayudu']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-08.json   
+
+  Ed 17 — 2026-04-09
+  yellow   [team_players:KKR:2008] -> Kolkata Knight Riders 2008 Squad: ['WP Saha', 'AB Dinda', 'Iqbal Abdulla', 'DB Das']
+  green    [most_ducks] -> Most IPL Ducks (10+ Ducks): ['Rashid Khan', 'AB de Villiers', 'Harbhajan Singh', 'V Kohli']    
+  blue     [state:Uttar Pradesh] -> Players from Uttar Pradesh: ['RP Singh', 'YBK Jaiswal', 'PP Chawla', 'Kartik Tyagi']  
+  purple   [multi_team:5] -> Played for 5+ IPL Teams: ['JO Holder', 'SN Thakur', 'IK Pathan', 'LH Ferguson']
+  Resampled YELLOW [team_players:KKR:2008]:
+    was: ['WP Saha', 'AB Dinda', 'Iqbal Abdulla', 'DB Das']
+    now: ['BAW Mendis', 'I Sharma', 'WP Saha', 'Umar Gul']
+  Resampled YELLOW [team_players:KKR:2008]:
+    was: ['BAW Mendis', 'I Sharma', 'WP Saha', 'Umar Gul']
+    now: ['A Chopra', 'AB Dinda', 'Salman Butt', 'WP Saha']
+  Resampled YELLOW [team_players:KKR:2008]:
+    was: ['A Chopra', 'AB Dinda', 'Salman Butt', 'WP Saha']
+    now: ['Shoaib Akhtar', 'Salman Butt', 'DB Das', 'BAW Mendis']
+  Resampled BLUE [state:Uttar Pradesh]:
+    was: ['RP Singh', 'YBK Jaiswal', 'PP Chawla', 'Kartik Tyagi']
+    now: ['AG Murtaza', 'RP Singh', 'DC Jurel', 'Mohammed Shami']
+  Resampled BLUE [state:Uttar Pradesh]:
+    was: ['AG Murtaza', 'RP Singh', 'DC Jurel', 'Mohammed Shami']
+    now: ['AD Nath', 'DC Jurel', 'PP Chawla', 'AG Murtaza']
+  Resampled BLUE [state:Uttar Pradesh]:
+    was: ['AD Nath', 'DC Jurel', 'PP Chawla', 'AG Murtaza']
+    now: ['SK Raina', 'PK Garg', 'AS Rajpoot', 'S Tyagi']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:KKR:2008] -> Kolkata Knight Riders 2008 Squad: ['Shoaib Akhtar', 'Salman Butt', 'DB Das', 'BAW Mendis']
+  green    [most_ducks] -> Most IPL Ducks (10+ Ducks): ['Rashid Khan', 'AB de Villiers', 'Harbhajan Singh', 'V Kohli']    
+  blue     [state:Uttar Pradesh] -> Players from Uttar Pradesh: ['SK Raina', 'PK Garg', 'AS Rajpoot', 'S Tyagi']
+  purple   [multi_team:5] -> Played for 5+ IPL Teams: ['JO Holder', 'SN Thakur', 'IK Pathan', 'LH Ferguson']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-09.json  

@@ -1,0 +1,62 @@
+{
+  "id": "2026-04-09",
+  "date": "2026-04-09",
+  "edition": 17,
+  "items": [
+    "Salman Butt",
+    "V Kohli",
+    "BAW Mendis",
+    "SK Raina",
+    "LH Ferguson",
+    "SN Thakur",
+    "AS Rajpoot",
+    "IK Pathan",
+    "S Tyagi",
+    "Shoaib Akhtar",
+    "Rashid Khan",
+    "DB Das",
+    "AB de Villiers",
+    "PK Garg",
+    "Harbhajan Singh",
+    "JO Holder"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Kolkata Knight Riders 2008 Squad",
+      "spec": "team_players:KKR:2008",
+      "hash": "b92d27ff3dd978688451ec06d9a0a0e2698c01cd2bddb70d5aee3c764b9aa794"
+    },
+    {
+      "color": "green",
+      "title": "Most IPL Ducks (10+ Ducks)",
+      "spec": "most_ducks",
+      "hash": "a6e29cb90e9636bc6f7855fed3f531ce25db80f78f28c8eb1be5d43ad98e070c"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Uttar Pradesh",
+      "spec": "state:Uttar Pradesh",
+      "hash": "fe707c6323171d1cca979a16c09fadfd9e7231aa131f2fbd7a8e53542cb2dd5b"
+    },
+    {
+      "color": "purple",
+      "title": "Played for 5+ IPL Teams",
+      "spec": "multi_team:5",
+      "hash": "0912f723ecc250d8b9d63a2a3c16a561ae1f710f4eda4c61e35cdd757ecaeefc"
+    }
+  ],
+  "display_names": {
+    "V Kohli": "Virat Kohli",
+    "BAW Mendis": "Ajantha Mendis",
+    "SK Raina": "Suresh Raina",
+    "LH Ferguson": "Lockie Ferguson",
+    "SN Thakur": "Shardul Thakur",
+    "AS Rajpoot": "Ankit Rajpoot",
+    "IK Pathan": "Irfan Pathan",
+    "S Tyagi": "Sudeep Tyagi",
+    "DB Das": "Das",
+    "PK Garg": "Priyam Garg",
+    "JO Holder": "Jason Holder"
+  }
+}
