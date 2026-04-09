@@ -423,3 +423,107 @@ Ed 16 — 2026-04-08
   blue     [state:Uttar Pradesh] -> Players from Uttar Pradesh: ['SK Raina', 'PK Garg', 'AS Rajpoot', 'S Tyagi']
   purple   [multi_team:5] -> Played for 5+ IPL Teams: ['JO Holder', 'SN Thakur', 'IK Pathan', 'LH Ferguson']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-09.json  
+
+Ed 18 — 2026-04-10                                                                                                        
+  yellow   [team_players:RR:2025] -> Rajasthan Royals 2025 Squad: ['Wanindu Hasaranga', 'Yashasvi Jaiswal', 'Shubham Dubey', 'Maheesh Theekshana']
+  green    [head_coaches] -> IPL Head Coaches: ['Kumar Sangakkara', 'Mark Boucher', 'Dav Whatmore', 'John Buchanan']      
+  blue     [country:South Africa] -> Players from South Africa: ['RR Rossouw', 'CL White', 'MP Breetzke', 'DA Miller']    
+  purple   [costliest_player] -> Costliest Auction Picks: ['GJ Maxwell', 'RR Pant', 'SR Watson', 'MA Starc']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RR:2025] -> Rajasthan Royals 2025 Squad: ['Wanindu Hasaranga', 'Yashasvi Jaiswal', 'Shubham Dubey', 'Maheesh Theekshana']
+  green    [head_coaches] -> IPL Head Coaches: ['Kumar Sangakkara', 'Mark Boucher', 'Dav Whatmore', 'John Buchanan']      
+  blue     [country:South Africa] -> Players from South Africa: ['RR Rossouw', 'CL White', 'MP Breetzke', 'DA Miller']    
+  purple   [costliest_player] -> Costliest Auction Picks: ['GJ Maxwell', 'RR Pant', 'SR Watson', 'MA Starc']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-10.json
+
+Ed 19 — 2026-04-11
+  yellow   [team_players:PBKS:2025] -> Punjab Kings 2025 Squad: ['Arshdeep Singh', 'Vyshak Vijay Kumar', 'Mitchell Owen', 'Marco Jansen']
+  green    [team_players:Deccan Chargers:2009] -> Deccan Chargers 2009 Squad: ['Jaskaran Singh', 'RP Singh', 'PP Ojha', 'RJ Harris']
+  blue     [orange_cap] -> Orange Cap Winners: ['KS Williamson', 'MEK Hussey', 'V Kohli', 'KL Rahul']
+  purple   [longest_serving] -> Longest Serving IPL Players: ['DS Kulkarni', 'RG Sharma', 'MS Dhoni', 'DA Warner']  
+  Resampled PURPLE [longest_serving]:
+    was: ['DS Kulkarni', 'RG Sharma', 'MS Dhoni', 'DA Warner']
+    now: ['WP Saha', 'B Kumar', 'RG Sharma', 'DS Kulkarni']
+  Resampled BLUE [orange_cap]:
+    was: ['KS Williamson', 'MEK Hussey', 'V Kohli', 'KL Rahul']
+    now: ['KS Williamson', 'V Kohli', 'MEK Hussey', 'KL Rahul']
+  Resampled BLUE [orange_cap]:
+    was: ['KS Williamson', 'V Kohli', 'MEK Hussey', 'KL Rahul']
+    now: ['V Kohli', 'MEK Hussey', 'JC Buttler', 'KS Williamson']
+  Resampled BLUE [orange_cap]:
+    was: ['V Kohli', 'MEK Hussey', 'JC Buttler', 'KS Williamson']
+    now: ['KS Williamson', 'KL Rahul', 'V Kohli', 'JC Buttler']
+  Resampled BLUE [orange_cap]:
+    was: ['KS Williamson', 'KL Rahul', 'V Kohli', 'JC Buttler']
+    now: ['MEK Hussey', 'SR Tendulkar', 'JC Buttler', 'V Kohli']
+  Resampled BLUE [orange_cap]:
+    was: ['MEK Hussey', 'SR Tendulkar', 'JC Buttler', 'V Kohli']
+    now: ['V Kohli', 'SR Tendulkar', 'MEK Hussey', 'KS Williamson']
+  Resampled BLUE [orange_cap]:
+    was: ['V Kohli', 'SR Tendulkar', 'MEK Hussey', 'KS Williamson']
+    now: ['MEK Hussey', 'KL Rahul', 'KS Williamson', 'SR Tendulkar']
+  Resampled PURPLE [longest_serving]:
+    was: ['WP Saha', 'B Kumar', 'RG Sharma', 'DS Kulkarni']
+    now: ['A Mishra', 'R Ashwin', 'DJ Bravo', 'SP Narine']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:PBKS:2025] -> Punjab Kings 2025 Squad: ['Arshdeep Singh', 'Vyshak Vijay Kumar', 'Mitchell Owen', 'Marco Jansen']
+  green    [team_players:Deccan Chargers:2009] -> Deccan Chargers 2009 Squad: ['Jaskaran Singh', 'RP Singh', 'PP Ojha', 'RJ Harris']
+  blue     [orange_cap] -> Orange Cap Winners: ['MEK Hussey', 'KL Rahul', 'KS Williamson', 'SR Tendulkar']
+  purple   [longest_serving] -> Longest Serving IPL Players: ['A Mishra', 'R Ashwin', 'DJ Bravo', 'SP Narine']      
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-11.json
+
+  Ed 20 — 2026-04-12
+  yellow   [team_owners] -> IPL Franchise Owners: ['Manoj Badale', 'Shah Rukh Khan', 'Parth Jindal', 'N. Srinivasan']
+  green    [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['RR Pant', 'Akshat Raghuwanshi', 'Mitchell Marsh', 'Ayush Badoni']
+  blue     [top_wicket_takers] -> IPL Career Wicket Takers (100+ Wickets): ['MM Sharma', 'Mohammed Siraj', 'SP Narine', 'UT Yadav']
+  purple   [legends:overseas] -> Overseas Legends of IPL: ['Shoaib Akhtar', 'MF Maharoof', 'JH Kallis', 'DL Vettori']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_owners] -> IPL Franchise Owners: ['Manoj Badale', 'Shah Rukh Khan', 'Parth Jindal', 'N. Srinivasan']
+  green    [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['RR Pant', 'Akshat Raghuwanshi', 'Mitchell Marsh', 'Ayush Badoni']
+  blue     [top_wicket_takers] -> IPL Career Wicket Takers (100+ Wickets): ['MM Sharma', 'Mohammed Siraj', 'SP Narine', 'UT Yadav']
+  purple   [legends:overseas] -> Overseas Legends of IPL: ['Shoaib Akhtar', 'MF Maharoof', 'JH Kallis', 'DL Vettori']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-12.json
+
+  Ed 21 — 2026-04-13
+  yellow   [team_players:RCB:2008] -> Royal Challengers Bengaluru 2008 Squad: ['Abdur Razzak', 'J Arunkumar', 'B Chipli', 'P Kumar']
+  green    [team_players:CSK:2010] -> Chennai Super Kings 2010 Squad: ['MS Dhoni', 'R Ashwin', 'S Badrinath', 'MEK Hussey']
+  blue     [highest_batting_avg] -> IPL Career Batting Average Leaders (30+ avg): ['JM Bairstow', 'DA Warner', 'SV Samson', 'N Pooran']
+  purple   [multi_team:5] -> Played for 5+ IPL Teams: ['BB McCullum', 'TG Southee', 'AB Dinda', 'Yuvraj Singh']     
+  Resampled GREEN [team_players:CSK:2010]:
+    was: ['MS Dhoni', 'R Ashwin', 'S Badrinath', 'MEK Hussey']
+    now: ['JA Morkel', 'T Thushara', 'ML Hayden', 'S Badrinath']
+  Resampled YELLOW [team_players:RCB:2008]:
+    was: ['Abdur Razzak', 'J Arunkumar', 'B Chipli', 'P Kumar']
+    now: ['Misbah-ul-Haq', 'Abdur Razzak', 'SB Joshi', 'R Vinay Kumar']
+  Resampled GREEN [team_players:CSK:2010]:
+    was: ['JA Morkel', 'T Thushara', 'ML Hayden', 'S Badrinath']
+    now: ['C Ganapathy', 'T Thushara', 'SK Raina', 'R Ashwin']
+  Resampled GREEN [team_players:CSK:2010]:
+    was: ['C Ganapathy', 'T Thushara', 'SK Raina', 'R Ashwin']
+    now: ['M Vijay', 'SK Raina', 'JA Morkel', 'MS Dhoni']
+  Resampled GREEN [team_players:CSK:2010]:
+    was: ['M Vijay', 'SK Raina', 'JA Morkel', 'MS Dhoni']
+    now: ['PA Patel', 'DE Bollinger', 'S Badrinath', 'R Ashwin']
+  Resampled GREEN [team_players:CSK:2010]:
+    was: ['PA Patel', 'DE Bollinger', 'S Badrinath', 'R Ashwin']
+    now: ['JA Morkel', 'L Balaji', 'S Badrinath', 'MEK Hussey']
+  Resampled GREEN [team_players:CSK:2010]:
+    was: ['JA Morkel', 'L Balaji', 'S Badrinath', 'MEK Hussey']
+    now: ['JA Morkel', 'SK Raina', 'M Muralitharan', 'PA Patel']
+  Resampled GREEN [team_players:CSK:2010]:
+    was: ['JA Morkel', 'SK Raina', 'M Muralitharan', 'PA Patel']
+    now: ['JA Morkel', 'M Vijay', 'ML Hayden', 'DE Bollinger']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RCB:2008] -> Royal Challengers Bengaluru 2008 Squad: ['Misbah-ul-Haq', 'Abdur Razzak', 'SB Joshi', 'R Vinay Kumar']
+  green    [team_players:CSK:2010] -> Chennai Super Kings 2010 Squad: ['JA Morkel', 'M Vijay', 'ML Hayden', 'DE Bollinger']
+  blue     [highest_batting_avg] -> IPL Career Batting Average Leaders (30+ avg): ['JM Bairstow', 'DA Warner', 'SV Samson', 'N Pooran']
+  purple   [multi_team:5] -> Played for 5+ IPL Teams: ['BB McCullum', 'TG Southee', 'AB Dinda', 'Yuvraj Singh']     
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-13.json

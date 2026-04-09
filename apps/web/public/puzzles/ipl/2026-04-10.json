@@ -1,0 +1,56 @@
+{
+  "id": "2026-04-10",
+  "date": "2026-04-10",
+  "edition": 18,
+  "items": [
+    "MA Starc",
+    "Wanindu Hasaranga",
+    "DA Miller",
+    "MP Breetzke",
+    "John Buchanan",
+    "Dav Whatmore",
+    "Shubham Dubey",
+    "GJ Maxwell",
+    "RR Pant",
+    "SR Watson",
+    "RR Rossouw",
+    "CL White",
+    "Kumar Sangakkara",
+    "Maheesh Theekshana",
+    "Mark Boucher",
+    "Yashasvi Jaiswal"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Rajasthan Royals 2025 Squad",
+      "spec": "team_players:RR:2025",
+      "hash": "eb2147c72f2382765974daafaa8b54da3898527a9230c1a46212e7541a3d183e"
+    },
+    {
+      "color": "green",
+      "title": "IPL Head Coaches",
+      "spec": "head_coaches",
+      "hash": "ba27635a6c19ccf5967c89675195cadceea33650cad2653ac368c28e647c6065"
+    },
+    {
+      "color": "blue",
+      "title": "Players from South Africa",
+      "spec": "country:South Africa",
+      "hash": "d992baa8e9505b75d0288bb2de383265ef86b7153a78e35117cebcf35b4f90b4"
+    },
+    {
+      "color": "purple",
+      "title": "Costliest Auction Picks",
+      "spec": "costliest_player",
+      "hash": "2fc9d2ef642f247a310db4166c74eb82415cabf49128a65232c3529335e6b4c3"
+    }
+  ],
+  "display_names": {
+    "MA Starc": "Mitchell Starc",
+    "DA Miller": "David Miller",
+    "GJ Maxwell": "Glenn Maxwell",
+    "RR Pant": "Rishabh Pant",
+    "SR Watson": "Shane Watson"
+  }
+}

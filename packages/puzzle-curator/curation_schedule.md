@@ -39,17 +39,17 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 | 13 | 5 Apr | Sun | SRH vs LSG | `team_players:RCB:2026` | `team_players:SRH:2016` | `fielding_coaches` | `highest_batting_avg` | [x] |
 | 14 | 6 Apr | Mon | KKR vs PBKS | `team_players:KKR:2026` |  `season_records` |`state:Punjab`  | `costliest_player` | [x] |
 | 15 | 7 Apr | Tue | RR vs MI | `team_players:RR:2008` | `team_legends_bowling:MI` | `country:Australia` | `player_of_tournament` | [x] |
-| 16 | 8 Apr | Wed | DC vs GT | `team_players:GT:2026` | `purple_cap` | `state:Maharashtra` | `played_both:CSK:MI` | [ ] |
-| 17 | 9 Apr | Thu | KKR vs LSG | `team_players:KKR:2008` | `most_ducks` | `state:Uttar Pradesh` | `multi_team:5` | [ ] |
-| 18 | 10 Apr | Fri | RR vs RCB | `team_players:RR:2026` | `costliest_player` | `head_coaches` | `multi_team:7` | [ ] |
-| 19 | 11 Apr | Sat | PBKS vs SRH | `team_players:PBKS:2026` | `player_of_tournament` | `orange_cap` | `longest_serving` | [ ] |
-| 20 | 12 Apr | Sun | LSG vs GT | `team_players:LSG:2026` | `country:South Africa` | `top_wicket_takers` | `played_both:CSK:MI` | [ ] |
+| 16 | 8 Apr | Wed | DC vs GT | `team_players:GT:2026` | `purple_cap` | `state:Maharashtra` | `played_both:CSK:MI` | [x] |
+| 17 | 9 Apr | Thu | KKR vs LSG | `team_players:KKR:2008` | `most_ducks` | `state:Uttar Pradesh` | `multi_team:5` | [x] |
+| 18 | 10 Apr | Fri | RR vs RCB | `team_players:RR:2025` |`head_coaches` |`country:South Africa`  | `costliest_player` |   [x] |
+| 19 | 11 Apr | Sat | PBKS vs SRH | `team_players:PBKS:2025` | `team_players:Deccan Chargers:2009`  | `orange_cap` | `longest_serving` | [x] |
+| 20 | 12 Apr | Sun | LSG vs GT | `team_owners` | `team_players:LSG:2026` | `top_wicket_takers` | `legends:overseas` | [x] |
 
 ## Phase 2 — Match Days (13 Apr - 21 May)
 
 | Ed | Date | Day | Match | Yellow | Green | Blue | Purple | Status |
 |---|---|---|---|---|---|---|---|---|
-| 21 | 13 Apr | Mon | RCB vs CSK | `team_players:RCB:2026` | `state:Maharashtra` | `highest_batting_avg` | `multi_team:5` | [ ] |
+| 21 | 13 Apr | Mon | RCB vs CSK | `team_players:RCB:2008` | `team_players:CSK:2010` | `highest_batting_avg` | `multi_team:5` | [x] |
 | 22 | 14 Apr | Tue | MI vs RR | `team_players:MI:2026` | `team_legends_batting:RCB` | `ranji:Mumbai` | `multi_team:7` | [ ] |
 | 23 | 15 Apr | Wed | KKR vs DC | `team_players:KKR:2026` | `legends:india` | `head_coaches` | `most_ducks` | [ ] |
 | 24 | 16 Apr | Thu | GT vs SRH | `team_players:GT:2026` | `legends:overseas` | `top_run_scorers` | `costliest_player` | [ ] |

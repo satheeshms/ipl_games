@@ -1,0 +1,56 @@
+{
+  "id": "2026-04-12",
+  "date": "2026-04-12",
+  "edition": 20,
+  "items": [
+    "Manoj Badale",
+    "JH Kallis",
+    "Akshat Raghuwanshi",
+    "SP Narine",
+    "UT Yadav",
+    "Parth Jindal",
+    "Ayush Badoni",
+    "Shah Rukh Khan",
+    "Mitchell Marsh",
+    "Mohammed Siraj",
+    "RR Pant",
+    "N. Srinivasan",
+    "DL Vettori",
+    "MF Maharoof",
+    "MM Sharma",
+    "Shoaib Akhtar"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "IPL Franchise Owners",
+      "spec": "team_owners",
+      "hash": "979511e70d056eae7071b7fffa2d8f1e6fbe79b07ce7595fa648b2d7a5914257"
+    },
+    {
+      "color": "green",
+      "title": "Lucknow Super Giants 2026 Squad",
+      "spec": "team_players:LSG:2026",
+      "hash": "29430e794b5a0df023db2781f3808c6f5bb5ec6afa30c91b69effacf3d56ff75"
+    },
+    {
+      "color": "blue",
+      "title": "IPL Career Wicket Takers (100+ Wickets)",
+      "spec": "top_wicket_takers",
+      "hash": "c8fd7d4cc3118cbb80e7b37b64e152041558e20f6da8590920012f575f2d6d60"
+    },
+    {
+      "color": "purple",
+      "title": "Overseas Legends of IPL",
+      "spec": "legends:overseas",
+      "hash": "21e27e43c3fad1a3bb3cbc2fa91dd73b38b4300f24c6b64d3303e17ff39ab138"
+    }
+  ],
+  "display_names": {
+    "JH Kallis": "Jacques Kallis",
+    "SP Narine": "Sunil Narine",
+    "RR Pant": "Rishabh Pant",
+    "DL Vettori": "Daniel Vettori",
+    "MF Maharoof": "Maharoof"
+  }
+}

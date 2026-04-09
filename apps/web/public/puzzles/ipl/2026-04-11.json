@@ -1,0 +1,57 @@
+{
+  "id": "2026-04-11",
+  "date": "2026-04-11",
+  "edition": 19,
+  "items": [
+    "PP Ojha",
+    "MEK Hussey",
+    "SP Narine",
+    "DJ Bravo",
+    "Vyshak Vijay Kumar",
+    "A Mishra",
+    "KL Rahul",
+    "RP Singh",
+    "RJ Harris",
+    "Mitchell Owen",
+    "KS Williamson",
+    "Jaskaran Singh",
+    "R Ashwin",
+    "Arshdeep Singh",
+    "SR Tendulkar",
+    "Marco Jansen"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Punjab Kings 2025 Squad",
+      "spec": "team_players:PBKS:2025",
+      "hash": "48c9f801ef9106ab1a0b70b51392bef841c077cf451a09e82459924a919a2765"
+    },
+    {
+      "color": "green",
+      "title": "Deccan Chargers 2009 Squad",
+      "spec": "team_players:Deccan Chargers:2009",
+      "hash": "066961e17ea2cca6c822eadf3b8ee8c4ddac1f5c689e33c64b7911d40bd04c71"
+    },
+    {
+      "color": "blue",
+      "title": "Orange Cap Winners",
+      "spec": "orange_cap",
+      "hash": "ea85d89bf0f1c866abf857848e654738f70f800912a5515e70eb1c1d8d0676f8"
+    },
+    {
+      "color": "purple",
+      "title": "Longest Serving IPL Players",
+      "spec": "longest_serving",
+      "hash": "132c7326a6d90f158d90fee4ceeca863cb9de3c0324baa9ea891183c3c147c29"
+    }
+  ],
+  "display_names": {
+    "PP Ojha": "Pragyan Ojha",
+    "SP Narine": "Sunil Narine",
+    "DJ Bravo": "Dwayne Bravo",
+    "A Mishra": "Amit Mishra",
+    "R Ashwin": "Ravichandran Ashwin",
+    "SR Tendulkar": "Sachin Tendulkar"
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "id": "2026-04-13",
+  "date": "2026-04-13",
+  "edition": 21,
+  "items": [
+    "SV Samson",
+    "N Pooran",
+    "BB McCullum",
+    "JA Morkel",
+    "DA Warner",
+    "SB Joshi",
+    "DE Bollinger",
+    "TG Southee",
+    "M Vijay",
+    "Yuvraj Singh",
+    "JM Bairstow",
+    "Misbah-ul-Haq",
+    "R Vinay Kumar",
+    "ML Hayden",
+    "Abdur Razzak",
+    "AB Dinda"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Royal Challengers Bengaluru 2008 Squad",
+      "spec": "team_players:RCB:2008",
+      "hash": "4e602c4772318f0e5a9ebb8a7eeb3228b34e754a443ed4a811fa74fd9da2e248"
+    },
+    {
+      "color": "green",
+      "title": "Chennai Super Kings 2010 Squad",
+      "spec": "team_players:CSK:2010",
+      "hash": "3c55543a4b5b23c5d0d704503415bcab048347276771d95f6976a9f08d0b63e7"
+    },
+    {
+      "color": "blue",
+      "title": "IPL Career Batting Average Leaders (30+ avg)",
+      "spec": "highest_batting_avg",
+      "hash": "5140e402edac67194fd2b612e2c994f09ec0bf618b294fdbe4b6050d967685a3"
+    },
+    {
+      "color": "purple",
+      "title": "Played for 5+ IPL Teams",
+      "spec": "multi_team:5",
+      "hash": "04fc6f052a127dcfbf3890293a7fa9d4ac9b5c1e26ac992770d752458745d002"
+    }
+  ],
+  "display_names": {
+    "SV Samson": "Sanju Samson",
+    "N Pooran": "Nicholas Pooran",
+    "BB McCullum": "Brendon McCullum",
+    "JA Morkel": "Albie Morkel",
+    "DA Warner": "David Warner",
+    "DE Bollinger": "Doug Bollinger",
+    "TG Southee": "Tim Southee",
+    "M Vijay": "Murali Vijay",
+    "JM Bairstow": "Jonny Bairstow",
+    "ML Hayden": "Matthew Hayden",
+    "AB Dinda": "Ashok Dinda"
+  }
+}
