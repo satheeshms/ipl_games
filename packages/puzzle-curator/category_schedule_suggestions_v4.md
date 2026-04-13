@@ -527,3 +527,32 @@ Ed 19 — 2026-04-11
   blue     [highest_batting_avg] -> IPL Career Batting Average Leaders (30+ avg): ['JM Bairstow', 'DA Warner', 'SV Samson', 'N Pooran']
   purple   [multi_team:5] -> Played for 5+ IPL Teams: ['BB McCullum', 'TG Southee', 'AB Dinda', 'Yuvraj Singh']     
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-13.json
+
+Ed 22 — 2026-04-14
+  yellow   [team_players:SRH:2026] -> Sunrisers Hyderabad 2026 Squad: ['Pat Cummins', 'Abhishek Sharma', 'Travis Head', 'Wiaan Mulder']
+  green    [team_legends_batting:RR] -> Rajasthan Royals Batting Legends: ['RA Jadeja', 'SV Samson', 'DA Miller', 'AM Rahane']
+  blue     [country:Afghanistan] -> Players from Afghanistan: ['Azmatullah Omarzai', 'Mohammad Nabi', 'Mujeeb Ur Rahman', 'Rashid Khan']
+  purple   [fielding_coaches] -> IPL Fielding Coaches: ['Rajiv Kumar', 'Trevor Gonsalves', 'Narendra Negi', 'Dishant Yagnik']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:SRH:2026] -> Sunrisers Hyderabad 2026 Squad: ['Pat Cummins', 'Abhishek Sharma', 'Travis Head', 'Wiaan Mulder']
+  green    [team_legends_batting:RR] -> Rajasthan Royals Batting Legends: ['RA Jadeja', 'SV Samson', 'DA Miller', 'AM Rahane']
+  blue     [country:Afghanistan] -> Players from Afghanistan: ['Azmatullah Omarzai', 'Mohammad Nabi', 'Mujeeb Ur Rahman', 'Rashid Khan']
+  purple   [fielding_coaches] -> IPL Fielding Coaches: ['Rajiv Kumar', 'Trevor Gonsalves', 'Narendra Negi', 'Dishant Yagnik']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-14.json
+
+
+Ed 23 — 2026-04-15
+  yellow   [team_players:KKR:2025] -> Kolkata Knight Riders 2025 Squad: ['Angkrish Raghuvanshi', 'Shivam Shukla', 'Vaibhav Arora', 'Anukul Roy']
+  green    [legends:india] -> Indian Legends of IPL: ['SR Tendulkar', 'Harbhajan Singh', 'V Sehwag', 'R Dravid']
+  blue     [ranji:Tamil Nadu] -> Ranji Trophy: Tamil Nadu: ['P Amarnath', 'M Vijay', 'VY Mahesh', 'R Sai Kishore']
+  purple   [costliest_player] -> Costliest Auction Picks: ['KA Pollard', 'CH Morris', 'PJ Cummins', 'CJ Green']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:KKR:2025] -> Kolkata Knight Riders 2025 Squad: ['Angkrish Raghuvanshi', 'Shivam Shukla', 'Vaibhav Arora', 'Anukul Roy']
+  green    [legends:india] -> Indian Legends of IPL: ['SR Tendulkar', 'Harbhajan Singh', 'V Sehwag', 'R Dravid']
+  blue     [ranji:Tamil Nadu] -> Ranji Trophy: Tamil Nadu: ['P Amarnath', 'M Vijay', 'VY Mahesh', 'R Sai Kishore']
+  purple   [costliest_player] -> Costliest Auction Picks: ['KA Pollard', 'CH Morris', 'PJ Cummins', 'CJ Green']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-15.json

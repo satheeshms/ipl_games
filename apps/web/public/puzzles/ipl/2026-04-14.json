@@ -1,0 +1,54 @@
+{
+  "id": "2026-04-14",
+  "date": "2026-04-14",
+  "edition": 22,
+  "items": [
+    "Travis Head",
+    "Wiaan Mulder",
+    "AM Rahane",
+    "Mujeeb Ur Rahman",
+    "Mohammad Nabi",
+    "Trevor Gonsalves",
+    "Narendra Negi",
+    "DA Miller",
+    "SV Samson",
+    "Rajiv Kumar",
+    "Pat Cummins",
+    "Dishant Yagnik",
+    "Azmatullah Omarzai",
+    "RA Jadeja",
+    "Abhishek Sharma",
+    "Rashid Khan"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Sunrisers Hyderabad 2026 Squad",
+      "spec": "team_players:SRH:2026",
+      "hash": "c4d973251601d433ccb97632d082b8743a5b77b18add8a904faec30041021ad8"
+    },
+    {
+      "color": "green",
+      "title": "Rajasthan Royals Batting Legends",
+      "spec": "team_legends_batting:RR",
+      "hash": "f7c2978d264a59df3da4426643df4110993c663e4e2fb9436569a87ab17d75e7"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Afghanistan",
+      "spec": "country:Afghanistan",
+      "hash": "73d144a14545cb7f97a2aab9369742bc2de559350eb71d352fade273776820f5"
+    },
+    {
+      "color": "purple",
+      "title": "IPL Fielding Coaches",
+      "spec": "fielding_coaches",
+      "hash": "37c3e5b52d55f67223a3941b9fe2eac3d25e4682a1e32023a41d36aee7ae07cb"
+    }
+  ],
+  "display_names": {
+    "AM Rahane": "Ajinkya Rahane",
+    "DA Miller": "David Miller",
+    "SV Samson": "Sanju Samson"
+  }
+}

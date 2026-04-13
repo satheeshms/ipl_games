@@ -1,0 +1,56 @@
+{
+  "id": "2026-04-15",
+  "date": "2026-04-15",
+  "edition": 23,
+  "items": [
+    "M Vijay",
+    "Vaibhav Arora",
+    "P Amarnath",
+    "V Sehwag",
+    "VY Mahesh",
+    "KA Pollard",
+    "Harbhajan Singh",
+    "Angkrish Raghuvanshi",
+    "CH Morris",
+    "R Dravid",
+    "SR Tendulkar",
+    "PJ Cummins",
+    "CJ Green",
+    "Anukul Roy",
+    "R Sai Kishore",
+    "Shivam Shukla"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Kolkata Knight Riders 2025 Squad",
+      "spec": "team_players:KKR:2025",
+      "hash": "f7e6052d3df45ec7d71576971a9495bfca5030378b9205789ca726e2290c208a"
+    },
+    {
+      "color": "green",
+      "title": "Indian Legends of IPL",
+      "spec": "legends:india",
+      "hash": "fdc2d764631abbee9ef0888a98bc619bded88095d19ed86ddaca5fae4cd58bd5"
+    },
+    {
+      "color": "blue",
+      "title": "Ranji Trophy: Tamil Nadu",
+      "spec": "ranji:Tamil Nadu",
+      "hash": "6d3265b3978ce10622d830d5e648d225659eb2ce4861a40341b516806c37c32f"
+    },
+    {
+      "color": "purple",
+      "title": "Costliest Auction Picks",
+      "spec": "costliest_player",
+      "hash": "09de630066b65c159c87963762fb0989b58cffded9a1e9f17d8cc6dac9fd0386"
+    }
+  ],
+  "display_names": {
+    "M Vijay": "Murali Vijay",
+    "V Sehwag": "Virender Sehwag",
+    "KA Pollard": "Kieron Pollard",
+    "SR Tendulkar": "Sachin Tendulkar",
+    "R Sai Kishore": "Ravisrinivasan Sai Kishore"
+  }
+}

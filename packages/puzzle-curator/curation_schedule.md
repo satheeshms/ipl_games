@@ -50,8 +50,8 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 | Ed | Date | Day | Match | Yellow | Green | Blue | Purple | Status |
 |---|---|---|---|---|---|---|---|---|
 | 21 | 13 Apr | Mon | RCB vs CSK | `team_players:RCB:2008` | `team_players:CSK:2010` | `highest_batting_avg` | `multi_team:5` | [x] |
-| 22 | 14 Apr | Tue | MI vs RR | `team_players:MI:2026` | `team_legends_batting:RCB` | `ranji:Mumbai` | `multi_team:7` | [ ] |
-| 23 | 15 Apr | Wed | KKR vs DC | `team_players:KKR:2026` | `legends:india` | `head_coaches` | `most_ducks` | [ ] |
+| 22 | 14 Apr | Tue | SRH vs RR | `team_players:SRH:2026` | `team_legends_batting:RR` | `country:Afghanistan` | `fielding_coaches` | [x] |
+| 23 | 15 Apr | Wed | CSK vs KKR | `team_players:KKR:2025` | `legends:india` | `ranji:Tamil Nadu` | `costliest_player` | [x] |
 | 24 | 16 Apr | Thu | GT vs SRH | `team_players:GT:2026` | `legends:overseas` | `top_run_scorers` | `costliest_player` | [ ] |
 | 25 | 17 Apr | Fri | CSK vs LSG | `team_players:CSK:2026` | `team_legends_bowling:RCB` | `country:South Africa` | `played_both:KKR:MI` | [ ] |
 | 26 | 18 Apr | Sat | RCB vs MI | `team_players:RCB:2026` | `head_coaches` | `state:Maharashtra` | `multi_team:5` | [ ] |
