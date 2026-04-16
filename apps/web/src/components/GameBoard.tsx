@@ -10,6 +10,7 @@ import { LivesIndicator } from './LivesIndicator';
 import { ToastNotification } from './ToastNotification';
 import { ActionBar } from './ActionBar';
 import { ResultsModal } from './ResultsModal';
+import { FirstTapTooltip } from './FirstTapTooltip';
 
 const HINT_COLOR_ORDER: Color[] = ['yellow', 'green', 'blue', 'purple'];
 
@@ -76,6 +77,10 @@ export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
   const [shakingItems, setShakingItems] = useState<string[]>([]);
   const [bouncingItems, setBouncingItems] = useState<string[]>([]);
 
+  const TOOLTIP_SEEN_KEY = 'ipl-cluster4-tooltip-seen';
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const tooltipShown = useRef(false);
+
   const loadedPuzzleId = useRef<string | number | null>(null);
 
   // Load puzzle when puzzle id or gameMode changes (gameMode affects initial lives)
@@ -86,6 +91,28 @@ export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
     engine.loadPuzzle(puzzle, gameMode, modeChange);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [puzzle.id, gameMode]);
+
+  // Show first-tap tooltip once ever
+  useEffect(() => {
+    const alreadySeen = (() => {
+      try { return !!localStorage.getItem(TOOLTIP_SEEN_KEY); } catch { return true; }
+    })();
+    if (
+      !alreadySeen &&
+      !tooltipShown.current &&
+      state.selected.length === 1 &&
+      state.guessHistory.length === 0 &&
+      state.revealedCategories.length === 0
+    ) {
+      tooltipShown.current = true;
+      setTooltipVisible(true);
+    }
+  }, [state.selected.length, state.guessHistory.length, state.revealedCategories.length]);
+
+  const handleDismissTooltip = useCallback(() => {
+    setTooltipVisible(false);
+    try { localStorage.setItem(TOOLTIP_SEEN_KEY, '1'); } catch { /* ignore */ }
+  }, []);
 
   // Handle "One Away!" toast
   useEffect(() => {
@@ -288,6 +315,9 @@ export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
 
         {/* Toast notification */}
         <ToastNotification message={toastMessage} />
+
+        {/* First-tap onboarding tooltip */}
+        <FirstTapTooltip visible={tooltipVisible} onDismiss={handleDismissTooltip} />
 
         {/* Action bar — shows game controls while playing, Share Result when game over */}
         <ActionBar
