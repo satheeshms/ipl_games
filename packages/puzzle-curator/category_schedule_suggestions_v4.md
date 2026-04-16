@@ -556,3 +556,35 @@ Ed 23 — 2026-04-15
   blue     [ranji:Tamil Nadu] -> Ranji Trophy: Tamil Nadu: ['P Amarnath', 'M Vijay', 'VY Mahesh', 'R Sai Kishore']
   purple   [costliest_player] -> Costliest Auction Picks: ['KA Pollard', 'CH Morris', 'PJ Cummins', 'CJ Green']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-15.json
+
+Ed 25 — 2026-04-17
+  yellow   [team_players:GT:2025] -> Gujarat Titans 2025 Squad: ['Mohammed Siraj', 'Rashid Khan', 'Arshad Khan', 'Shubman Gill']
+  green    [team_players:KKR:2008] -> Kolkata Knight Riders 2008 Squad: ['WP Saha', 'M Kartik', 'AB Agarkar', 'Umar Gul']
+  blue     [country:Sri Lanka] -> Players from Sri Lanka: ['BKG Mendis', 'AD Mathews', 'TM Dilshan', 'SL Malinga']
+  purple   [bowling_records] -> IPL Bowling Record Holders: ['DJ Bravo', 'YS Chahal', 'AS Joseph', 'SP Narine']
+  Resampled BLUE [country:Sri Lanka]:
+    was: ['BKG Mendis', 'AD Mathews', 'TM Dilshan', 'SL Malinga']
+    now: ['SMSM Senanayake', 'E Malinga', 'PVD Chameera', 'M Pathirana']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:GT:2025] -> Gujarat Titans 2025 Squad: ['Mohammed Siraj', 'Rashid Khan', 'Arshad Khan', 'Shubman Gill']
+  green    [team_players:KKR:2008] -> Kolkata Knight Riders 2008 Squad: ['WP Saha', 'M Kartik', 'AB Agarkar', 'Umar Gul']
+  blue     [country:Sri Lanka] -> Players from Sri Lanka: ['SMSM Senanayake', 'E Malinga', 'PVD Chameera', 'M Pathirana']
+  purple   [bowling_records] -> IPL Bowling Record Holders: ['DJ Bravo', 'YS Chahal', 'AS Joseph', 'SP Narine']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-17.json
+
+  Ed 26 — 2026-04-18
+  yellow   [team_players:RCB:2025] -> Royal Challengers Bengaluru 2025 Squad: ['Jitesh Sharma', 'Blessing Muzarabani', 'Yash Dayal', 'Romario Shepherd']
+  green    [head_coaches] -> IPL Head Coaches: ['Hemang Badani', 'Geoff Marsh', 'Stephen Fleming', 'Mike Hesson']
+  blue     [state:Delhi] -> Players from Delhi: ['P Arya', 'Harshit Rana', 'P Awana', 'Simarjeet Singh']
+  purple   [batting_coaches] -> IPL Batting Coaches: ['Brad Hodge', 'Praveen Amre', 'Michael Bevan', 'Simon Katich']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RCB:2025] -> Royal Challengers Bengaluru 2025 Squad: ['Jitesh Sharma', 'Blessing Muzarabani', 'Yash Dayal', 'Romario Shepherd']
+  green    [head_coaches] -> IPL Head Coaches: ['Hemang Badani', 'Geoff Marsh', 'Stephen Fleming', 'Mike Hesson']
+  blue     [state:Delhi] -> Players from Delhi: ['P Arya', 'Harshit Rana', 'P Awana', 'Simarjeet Singh']
+  purple   [batting_coaches] -> IPL Batting Coaches: ['Brad Hodge', 'Praveen Amre', 'Michael Bevan', 'Simon Katich']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-18.json
+

@@ -1,0 +1,58 @@
+{
+  "id": "2026-04-17",
+  "date": "2026-04-17",
+  "edition": 25,
+  "items": [
+    "Shubman Gill",
+    "Mohammed Siraj",
+    "E Malinga",
+    "Rashid Khan",
+    "AS Joseph",
+    "SMSM Senanayake",
+    "Arshad Khan",
+    "PVD Chameera",
+    "M Pathirana",
+    "Umar Gul",
+    "WP Saha",
+    "AB Agarkar",
+    "DJ Bravo",
+    "SP Narine",
+    "YS Chahal",
+    "M Kartik"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Gujarat Titans 2025 Squad",
+      "spec": "team_players:GT:2025",
+      "hash": "58c8b5ee2546efd6e08502c65e0a937d4bd5a8387cc2e10323bcb0fe042aa99b"
+    },
+    {
+      "color": "green",
+      "title": "Kolkata Knight Riders 2008 Squad",
+      "spec": "team_players:KKR:2008",
+      "hash": "9101609b9507d6038cb9e48e6b5a0059ba007e2f4f63d4bb121bb94ddb027afc"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Sri Lanka",
+      "spec": "country:Sri Lanka",
+      "hash": "e582bb93aece73cbdab6120c327b6e4bde745d467dfe41bf4ab64ab739b41081"
+    },
+    {
+      "color": "purple",
+      "title": "IPL Bowling Record Holders",
+      "spec": "bowling_records",
+      "hash": "f3824e3be825eee8ffa6f0c1a42c33ecfe06321c84e93266ef988c6791bb005a"
+    }
+  ],
+  "display_names": {
+    "AS Joseph": "Arthur Joseph",
+    "M Pathirana": "Matheesha Pathirana",
+    "WP Saha": "Wriddhiman Saha",
+    "DJ Bravo": "Dwayne Bravo",
+    "SP Narine": "Sunil Narine",
+    "YS Chahal": "Yuzvendra Chahal",
+    "M Kartik": "Murali Kartik"
+  }
+}

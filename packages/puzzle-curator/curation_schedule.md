@@ -53,8 +53,8 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 | 22 | 14 Apr | Tue | SRH vs RR | `team_players:SRH:2026` | `team_legends_batting:RR` | `country:Afghanistan` | `fielding_coaches` | [x] |
 | 23 | 15 Apr | Wed | CSK vs KKR | `team_players:KKR:2025` | `legends:india` | `ranji:Tamil Nadu` | `costliest_player` | [x] |
 | 24 | 16 Apr | Thu | GT vs SRH | `team_players:GT:2026` | `legends:overseas` | `top_run_scorers` | `costliest_player` | [ ] |
-| 25 | 17 Apr | Fri | CSK vs LSG | `team_players:CSK:2026` | `team_legends_bowling:RCB` | `country:South Africa` | `played_both:KKR:MI` | [ ] |
-| 26 | 18 Apr | Sat | RCB vs MI | `team_players:RCB:2026` | `head_coaches` | `state:Maharashtra` | `multi_team:5` | [ ] |
+| 25 | 17 Apr | Fri | GT vs KKR | `team_players:GT:2025` | `team_players:KKR:2008` | `country:Sri Lanka` | `bowling_records` | [ ] |
+| 26 | 18 Apr | Sat | RCB vs DC | `team_players:RCB:2025` | `head_coaches` | `state:Delhi` | `batting_coaches` | [ ] |
 | 27 | 19 Apr | Sun | PBKS vs KKR | `team_players:PBKS:2026` | `team_legends_batting:KKR` | `ranji:Mumbai` | `multi_team:7` | [ ] |
 | 28 | 20 Apr | Mon | RR vs GT | `team_players:RR:2026` | `team_legends_bowling:KKR` | `country:England` | `bowling_records` | [ ] |
 | 29 | 21 Apr | Tue | DC vs SRH | `team_players:DC:2026` | `head_coaches` | `state:Maharashtra` | `most_ducks` | [ ] |
