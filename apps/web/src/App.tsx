@@ -1,34 +1,17 @@
-import { useState, useEffect, useRef, useCallback } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { usePuzzle } from './hooks/usePuzzle';
 import { GameSEO } from './components/GameSEO';
 import { Header } from './components/Header';
 import { GameBoard } from './components/GameBoard';
 import { HelpModal } from './components/HelpModal';
-import { GameModeTipModal } from './components/GameModeTipModal';
 import type { GameMode } from './types';
 
 const HELP_SEEN_KEY = 'ipl-cluster4-help-seen';
 const GAME_MODE_KEY = 'ipl-cluster4-gamemode';
-const MODE_TIP_COUNT_KEY = 'ipl-cluster4-mode-tip-count';
-const MODE_TIP_MAX = 3;
-
-function getModeTipCount(): number {
-  try {
-    return parseInt(localStorage.getItem(MODE_TIP_COUNT_KEY) ?? '0', 10) || 0;
-  } catch { return MODE_TIP_MAX; } // fail-safe: don't spam if storage unavailable
-}
-
-function incrementModeTipCount(): void {
-  try {
-    localStorage.setItem(MODE_TIP_COUNT_KEY, String(getModeTipCount() + 1));
-  } catch { /* ignore */ }
-}
 
 function App() {
   const { puzzle, loading, error } = usePuzzle();
   const [showHelp, setShowHelp] = useState(false);
-  const [showModeTip, setShowModeTip] = useState(false);
-  const modeTipShownThisSession = useRef(false);
   const [gameMode, setGameMode] = useState<GameMode>(() => {
     try {
       const stored = localStorage.getItem(GAME_MODE_KEY);
@@ -54,30 +37,9 @@ function App() {
     }
   }, [loading, puzzle]);
 
-  // Auto-show mode tip for existing users (immediately on load)
-  useEffect(() => {
-    if (!loading && puzzle && localStorage.getItem(HELP_SEEN_KEY)) {
-      if (!modeTipShownThisSession.current && getModeTipCount() < MODE_TIP_MAX) {
-        incrementModeTipCount();
-        modeTipShownThisSession.current = true;
-        setShowModeTip(true);
-      }
-    }
-  }, [loading, puzzle]);
-
   function closeHelp() {
     localStorage.setItem(HELP_SEEN_KEY, '1');
     setShowHelp(false);
-    // Show mode tip to new users right after they close help
-    if (!modeTipShownThisSession.current && getModeTipCount() < MODE_TIP_MAX) {
-      incrementModeTipCount();
-      modeTipShownThisSession.current = true;
-      setShowModeTip(true);
-    }
-  }
-
-  function closeModeTip() {
-    setShowModeTip(false);
   }
 
   const handleToggleGameMode = useCallback(() => {
@@ -122,7 +84,6 @@ function App() {
       </main>
 
       {showHelp && <HelpModal onClose={closeHelp} />}
-      {showModeTip && <GameModeTipModal onClose={closeModeTip} />}
     </div>
   );
 }
