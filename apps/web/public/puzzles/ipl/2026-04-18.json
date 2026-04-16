@@ -1,0 +1,52 @@
+{
+  "id": "2026-04-18",
+  "date": "2026-04-18",
+  "edition": 26,
+  "items": [
+    "Brad Hodge",
+    "Harshit Rana",
+    "Romario Shepherd",
+    "Michael Bevan",
+    "Praveen Amre",
+    "P Arya",
+    "P Awana",
+    "Yash Dayal",
+    "Stephen Fleming",
+    "Simon Katich",
+    "Jitesh Sharma",
+    "Blessing Muzarabani",
+    "Geoff Marsh",
+    "Simarjeet Singh",
+    "Hemang Badani",
+    "Mike Hesson"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Royal Challengers Bengaluru 2025 Squad",
+      "spec": "team_players:RCB:2025",
+      "hash": "abb41b7695c98ee7083a31c21ef6683f11547095cccf93db1a7ee478b5f086f5"
+    },
+    {
+      "color": "green",
+      "title": "IPL Head Coaches",
+      "spec": "head_coaches",
+      "hash": "991064df9979b891d8da4ded9f342f41b688f2400b2c8933f21dcb67a7ffd9cc"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Delhi",
+      "spec": "state:Delhi",
+      "hash": "edaabc3fd6a24a281dbc9e53a514242e2d8eacb8ce70249bc9d0f78d8f59a3a1"
+    },
+    {
+      "color": "purple",
+      "title": "IPL Batting Coaches",
+      "spec": "batting_coaches",
+      "hash": "d37f0c3dc635e658d758f2e1032e5bc63879b7e72cecfa0533da79f8522af240"
+    }
+  ],
+  "display_names": {
+    "P Awana": "Parvinder Awana"
+  }
+}
