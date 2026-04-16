@@ -14,7 +14,7 @@ describe('HelpModal', () => {
     render(<HelpModal onClose={() => {}} />);
     expect(screen.getByText(/tap 4 players/i)).toBeInTheDocument();
     expect(screen.getByText(/submit/i)).toBeInTheDocument();
-    expect(screen.getAllByText(/hints/i).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getByText(/reveal a category title/i)).toBeInTheDocument();
     expect(screen.getByText(/find all 4 groups/i)).toBeInTheDocument();
   });
 
