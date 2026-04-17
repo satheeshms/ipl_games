@@ -111,7 +111,7 @@ export function HelpModal({ onClose }: HelpModalProps) {
             <img
               src="/help-demo.gif"
               alt="How to play demo"
-              className="w-full rounded-xl mb-5 border border-white/10 max-h-40 object-cover"
+              className="w-full rounded-xl mb-5 border border-white/10 object-contain"
             />
 
             {/* Vertical rules */}

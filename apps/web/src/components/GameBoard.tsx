@@ -82,12 +82,18 @@ export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
   const tooltipShown = useRef(false);
 
   const loadedPuzzleId = useRef<string | number | null>(null);
+  const loadedGameMode = useRef<GameMode | null>(null);
 
   // Load puzzle when puzzle id or gameMode changes (gameMode affects initial lives)
   useEffect(() => {
-    // Force fresh start when only the mode changes (no saved state for wrong mode)
-    const modeChange = loadedPuzzleId.current === puzzle.id;
+    // modeChange is true only when the same puzzle is reloaded with a different mode.
+    // We track both refs so React 18 StrictMode's double-invoke doesn't misdetect a
+    // mode change (ref persists across the two runs, so same-puzzle + same-mode = false).
+    const samePuzzle = loadedPuzzleId.current === puzzle.id;
+    const sameMode = loadedGameMode.current === gameMode;
+    const modeChange = samePuzzle && !sameMode;
     loadedPuzzleId.current = puzzle.id;
+    loadedGameMode.current = gameMode;
     engine.loadPuzzle(puzzle, gameMode, modeChange);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [puzzle.id, gameMode]);

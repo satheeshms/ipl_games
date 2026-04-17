@@ -18,13 +18,25 @@ function formatDate(dateStr: string): string {
 
 export function Header({ edition, date, gameMode, gameStarted, onToggleGameMode, onHelp }: HeaderProps) {
   return (
-    <header className="w-full px-4 py-3 border-b border-game-accent/30">
-      <div className="max-w-lg mx-auto flex items-center justify-between">
-        <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
-          <BiSolidCricketBall size={26} className="shrink-0 text-red-600" />
-          Cluster 4 - IPL Edition
-        </h1>
-        <div className="flex items-center gap-3">
+    <header className="w-full px-4 pt-3 pb-2 border-b border-game-accent/30">
+      <div className="max-w-lg mx-auto flex flex-col gap-1.5">
+        {/* Row 1: title + help */}
+        <div className="flex items-center justify-between">
+          <h1 className="text-xl font-bold text-white tracking-tight flex items-center gap-2">
+            <BiSolidCricketBall size={26} className="shrink-0 text-red-600" />
+            Cluster 4 - IPL Edition
+          </h1>
+          <button
+            onClick={onHelp}
+            aria-label="How to play"
+            className="w-7 h-7 rounded-full border border-white/30 text-white/60 hover:text-white hover:border-white/60 text-sm font-bold transition-colors flex items-center justify-center"
+          >
+            ?
+          </button>
+        </div>
+
+        {/* Row 2: edition/date + mode toggle */}
+        <div className="flex items-center justify-between">
           <span className="text-sm text-white/50">
             #{edition} &middot; {formatDate(date)}
           </span>
@@ -63,13 +75,6 @@ export function Header({ edition, date, gameMode, gameStarted, onToggleGameMode,
               Easy
             </button>
           </div>
-          <button
-            onClick={onHelp}
-            aria-label="How to play"
-            className="w-7 h-7 rounded-full border border-white/30 text-white/60 hover:text-white hover:border-white/60 text-sm font-bold transition-colors flex items-center justify-center"
-          >
-            ?
-          </button>
         </div>
       </div>
     </header>

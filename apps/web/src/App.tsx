@@ -4,6 +4,7 @@ import { GameSEO } from './components/GameSEO';
 import { Header } from './components/Header';
 import { GameBoard } from './components/GameBoard';
 import { HelpModal } from './components/HelpModal';
+import { loadState } from './lib/storage';
 import type { GameMode } from './types';
 
 const HELP_SEEN_KEY = 'ipl-cluster4-help-seen';
@@ -20,9 +21,11 @@ function App() {
   });
   const [gameStarted, setGameStarted] = useState(false);
 
-  // Reset gameStarted when puzzle changes
+  // Restore gameStarted from saved state on puzzle load/change
   useEffect(() => {
-    setGameStarted(false);
+    if (!puzzle) { setGameStarted(false); return; }
+    const saved = loadState(puzzle.id);
+    setGameStarted(!!saved && (saved.guessHistory?.length ?? 0) > 0);
   }, [puzzle?.id]);
 
   // Persist gameMode
