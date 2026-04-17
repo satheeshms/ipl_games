@@ -13,3 +13,6 @@ packages/data-pipeline/data/backups/*
 # Generated at build time
 apps/web/public/sitemap.xml
 apps/web/public/robots.txt
+
+#super powers
+.superpowers/**
