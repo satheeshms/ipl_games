@@ -1,4 +1,4 @@
-import type { Puzzle, Guess } from '../types';
+import type { GameMode, Puzzle, Guess } from '../types';
 
 const COLOR_EMOJI: Record<string, string> = {
   yellow: '🟨',
@@ -22,16 +22,18 @@ export function buildEmojiRows(guessHistory: Guess[]): string[] {
   return guessHistory.map((guess, i) => buildRow(guess, i));
 }
 
-export function buildShareText(puzzle: Puzzle, guessHistory: Guess[], hintsUsed: number): string {
+export function buildShareText(puzzle: Puzzle, guessHistory: Guess[], hintsUsed: number, gameMode: GameMode = 'pro'): string {
   const formattedDate = new Date(puzzle.date + 'T00:00:00').toLocaleDateString('en-GB', {
     day: 'numeric', month: 'short', year: 'numeric',
   });
   const emojiRows = guessHistory.map((guess, i) => buildRow(guess, i));
-  const hintsLine = hintsUsed > 0 ? `💡 Hints used: ${hintsUsed}/2` : 'No hints used';
+  const maxHints = gameMode === 'easy' ? 3 : 2;
+  const hintsLine = hintsUsed > 0 ? `💡 Hints used: ${hintsUsed}/${maxHints}` : 'No hints used';
+  const modeLabel = gameMode === 'easy' ? ' · Easy Mode' : '';
   const gameUrl = window.location.origin + window.location.pathname;
 
   return [
-    `Cluster 4 – IPL #${puzzle.edition}`,
+    `Cluster 4 – IPL #${puzzle.edition}${modeLabel}`,
     formattedDate,
     '',
     ...emojiRows,

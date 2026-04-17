@@ -1,5 +1,5 @@
 import { useReducer, useEffect, useCallback } from 'react';
-import type { GameState, Color, Puzzle } from '../types';
+import type { GameState, Color, GameMode, Puzzle } from '../types';
 import { shuffle } from '../lib/shuffle';
 import { hashItems } from '../lib/hash';
 import { saveState, loadState } from '../lib/storage';
@@ -10,13 +10,13 @@ import { track } from '../lib/analytics'; // used for game_started only; other e
 // ---------------------------------------------------------------------------
 
 type GameAction =
-  | { type: 'LOAD_PUZZLE'; payload: { puzzle: Puzzle; savedState?: Partial<GameState> } }
+  | { type: 'LOAD_PUZZLE'; payload: { puzzle: Puzzle; savedState?: Partial<GameState>; gameMode: GameMode } }
   | { type: 'SELECT_ITEM'; payload: { item: string } }
   | { type: 'DESELECT_ITEM'; payload: { item: string } }
   | { type: 'DESELECT_ALL' }
   | { type: 'SHUFFLE' }
   | { type: 'REVEAL_CATEGORY'; payload: { color: Color } }
-  | { type: 'WRONG_GUESS'; payload: { oneAway: boolean; oneAwayColor?: Color } }
+  | { type: 'WRONG_GUESS'; payload: { oneAway: boolean; oneAwayColor?: Color; oneAwayWrongItem?: string } }
   | { type: 'CLEAR_ONE_AWAY' }
   | { type: 'USE_HINT'; payload: { color: Color } }
   | { type: 'GAME_OVER'; payload: { status: 'won' | 'lost' } };
@@ -68,6 +68,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         puzzle,
         gridItems: shuffle(puzzle.items),
         status: 'playing',
+        lives: action.payload.gameMode === 'easy' ? 6 : 4,
       };
     }
 
@@ -116,6 +117,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
         lives: state.lives - 1,
         selected: [],
         oneAway: action.payload.oneAway,
+        oneAwayWrongItem: action.payload.oneAwayWrongItem,
         guessHistory: [
           ...state.guessHistory,
           { items: [...state.selected], correct: false, oneAwayColor: action.payload.oneAwayColor },
@@ -124,7 +126,7 @@ export function gameReducer(state: GameState, action: GameAction): GameState {
     }
 
     case 'CLEAR_ONE_AWAY': {
-      return { ...state, oneAway: false };
+      return { ...state, oneAway: false, oneAwayWrongItem: undefined };
     }
 
     case 'USE_HINT': {
@@ -152,10 +154,10 @@ interface UseGameEngineResult {
   deselectAll: () => void;
   shuffle: () => void;
   submitGuess: () => Promise<void>;
-  loadPuzzle: (puzzle: Puzzle) => void;
+  loadPuzzle: (puzzle: Puzzle, gameMode: GameMode, forceFresh?: boolean) => void;
   clearOneAway: () => void;
   revealCategory: (color: Color) => void;
-  wrongGuess: (oneAway: boolean, oneAwayColor?: Color) => void;
+  wrongGuess: (oneAway: boolean, oneAwayColor?: Color, wrongItem?: string) => void;
   useHint: (color: Color) => void;
 }
 
@@ -183,11 +185,11 @@ export function useGameEngine(): UseGameEngineResult {
   // ------------------------------------------------------------------
   // loadPuzzle — restores saved state if available, otherwise fresh start
   // ------------------------------------------------------------------
-  const loadPuzzle = useCallback((puzzle: Puzzle) => {
-    const savedState = loadState(puzzle.id);
+  const loadPuzzle = useCallback((puzzle: Puzzle, gameMode: GameMode, forceFresh?: boolean) => {
+    const savedState = forceFresh ? undefined : loadState(puzzle.id);
     dispatch({
       type: 'LOAD_PUZZLE',
-      payload: { puzzle, savedState: savedState ?? undefined },
+      payload: { puzzle, savedState: savedState ?? undefined, gameMode },
     });
 
     // Track every fresh page load (no saved state or idle)
@@ -302,8 +304,8 @@ export function useGameEngine(): UseGameEngineResult {
   // ------------------------------------------------------------------
   // wrongGuess — dispatches WRONG_GUESS then checks for game over
   // ------------------------------------------------------------------
-  const wrongGuess = useCallback((oneAway: boolean, oneAwayColor?: Color) => {
-    dispatch({ type: 'WRONG_GUESS', payload: { oneAway, oneAwayColor } });
+  const wrongGuess = useCallback((oneAway: boolean, oneAwayColor?: Color, wrongItem?: string) => {
+    dispatch({ type: 'WRONG_GUESS', payload: { oneAway, oneAwayColor, oneAwayWrongItem: wrongItem } });
     // lives - 1 because the reducer hasn't run yet at this point
     if (state.lives - 1 === 0) {
       dispatch({ type: 'GAME_OVER', payload: { status: 'lost' } });

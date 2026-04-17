@@ -1,5 +1,5 @@
-import { useEffect, useState, useCallback } from 'react';
-import type { Color, Puzzle, PuzzleCategory } from '../types';
+import { useEffect, useRef, useState, useCallback } from 'react';
+import type { Color, GameMode, Puzzle, PuzzleCategory } from '../types';
 import { useGameEngine } from '../hooks/useGameEngine';
 import { hashItems } from '../lib/hash';
 import { track } from '../lib/analytics';
@@ -10,6 +10,7 @@ import { LivesIndicator } from './LivesIndicator';
 import { ToastNotification } from './ToastNotification';
 import { ActionBar } from './ActionBar';
 import { ResultsModal } from './ResultsModal';
+import { FirstTapTooltip } from './FirstTapTooltip';
 
 const HINT_COLOR_ORDER: Color[] = ['yellow', 'green', 'blue', 'purple'];
 
@@ -22,9 +23,31 @@ const COLOR_LABEL: Record<Color, string> = {
 
 interface GameBoardProps {
   puzzle: Puzzle;
+  gameMode: GameMode;
+  onFirstGuess: () => void;
 }
 
-async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<{ color: Color } | null> {
+// Easy mode: find how many selected items are in the same category (max 2 — 3 is handled by checkOneAway)
+async function findBestMatchCount(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<number> {
+  const remaining = gridItems.filter(gi => !selected.includes(gi));
+  for (const category of categories) {
+    for (let i = 0; i < selected.length - 1; i++) {
+      for (let j = i + 1; j < selected.length; j++) {
+        const pair = [selected[i], selected[j]];
+        for (let k = 0; k < remaining.length - 1; k++) {
+          for (let l = k + 1; l < remaining.length; l++) {
+            // eslint-disable-next-line no-await-in-loop
+            const h = await hashItems([...pair, remaining[k], remaining[l]]);
+            if (h === category.hash) return 2;
+          }
+        }
+      }
+    }
+  }
+  return 1;
+}
+
+async function checkOneAway(selected: string[], gridItems: string[], categories: PuzzleCategory[]): Promise<{ color: Color; wrongItem: string } | null> {
   const remainingItems = gridItems.filter(gi => !selected.includes(gi));
   for (const category of categories) {
     for (let removeIdx = 0; removeIdx < selected.length; removeIdx++) {
@@ -32,14 +55,14 @@ async function checkOneAway(selected: string[], gridItems: string[], categories:
       for (const candidate of remainingItems) {
         // eslint-disable-next-line no-await-in-loop
         const comboHash = await hashItems([...threesome, candidate]);
-        if (comboHash === category.hash) return { color: category.color };
+        if (comboHash === category.hash) return { color: category.color, wrongItem: selected[removeIdx] };
       }
     }
   }
   return null;
 }
 
-export function GameBoard({ puzzle }: GameBoardProps) {
+export function GameBoard({ puzzle, gameMode, onFirstGuess }: GameBoardProps) {
   const engine = useGameEngine();
   const { state } = engine;
 
@@ -54,11 +77,48 @@ export function GameBoard({ puzzle }: GameBoardProps) {
   const [shakingItems, setShakingItems] = useState<string[]>([]);
   const [bouncingItems, setBouncingItems] = useState<string[]>([]);
 
-  // Load puzzle on mount / when puzzle id changes
+  const TOOLTIP_SEEN_KEY = 'ipl-cluster4-tooltip-seen';
+  const [tooltipVisible, setTooltipVisible] = useState(false);
+  const tooltipShown = useRef(false);
+
+  const loadedPuzzleId = useRef<string | number | null>(null);
+  const loadedGameMode = useRef<GameMode | null>(null);
+
+  // Load puzzle when puzzle id or gameMode changes (gameMode affects initial lives)
   useEffect(() => {
-    engine.loadPuzzle(puzzle);
+    // modeChange is true only when the same puzzle is reloaded with a different mode.
+    // We track both refs so React 18 StrictMode's double-invoke doesn't misdetect a
+    // mode change (ref persists across the two runs, so same-puzzle + same-mode = false).
+    const samePuzzle = loadedPuzzleId.current === puzzle.id;
+    const sameMode = loadedGameMode.current === gameMode;
+    const modeChange = samePuzzle && !sameMode;
+    loadedPuzzleId.current = puzzle.id;
+    loadedGameMode.current = gameMode;
+    engine.loadPuzzle(puzzle, gameMode, modeChange);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [puzzle.id]);
+  }, [puzzle.id, gameMode]);
+
+  // Show first-tap tooltip once ever
+  useEffect(() => {
+    const alreadySeen = (() => {
+      try { return !!localStorage.getItem(TOOLTIP_SEEN_KEY); } catch { return true; }
+    })();
+    if (
+      !alreadySeen &&
+      !tooltipShown.current &&
+      state.selected.length === 1 &&
+      state.guessHistory.length === 0 &&
+      state.revealedCategories.length === 0
+    ) {
+      tooltipShown.current = true;
+      setTooltipVisible(true);
+    }
+  }, [state.selected.length, state.guessHistory.length, state.revealedCategories.length]);
+
+  const handleDismissTooltip = useCallback(() => {
+    setTooltipVisible(false);
+    try { localStorage.setItem(TOOLTIP_SEEN_KEY, '1'); } catch { /* ignore */ }
+  }, []);
 
   // Handle "One Away!" toast
   useEffect(() => {
@@ -79,6 +139,9 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     // Capture before any state change
     const selectedItems = [...state.selected];
     const attemptNumber = state.guessHistory.length + 1;
+
+    // Notify App that game has started (first guess)
+    if (state.guessHistory.length === 0) onFirstGuess();
 
     // Duplicate check
     const sortedSelected = [...selectedItems].sort();
@@ -126,7 +189,16 @@ export function GameBoard({ puzzle }: GameBoardProps) {
         track('game_completed', { puzzle_id: state.puzzle.id, result: 'lost', groups_made: state.revealedCategories.length, total_attempts: attemptNumber });
       }
 
-      engine.wrongGuess(match !== null, match?.color);
+      engine.wrongGuess(match !== null, match?.color, match?.wrongItem);
+
+      // Easy mode: if not one-away, show how many are from the same group
+      if (gameMode === 'easy' && !match) {
+        const count = await findBestMatchCount(selectedItems, state.gridItems, state.puzzle.categories);
+        if (count === 2) {
+          setToastMessage('2 of 4 from the same group');
+          setTimeout(() => setToastMessage(null), 2500);
+        }
+      }
     }
   }, [state, engine]);
 
@@ -150,15 +222,18 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     }
   }, [puzzle.id]);
 
+  const maxHints = gameMode === 'easy' ? 3 : 2;
+  const maxLives = gameMode === 'easy' ? 6 : 4;
+
   // Hint: reveal the title of the next hintable category (skipping already-found ones)
   const handleHint = useCallback(() => {
-    if (state.hintedColors.length >= 2 || state.status !== 'playing') return;
+    if (state.hintedColors.length >= maxHints || state.status !== 'playing') return;
     const targetColor = HINT_COLOR_ORDER.find(
       c => !state.hintedColors.includes(c) && !state.revealedCategories.includes(c)
     );
     if (!targetColor) return;
     engine.useHint(targetColor);
-  }, [state.hintedColors, state.revealedCategories, state.status, engine]);
+  }, [state.hintedColors, state.revealedCategories, state.status, engine, maxHints]);
 
   // Derive which hint titles are currently visible (hinted but not yet correctly guessed)
   const visibleHints = state.hintedColors
@@ -169,17 +244,17 @@ export function GameBoard({ puzzle }: GameBoardProps) {
     })
     .filter((h): h is { color: Color; title: string } => h !== null);
 
-  const hintsRemaining = 2 - state.hintedColors.length;
+  const hintsRemaining = maxHints - state.hintedColors.length;
   const canHint =
     state.status === 'playing' &&
-    state.hintedColors.length < 2 &&
+    state.hintedColors.length < maxHints &&
     HINT_COLOR_ORDER.some(c => !state.hintedColors.includes(c) && !state.revealedCategories.includes(c));
 
   const isGameOver = state.status === 'won' || state.status === 'lost';
 
   const handleShareResult = useCallback(async () => {
     if (!state.puzzle) return;
-    const text = buildShareText(state.puzzle, state.guessHistory, state.hintedColors.length);
+    const text = buildShareText(state.puzzle, state.guessHistory, state.hintedColors.length, gameMode);
     try {
       await navigator.clipboard.writeText(text);
       setToastMessage('Copied!');
@@ -218,6 +293,7 @@ export function GameBoard({ puzzle }: GameBoardProps) {
           disabled={gridDisabled}
           shakingItems={shakingItems}
           bouncingItems={bouncingItems}
+          highlightedItem={gameMode === 'easy' && state.oneAway ? state.oneAwayWrongItem : undefined}
         />
       )}
 
@@ -241,10 +317,13 @@ export function GameBoard({ puzzle }: GameBoardProps) {
 
       {/* Lives + action bar grouped tightly */}
       <div className="flex flex-col items-center gap-2 w-full">
-        <LivesIndicator lives={state.lives} />
+        <LivesIndicator lives={state.lives} maxLives={maxLives} />
 
         {/* Toast notification */}
         <ToastNotification message={toastMessage} />
+
+        {/* First-tap onboarding tooltip */}
+        <FirstTapTooltip visible={tooltipVisible} onDismiss={handleDismissTooltip} />
 
         {/* Action bar — shows game controls while playing, Share Result when game over */}
         <ActionBar

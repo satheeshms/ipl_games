@@ -155,6 +155,8 @@ export interface Guess {
   categoryColor?: Color;    // set if correct
 }
 
+export type GameMode = 'easy' | 'pro';
+
 export interface GameState {
   puzzle: Puzzle | null;
   gridItems: string[];      // items remaining in grid (shuffled)
@@ -164,6 +166,8 @@ export interface GameState {
   guessHistory: Guess[];
   status: GameStatus;
   oneAway: boolean;         // transient flag for "One Away!" toast
+  oneAwayWrongItem?: string; // set in Easy mode: the wrong item in a one-away selection
+  hintedColors: Color[];
 }
 ```
 
@@ -519,6 +523,16 @@ def hash_items(items: list[str]) -> str:
 - [x] `auto_curator.py check` — cross-puzzle item collision checker
 - [x] `category_generators.py` — generators for all award/squad/coach/champion types
 - [ ] Generate first 7 puzzles for IPL season launch
+
+### Phase 11 — Game Mode (Issue #15)
+- [ ] Add `GameMode` type and `oneAwayWrongItem` to `GameState` in `src/types/index.ts`
+- [ ] Extend `WRONG_GUESS` payload and `CLEAR_ONE_AWAY` in `useGameEngine.ts` to track `oneAwayWrongItem`
+- [ ] Extend `checkOneAway` in `GameBoard.tsx` to return `wrongItem`
+- [ ] Manage `gameMode` + `gameStarted` state in `App.tsx` (with localStorage persistence)
+- [ ] Add `GameModeToggle` component to `Header.tsx`; disable once game started
+- [ ] Add `highlightedItem` prop to `ItemGrid`; add `highlighted` prop + styling to `ItemTile`
+- [ ] Wire Easy mode highlight in `GameBoard` (`oneAwayWrongItem` → `ItemGrid`)
+- [ ] Append `· Easy Mode` to share text in `lib/shareText.ts` when `gameMode === 'easy'`
 
 ### Phase 10 — Deployment (Week 5)
 - [x] GitHub Actions: build `apps/web/` → deploy to GitHub Pages

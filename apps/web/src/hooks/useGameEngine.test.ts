@@ -79,8 +79,7 @@ describe('gameReducer', () => {
       };
 
       const next = gameReducer(initialState, {
-        type: 'LOAD_PUZZLE',
-        payload: { puzzle: DEV_PUZZLE },
+        type: 'LOAD_PUZZLE', payload: { gameMode: 'pro', puzzle: DEV_PUZZLE },
       });
 
       expect(next.puzzle).toBe(DEV_PUZZLE);
@@ -120,8 +119,7 @@ describe('gameReducer', () => {
       };
 
       const next = gameReducer(initialState, {
-        type: 'LOAD_PUZZLE',
-        payload: { puzzle: DEV_PUZZLE, savedState },
+        type: 'LOAD_PUZZLE', payload: { gameMode: 'pro', puzzle: DEV_PUZZLE, savedState },
       });
 
       expect(next.puzzle).toBe(DEV_PUZZLE);
@@ -149,6 +147,7 @@ describe('gameReducer', () => {
       const next = gameReducer(initialState, {
         type: 'LOAD_PUZZLE',
         payload: {
+          gameMode: 'pro',
           puzzle: DEV_PUZZLE,
           savedState: { gridItems: [], status: 'playing', revealedCategories: [], lives: 3, guessHistory: [], selected: [] },
         },
