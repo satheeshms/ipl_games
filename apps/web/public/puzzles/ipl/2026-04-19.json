@@ -1,0 +1,56 @@
+{
+  "id": "2026-04-19",
+  "date": "2026-04-19",
+  "edition": 27,
+  "items": [
+    "KD Karthik",
+    "Rovman Powell",
+    "AP Majumdar",
+    "Abishek Porel",
+    "Chetan Sakariya",
+    "Jofra Archer",
+    "Brijesh Sharma",
+    "Shubham Dubey",
+    "VR Aaron",
+    "Yudhvir Singh Charak",
+    "Luvnith Sisodia",
+    "Rahmanullah Gurbaz",
+    "DB Das",
+    "RP Singh",
+    "TA Boult",
+    "PP Ojha"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Rajasthan Royals 2026 Squad",
+      "spec": "team_players:RR:2026",
+      "hash": "a4bb3cb503fd53ab87e4487e150c2b2fbc6205d1d7ec9b0c3bb6dfc773ab5545"
+    },
+    {
+      "color": "green",
+      "title": "Kolkata Knight Riders 2025 Squad",
+      "spec": "team_players:KKR:2025",
+      "hash": "fbbfa2bd068fcb3fed1c8c2215d20c2e0358a31bdb487a3192589828d448affa"
+    },
+    {
+      "color": "blue",
+      "title": "Ranji Trophy: Bengal",
+      "spec": "ranji:Bengal",
+      "hash": "2ea3cb478b44ff2c10292fb50041d716f955dcd0147d777038b050e0b12d1d43"
+    },
+    {
+      "color": "purple",
+      "title": "Played for 5+ IPL Teams",
+      "spec": "multi_team:5",
+      "hash": "6eec4e141e33de7d7cbdcd77693cfde4847d5c1c18ffdc1a96cf96bd08337624"
+    }
+  ],
+  "display_names": {
+    "KD Karthik": "Dinesh Karthik",
+    "AP Majumdar": "Anustup Majumdar",
+    "DB Das": "Das",
+    "TA Boult": "Trent Boult",
+    "PP Ojha": "Pragyan Ojha"
+  }
+}

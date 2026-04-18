@@ -588,3 +588,48 @@ Ed 25 — 2026-04-17
   purple   [batting_coaches] -> IPL Batting Coaches: ['Brad Hodge', 'Praveen Amre', 'Michael Bevan', 'Simon Katich']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-18.json
 
+Ed 27 — 2026-04-19
+  yellow   [team_players:RR:2026] -> Rajasthan Royals 2026 Squad: ['Yudhvir Singh Charak', 'Brijesh Sharma', 'Shubham Dubey', 'Jofra Archer']
+  green    [team_players:KKR:2025] -> Kolkata Knight Riders 2025 Squad: ['AM Rahane', 'Spencer Johnson', 'Luvnith Sisodia', 'Rinku Singh']
+  blue     [ranji:Bengal] -> Ranji Trophy: Bengal: ['AP Majumdar', 'DB Das', 'Abishek Porel', 'PP Ojha']      
+  purple   [multi_team:5] -> Played for 5+ IPL Teams: ['RP Singh', 'VR Aaron', 'TA Boult', 'KD Karthik']      
+  Resampled GREEN [team_players:KKR:2025]:
+    was: ['AM Rahane', 'Spencer Johnson', 'Luvnith Sisodia', 'Rinku Singh']
+    now: ['Luvnith Sisodia', 'Rahmanullah Gurbaz', 'Rovman Powell', 'Chetan Sakariya']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RR:2026] -> Rajasthan Royals 2026 Squad: ['Yudhvir Singh Charak', 'Brijesh Sharma', 'Shubham Dubey', 'Jofra Archer']
+  green    [team_players:KKR:2025] -> Kolkata Knight Riders 2025 Squad: ['Luvnith Sisodia', 'Rahmanullah Gurbaz', 'Rovman Powell', 'Chetan Sakariya']
+  blue     [ranji:Bengal] -> Ranji Trophy: Bengal: ['AP Majumdar', 'DB Das', 'Abishek Porel', 'PP Ojha']      
+  purple   [multi_team:5] -> Played for 5+ IPL Teams: ['RP Singh', 'VR Aaron', 'TA Boult', 'KD Karthik']      
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-19.json
+
+  Ed 28 — 2026-04-20
+  yellow   [team_players:PBKS:2026] -> Punjab Kings 2026 Squad: ['Shashank Singh', 'Vyshak Vijaykumar', 'Xavier Bartlett', 'Vishnu Vinod']
+  green    [team_players:LSG:2025] -> Lucknow Super Giants 2025 Squad: ['Akash Deep', 'Digvesh Singh', 'M Siddharth', 'Aiden Markram']
+  blue     [country:England] -> Players from England: ['MM Ali', 'KP Pietersen', 'HF Gurney', 'TK Curran']    
+  purple   [winning_captain] -> IPL Winning Captains: ['G Gambhir', 'SS Iyer', 'AC Gilchrist', 'HH Pandya']   
+  Resampled PURPLE [winning_captain]:
+    was: ['G Gambhir', 'SS Iyer', 'AC Gilchrist', 'HH Pandya']
+    now: ['RG Sharma', 'HH Pandya', 'G Gambhir', 'SS Iyer']
+  Resampled PURPLE [winning_captain]:
+    was: ['RG Sharma', 'HH Pandya', 'G Gambhir', 'SS Iyer']
+    now: ['HH Pandya', 'G Gambhir', 'SS Iyer', 'RG Sharma']
+  Resampled PURPLE [winning_captain]:
+    was: ['HH Pandya', 'G Gambhir', 'SS Iyer', 'RG Sharma']
+    now: ['G Gambhir', 'SS Iyer', 'AC Gilchrist', 'RG Sharma']
+  Resampled PURPLE [winning_captain]:
+    was: ['G Gambhir', 'SS Iyer', 'AC Gilchrist', 'RG Sharma']
+    now: ['AC Gilchrist', 'HH Pandya', 'SS Iyer', 'RG Sharma']
+  Resampled PURPLE [winning_captain]:
+    was: ['AC Gilchrist', 'HH Pandya', 'SS Iyer', 'RG Sharma']
+    now: ['AC Gilchrist', 'HH Pandya', 'RG Sharma', 'G Gambhir']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:PBKS:2026] -> Punjab Kings 2026 Squad: ['Shashank Singh', 'Vyshak Vijaykumar', 'Xavier Bartlett', 'Vishnu Vinod']
+  green    [team_players:LSG:2025] -> Lucknow Super Giants 2025 Squad: ['Akash Deep', 'Digvesh Singh', 'M Siddharth', 'Aiden Markram']
+  blue     [country:England] -> Players from England: ['MM Ali', 'KP Pietersen', 'HF Gurney', 'TK Curran']    
+  purple   [winning_captain] -> IPL Winning Captains: ['AC Gilchrist', 'HH Pandya', 'RG Sharma', 'G Gambhir'] 
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-20.json

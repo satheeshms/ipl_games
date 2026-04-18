@@ -1,0 +1,57 @@
+{
+  "id": "2026-04-20",
+  "date": "2026-04-20",
+  "edition": 28,
+  "items": [
+    "HF Gurney",
+    "Aiden Markram",
+    "Xavier Bartlett",
+    "Shashank Singh",
+    "Vyshak Vijaykumar",
+    "M Siddharth",
+    "G Gambhir",
+    "HH Pandya",
+    "Digvesh Singh",
+    "RG Sharma",
+    "KP Pietersen",
+    "Akash Deep",
+    "MM Ali",
+    "TK Curran",
+    "AC Gilchrist",
+    "Vishnu Vinod"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Punjab Kings 2026 Squad",
+      "spec": "team_players:PBKS:2026",
+      "hash": "b18c520575fbf643407c4e5d1e9ca94105d442dcdb96c1d4a6749e9e649d74df"
+    },
+    {
+      "color": "green",
+      "title": "Lucknow Super Giants 2025 Squad",
+      "spec": "team_players:LSG:2025",
+      "hash": "4489c1e681df92898b1bdfdb415e507a8e18d7491504599ee0547444eb0d7167"
+    },
+    {
+      "color": "blue",
+      "title": "Players from England",
+      "spec": "country:England",
+      "hash": "57123442019c17d3efe8b43e8b6f08e564cf72dd4ff6c128db513bbe1094a77e"
+    },
+    {
+      "color": "purple",
+      "title": "IPL Winning Captains",
+      "spec": "winning_captain",
+      "hash": "5e486f162c9b0d5071930541ac4a477cf6314b9cce6a00ac371c5e56ad9e827e"
+    }
+  ],
+  "display_names": {
+    "HF Gurney": "Harry Gurney",
+    "M Siddharth": "Manimaran Siddharth",
+    "HH Pandya": "Hardik Pandya",
+    "RG Sharma": "Rohit Sharma",
+    "KP Pietersen": "Kevin Pietersen",
+    "AC Gilchrist": "Adam Gilchrist"
+  }
+}
