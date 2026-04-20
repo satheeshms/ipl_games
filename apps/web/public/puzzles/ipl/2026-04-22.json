@@ -1,0 +1,61 @@
+{
+  "id": "2026-04-22",
+  "date": "2026-04-22",
+  "edition": 30,
+  "items": [
+    "PK Garg",
+    "T Kohli",
+    "P Negi",
+    "PA Patel",
+    "S Dube",
+    "AD Mascarenhas",
+    "Avesh Khan",
+    "RP Singh",
+    "Younis Khan",
+    "Ravi Bishnoi",
+    "RR Pant",
+    "SJ Srivastava",
+    "SK Trivedi",
+    "Aryan Juyal",
+    "AF Milne",
+    "S Tyagi"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Rajasthan Royals 2008 Squad",
+      "spec": "team_players:RR:2008",
+      "hash": "08e3b840210a1d920924c2bdfb017d235d276c315515f4aebfba88fc0ce4e175"
+    },
+    {
+      "color": "green",
+      "title": "Lucknow Super Giants 2025 Squad",
+      "spec": "team_players:LSG:2025",
+      "hash": "16b3e7e7a71da675afaf3931f82a2a87bbec2ff741d012958cbecf8d712bb0c6"
+    },
+    {
+      "color": "blue",
+      "title": "Ranji Trophy: Uttar Pradesh",
+      "spec": "ranji:Uttar Pradesh",
+      "hash": "c5489fc7931640957fb8df405d5e2b003442f35377347b2a84714eff9a8552c2"
+    },
+    {
+      "color": "purple",
+      "title": "Played for Both RCB & CSK",
+      "spec": "played_both:RCB:CSK",
+      "hash": "1f1e120d8b1dae3f5bdfb7154ddda7762845a7c6bcfe8e16291cf790a27289c5"
+    }
+  ],
+  "display_names": {
+    "PK Garg": "Priyam Garg",
+    "T Kohli": "Taruwar Kohli",
+    "P Negi": "Pawan Negi",
+    "PA Patel": "Parthiv Patel",
+    "S Dube": "Shivam Dube",
+    "RR Pant": "Rishabh Pant",
+    "SJ Srivastava": "Shalabh Srivastava",
+    "SK Trivedi": "Siddharth Trivedi",
+    "AF Milne": "Adam Milne",
+    "S Tyagi": "Sudeep Tyagi"
+  }
+}

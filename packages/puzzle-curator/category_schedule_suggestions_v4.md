@@ -633,3 +633,41 @@ Ed 27 — 2026-04-19
   blue     [country:England] -> Players from England: ['MM Ali', 'KP Pietersen', 'HF Gurney', 'TK Curran']    
   purple   [winning_captain] -> IPL Winning Captains: ['AC Gilchrist', 'HH Pandya', 'RG Sharma', 'G Gambhir'] 
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-20.json
+
+  Ed 29 — 2026-04-21
+  yellow   [team_players:DC:2025] -> Delhi Capitals 2025 Squad: ['Mustafizur Rahman', 'Kuldeep Yadav', 'AR Patel', 'Dushmantha Chameera']
+  green    [team_players:SRH:2026] -> Sunrisers Hyderabad 2026 Squad: ['Kamindu Mendis', 'Salil Arora', 'Praful Hinge', 'Ishan Kishan']
+  blue     [bowling_coaches] -> IPL Bowling Coaches: ['Lasith Malinga', 'Varun Aaron', 'Shane Warne', 'Steffan Jones']
+  purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['MK Pandey', 'RG Sharma', 'G Gambhir', 'PP Chawla']   
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:DC:2025] -> Delhi Capitals 2025 Squad: ['Mustafizur Rahman', 'Kuldeep Yadav', 'AR Patel', 'Dushmantha Chameera']
+  green    [team_players:SRH:2026] -> Sunrisers Hyderabad 2026 Squad: ['Kamindu Mendis', 'Salil Arora', 'Praful Hinge', 'Ishan Kishan']
+  blue     [bowling_coaches] -> IPL Bowling Coaches: ['Lasith Malinga', 'Varun Aaron', 'Shane Warne', 'Steffan Jones']
+  purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['MK Pandey', 'RG Sharma', 'G Gambhir', 'PP Chawla']   
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-21.json
+
+  
+Ed 30 — 2026-04-22
+  yellow   [team_players:RR:2008] -> Rajasthan Royals 2008 Squad: ['M Kaif', 'Younis Khan', 'T Kohli', 'Kamran Akmal']
+  green    [team_players:LSG:2025] -> Lucknow Super Giants 2025 Squad: ['Avesh Khan', 'Ravi Bishnoi', 'RR Pant', 'Aryan Juyal']
+  blue     [ranji:Uttar Pradesh] -> Ranji Trophy: Uttar Pradesh: ['RP Singh', 'SJ Srivastava', 'S Tyagi', 'PK Garg']
+  purple   [played_both:RCB:CSK] -> Played for Both RCB & CSK: ['DP Nannes', 'CJ Jordan', 'S Badree', 'SR Watson']
+  Resampled YELLOW [team_players:RR:2008]:
+    was: ['M Kaif', 'Younis Khan', 'T Kohli', 'Kamran Akmal']
+    now: ['AD Mascarenhas', 'SA Asnodkar', 'M Kaif', 'M Rawat']
+  Resampled YELLOW [team_players:RR:2008]:
+    was: ['AD Mascarenhas', 'SA Asnodkar', 'M Kaif', 'M Rawat']
+    now: ['SK Trivedi', 'Younis Khan', 'T Kohli', 'AD Mascarenhas']
+  Resampled PURPLE [played_both:RCB:CSK]:
+    was: ['DP Nannes', 'CJ Jordan', 'S Badree', 'SR Watson']
+    now: ['PA Patel', 'AF Milne', 'S Dube', 'P Negi']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RR:2008] -> Rajasthan Royals 2008 Squad: ['SK Trivedi', 'Younis Khan', 'T Kohli', 'AD Mascarenhas']
+  green    [team_players:LSG:2025] -> Lucknow Super Giants 2025 Squad: ['Avesh Khan', 'Ravi Bishnoi', 'RR Pant', 'Aryan Juyal']
+  blue     [ranji:Uttar Pradesh] -> Ranji Trophy: Uttar Pradesh: ['RP Singh', 'SJ Srivastava', 'S Tyagi', 'PK Garg']
+  purple   [played_both:RCB:CSK] -> Played for Both RCB & CSK: ['PA Patel', 'AF Milne', 'S Dube', 'P Negi']   
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-22.json

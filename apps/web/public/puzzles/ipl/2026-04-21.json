@@ -1,0 +1,55 @@
+{
+  "id": "2026-04-21",
+  "date": "2026-04-21",
+  "edition": 29,
+  "items": [
+    "G Gambhir",
+    "Kuldeep Yadav",
+    "Steffan Jones",
+    "Dushmantha Chameera",
+    "Lasith Malinga",
+    "MK Pandey",
+    "RG Sharma",
+    "Praful Hinge",
+    "Kamindu Mendis",
+    "PP Chawla",
+    "Varun Aaron",
+    "Salil Arora",
+    "Mustafizur Rahman",
+    "Ishan Kishan",
+    "Shane Warne",
+    "AR Patel"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Delhi Capitals 2025 Squad",
+      "spec": "team_players:DC:2025",
+      "hash": "20c16462ea2e3ae9054dd5eec7acb8b742f967236121008f8ff607deeff1a3a6"
+    },
+    {
+      "color": "green",
+      "title": "Sunrisers Hyderabad 2026 Squad",
+      "spec": "team_players:SRH:2026",
+      "hash": "111adab28c6062334c8ab56d642014c6c998ea7441637e46011972bd28169e4b"
+    },
+    {
+      "color": "blue",
+      "title": "IPL Bowling Coaches",
+      "spec": "bowling_coaches",
+      "hash": "80ad5924c077ca84739ff7b4037811556ce9805ec382b425454095ef7056850c"
+    },
+    {
+      "color": "purple",
+      "title": "Most IPL Ducks (10+ Ducks)",
+      "spec": "most_ducks",
+      "hash": "e6dec782c9c2f8e9e7ce702db21f4f4768fb99c618e45b234beb9667e2c2f109"
+    }
+  ],
+  "display_names": {
+    "MK Pandey": "Manish Pandey",
+    "RG Sharma": "Rohit Sharma",
+    "PP Chawla": "Piyush Chawla",
+    "AR Patel": "Axar Patel"
+  }
+}
