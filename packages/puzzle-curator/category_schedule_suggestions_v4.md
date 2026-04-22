@@ -671,3 +671,41 @@ Ed 30 — 2026-04-22
   blue     [ranji:Uttar Pradesh] -> Ranji Trophy: Uttar Pradesh: ['RP Singh', 'SJ Srivastava', 'S Tyagi', 'PK Garg']
   purple   [played_both:RCB:CSK] -> Played for Both RCB & CSK: ['PA Patel', 'AF Milne', 'S Dube', 'P Negi']   
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-22.json
+
+
+Ed 31 — 2026-04-23
+  yellow   [team_owners] -> IPL Franchise Owners: ['Siddharth Patel', 'Ness Wadia', 'Jay Mehta', 'Juhi Chawla']
+  green    [winning_squad:2010] -> 2010 Champions — Chennai Super Kings: ['MS Dhoni', 'PA Patel', 'JM Kemp', 'T Thushara']
+  blue     [winning_squad:2013] -> 2013 Champions — Mumbai Indians: ['KA Pollard', 'R Dhawan', 'DS Kulkarni', 'DR Smith']
+  purple   [most_fifties] -> Most IPL Fifties: ['RG Sharma', 'DA Warner', 'Shubman Gill', 'DA Miller']
+  Resampled GREEN [winning_squad:2010]:
+    was: ['MS Dhoni', 'PA Patel', 'JM Kemp', 'T Thushara']
+    now: ['DE Bollinger', 'C Ganapathy', 'M Vijay', 'MS Gony']
+  Resampled BLUE [winning_squad:2013]:
+    was: ['KA Pollard', 'R Dhawan', 'DS Kulkarni', 'DR Smith']
+    now: ['AP Tare', 'GJ Maxwell', 'Harbhajan Singh', 'DR Smith']
+  Resampled PURPLE [most_fifties]:
+    was: ['RG Sharma', 'DA Warner', 'Shubman Gill', 'DA Miller']
+    now: ['YK Pathan', 'G Gambhir', 'SR Watson', 'MK Pandey']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_owners] -> IPL Franchise Owners: ['Siddharth Patel', 'Ness Wadia', 'Jay Mehta', 'Juhi Chawla']
+  green    [winning_squad:2010] -> 2010 Champions — Chennai Super Kings: ['DE Bollinger', 'C Ganapathy', 'M Vijay', 'MS Gony']
+  blue     [winning_squad:2013] -> 2013 Champions — Mumbai Indians: ['AP Tare', 'GJ Maxwell', 'Harbhajan Singh', 'DR Smith']
+  purple   [most_fifties] -> Most IPL Fifties: ['YK Pathan', 'G Gambhir', 'SR Watson', 'MK Pandey']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-23.json
+
+Ed 32 — 2026-04-24
+  yellow   [team_players:GT:2026] -> Gujarat Titans 2026 Squad: ['Jayant Yadav', 'Ishant Sharma', 'JC Buttler', 'Jason Holder']
+  green    [batting_coaches] -> IPL Batting Coaches: ['Hemang Badani', 'Simon Helmot', 'Parthiv Patel', 'Jacques Kallis']
+  blue     [state:Karnataka] -> Players from Karnataka: ['KP Appanna', 'M Prasidh Krishna', 'J Suchith', 'D Padikkal']
+  purple   [longest_serving] -> Longest Serving IPL Players: ['DA Warner', 'JD Unadkat', 'B Kumar', 'RG Sharma']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:GT:2026] -> Gujarat Titans 2026 Squad: ['Jayant Yadav', 'Ishant Sharma', 'JC Buttler', 'Jason Holder']
+  green    [batting_coaches] -> IPL Batting Coaches: ['Hemang Badani', 'Simon Helmot', 'Parthiv Patel', 'Jacques Kallis']
+  blue     [state:Karnataka] -> Players from Karnataka: ['KP Appanna', 'M Prasidh Krishna', 'J Suchith', 'D Padikkal']
+  purple   [longest_serving] -> Longest Serving IPL Players: ['DA Warner', 'JD Unadkat', 'B Kumar', 'RG Sharma']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-24.json

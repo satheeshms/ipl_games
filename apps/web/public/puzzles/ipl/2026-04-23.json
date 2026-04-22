@@ -1,0 +1,60 @@
+{
+  "id": "2026-04-23",
+  "date": "2026-04-23",
+  "edition": 31,
+  "items": [
+    "Siddharth Patel",
+    "YK Pathan",
+    "Juhi Chawla",
+    "Jay Mehta",
+    "AP Tare",
+    "G Gambhir",
+    "GJ Maxwell",
+    "C Ganapathy",
+    "DE Bollinger",
+    "Ness Wadia",
+    "M Vijay",
+    "SR Watson",
+    "DR Smith",
+    "MK Pandey",
+    "MS Gony",
+    "Harbhajan Singh"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "IPL Franchise Owners",
+      "spec": "team_owners",
+      "hash": "9a6932f628ec5dd4bd1b21024f8092c64ebd50d429c44330b3865d03e48a2919"
+    },
+    {
+      "color": "green",
+      "title": "2010 Champions — Chennai Super Kings",
+      "spec": "winning_squad:2010",
+      "hash": "2f7e50972565ec746ecd10ffd213dc01e83bff5b40e6e0dffc758bd84ee5b72f"
+    },
+    {
+      "color": "blue",
+      "title": "2013 Champions — Mumbai Indians",
+      "spec": "winning_squad:2013",
+      "hash": "0cf102eca861420c12ea59a011e0b151db17be56bc6844b1e03e671c3fda5a4c"
+    },
+    {
+      "color": "purple",
+      "title": "Most IPL Fifties",
+      "spec": "most_fifties",
+      "hash": "677cc35e554bdaeed7efc5bb1e42f63787fd3924637b2b00a2edc51cd4d72079"
+    }
+  ],
+  "display_names": {
+    "YK Pathan": "Yusuf Pathan",
+    "AP Tare": "Aditya Tare",
+    "GJ Maxwell": "Glenn Maxwell",
+    "C Ganapathy": "Chandrasekar Ganapathy",
+    "DE Bollinger": "Doug Bollinger",
+    "M Vijay": "Murali Vijay",
+    "SR Watson": "Shane Watson",
+    "MK Pandey": "Manish Pandey",
+    "MS Gony": "Manpreet Gony"
+  }
+}
