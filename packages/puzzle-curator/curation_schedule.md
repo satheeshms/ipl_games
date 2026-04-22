@@ -59,8 +59,8 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 | 28 | 20 Apr | Mon | PBKS vs LSG | `team_players:PBKS:2026` | `team_players:LSG:2025` | `country:England` | `winning_captain` | [ ] |
 | 29 | 21 Apr | Tue | DC vs SRH | `team_players:DC:2025` | `team_players:SRH:2026` | `bowling_coaches` | `most_ducks` | [ ] |
 | 30 | 22 Apr | Wed | LSG vs RR | `team_players:RR:2008` | `team_players:LSG:2025`| `ranji:Uttar Pradesh` | `played_both:RCB:CSK` | [ ] |
-| 31 | 23 Apr | Thu | MI vs PBKS | `team_players:MI:2026` | `team_legends_bowling:RR` | `country:New Zealand` | `multi_team:5` | [ ] |
-| 32 | 24 Apr | Fri | LSG vs RR | `team_players:LSG:2026` | `head_coaches` | `state:Delhi` | `multi_team:7` | [ ] |
+| 31 | 23 Apr | Thu | MI vs CSK | `team_owners`  | `winning_squad:2010` | `winning_squad:2013` | `most_fifties` | [ ] |
+| 32 | 24 Apr | Fri | RCB vs GT | `team_players:GT:2026` | `batting_coaches` | `state:Karnataka` | `longest_serving` | [ ] |
 | 33 | 25 Apr | Sat | KKR vs GT | `team_players:KKR:2025` | `team_legends_batting:SRH` | `ranji:Mumbai` | `longest_serving` | [ ] |
 | 34 | 26 Apr | Sun | SRH vs DC | `team_players:SRH:2026` | `team_legends_bowling:DC` | `country:England` | `played_both:CSK:MI` | [ ] |
 | 35 | 27 Apr | Mon | RCB vs LSG | `team_players:RCB:2026` | `head_coaches` | `state:Delhi` | `multi_team:5` | [ ] |

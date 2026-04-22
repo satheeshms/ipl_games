@@ -1,0 +1,59 @@
+{
+  "id": "2026-04-24",
+  "date": "2026-04-24",
+  "edition": 32,
+  "items": [
+    "Parthiv Patel",
+    "JD Unadkat",
+    "Hemang Badani",
+    "Jayant Yadav",
+    "KP Appanna",
+    "J Suchith",
+    "DA Warner",
+    "M Prasidh Krishna",
+    "RG Sharma",
+    "Jason Holder",
+    "JC Buttler",
+    "Jacques Kallis",
+    "Simon Helmot",
+    "B Kumar",
+    "D Padikkal",
+    "Ishant Sharma"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Gujarat Titans 2026 Squad",
+      "spec": "team_players:GT:2026",
+      "hash": "fa007b77688c5a147da2c2195b25600aec0e2304481914f1436a6e7f0f76c939"
+    },
+    {
+      "color": "green",
+      "title": "IPL Batting Coaches",
+      "spec": "batting_coaches",
+      "hash": "907ca5fc2c0c84cb15277c189b541135e5cd3c10e3985335fce1f881f9b0e8fa"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Karnataka",
+      "spec": "state:Karnataka",
+      "hash": "77edf582f3175f73c62655a1e91abce0728f6297a80939532bd0d5a3a791f819"
+    },
+    {
+      "color": "purple",
+      "title": "Longest Serving IPL Players",
+      "spec": "longest_serving",
+      "hash": "3ff18a50a3fa0018c4220fa1c69ff4bebba686cd1e92e2e2dbf3eeb75622c5a8"
+    }
+  ],
+  "display_names": {
+    "JD Unadkat": "Jaydev Unadkat",
+    "KP Appanna": "K. P. Appanna",
+    "J Suchith": "Jagadeesha Suchith",
+    "DA Warner": "David Warner",
+    "RG Sharma": "Rohit Sharma",
+    "JC Buttler": "Jos Buttler",
+    "B Kumar": "Bhuvneshwar Kumar",
+    "D Padikkal": "Devdutt Padikkal"
+  }
+}
