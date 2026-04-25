@@ -1,0 +1,54 @@
+{
+  "id": "2026-04-25",
+  "date": "2026-04-25",
+  "edition": 33,
+  "items": [
+    "AR Patel",
+    "Adam Milne",
+    "Yashasvi Jaiswal",
+    "Kuldeep Sen",
+    "Shoaib Ahmed",
+    "Kyle Jamieson",
+    "Prabhsimran Singh",
+    "Ramandeep Singh",
+    "Ravi Bishnoi",
+    "NT Tilak Varma",
+    "DA Miller",
+    "Mohammed Siraj",
+    "PP Ojha",
+    "Mandeep Singh",
+    "Harbhajan Singh",
+    "Abishek Porel"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Delhi Capitals 2026 Squad",
+      "spec": "team_players:DC:2026",
+      "hash": "677835082948ca9cdea2ccffc582bac92565a2bc3b8ab115d9f9a93107dcf50d"
+    },
+    {
+      "color": "green",
+      "title": "Rajasthan Royals 2026 Squad",
+      "spec": "team_players:RR:2026",
+      "hash": "d481719842d7b94f76ac8fa2fd17313710c11e6a1e229d8773328d6682b94ab6"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Punjab",
+      "spec": "state:Punjab",
+      "hash": "25340b0fccf0b6527ff22fee5990d163935b67a5d5c486b5c5723a773dc7e905"
+    },
+    {
+      "color": "purple",
+      "title": "Ranji Trophy: Hyderabad",
+      "spec": "ranji:Hyderabad",
+      "hash": "08ec1cc893a864372b641ea7d7237dc15b53585c8ca62cdca53fa7e3a49705c9"
+    }
+  ],
+  "display_names": {
+    "AR Patel": "Axar Patel",
+    "DA Miller": "David Miller",
+    "PP Ojha": "Pragyan Ojha"
+  }
+}

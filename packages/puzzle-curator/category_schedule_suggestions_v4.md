@@ -709,3 +709,31 @@ Ed 32 — 2026-04-24
   blue     [state:Karnataka] -> Players from Karnataka: ['KP Appanna', 'M Prasidh Krishna', 'J Suchith', 'D Padikkal']
   purple   [longest_serving] -> Longest Serving IPL Players: ['DA Warner', 'JD Unadkat', 'B Kumar', 'RG Sharma']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-24.json
+
+  Ed 33 — 2026-04-25
+  yellow   [team_players:DC:2026] -> Delhi Capitals 2026 Squad: ['Abishek Porel', 'DA Miller', 'AR Patel', 'Kyle Jamieson']
+  green    [team_players:RR:2026] -> Rajasthan Royals 2026 Squad: ['Yashasvi Jaiswal', 'Ravi Bishnoi', 'Adam Milne', 'Kuldeep Sen']
+  blue     [state:Punjab] -> Players from Punjab: ['Prabhsimran Singh', 'Mandeep Singh', 'Harbhajan Singh', 'Ramandeep Singh']
+  purple   [ranji:Hyderabad] -> Ranji Trophy: Hyderabad: ['Shoaib Ahmed', 'NT Tilak Varma', 'Mohammed Siraj', 'PP Ojha']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:DC:2026] -> Delhi Capitals 2026 Squad: ['Abishek Porel', 'DA Miller', 'AR Patel', 'Kyle Jamieson']
+  green    [team_players:RR:2026] -> Rajasthan Royals 2026 Squad: ['Yashasvi Jaiswal', 'Ravi Bishnoi', 'Adam Milne', 'Kuldeep Sen']
+  blue     [state:Punjab] -> Players from Punjab: ['Prabhsimran Singh', 'Mandeep Singh', 'Harbhajan Singh', 'Ramandeep Singh']
+  purple   [ranji:Hyderabad] -> Ranji Trophy: Hyderabad: ['Shoaib Ahmed', 'NT Tilak Varma', 'Mohammed Siraj', 'PP Ojha']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-25.json
+
+  Ed 34 — 2026-04-26
+  yellow   [team_players:GT:2025] -> Gujarat Titans 2025 Squad: ['Nishant Sindhu', 'Shahrukh Khan', 'Prasidh Krishna', 'K Rabada']
+  green    [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Naman Tiwari', 'Aiden Markram', 'Abdul Samad', 'Avesh Khan']
+  blue     [country:West Indies] -> Players from West Indies: ['AD Russell', 'SE Rutherford', 'CR Brathwaite', 'CH Gayle']
+  purple   [played_both:CSK:KKR] -> Played for Both CSK & KKR: ['PP Chawla', 'BB McCullum', 'L Balaji', 'N Jagadeesan']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:GT:2025] -> Gujarat Titans 2025 Squad: ['Nishant Sindhu', 'Shahrukh Khan', 'Prasidh Krishna', 'K Rabada']
+  green    [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Naman Tiwari', 'Aiden Markram', 'Abdul Samad', 'Avesh Khan']
+  blue     [country:West Indies] -> Players from West Indies: ['AD Russell', 'SE Rutherford', 'CR Brathwaite', 'CH Gayle']
+  purple   [played_both:CSK:KKR] -> Played for Both CSK & KKR: ['PP Chawla', 'BB McCullum', 'L Balaji', 'N Jagadeesan']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-26.json

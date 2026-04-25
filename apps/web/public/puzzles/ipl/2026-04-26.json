@@ -1,0 +1,60 @@
+{
+  "id": "2026-04-26",
+  "date": "2026-04-26",
+  "edition": 34,
+  "items": [
+    "L Balaji",
+    "Abdul Samad",
+    "Shahrukh Khan",
+    "Naman Tiwari",
+    "SE Rutherford",
+    "BB McCullum",
+    "CH Gayle",
+    "AD Russell",
+    "K Rabada",
+    "Nishant Sindhu",
+    "PP Chawla",
+    "N Jagadeesan",
+    "CR Brathwaite",
+    "Avesh Khan",
+    "Aiden Markram",
+    "Prasidh Krishna"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Gujarat Titans 2025 Squad",
+      "spec": "team_players:GT:2025",
+      "hash": "2b5b072747c859b95a68016ecbcd3d3835071e55b802702b93630c5fea88bf19"
+    },
+    {
+      "color": "green",
+      "title": "Lucknow Super Giants 2026 Squad",
+      "spec": "team_players:LSG:2026",
+      "hash": "8e5e84b8b2ad8bee2a5b98e1874b7647f85d772fbab8c16a4e9e417670b18563"
+    },
+    {
+      "color": "blue",
+      "title": "Players from West Indies",
+      "spec": "country:West Indies",
+      "hash": "c482c8ea8f408ffc6c62c94032efb5d64a5c7821486fef00e13ed499c46fb35a"
+    },
+    {
+      "color": "purple",
+      "title": "Played for Both CSK & KKR",
+      "spec": "played_both:CSK:KKR",
+      "hash": "ff2d6c8d6b90af4d63333caf6e737448869761adfc654570e1dc81479a23cb61"
+    }
+  ],
+  "display_names": {
+    "L Balaji": "Lakshmipathy Balaji",
+    "SE Rutherford": "Sherfane Rutherford",
+    "BB McCullum": "Brendon McCullum",
+    "CH Gayle": "Chris Gayle",
+    "AD Russell": "Andre Russell",
+    "K Rabada": "Kagiso Rabada",
+    "PP Chawla": "Piyush Chawla",
+    "N Jagadeesan": "Narayan Jagadeesan",
+    "CR Brathwaite": "Carlos Brathwaite"
+  }
+}
