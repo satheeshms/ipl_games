@@ -737,3 +737,34 @@ Ed 32 — 2026-04-24
   blue     [country:West Indies] -> Players from West Indies: ['AD Russell', 'SE Rutherford', 'CR Brathwaite', 'CH Gayle']
   purple   [played_both:CSK:KKR] -> Played for Both CSK & KKR: ['PP Chawla', 'BB McCullum', 'L Balaji', 'N Jagadeesan']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-26.json
+
+  Ed 36 — 2026-04-28
+  yellow   [team_players:PBKS:2008] -> Punjab Kings 2008 Squad: ['KC Sangakkara', 'LA Pomersbach', 'RR Sarwan', 'PP Chawla']
+  green    [team_owners] -> IPL Franchise Owners: ['Karan Paul', 'Michael Hamp', 'Nita Ambani', 'Kal Somani']
+  blue     [state:Rajasthan] -> Players from Rajasthan: ['KK Ahmed', 'Pankaj Singh', 'RD Chahar', 'MK Lomror']
+  purple   [winning_squad:2008] -> 2008 Champions — Rajasthan Royals: ['MM Patel', 'D Salunkhe', 'Younis Khan', 'T Kohli']
+  Resampled BLUE [state:Rajasthan]:
+    was: ['KK Ahmed', 'Pankaj Singh', 'RD Chahar', 'MK Lomror']
+    now: ['RD Chahar', 'AL Menaria', 'KK Ahmed', 'DL Chahar']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:PBKS:2008] -> Punjab Kings 2008 Squad: ['KC Sangakkara', 'LA Pomersbach', 'RR Sarwan', 'PP Chawla']
+  green    [team_owners] -> IPL Franchise Owners: ['Karan Paul', 'Michael Hamp', 'Nita Ambani', 'Kal Somani']
+  blue     [state:Rajasthan] -> Players from Rajasthan: ['RD Chahar', 'AL Menaria', 'KK Ahmed', 'DL Chahar']
+  purple   [winning_squad:2008] -> 2008 Champions — Rajasthan Royals: ['MM Patel', 'D Salunkhe', 'Younis Khan', 'T Kohli']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-28.json
+
+  Ed 37 — 2026-04-29
+  yellow   [team_players:MI:2008] -> Mumbai Indians 2008 Squad: ['L Ronchi', 'PR Shah', 'AM Rahane', 'ST Jayasuriya']
+  green    [country:New Zealand] -> Players from New Zealand: ['LH Ferguson', 'NL McCullum', 'LRPL Taylor', 'KA Jamieson']
+  blue     [winning_squad:2016] -> 2016 Champions — Sunrisers Hyderabad: ['A Ashish Reddy', 'Yuvraj Singh', 'MC Henriques', 'BB Sran']
+  purple   [player_of_tournament] -> Player of the Tournament: ['HV Patel', 'GJ Maxwell', 'SR Watson', 'CH Gayle']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:MI:2008] -> Mumbai Indians 2008 Squad: ['L Ronchi', 'PR Shah', 'AM Rahane', 'ST Jayasuriya']
+  green    [country:New Zealand] -> Players from New Zealand: ['LH Ferguson', 'NL McCullum', 'LRPL Taylor', 'KA Jamieson']
+  blue     [winning_squad:2016] -> 2016 Champions — Sunrisers Hyderabad: ['A Ashish Reddy', 'Yuvraj Singh', 'MC Henriques', 'BB Sran']
+  purple   [player_of_tournament] -> Player of the Tournament: ['HV Patel', 'GJ Maxwell', 'SR Watson', 'CH Gayle']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-29.json

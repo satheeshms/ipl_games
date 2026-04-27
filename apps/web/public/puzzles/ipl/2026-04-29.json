@@ -1,0 +1,64 @@
+{
+  "id": "2026-04-29",
+  "date": "2026-04-29",
+  "edition": 37,
+  "items": [
+    "ST Jayasuriya",
+    "LRPL Taylor",
+    "Yuvraj Singh",
+    "LH Ferguson",
+    "PR Shah",
+    "BB Sran",
+    "L Ronchi",
+    "AM Rahane",
+    "NL McCullum",
+    "A Ashish Reddy",
+    "CH Gayle",
+    "GJ Maxwell",
+    "MC Henriques",
+    "SR Watson",
+    "KA Jamieson",
+    "HV Patel"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Mumbai Indians 2008 Squad",
+      "spec": "team_players:MI:2008",
+      "hash": "c5177b163e25f3771f717460ff554261b0cafb253d29dd41670117633345de6b"
+    },
+    {
+      "color": "green",
+      "title": "Players from New Zealand",
+      "spec": "country:New Zealand",
+      "hash": "8349c3dadda517e891039944c4399c1d5ad39db00a086de34b7966fe3e6cacb4"
+    },
+    {
+      "color": "blue",
+      "title": "2016 Champions — Sunrisers Hyderabad",
+      "spec": "winning_squad:2016",
+      "hash": "1d291d7548a8677c550e3f0a3b779a98a3000951cb376fce0b5e2d862e7d1c7b"
+    },
+    {
+      "color": "purple",
+      "title": "Player of the Tournament",
+      "spec": "player_of_tournament",
+      "hash": "4ba156b69fe495ec7de6dd9dce7c0a94d502392968e5d25ad21cb3f18304bc4a"
+    }
+  ],
+  "display_names": {
+    "LH Ferguson": "Lockie Ferguson",
+    "PR Shah": "Pinal Shah",
+    "BB Sran": "Barinder Sran",
+    "L Ronchi": "Luke Ronchi",
+    "AM Rahane": "Ajinkya Rahane",
+    "NL McCullum": "Nathan McCullum",
+    "A Ashish Reddy": "Ashish Reddy",
+    "CH Gayle": "Chris Gayle",
+    "GJ Maxwell": "Glenn Maxwell",
+    "MC Henriques": "Moises Henriques",
+    "SR Watson": "Shane Watson",
+    "KA Jamieson": "Kyle Jamieson",
+    "HV Patel": "Hardik Patel"
+  }
+}

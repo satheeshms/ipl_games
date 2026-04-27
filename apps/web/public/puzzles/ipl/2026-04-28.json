@@ -1,0 +1,60 @@
+{
+  "id": "2026-04-28",
+  "date": "2026-04-28",
+  "edition": 36,
+  "items": [
+    "Younis Khan",
+    "RD Chahar",
+    "AL Menaria",
+    "KC Sangakkara",
+    "T Kohli",
+    "RR Sarwan",
+    "Karan Paul",
+    "LA Pomersbach",
+    "DL Chahar",
+    "KK Ahmed",
+    "PP Chawla",
+    "Kal Somani",
+    "MM Patel",
+    "D Salunkhe",
+    "Nita Ambani",
+    "Michael Hamp"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Punjab Kings 2008 Squad",
+      "spec": "team_players:PBKS:2008",
+      "hash": "19ac0772b7656319215668031f96cc38c39fb4cb6bc860a96bdc9d47ce361b64"
+    },
+    {
+      "color": "green",
+      "title": "IPL Franchise Owners",
+      "spec": "team_owners",
+      "hash": "6caba2c18bfb614da6100dff3188fab06e5609afc77d55386c01325d34dded44"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Rajasthan",
+      "spec": "state:Rajasthan",
+      "hash": "50b4cce9d8429e618c162b4fda932b29049a4443e6243856d276a1d22651e8d9"
+    },
+    {
+      "color": "purple",
+      "title": "2008 Champions — Rajasthan Royals",
+      "spec": "winning_squad:2008",
+      "hash": "f1fcec8544836f7b70ded8d1170c412c0b6476f27bd631133a484941f8366396"
+    }
+  ],
+  "display_names": {
+    "AL Menaria": "Ashok Menaria",
+    "KC Sangakkara": "Kumar Sangakkara",
+    "T Kohli": "Taruwar Kohli",
+    "RR Sarwan": "Ramnaresh Sarwan",
+    "LA Pomersbach": "Luke Pomersbach",
+    "DL Chahar": "Deepak Chahar",
+    "PP Chawla": "Piyush Chawla",
+    "MM Patel": "Munaf Patel",
+    "D Salunkhe": "Dinesh Salunkhe"
+  }
+}

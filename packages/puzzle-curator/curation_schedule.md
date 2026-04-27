@@ -61,11 +61,11 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 | 30 | 22 Apr | Wed | LSG vs RR | `team_players:RR:2008` | `team_players:LSG:2025`| `ranji:Uttar Pradesh` | `played_both:RCB:CSK` | [x] |
 | 31 | 23 Apr | Thu | MI vs CSK | `team_owners`  | `winning_squad:2010` | `winning_squad:2013` | `most_fifties` | [x] |
 | 32 | 24 Apr | Fri | RCB vs GT | `team_players:GT:2026` | `batting_coaches` | `state:Karnataka` | `longest_serving` | [x] |
-| 33 | 25 Apr | Sat | DC vs PBKS , RR vs SRH | `team_players:DC:2026` | `team_players:RR:2026` | `state:Punjab` | `ranji:Hyderabad` | [ ] |
-| 34 | 26 Apr | Sun | CSK vs GT, LSG vs KKR | `team_players:GT:2025` | `team_players:LSG:2026` | `country:West Indies` | `played_both:CSK:KKR` | [ ] |
-| 35 | 27 Apr | Mon | RCB vs LSG | `team_players:RCB:2026` | `head_coaches` | `state:Delhi` | `multi_team:5` | [ ] |
-| 36 | 28 Apr | Tue | CSK vs MI | `team_players:CSK:2026` | `team_legends_batting:DC` | `ranji:Delhi` | `multi_team:7` | [ ] |
-| 37 | 29 Apr | Wed | GT vs PBKS | `team_players:GT:2026` | `team_legends_bowling:SRH` | `country:New Zealand` | `longest_serving` | [ ] |
+| 33 | 25 Apr | Sat | DC vs PBKS , RR vs SRH | `team_players:DC:2026` | `team_players:RR:2026` | `state:Punjab` | `ranji:Hyderabad` | [x] |
+| 34 | 26 Apr | Sun | CSK vs GT, LSG vs KKR | `team_players:GT:2025` | `team_players:LSG:2026` | `country:West Indies` | `played_both:CSK:KKR` | [x] |
+| 35 | 27 Apr | Mon | DC vs RCB | `team_players:RCB:2026` | `head_coaches` | `state:Delhi` | `multi_team:5` | [ ] |
+| 36 | 28 Apr | Tue | PBKS vs RR | `team_players:PBKS:2008` | `team_owners` | `state:Rajasthan` | `winning_squad:2008` | [x] |
+| 37 | 29 Apr | Wed | MI vs SRH | `team_players:MI:2008` | `country:New Zealand` | `winning_squad:2016` | `player_of_tournament` | [x] |
 | 38 | 30 Apr | Thu | RR vs KKR | `team_players:RR:2026` | `head_coaches` | `state:Delhi` | `most_ducks` | [ ] |
 | 39 | 1 May | Fri | DC vs RCB | `team_players:DC:2026` | `team_legends_batting:PBKS` | `ranji:Delhi` | `played_both:CSK:MI` | [ ] |
 | 40 | 2 May | Sat | MI vs SRH | `team_players:MI:2026` | `team_legends_bowling:PBKS` | `country:England` | `multi_team:5` | [ ] |
