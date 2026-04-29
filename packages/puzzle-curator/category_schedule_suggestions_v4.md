@@ -768,3 +768,63 @@ Ed 32 — 2026-04-24
   blue     [winning_squad:2016] -> 2016 Champions — Sunrisers Hyderabad: ['A Ashish Reddy', 'Yuvraj Singh', 'MC Henriques', 'BB Sran']
   purple   [player_of_tournament] -> Player of the Tournament: ['HV Patel', 'GJ Maxwell', 'SR Watson', 'CH Gayle']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-29.json
+
+Ed 38 — 2026-04-30
+  yellow   [team_players:RCB:2008] -> Royal Challengers Bengaluru 2008 Squad: ['V Kohli', 'P Kumar', 'Z Khan', 'B Chipli']
+  green    [head_coaches] -> IPL Head Coaches: ['Adam Gilchrist', 'Simon Katich', 'Greg Shipperd', 'Abhishek Nayar']
+  blue     [state:Gujarat] -> Players from Gujarat: ['BA Bhatt', 'AR Patel', 'IK Pathan', 'PA Patel']
+  purple   [top_run_getters:2026] -> IPL 2026 Top Run Getters: ['Abhishek Sharma', 'Vaibhav Sooryavanshi', 'KL Rahul', 'Virat Kohli']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RCB:2008] -> Royal Challengers Bengaluru 2008 Squad: ['V Kohli', 'P Kumar', 'Z Khan', 'B Chipli']
+  green    [head_coaches] -> IPL Head Coaches: ['Adam Gilchrist', 'Simon Katich', 'Greg Shipperd', 'Abhishek Nayar']
+  blue     [state:Gujarat] -> Players from Gujarat: ['BA Bhatt', 'AR Patel', 'IK Pathan', 'PA Patel']
+  purple   [top_run_getters:2026] -> IPL 2026 Top Run Getters: ['Abhishek Sharma', 'Vaibhav Sooryavanshi', 'KL Rahul', 'Virat Kohli']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-04-30.json
+  
+Ed 39 — 2026-05-01
+  yellow   [team_players:RR:2026] -> Rajasthan Royals 2026 Squad: ['Yash Raj Punja', 'RA Jadeja', 'Riyan Parag', 'Kunal Rathore']
+  green    [bowling_coaches] -> IPL Bowling Coaches: ['Ashish Nehra', 'Dwayne Bravo', 'Morne Morkel', 'Waqar Younis']
+  blue     [ranji:Delhi] -> Ranji Trophy: Delhi: ['M Manhas', 'P Arya', 'KS Sharma', 'G Gambhir']
+  purple   [top_wicket_takers:2026] -> IPL 2026 Top Wicket Takers: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  Resampled YELLOW [team_players:RR:2026]:
+    was: ['Yash Raj Punja', 'RA Jadeja', 'Riyan Parag', 'Kunal Rathore']
+    now: ['Kunal Rathore', 'Vaibhav Suryavanshi', 'Riyan Parag', 'Sushant Mishra']
+  Resampled PURPLE [top_wicket_takers:2026]:
+    was: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+    now: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  Resampled PURPLE [top_wicket_takers:2026]:
+    was: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+    now: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  Resampled PURPLE [top_wicket_takers:2026]:
+    was: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+    now: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  Resampled PURPLE [top_wicket_takers:2026]:
+    was: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+    now: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  Resampled PURPLE [top_wicket_takers:2026]:
+    was: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+    now: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  Resampled PURPLE [top_wicket_takers:2026]:
+    was: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+    now: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  Resampled PURPLE [top_wicket_takers:2026]:
+    was: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+    now: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  Resampled PURPLE [top_wicket_takers:2026]:
+    was: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+    now: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  Resampled PURPLE [top_wicket_takers:2026]:
+    was: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+    now: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  AMBIGUITY WARNING — unresolved after resampling:
+    'Prince Yadav' placed in PURPLE also qualifies for BLUE
+  Use --reshuffle or --set-items to fix manually.
+
+  Final categories:
+  yellow   [team_players:RR:2026] -> Rajasthan Royals 2026 Squad: ['Kunal Rathore', 'Vaibhav Suryavanshi', 'Riyan Parag', 'Sushant Mishra']
+  green    [bowling_coaches] -> IPL Bowling Coaches: ['Ashish Nehra', 'Dwayne Bravo', 'Morne Morkel', 'Waqar Younis']
+  blue     [ranji:Delhi] -> Ranji Trophy: Delhi: ['M Manhas', 'P Arya', 'KS Sharma', 'G Gambhir']
+  purple   [top_wicket_takers:2026] -> IPL 2026 Top Wicket Takers: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-01.json

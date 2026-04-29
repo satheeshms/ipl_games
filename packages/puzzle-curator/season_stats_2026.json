@@ -4,7 +4,7 @@
     {"player_name": "Abhishek Sharma", "runs": 380, "team": "SRH"},
     {"player_name": "Vaibhav Sooryavanshi", "runs": 357, "team": "RR"},
     {"player_name": "KL Rahul", "runs": 357, "team": "DC"},
-    {"player_name": "Virat Kohli", "runs": 328, "team": "RCB"}
+    {"player_name": "V Kohli", "runs": 328, "team": "RCB"}
   ],
   "top_wicket_takers": [
     {"player_name": "Anshul Kamboj", "wickets": 14, "team": "CSK"},
@@ -14,7 +14,7 @@
   ],
   "top_run_scorer_top4_teams": [
     {"player_name": "Prabhsimran Singh", "runs": 0, "team": "PBKS"},
-    {"player_name": "Virat Kohli", "runs": 328, "team": "RCB"},
+    {"player_name": "V Kohli", "runs": 328, "team": "RCB"},
     {"player_name": "Abhishek Sharma", "runs": 380, "team": "SRH"},
     {"player_name": "Vaibhav Sooryavanshi", "runs": 357, "team": "RR"}
   ],

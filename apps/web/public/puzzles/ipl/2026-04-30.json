@@ -1,0 +1,59 @@
+{
+  "id": "2026-04-30",
+  "date": "2026-04-30",
+  "edition": 38,
+  "items": [
+    "Abhishek Sharma",
+    "CL White",
+    "KL Rahul",
+    "AA Noffke",
+    "Chandrakant Pandit",
+    "Robin Singh",
+    "B Akhil",
+    "SK Trivedi",
+    "CA Pujara",
+    "Michael Bevan",
+    "Anil Kumble",
+    "JD Unadkat",
+    "V Kohli",
+    "MV Boucher",
+    "HH Pandya",
+    "Vaibhav Sooryavanshi"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Royal Challengers Bengaluru 2008 Squad",
+      "spec": "team_players:RCB:2008",
+      "hash": "f89f86569cfdeab7decb0c482aa775fab52241364a91245ce07ee849a542c438"
+    },
+    {
+      "color": "green",
+      "title": "IPL Head Coaches",
+      "spec": "head_coaches",
+      "hash": "20601a9e76188417a8cd129eb828108535e5a166ad0bd78187cc4a345494eab4"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Gujarat",
+      "spec": "state:Gujarat",
+      "hash": "7f7f124c48ef2fc7cdf48a1509eeabdef7f8879349a4afd46661a8dc2e29291f"
+    },
+    {
+      "color": "purple",
+      "title": "IPL 2026 Top Run Getters",
+      "spec": "top_run_getters:2026",
+      "hash": "f53e7e53f5d00fcdc3bec734330572a0662b1dcf571e0fc629796171eea836c7"
+    }
+  ],
+  "display_names": {
+    "AA Noffke": "Ashley Noffke",
+    "B Akhil": "Balachandra Akhil",
+    "SK Trivedi": "Siddharth Trivedi",
+    "CA Pujara": "Cheteshwar Pujara",
+    "JD Unadkat": "Jaydev Unadkat",
+    "V Kohli": "Virat Kohli",
+    "MV Boucher": "Mark Boucher",
+    "HH Pandya": "Hardik Pandya"
+  }
+}
