@@ -1,0 +1,27 @@
+{
+  "_note": "Mid-season IPL 2026 stats — last updated April 27, 2026 (after match 37). Verify exact figures each match day before use.",
+  "top_run_getters": [
+    {"player_name": "Abhishek Sharma", "runs": 380, "team": "SRH"},
+    {"player_name": "Vaibhav Sooryavanshi", "runs": 357, "team": "RR"},
+    {"player_name": "KL Rahul", "runs": 357, "team": "DC"},
+    {"player_name": "V Kohli", "runs": 328, "team": "RCB"}
+  ],
+  "top_wicket_takers": [
+    {"player_name": "Anshul Kamboj", "wickets": 14, "team": "CSK"},
+    {"player_name": "Prince Yadav", "wickets": 13, "team": "LSG"},
+    {"player_name": "Eshan Malinga", "wickets": 12, "team": "SRH"},
+    {"player_name": "Prasidh Krishna", "wickets": 12, "team": "GT"}
+  ],
+  "top_run_scorer_top4_teams": [
+    {"player_name": "Prabhsimran Singh", "runs": 0, "team": "PBKS"},
+    {"player_name": "V Kohli", "runs": 328, "team": "RCB"},
+    {"player_name": "Abhishek Sharma", "runs": 380, "team": "SRH"},
+    {"player_name": "Vaibhav Sooryavanshi", "runs": 357, "team": "RR"}
+  ],
+  "top_wicket_taker_top4_teams": [
+    {"player_name": "Arshdeep Singh", "wickets": 0, "team": "PBKS"},
+    {"player_name": "Bhuvneshwar Kumar", "wickets": 10, "team": "RCB"},
+    {"player_name": "Eshan Malinga", "wickets": 12, "team": "SRH"},
+    {"player_name": "Jofra Archer", "wickets": 0, "team": "RR"}
+  ]
+}

@@ -22,6 +22,15 @@ from hash_util import hash_items, verify_known_hashes, find_category_items, load
 
 COLORS = ["yellow", "green", "blue", "purple"]
 
+# Group-type prefixes that bypass ALL dedup/cooldown rules.
+# Use for live-season categories that are intentionally reused across puzzles.
+NO_CHECK_GROUP_PREFIXES = {
+    "top_run_getters",
+    "top_wicket_takers",
+    "top_run_scorer_top4",
+    "top_wicket_taker_top4",
+}
+
 COLOR_DESCRIPTIONS = {
     "yellow": "YELLOW — Easiest (obvious IPL groupings)",
     "green":  "GREEN  — Moderate (requires IPL knowledge)",
@@ -103,11 +112,12 @@ BROWSE_SHORTCUTS = (
     "?orange_cap  ?purple_cap  ?pot  ?costliest  ?winning_captain  ?ipl_champions  "
     "?batting_records  ?bowling_records  ?season_records  ?fielding_records  ?team_owners  "
     "?countries  ?states  ?ranji  ?fifers  ?topbat  ?topbowl  ?multiteam  ?ducks  "
-    "?strikers  ?batting_avg  ?fielders  ?keepers  ?allrounders"
+    "?strikers  ?batting_avg  ?fielders  ?keepers  ?allrounders  "
+    "?srun  ?sbowl  ?stop4run  ?stop4bowl"
 )
 
 
-def browse_groups(category: str, ipl_data: dict) -> None:
+def browse_groups(category: str, ipl_data: dict, season_data: dict | None = None) -> None:
     """Print available groups / ranked lists for a browse shortcut.
 
     Shortcuts:
@@ -370,6 +380,31 @@ def browse_groups(category: str, ipl_data: dict) -> None:
         for e in entries:
             print(f"    {e.get('owner')}  ({e.get('team', '')})")
 
+    elif category in ("srun", "sbowl", "stop4run", "stop4bowl"):
+        if not season_data:
+            print("  No season_stats_2026.json loaded.")
+            return
+        key_map = {
+            "srun":     ("top_run_getters",          "runs"),
+            "sbowl":    ("top_wicket_takers",         "wickets"),
+            "stop4run": ("top_run_scorer_top4_teams", "runs"),
+            "stop4bowl":("top_wicket_taker_top4_teams","wickets"),
+        }
+        key, stat = key_map[category]
+        entries = season_data.get(key, [])
+        if not entries:
+            print(f"  No data for '{key}' in season_stats_2026.json.")
+            return
+        label_map = {
+            "srun":     "Top run-getters (IPL 2026)",
+            "sbowl":    "Top wicket-takers (IPL 2026)",
+            "stop4run": "Leading run scorer per top-4 team (IPL 2026)",
+            "stop4bowl":"Leading wicket-taker per top-4 team (IPL 2026)",
+        }
+        print(f"  {label_map[category]}:")
+        for e in entries:
+            print(f"    {e['player_name']}  {e.get(stat, '?')} {stat}  [{e.get('team', '?')}]")
+
     else:
         print(f"  Unknown browse shortcut. Available: {BROWSE_SHORTCUTS}")
 
@@ -439,6 +474,8 @@ def check_group_rules(group: str, puzzle_date: str, idx: "DedupeIndex") -> list[
     """Run all group-tag-level rules. Returns list of violations (may be empty)."""
     if not group:
         return []
+    if _group_type(group) in NO_CHECK_GROUP_PREFIXES:
+        return []
     violations: list[RuleViolation] = []
 
     # Rule 1: group cooldown
@@ -479,6 +516,8 @@ def check_group_rules(group: str, puzzle_date: str, idx: "DedupeIndex") -> list[
 def check_item_rules(group: str, item: str, puzzle_date: str,
                      idx: "DedupeIndex") -> list[RuleViolation]:
     """Run all item-level rules. Returns list of violations (may be empty)."""
+    if _group_type(group) in NO_CHECK_GROUP_PREFIXES:
+        return []
     violations: list[RuleViolation] = []
 
     # Rule 4: (group, item) pair already used — permanent block
@@ -606,6 +645,16 @@ def cmd_create(args: argparse.Namespace) -> int:
 
     # 2. Load optional data file + past-puzzle dedup index
     print("\n[2/8] Loading data …")
+    season_data: dict = {}
+    _season_path = Path(__file__).parent / "season_stats_2026.json"
+    if _season_path.exists():
+        with _season_path.open(encoding="utf-8") as fh:
+            season_data = json.load(fh)
+        print(f"  Season stats loaded: {_season_path.name}  "
+              f"(browse: ?srun  ?sbowl  ?stop4run  ?stop4bowl)")
+    else:
+        print(f"  Season stats: {_season_path.name} not found — skipping")
+
     ipl_data: dict = {}
     if args.data_file:
         data_path = Path(args.data_file)
@@ -693,7 +742,7 @@ def cmd_create(args: argparse.Namespace) -> int:
                 if search_query == "?":
                     print(f"  Browse shortcuts: {BROWSE_SHORTCUTS}")
                 elif search_query.startswith("?"):
-                    browse_groups(search_query[1:].lower(), ipl_data)
+                    browse_groups(search_query[1:].lower(), ipl_data, season_data)
                 elif search_query:
                     matches = search_data(search_query, ipl_data)
                     if matches:

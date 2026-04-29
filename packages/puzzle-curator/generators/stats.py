@@ -103,9 +103,14 @@ def gen_top_run_scorers(ipl_data: dict, params: list, exclude: set) -> dict:
 
 def gen_top_wicket_takers(ipl_data: dict, params: list, exclude: set) -> dict:
     """
-    Pick 4 from the all-time top wicket takers in IPL (100+ wickets filter applied upstream).
-    Source: ipl_data['bowling_career_stats']  (29 entries, field: 'player_name')
+    Pick 4 top wicket takers.
+    - No param / non-year param: all-time from ipl_data['bowling_career_stats']
+    - Year param (e.g. '2026'): current season from season_stats_2026.json
     """
+    if params and params[0].isdigit() and len(params[0]) == 4:
+        from .season_stats import _from_season
+        return _from_season("top_wicket_takers", "IPL 2026 Top Wicket Takers",
+                            ipl_data, params, exclude)
     entries = ipl_data.get("bowling_career_stats", [])
     if not entries:
         raise ValueError("top_wicket_takers: no data in ipl_data['bowling_career_stats']")

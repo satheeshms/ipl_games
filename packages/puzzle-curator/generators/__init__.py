@@ -10,6 +10,7 @@ from .stats import GENERATORS as _STATS
 from .geographic import GENERATORS as _GEO
 from .cross_team import GENERATORS as _CROSS, gen_legends_india, gen_legends_overseas
 from .management import GENERATORS as _MGMT, gen_coaches_team_season
+from .season_stats import GENERATORS as _SEASON
 
 
 def _gen_legends_dispatch(ipl_data: dict, params: list, exclude: set) -> dict:
@@ -37,6 +38,7 @@ def _gen_legends_dispatch(ipl_data: dict, params: list, exclude: set) -> dict:
 GENERATORS: dict = {
     **_STATS,
     **_GEO,
+    **_SEASON,
     "played_both":     _CROSS["played_both"],
     "multi_team":      _CROSS["multi_team"],
     "longest_serving": _CROSS["longest_serving"],
