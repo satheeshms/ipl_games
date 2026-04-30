@@ -3,22 +3,22 @@
   "date": "2026-05-01",
   "edition": 39,
   "items": [
-    "KS Sharma",
-    "Riyan Parag",
-    "Anshul Kamboj",
-    "Prince Yadav",
-    "Kunal Rathore",
-    "Vaibhav Suryavanshi",
-    "P Arya",
     "Morne Morkel",
-    "Eshan Malinga",
-    "Prasidh Krishna",
-    "G Gambhir",
+    "M Manhas",
+    "KS Sharma",
     "Ashish Nehra",
+    "Sushant Mishra",
+    "Riyan Parag",
+    "E Malinga",
     "Waqar Younis",
     "Dwayne Bravo",
-    "M Manhas",
-    "Sushant Mishra"
+    "Kunal Rathore",
+    "JC Archer",
+    "G Gambhir",
+    "P Arya",
+    "B Kumar",
+    "Vaibhav Suryavanshi",
+    "Anshul Kamboj"
   ],
   "categories": [
     {
@@ -43,11 +43,14 @@
       "color": "purple",
       "title": "IPL 2026 Top Wicket Takers",
       "spec": "top_wicket_takers:2026",
-      "hash": "8720c1f62f8f8a866b79fb69ae8c1767031d7364502d06bfb21e9b7d1abac1cd"
+      "hash": "52b7adc8c39ccdc940211923c5f5b83ffa3973a5081c92368052e36eb6952508"
     }
   ],
   "display_names": {
+    "M Manhas": "Mithun Manhas",
+    "E Malinga": "Eshan Malinga",
+    "JC Archer": "Jofra Archer",
     "P Arya": "Priyansh Arya",
-    "M Manhas": "Mithun Manhas"
+    "B Kumar": "Bhuvneshwar Kumar"
   }
 }
