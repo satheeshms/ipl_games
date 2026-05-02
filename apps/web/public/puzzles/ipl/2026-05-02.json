@@ -1,0 +1,60 @@
+{
+  "id": "2026-05-02",
+  "date": "2026-05-02",
+  "edition": 40,
+  "items": [
+    "PP Chawla",
+    "Ryan Rickelton",
+    "DJ Bravo",
+    "MA Wood",
+    "Reece Topley",
+    "RS Bopara",
+    "Deepak Chahar",
+    "R Ashwin",
+    "V Kohli",
+    "AC Gilchrist",
+    "PD Collingwood",
+    "MM Sharma",
+    "Ashwani Kumar",
+    "Shubman Gill",
+    "JM Bairstow",
+    "AD Russell"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Mumbai Indians 2025 Squad",
+      "spec": "team_players:MI:2025",
+      "hash": "a8002ef1f7a8c6a76f6f531202bcd63fef41307e0e2fa95fb4edb9154e7e070d"
+    },
+    {
+      "color": "green",
+      "title": "Chennai Super Kings Bowling Legends",
+      "spec": "team_legends_bowling:CSK",
+      "hash": "5dbf78f72a631b9527a8c6f1fdc9a8d313854afaf2dc9148a903af8ed15783f5"
+    },
+    {
+      "color": "blue",
+      "title": "Players from England",
+      "spec": "country:England",
+      "hash": "13b8b0cc9d0374d1eb6ac004969027f8f75a79104f96b8c5c549eca426022d4f"
+    },
+    {
+      "color": "purple",
+      "title": "Player of the Tournament",
+      "spec": "player_of_tournament",
+      "hash": "380e41634498d97dd9550f4c56f6959ef9db7686949a9bb35ad8061dcd3fe4c0"
+    }
+  ],
+  "display_names": {
+    "PP Chawla": "Piyush Chawla",
+    "DJ Bravo": "Dwayne Bravo",
+    "RS Bopara": "Ravi Bopara",
+    "R Ashwin": "Ravichandran Ashwin",
+    "V Kohli": "Virat Kohli",
+    "AC Gilchrist": "Adam Gilchrist",
+    "PD Collingwood": "Paul Collingwood",
+    "JM Bairstow": "Jonny Bairstow",
+    "AD Russell": "Andre Russell"
+  }
+}
