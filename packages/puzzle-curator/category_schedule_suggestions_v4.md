@@ -828,3 +828,17 @@ Ed 39 — 2026-05-01
   blue     [ranji:Delhi] -> Ranji Trophy: Delhi: ['M Manhas', 'P Arya', 'KS Sharma', 'G Gambhir']
   purple   [top_wicket_takers:2026] -> IPL 2026 Top Wicket Takers: ['Anshul Kamboj', 'Prince Yadav', 'Eshan Malinga', 'Prasidh Krishna']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-01.json
+
+  Ed 40 — 2026-05-02
+  yellow   [team_players:MI:2025] -> Mumbai Indians 2025 Squad: ['Reece Topley', 'Deepak Chahar', 'Ashwani Kumar', 'Ryan Rickelton']
+  green    [team_legends_bowling:CSK] -> Chennai Super Kings Bowling Legends: ['R Ashwin', 'DJ Bravo', 'MM Sharma', 'PP Chawla']
+  blue     [country:England] -> Players from England: ['RS Bopara', 'JM Bairstow', 'MA Wood', 'PD Collingwood']
+  purple   [player_of_tournament] -> Player of the Tournament: ['AC Gilchrist', 'AD Russell', 'Shubman Gill', 'V Kohli']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:MI:2025] -> Mumbai Indians 2025 Squad: ['Reece Topley', 'Deepak Chahar', 'Ashwani Kumar', 'Ryan Rickelton']
+  green    [team_legends_bowling:CSK] -> Chennai Super Kings Bowling Legends: ['R Ashwin', 'DJ Bravo', 'MM Sharma', 'PP Chawla']
+  blue     [country:England] -> Players from England: ['RS Bopara', 'JM Bairstow', 'MA Wood', 'PD Collingwood']
+  purple   [player_of_tournament] -> Player of the Tournament: ['AC Gilchrist', 'AD Russell', 'Shubman Gill', 'V Kohli']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-02.json
