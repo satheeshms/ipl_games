@@ -842,3 +842,19 @@ Ed 39 — 2026-05-01
   blue     [country:England] -> Players from England: ['RS Bopara', 'JM Bairstow', 'MA Wood', 'PD Collingwood']
   purple   [player_of_tournament] -> Player of the Tournament: ['AC Gilchrist', 'AD Russell', 'Shubman Gill', 'V Kohli']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-02.json
+
+  Existing puzzles: 26 (416 items already used across 75 specs)
+
+Ed 41 — 2026-05-03
+  yellow   [team_owners] -> IPL Franchise Owners: ['Preity Zinta', 'Kavya Maran', 'Sanjiv Goenka', 'Kiran Kumar Grandhi']
+  green    [team_players:GT:2025] -> Gujarat Titans 2025 Squad: ['JC Buttler', 'Gurnoor Brar', 'Mahipal Lomror', 'Sherfane Rutherford']
+  blue     [top_run_scorer_top4] -> Leading Run Scorer from Each Top-4 Team (IPL 2026): ['Prabhsimran Singh', 'V Kohli', 'Abhishek Sharma', 'Vaibhav Sooryavanshi']
+  purple   [winning_squad:2016] -> 2016 Champions — Sunrisers Hyderabad: ['DA Warner', 'TA Boult', 'S Dhawan', 'EJG Morgan']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_owners] -> IPL Franchise Owners: ['Preity Zinta', 'Kavya Maran', 'Sanjiv Goenka', 'Kiran Kumar Grandhi']
+  green    [team_players:GT:2025] -> Gujarat Titans 2025 Squad: ['JC Buttler', 'Gurnoor Brar', 'Mahipal Lomror', 'Sherfane Rutherford']
+  blue     [top_run_scorer_top4] -> Leading Run Scorer from Each Top-4 Team (IPL 2026): ['Prabhsimran Singh', 'V Kohli', 'Abhishek Sharma', 'Vaibhav Sooryavanshi']
+  purple   [winning_squad:2016] -> 2016 Champions — Sunrisers Hyderabad: ['DA Warner', 'TA Boult', 'S Dhawan', 'EJG Morgan']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-03.json

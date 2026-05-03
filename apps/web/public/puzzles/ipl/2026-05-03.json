@@ -1,0 +1,56 @@
+{
+  "id": "2026-05-03",
+  "date": "2026-05-03",
+  "edition": 41,
+  "items": [
+    "Sherfane Rutherford",
+    "Gurnoor Brar",
+    "Vaibhav Sooryavanshi",
+    "Mahipal Lomror",
+    "TA Boult",
+    "Prabhsimran Singh",
+    "S Dhawan",
+    "JC Buttler",
+    "Abhishek Sharma",
+    "DA Warner",
+    "Kavya Maran",
+    "Preity Zinta",
+    "Sanjiv Goenka",
+    "V Kohli",
+    "Kiran Kumar Grandhi",
+    "EJG Morgan"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "IPL Franchise Owners",
+      "spec": "team_owners",
+      "hash": "9ff25cc457bb62bac139a9e48a05805e41b84704140efce7b22063a6b95b6165"
+    },
+    {
+      "color": "green",
+      "title": "Gujarat Titans 2025 Squad",
+      "spec": "team_players:GT:2025",
+      "hash": "427982ebe027c49584b5d4258fae57d3ac51b9591532cbb70727b983cdd57b3d"
+    },
+    {
+      "color": "blue",
+      "title": "Leading Run Scorer from Each Top-4 Team (IPL 2026)",
+      "spec": "top_run_scorer_top4",
+      "hash": "1bb5f43834747863371bbd32f5dc5e3859defc13b014f1ba03c3d3bb49ef8043"
+    },
+    {
+      "color": "purple",
+      "title": "2016 Champions — Sunrisers Hyderabad",
+      "spec": "winning_squad:2016",
+      "hash": "b2dd5f3cd29aae1c9b428219521cd0c911dbb94d7f370379d6d49b064a45c641"
+    }
+  ],
+  "display_names": {
+    "TA Boult": "Trent Boult",
+    "S Dhawan": "Shikhar Dhawan",
+    "JC Buttler": "Jos Buttler",
+    "DA Warner": "David Warner",
+    "V Kohli": "Virat Kohli"
+  }
+}
