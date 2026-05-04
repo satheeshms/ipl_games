@@ -1,0 +1,61 @@
+{
+  "id": "2026-05-05",
+  "date": "2026-05-05",
+  "edition": 43,
+  "items": [
+    "DJ Bravo",
+    "Mukesh Kumar",
+    "Sumit Kumar",
+    "DE Bollinger",
+    "JC Buttler",
+    "M Vijay",
+    "V Kohli",
+    "AT Rayudu",
+    "RA Jadeja",
+    "Ishant Sharma",
+    "CH Gayle",
+    "TG Southee",
+    "SR Watson",
+    "Shubman Gill",
+    "Yash Dhull",
+    "SV Samson"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Delhi Capitals 2024 Squad",
+      "spec": "team_players:DC:2024",
+      "hash": "84fbc4bf71ad032a1f81d5ff52c1ad6dffee9988e59f5f9c9543daada5fd8029"
+    },
+    {
+      "color": "green",
+      "title": "Chennai Super Kings Batting Legends",
+      "spec": "team_legends_batting:CSK",
+      "hash": "2f0e0acd03b6fbcd76303fea9eed936d23b37103f4b6d1185725408230563a5b"
+    },
+    {
+      "color": "blue",
+      "title": "2011 Champions — Chennai Super Kings",
+      "spec": "winning_squad:2011",
+      "hash": "9ce8bf8887fe6fde17d031ee22f57101134b3adb4ba15e47f44719e03bbc7bfd"
+    },
+    {
+      "color": "purple",
+      "title": "Orange Cap Winners",
+      "spec": "orange_cap",
+      "hash": "cb439b2a81d3667dd4039cce4ef0da259024a6b7ce90b406661368e9e1632f6d"
+    }
+  ],
+  "display_names": {
+    "DJ Bravo": "Dwayne Bravo",
+    "DE Bollinger": "Doug Bollinger",
+    "JC Buttler": "Jos Buttler",
+    "M Vijay": "Murali Vijay",
+    "V Kohli": "Virat Kohli",
+    "AT Rayudu": "Ambati Rayudu",
+    "CH Gayle": "Chris Gayle",
+    "TG Southee": "Tim Southee",
+    "SR Watson": "Shane Watson",
+    "SV Samson": "Sanju Samson"
+  }
+}

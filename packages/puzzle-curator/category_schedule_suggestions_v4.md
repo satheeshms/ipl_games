@@ -902,3 +902,45 @@ Ed 41 — 2026-05-03
   yellow   [team_players:MI:2026] -> Mumbai Indians 2026 Squad: ['TA Boult', 'Mohammad Izhar', 'JJ Bumrah', 'Sherfane Rutherford']
   green    [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Mukul Choudhary', 'Anrich Nortje', 'Shahbaz Ahamad', 'Himmat Singh']
   blue     [top_wicket_taker_top4] -> Leading Wicket Taker from Each Top-4 Team (IPL 2026): ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+ purple   [purple_cap] -> Purple Cap Winners: ['K Rabada', 'Prasidh Krishna', 'YS Chahal', 'Imran Tahir']
+ 
+  Ed 43 — 2026-05-05
+  yellow   [team_players:DC:2024] -> Delhi Capitals 2024 Squad: ['Ishant Sharma', 'Mukesh Kumar', 'Yash Dhull', 'Sumit Kumar']
+  green    [team_legends_batting:CSK] -> Chennai Super Kings Batting Legends: ['AT Rayudu', 'SV Samson', 'SR Watson', 'MS Dhoni']
+  blue     [winning_squad:2011] -> 2011 Champions — Chennai Super Kings: ['DJ Bravo', 'TG Southee', 'M Vijay', 'DE Bollinger']
+  purple   [orange_cap] -> Orange Cap Winners: ['V Kohli', 'Shubman Gill', 'CH Gayle', 'JC Buttler']
+  Resampled GREEN [team_legends_batting:CSK]:
+    was: ['AT Rayudu', 'SV Samson', 'SR Watson', 'MS Dhoni']
+    now: ['AT Rayudu', 'RA Jadeja', 'SV Samson', 'RV Uthappa']
+  Resampled GREEN [team_legends_batting:CSK]:
+    was: ['AT Rayudu', 'RA Jadeja', 'SV Samson', 'RV Uthappa']
+    now: ['RA Jadeja', 'SK Raina', 'SV Samson', 'SR Watson']
+  Resampled GREEN [team_legends_batting:CSK]:
+    was: ['RA Jadeja', 'SK Raina', 'SV Samson', 'SR Watson']
+    now: ['RV Uthappa', 'SK Raina', 'SV Samson', 'RA Jadeja']
+  Resampled GREEN [team_legends_batting:CSK]:
+    was: ['RV Uthappa', 'SK Raina', 'SV Samson', 'RA Jadeja']
+    now: ['F du Plessis', 'RV Uthappa', 'RA Jadeja', 'SR Watson']
+  Resampled GREEN [team_legends_batting:CSK]:
+    was: ['F du Plessis', 'RV Uthappa', 'RA Jadeja', 'SR Watson']
+    now: ['MS Dhoni', 'AT Rayudu', 'SR Watson', 'RV Uthappa']
+  Resampled GREEN [team_legends_batting:CSK]:
+    was: ['MS Dhoni', 'AT Rayudu', 'SR Watson', 'RV Uthappa']
+    now: ['MS Dhoni', 'SV Samson', 'AT Rayudu', 'RV Uthappa']
+  Resampled GREEN [team_legends_batting:CSK]:
+    was: ['MS Dhoni', 'SV Samson', 'AT Rayudu', 'RV Uthappa']
+    now: ['SV Samson', 'SK Raina', 'F du Plessis', 'AT Rayudu']
+  Resampled GREEN [team_legends_batting:CSK]:
+    was: ['SV Samson', 'SK Raina', 'F du Plessis', 'AT Rayudu']
+    now: ['AT Rayudu', 'SK Raina', 'SV Samson', 'RV Uthappa']
+  Resampled GREEN [team_legends_batting:CSK]:
+    was: ['AT Rayudu', 'SK Raina', 'SV Samson', 'RV Uthappa']
+    now: ['SR Watson', 'AT Rayudu', 'RA Jadeja', 'SV Samson']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:DC:2024] -> Delhi Capitals 2024 Squad: ['Ishant Sharma', 'Mukesh Kumar', 'Yash Dhull', 'Sumit Kumar']
+  green    [team_legends_batting:CSK] -> Chennai Super Kings Batting Legends: ['SR Watson', 'AT Rayudu', 'RA Jadeja', 'SV Samson']
+  blue     [winning_squad:2011] -> 2011 Champions — Chennai Super Kings: ['DJ Bravo', 'TG Southee', 'M Vijay', 'DE Bollinger']
+  purple   [orange_cap] -> Orange Cap Winners: ['V Kohli', 'Shubman Gill', 'CH Gayle', 'JC Buttler']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-05.json
