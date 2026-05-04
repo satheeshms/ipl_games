@@ -1,0 +1,57 @@
+{
+  "id": "2026-05-04",
+  "date": "2026-05-04",
+  "edition": 42,
+  "items": [
+    "Mukul Choudhary",
+    "JC Archer",
+    "JJ Bumrah",
+    "K Rabada",
+    "Anrich Nortje",
+    "Mohammad Izhar",
+    "Himmat Singh",
+    "B Kumar",
+    "Prasidh Krishna",
+    "Eshan Malinga",
+    "YS Chahal",
+    "Arshdeep Singh",
+    "Shahbaz Ahamad",
+    "Imran Tahir",
+    "TA Boult",
+    "Sherfane Rutherford"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Mumbai Indians 2026 Squad",
+      "spec": "team_players:MI:2026",
+      "hash": "8e5c852756d459fa3852faebecea0394e8a65a652f76c7ae3508809b7f45bde8"
+    },
+    {
+      "color": "green",
+      "title": "Lucknow Super Giants 2026 Squad",
+      "spec": "team_players:LSG:2026",
+      "hash": "c56d90eed02ad943128a14f1c8b498df65faa2473e3a85e0973deb9756c0f0d0"
+    },
+    {
+      "color": "blue",
+      "title": "Leading Wicket Taker from Each Top-4 Team (IPL 2026)",
+      "spec": "top_wicket_taker_top4",
+      "hash": "0b40aee5b4a66048b22f02214239ae379ac89a6fdb294f42b96f41ef0a1eb23a"
+    },
+    {
+      "color": "purple",
+      "title": "Purple Cap Winners",
+      "spec": "purple_cap",
+      "hash": "82898d53fa26a333d42c7f86fde31360279527a386840892c38425406db4a15c"
+    }
+  ],
+  "display_names": {
+    "JC Archer": "Jofra Archer",
+    "JJ Bumrah": "Jasprit Bumrah",
+    "K Rabada": "Kagiso Rabada",
+    "B Kumar": "Bhuvneshwar Kumar",
+    "YS Chahal": "Yuzvendra Chahal",
+    "TA Boult": "Trent Boult"
+  }
+}

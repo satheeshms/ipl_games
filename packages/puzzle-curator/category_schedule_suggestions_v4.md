@@ -858,3 +858,47 @@ Ed 41 — 2026-05-03
   blue     [top_run_scorer_top4] -> Leading Run Scorer from Each Top-4 Team (IPL 2026): ['Prabhsimran Singh', 'V Kohli', 'Abhishek Sharma', 'Vaibhav Sooryavanshi']
   purple   [winning_squad:2016] -> 2016 Champions — Sunrisers Hyderabad: ['DA Warner', 'TA Boult', 'S Dhawan', 'EJG Morgan']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-03.json
+
+  Ed 42 — 2026-05-04
+  yellow   [team_players:MI:2026] -> Mumbai Indians 2026 Squad: ['TA Boult', 'Mohammad Izhar', 'JJ Bumrah', 'Sherfane Rutherford']
+  green    [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Mukul Choudhary', 'Anrich Nortje', 'Shahbaz Ahamad', 'Himmat Singh']
+  blue     [top_wicket_taker_top4] -> Leading Wicket Taker from Each Top-4 Team (IPL 2026): ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  purple   [purple_cap] -> Purple Cap Winners: ['K Rabada', 'Prasidh Krishna', 'YS Chahal', 'Imran Tahir']
+  Resampled BLUE [top_wicket_taker_top4]:
+    was: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+    now: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  Resampled BLUE [top_wicket_taker_top4]:
+    was: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+    now: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  Resampled BLUE [top_wicket_taker_top4]:
+    was: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+    now: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  Resampled BLUE [top_wicket_taker_top4]:
+    was: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+    now: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  Resampled BLUE [top_wicket_taker_top4]:
+    was: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+    now: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  Resampled BLUE [top_wicket_taker_top4]:
+    was: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+    now: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  Resampled BLUE [top_wicket_taker_top4]:
+    was: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+    now: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  Resampled BLUE [top_wicket_taker_top4]:
+    was: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+    now: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  Resampled BLUE [top_wicket_taker_top4]:
+    was: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+    now: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  Resampled BLUE [top_wicket_taker_top4]:
+    was: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+    now: ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
+  AMBIGUITY WARNING — unresolved after resampling:
+    'B Kumar' placed in BLUE also qualifies for PURPLE
+  Use --reshuffle or --set-items to fix manually.
+
+  Final categories:
+  yellow   [team_players:MI:2026] -> Mumbai Indians 2026 Squad: ['TA Boult', 'Mohammad Izhar', 'JJ Bumrah', 'Sherfane Rutherford']
+  green    [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Mukul Choudhary', 'Anrich Nortje', 'Shahbaz Ahamad', 'Himmat Singh']
+  blue     [top_wicket_taker_top4] -> Leading Wicket Taker from Each Top-4 Team (IPL 2026): ['Arshdeep Singh', 'B Kumar', 'Eshan Malinga', 'JC Archer']
