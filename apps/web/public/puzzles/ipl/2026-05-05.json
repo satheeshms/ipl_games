@@ -3,29 +3,29 @@
   "date": "2026-05-05",
   "edition": 43,
   "items": [
-    "DJ Bravo",
-    "Mukesh Kumar",
-    "Sumit Kumar",
-    "DE Bollinger",
-    "JC Buttler",
-    "M Vijay",
-    "V Kohli",
     "AT Rayudu",
-    "RA Jadeja",
-    "Ishant Sharma",
-    "CH Gayle",
-    "TG Southee",
-    "SR Watson",
+    "V Kohli",
+    "Abishek Porel",
+    "SV Samson",
     "Shubman Gill",
-    "Yash Dhull",
-    "SV Samson"
+    "Vipraj Nigam",
+    "Mukesh Kumar",
+    "M Vijay",
+    "Jake Fraser-McGurk",
+    "RA Jadeja",
+    "CH Gayle",
+    "DE Bollinger",
+    "SR Watson",
+    "JC Buttler",
+    "TG Southee",
+    "S Badrinath"
   ],
   "categories": [
     {
       "color": "yellow",
-      "title": "Delhi Capitals 2024 Squad",
-      "spec": "team_players:DC:2024",
-      "hash": "84fbc4bf71ad032a1f81d5ff52c1ad6dffee9988e59f5f9c9543daada5fd8029"
+      "title": "Delhi Capitals 2025 Squad",
+      "spec": "team_players:DC:2025",
+      "hash": "d18b7ae95b995adae13e276019dc8ce42bc367a32fe72249341facd8839cefb0"
     },
     {
       "color": "green",
@@ -37,7 +37,7 @@
       "color": "blue",
       "title": "2011 Champions — Chennai Super Kings",
       "spec": "winning_squad:2011",
-      "hash": "9ce8bf8887fe6fde17d031ee22f57101134b3adb4ba15e47f44719e03bbc7bfd"
+      "hash": "da67ed2535769d2a3b280d9f1ab77ce318bee30840496790dfa5a5282abf4deb"
     },
     {
       "color": "purple",
@@ -47,15 +47,15 @@
     }
   ],
   "display_names": {
-    "DJ Bravo": "Dwayne Bravo",
-    "DE Bollinger": "Doug Bollinger",
-    "JC Buttler": "Jos Buttler",
-    "M Vijay": "Murali Vijay",
-    "V Kohli": "Virat Kohli",
     "AT Rayudu": "Ambati Rayudu",
+    "V Kohli": "Virat Kohli",
+    "SV Samson": "Sanju Samson",
+    "M Vijay": "Murali Vijay",
     "CH Gayle": "Chris Gayle",
-    "TG Southee": "Tim Southee",
+    "DE Bollinger": "Doug Bollinger",
     "SR Watson": "Shane Watson",
-    "SV Samson": "Sanju Samson"
+    "JC Buttler": "Jos Buttler",
+    "TG Southee": "Tim Southee",
+    "S Badrinath": "Subramaniam Badrinath"
   }
 }

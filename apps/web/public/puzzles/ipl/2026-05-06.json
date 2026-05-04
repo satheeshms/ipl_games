@@ -1,0 +1,59 @@
+{
+  "id": "2026-05-06",
+  "date": "2026-05-06",
+  "edition": 44,
+  "items": [
+    "DA Miller",
+    "DB Ravi Teja",
+    "VVS Laxman",
+    "WPUJC Vaas",
+    "Ravichandran Smaran",
+    "A Chandila",
+    "NA Saini",
+    "Harsh Dubey",
+    "SS Iyer",
+    "Nitish Kumar Reddy",
+    "CH Gayle",
+    "KD Karthik",
+    "HH Gibbs",
+    "Kamindu Mendis",
+    "A Mishra",
+    "Joginder Sharma"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Sunrisers Hyderabad 2025 Squad",
+      "spec": "team_players:SRH:2025",
+      "hash": "2e8d6a97729c0a48fbb0c0c8be1ec4a6d8a709ca682e885a2f719284ffe6b33f"
+    },
+    {
+      "color": "green",
+      "title": "Punjab Kings Batting Legends",
+      "spec": "team_legends_batting:PBKS",
+      "hash": "bbf4acbdf1c3e42e9ef84b72853f0772f9446969f8c0012831b8e4a2844dafe4"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Haryana",
+      "spec": "state:Haryana",
+      "hash": "dd0e724d98f31d77b15a06f7b416ec8983dabfaf8a9b13de91936c2b6afc5a84"
+    },
+    {
+      "color": "purple",
+      "title": "2009 Champions — Deccan Chargers",
+      "spec": "winning_squad:2009",
+      "hash": "58d2805616c239a99a750f2f1835e8808e3510d0729cbbd1e8a1fa29ce13f20a"
+    }
+  ],
+  "display_names": {
+    "DA Miller": "David Miller",
+    "DB Ravi Teja": "Dwaraka Ravi Teja",
+    "A Chandila": "Ajit Chandila",
+    "SS Iyer": "Shreyas Iyer",
+    "CH Gayle": "Chris Gayle",
+    "KD Karthik": "Dinesh Karthik",
+    "HH Gibbs": "Herschelle Gibbs",
+    "A Mishra": "Amit Mishra"
+  }
+}
