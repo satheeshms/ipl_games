@@ -1,0 +1,58 @@
+{
+  "id": "2026-05-07",
+  "date": "2026-05-07",
+  "edition": 45,
+  "items": [
+    "SS Iyer",
+    "SR Watson",
+    "SN Thakur",
+    "William O'Rourke",
+    "Liam Livingstone",
+    "STR Binny",
+    "RV Uthappa",
+    "Nicholas Pooran",
+    "G Gambhir",
+    "B Chipli",
+    "Nuwan Thushara",
+    "Tim Seifert",
+    "S Dhawan",
+    "Mitchell Marsh",
+    "Rasikh Dar",
+    "MA Agarwal"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Lucknow Super Giants 2025 Squad",
+      "spec": "team_players:LSG:2025",
+      "hash": "b6567a93d69d5653ab3dd1b4d77b593818b1328e7231f67b9c667c50c1c75a8e"
+    },
+    {
+      "color": "green",
+      "title": "Royal Challengers Bengaluru 2025 Squad",
+      "spec": "team_players:RCB:2025",
+      "hash": "aece2ce08841a337c8ee80b277bbba78cae33bd5fec1e9e8b21e7251e5979143"
+    },
+    {
+      "color": "blue",
+      "title": "Ranji Trophy: Karnataka",
+      "spec": "ranji:Karnataka",
+      "hash": "760b4e095a6f017d42b1afe06dc55fd8549f31b3e095d9ba6d125cb7e3f1ac44"
+    },
+    {
+      "color": "purple",
+      "title": "IPL Career Batting Average Leaders (30+ avg)",
+      "spec": "highest_batting_avg",
+      "hash": "57287fb52262fb1f5131c3ad7bf11aac01b44ba1cc507560383df36b24f1210c"
+    }
+  ],
+  "display_names": {
+    "SS Iyer": "Shreyas Iyer",
+    "SR Watson": "Shane Watson",
+    "SN Thakur": "Shardul Thakur",
+    "RV Uthappa": "Robin Uthappa",
+    "B Chipli": "Bharat Chipli",
+    "S Dhawan": "Shikhar Dhawan",
+    "MA Agarwal": "Mayank Agarwal"
+  }
+}

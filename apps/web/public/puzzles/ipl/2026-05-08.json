@@ -1,0 +1,53 @@
+{
+  "id": "2026-05-08",
+  "date": "2026-05-08",
+  "edition": 46,
+  "items": [
+    "AB de Villiers",
+    "Pravin Amre",
+    "Sridharan Sriram",
+    "Kartik Tyagi",
+    "Matheesha Pathirana",
+    "KL Rahul",
+    "Suyash Sharma",
+    "Chetan Sakariya",
+    "F du Plessis",
+    "Tim Seifert",
+    "Tejasvi Singh",
+    "Trent Woodhill",
+    "RK Singh",
+    "SV Samson",
+    "Venkatesh Iyer",
+    "W.V. Raman"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Kolkata Knight Riders 2026 Squad",
+      "spec": "team_players:KKR:2026",
+      "hash": "666efcf1a5bbd0ff3c1dadb74b096bc80626ccc9c45b8e4aa3ebaac9e84148dd"
+    },
+    {
+      "color": "green",
+      "title": "Delhi Capitals Batting Legends",
+      "spec": "team_legends_batting:DC",
+      "hash": "b8f56b51f9ba856ba97e4de65201455c7b5faac560f9e4cdb46ebeedcfbc7e0f"
+    },
+    {
+      "color": "blue",
+      "title": "IPL Batting Coaches",
+      "spec": "batting_coaches",
+      "hash": "693209524422ab27d1abafa9e80022a40d3a76ea53e39346127fa7270bab8641"
+    },
+    {
+      "color": "purple",
+      "title": "2024 Champions — Kolkata Knight Riders",
+      "spec": "winning_squad:2024",
+      "hash": "93be0064bc872e80a26c70be02c16a85cb9b6b2b234330c289ee53dbf8600e5f"
+    }
+  ],
+  "display_names": {
+    "F du Plessis": "Faf du Plessis",
+    "SV Samson": "Sanju Samson"
+  }
+}

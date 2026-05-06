@@ -945,3 +945,46 @@ Ed 43 — 2026-05-05
      'WPUJC Vaas']
        Written ->
      C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-06.json
+
+     Ed 45 — 2026-05-07
+  yellow   [team_players:LSG:2025] -> Lucknow Super Giants 2025 Squad: ["William O'Rourke", 'Mitchell Marsh', 'SN Thakur', 'Nicholas Pooran']
+  green    [team_players:RCB:2025] -> Royal Challengers Bengaluru 2025 Squad: ['Liam Livingstone', 'Nuwan Thushara', 'Tim Seifert', 'Rasikh Dar']
+  blue     [ranji:Karnataka] -> Ranji Trophy: Karnataka: ['STR Binny', 'B Chipli', 'RV Uthappa', 'MA Agarwal']
+  purple   [highest_batting_avg] -> IPL Career Batting Average Leaders (30+ avg): ['SS Iyer', 'S Dhawan', 'SR Watson', 'G Gambhir']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:LSG:2025] -> Lucknow Super Giants 2025 Squad: ["William O'Rourke", 'Mitchell Marsh', 'SN Thakur', 'Nicholas Pooran']
+  green    [team_players:RCB:2025] -> Royal Challengers Bengaluru 2025 Squad: ['Liam Livingstone', 'Nuwan Thushara', 'Tim Seifert', 'Rasikh Dar']
+  blue     [ranji:Karnataka] -> Ranji Trophy: Karnataka: ['STR Binny', 'B Chipli', 'RV Uthappa', 'MA Agarwal']
+  purple   [highest_batting_avg] -> IPL Career Batting Average Leaders (30+ avg): ['SS Iyer', 'S Dhawan', 'SR Watson', 'G Gambhir']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-07.json
+
+  Ed 46 — 2026-05-08
+  yellow   [team_players:KKR:2026] -> Kolkata Knight Riders 2026 Squad: ['Tim Seifert', 'AM Rahane', 'SP Narine', 'Vaibhav Arora']
+  green    [team_legends_batting:DC] -> Delhi Capitals Batting Legends: ['KL Rahul', 'AB de Villiers', 'F du Plessis', 'SV Samson']
+  blue     [batting_coaches] -> IPL Batting Coaches: ['Sridharan Sriram', 'Pravin Amre', 'Trent Woodhill', 'W.V. Raman']
+  purple   [winning_squad:2024] -> 2024 Champions — Kolkata Knight Riders: ['Mitchell Starc', 'RK Singh', 'Harshit Rana', 'Venkatesh Iyer']
+  Resampled YELLOW [team_players:KKR:2026]:
+    was: ['Tim Seifert', 'AM Rahane', 'SP Narine', 'Vaibhav Arora']
+    now: ['MK Pandey', 'Tim Seifert', 'AM Rahane', 'Rachin Ravindra']
+  Resampled YELLOW [team_players:KKR:2026]:
+    was: ['MK Pandey', 'Tim Seifert', 'AM Rahane', 'Rachin Ravindra']
+    now: ['Rinku Singh', 'Ramandeep Singh', 'Daksh Kamra', 'SP Narine']
+  Resampled YELLOW [team_players:KKR:2026]:
+    was: ['Rinku Singh', 'Ramandeep Singh', 'Daksh Kamra', 'SP Narine']
+    now: ['Tim Seifert', 'MK Pandey', 'Rahul Tripathi', 'Kartik Tyagi']
+  Resampled YELLOW [team_players:KKR:2026]:
+    was: ['Tim Seifert', 'MK Pandey', 'Rahul Tripathi', 'Kartik Tyagi']
+    now: ['Tejasvi Singh', 'Kartik Tyagi', 'Tim Seifert', 'Matheesha Pathirana']
+  Resampled PURPLE [winning_squad:2024]:
+    was: ['Mitchell Starc', 'RK Singh', 'Harshit Rana', 'Venkatesh Iyer']
+    now: ['Chetan Sakariya', 'Venkatesh Iyer', 'RK Singh', 'Suyash Sharma']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:KKR:2026] -> Kolkata Knight Riders 2026 Squad: ['Tejasvi Singh', 'Kartik Tyagi', 'Tim Seifert', 'Matheesha Pathirana']
+  green    [team_legends_batting:DC] -> Delhi Capitals Batting Legends: ['KL Rahul', 'AB de Villiers', 'F du Plessis', 'SV Samson']
+  blue     [batting_coaches] -> IPL Batting Coaches: ['Sridharan Sriram', 'Pravin Amre', 'Trent Woodhill', 'W.V. Raman']
+  purple   [winning_squad:2024] -> 2024 Champions — Kolkata Knight Riders: ['Chetan Sakariya', 'Venkatesh Iyer', 'RK Singh', 'Suyash Sharma']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-08.json
