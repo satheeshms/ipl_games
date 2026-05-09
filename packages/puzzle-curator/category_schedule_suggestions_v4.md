@@ -988,3 +988,20 @@ Ed 43 — 2026-05-05
   blue     [batting_coaches] -> IPL Batting Coaches: ['Sridharan Sriram', 'Pravin Amre', 'Trent Woodhill', 'W.V. Raman']
   purple   [winning_squad:2024] -> 2024 Champions — Kolkata Knight Riders: ['Chetan Sakariya', 'Venkatesh Iyer', 'RK Singh', 'Suyash Sharma']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-08.json
+
+Ed 47 — 2026-05-09
+  yellow   [team_players:RR:2008] -> Rajasthan Royals 2008 Squad: ['M Rawat', 'M Kaif', 'MM Patel', 'SR Watson']
+  green    [bowling_coaches] -> IPL Bowling Coaches: ['T.A. Sekhar', 'L. Balaji', 'Lakshmipathy Balaji', 'James Franklin / Muttiah Muralitharan']
+  blue     [state:Gujarat] -> Players from Gujarat: ['JJ Bumrah', 'IK Pathan', 'BA Bhatt', 'C Sakariya']
+  purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['S Dhawan', 'A Mishra', 'DA Warner', 'SA Yadav']
+  Resampled YELLOW [team_players:RR:2008]:
+    was: ['M Rawat', 'M Kaif', 'MM Patel', 'SR Watson']
+    now: ['M Rawat', 'SA Asnodkar', 'M Kaif', 'Sohail Tanvir']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RR:2008] -> Rajasthan Royals 2008 Squad: ['M Rawat', 'SA Asnodkar', 'M Kaif', 'Sohail Tanvir']
+  green    [bowling_coaches] -> IPL Bowling Coaches: ['T.A. Sekhar', 'L. Balaji', 'Lakshmipathy Balaji', 'James Franklin / Muttiah Muralitharan']
+  blue     [state:Gujarat] -> Players from Gujarat: ['JJ Bumrah', 'IK Pathan', 'BA Bhatt', 'C Sakariya']
+  purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['S Dhawan', 'A Mishra', 'DA Warner', 'SA Yadav']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-09.json

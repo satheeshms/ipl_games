@@ -1,0 +1,60 @@
+{
+  "id": "2026-05-09",
+  "date": "2026-05-09",
+  "edition": 47,
+  "items": [
+    "C Sakariya",
+    "James Franklin / Muttiah Muralitharan",
+    "S Dhawan",
+    "DA Warner",
+    "SA Asnodkar",
+    "T.A. Sekhar",
+    "Sohail Tanvir",
+    "A Mishra",
+    "BA Bhatt",
+    "Lakshmipathy Balaji",
+    "M Rawat",
+    "SA Yadav",
+    "M Kaif",
+    "JJ Bumrah",
+    "L. Balaji",
+    "IK Pathan"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Rajasthan Royals 2008 Squad",
+      "spec": "team_players:RR:2008",
+      "hash": "1931922fdde2e23bc55f813e7ea110f6ac1c1178df692654535c36ac8e6e1e33"
+    },
+    {
+      "color": "green",
+      "title": "IPL Bowling Coaches",
+      "spec": "bowling_coaches",
+      "hash": "bcdf15e6b362adba5f0a864e142d2868e68996fec8e8ec2a92db9283df3064fb"
+    },
+    {
+      "color": "blue",
+      "title": "Players from Gujarat",
+      "spec": "state:Gujarat",
+      "hash": "e491c045c8b18c6a948d38693215cdca3c04fb1c29262bc5c564e60cddf276db"
+    },
+    {
+      "color": "purple",
+      "title": "Most IPL Ducks (10+ Ducks)",
+      "spec": "most_ducks",
+      "hash": "4d7e7179ba76fee65581fed2e58b3bdf007b8e54b11c35a91c6fd38b72e95ad3"
+    }
+  ],
+  "display_names": {
+    "C Sakariya": "Chetan Sakariya",
+    "S Dhawan": "Shikhar Dhawan",
+    "DA Warner": "David Warner",
+    "SA Asnodkar": "Swapnil Asnodkar",
+    "A Mishra": "Amit Mishra",
+    "M Kaif": "Mohammad Kaif",
+    "JJ Bumrah": "Jasprit Bumrah",
+    "IK Pathan": "Irfan Pathan",
+    "James Franklin / Muttiah Muralitharan": " Muttiah Muralitharan"
+  }
+}
