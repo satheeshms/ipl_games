@@ -3,58 +3,55 @@
   "date": "2026-05-09",
   "edition": 47,
   "items": [
-    "C Sakariya",
-    "James Franklin / Muttiah Muralitharan",
-    "S Dhawan",
-    "DA Warner",
-    "SA Asnodkar",
-    "T.A. Sekhar",
-    "Sohail Tanvir",
-    "A Mishra",
-    "BA Bhatt",
-    "Lakshmipathy Balaji",
-    "M Rawat",
-    "SA Yadav",
-    "M Kaif",
     "JJ Bumrah",
-    "L. Balaji",
-    "IK Pathan"
+    "Sam Curran",
+    "Heinrich Klaasen",
+    "KL Rahul",
+    "BA Bhatt",
+    "R Ashwin",
+    "Ishan Kishan",
+    "YK Pathan",
+    "Abhishek Sharma",
+    "Yash Raj Punja",
+    "SA Yadav",
+    "KH Pandya",
+    "Lhuan-dre Pretorius",
+    "S Dhawan",
+    "A Mishra",
+    "Ravi Singh"
   ],
   "categories": [
     {
       "color": "yellow",
-      "title": "Rajasthan Royals 2008 Squad",
-      "spec": "team_players:RR:2008",
-      "hash": "1931922fdde2e23bc55f813e7ea110f6ac1c1178df692654535c36ac8e6e1e33"
+      "title": "Rajasthan Royals 2026 Squad",
+      "spec": "team_players:RR:2026",
+      "hash": "f808de33b7902d426ecc883efb0a139536fb066a6747782494838aaeebb3421a"
     },
     {
       "color": "green",
-      "title": "IPL Bowling Coaches",
-      "spec": "bowling_coaches",
-      "hash": "bcdf15e6b362adba5f0a864e142d2868e68996fec8e8ec2a92db9283df3064fb"
+      "title": "Players from Gujarat",
+      "spec": "state:Gujarat",
+      "hash": "86f9fbc95489c2c5be19b389a6e00dbb4823dc356a88b260b027dbc6b9ce1f23"
     },
     {
       "color": "blue",
-      "title": "Players from Gujarat",
-      "spec": "state:Gujarat",
-      "hash": "e491c045c8b18c6a948d38693215cdca3c04fb1c29262bc5c564e60cddf276db"
+      "title": "IPL 2026 Top Run Getters",
+      "spec": "top_run_getters",
+      "hash": "1adc08b1ee9b17b30c22bce88d1488791f104bc4b98ae46454323d6b34f5b895"
     },
     {
       "color": "purple",
       "title": "Most IPL Ducks (10+ Ducks)",
       "spec": "most_ducks",
-      "hash": "4d7e7179ba76fee65581fed2e58b3bdf007b8e54b11c35a91c6fd38b72e95ad3"
+      "hash": "fa99109c5a43ddc7958d0c88b3d03e57016f78128198541f06348a42342d5a51"
     }
   ],
   "display_names": {
-    "C Sakariya": "Chetan Sakariya",
-    "S Dhawan": "Shikhar Dhawan",
-    "DA Warner": "David Warner",
-    "SA Asnodkar": "Swapnil Asnodkar",
-    "A Mishra": "Amit Mishra",
-    "M Kaif": "Mohammad Kaif",
     "JJ Bumrah": "Jasprit Bumrah",
-    "IK Pathan": "Irfan Pathan",
-    "James Franklin / Muttiah Muralitharan": " Muttiah Muralitharan"
+    "R Ashwin": "Ravichandran Ashwin",
+    "YK Pathan": "Yusuf Pathan",
+    "KH Pandya": "Krunal Pandya",
+    "S Dhawan": "Shikhar Dhawan",
+    "A Mishra": "Amit Mishra"
   }
 }

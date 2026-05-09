@@ -990,18 +990,42 @@ Ed 43 — 2026-05-05
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-08.json
 
 Ed 47 — 2026-05-09
-  yellow   [team_players:RR:2008] -> Rajasthan Royals 2008 Squad: ['M Rawat', 'M Kaif', 'MM Patel', 'SR Watson']
-  green    [bowling_coaches] -> IPL Bowling Coaches: ['T.A. Sekhar', 'L. Balaji', 'Lakshmipathy Balaji', 'James Franklin / Muttiah Muralitharan']
-  blue     [state:Gujarat] -> Players from Gujarat: ['JJ Bumrah', 'IK Pathan', 'BA Bhatt', 'C Sakariya']
-  purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['S Dhawan', 'A Mishra', 'DA Warner', 'SA Yadav']
-  Resampled YELLOW [team_players:RR:2008]:
-    was: ['M Rawat', 'M Kaif', 'MM Patel', 'SR Watson']
-    now: ['M Rawat', 'SA Asnodkar', 'M Kaif', 'Sohail Tanvir']
+  yellow   [team_players:RR:2026] -> Rajasthan Royals 2026 Squad: ['RA Jadeja', 'Sam Curran', 'Yash Raj Punja', 'Ravi Singh']
+  green    [state:Gujarat] -> Players from Gujarat: ['JJ Bumrah', 'KH Pandya', 'BA Bhatt', 'YK Pathan']
+  blue     [top_run_getters] -> IPL 2026 Top Run Getters: ['Abhishek Sharma', 'Ishan Kishan', 'KL Rahul', 'Heinrich Klaasen']
+  purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['PA Patel', 'Mandeep Singh', 'AM Rahane', 'DA Warner']
+  Resampled YELLOW [team_players:RR:2026]:
+    was: ['RA Jadeja', 'Sam Curran', 'Yash Raj Punja', 'Ravi Singh']
+    now: ['Yash Raj Punja', 'Ravi Singh', 'Lhuan-dre Pretorius', 'RA Jadeja']
+  Resampled YELLOW [team_players:RR:2026]:
+    was: ['Yash Raj Punja', 'Ravi Singh', 'Lhuan-dre Pretorius', 'RA Jadeja']
+    now: ['Yash Raj Punja', 'Sam Curran', 'RA Jadeja', 'Ravi Singh']
+  Resampled YELLOW [team_players:RR:2026]:
+    was: ['Yash Raj Punja', 'Sam Curran', 'RA Jadeja', 'Ravi Singh']
+    now: ['Ravi Singh', 'Lhuan-dre Pretorius', 'Sam Curran', 'RA Jadeja']
+  Resampled YELLOW [team_players:RR:2026]:
+    was: ['Ravi Singh', 'Lhuan-dre Pretorius', 'Sam Curran', 'RA Jadeja']
+    now: ['Ravi Singh', 'Yash Raj Punja', 'Lhuan-dre Pretorius', 'RA Jadeja']
+  Resampled YELLOW [team_players:RR:2026]:
+    was: ['Ravi Singh', 'Yash Raj Punja', 'Lhuan-dre Pretorius', 'RA Jadeja']
+    now: ['Sam Curran', 'RA Jadeja', 'Ravi Singh', 'Yash Raj Punja']
+  Resampled YELLOW [team_players:RR:2026]:
+    was: ['Sam Curran', 'RA Jadeja', 'Ravi Singh', 'Yash Raj Punja']
+    now: ['Ravi Singh', 'Lhuan-dre Pretorius', 'Yash Raj Punja', 'RA Jadeja']
+  Resampled YELLOW [team_players:RR:2026]:
+    was: ['Ravi Singh', 'Lhuan-dre Pretorius', 'Yash Raj Punja', 'RA Jadeja']
+    now: ['Ravi Singh', 'Lhuan-dre Pretorius', 'Sam Curran', 'Yash Raj Punja']
+  Resampled PURPLE [most_ducks]:
+    was: ['PA Patel', 'Mandeep Singh', 'AM Rahane', 'DA Warner']
+    now: ['PA Patel', 'AT Rayudu', 'Mandeep Singh', 'SA Yadav']
+  Resampled PURPLE [most_ducks]:
+    was: ['PA Patel', 'AT Rayudu', 'Mandeep Singh', 'SA Yadav']
+    now: ['A Mishra', 'S Dhawan', 'R Ashwin', 'SA Yadav']
   AMBIGUITY CHECK: PASS
 
   Final categories:
-  yellow   [team_players:RR:2008] -> Rajasthan Royals 2008 Squad: ['M Rawat', 'SA Asnodkar', 'M Kaif', 'Sohail Tanvir']
-  green    [bowling_coaches] -> IPL Bowling Coaches: ['T.A. Sekhar', 'L. Balaji', 'Lakshmipathy Balaji', 'James Franklin / Muttiah Muralitharan']
-  blue     [state:Gujarat] -> Players from Gujarat: ['JJ Bumrah', 'IK Pathan', 'BA Bhatt', 'C Sakariya']
-  purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['S Dhawan', 'A Mishra', 'DA Warner', 'SA Yadav']
+  yellow   [team_players:RR:2026] -> Rajasthan Royals 2026 Squad: ['Ravi Singh', 'Lhuan-dre Pretorius', 'Sam Curran', 'Yash Raj Punja']
+  green    [state:Gujarat] -> Players from Gujarat: ['JJ Bumrah', 'KH Pandya', 'BA Bhatt', 'YK Pathan']
+  blue     [top_run_getters] -> IPL 2026 Top Run Getters: ['Abhishek Sharma', 'Ishan Kishan', 'KL Rahul', 'Heinrich Klaasen']
+  purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['A Mishra', 'S Dhawan', 'R Ashwin', 'SA Yadav']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-09.json
