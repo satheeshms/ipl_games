@@ -1,0 +1,61 @@
+{
+  "id": "2026-05-10",
+  "date": "2026-05-10",
+  "edition": 48,
+  "items": [
+    "J Arunkumar",
+    "JC Buttler",
+    "KV Sharma",
+    "Ayush Badoni",
+    "A Nehra",
+    "Mitchell Marsh",
+    "SR Tendulkar",
+    "A Kumble",
+    "SA Yadav",
+    "B Chipli",
+    "Harbhajan Singh",
+    "Josh Inglis",
+    "BA Stokes",
+    "Mayank Yadav",
+    "R Dravid",
+    "JDP Oram"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Royal Challengers Bengaluru 2008 Squad",
+      "spec": "team_players:RCB:2008",
+      "hash": "19020bbccc0301f018e9e86e64a4c0ae76ef47280dcc254322b35b488de9e87b"
+    },
+    {
+      "color": "green",
+      "title": "Lucknow Super Giants 2026 Squad",
+      "spec": "team_players:LSG:2026",
+      "hash": "53eef504594870b2e3bd79253d72a7618feff9b45db581ba917a16c5ad18d02e"
+    },
+    {
+      "color": "blue",
+      "title": "Player of the Tournament",
+      "spec": "player_of_tournament",
+      "hash": "01c3622daafeed528fbc77e4022ccd2028f1852de1d4c7ad746923fbf9635ef6"
+    },
+    {
+      "color": "purple",
+      "title": "Played for Both CSK & MI",
+      "spec": "played_both:CSK:MI",
+      "hash": "5fa586582fd211a6c4763fbb0b901efafd5971830aed4462e13dfc8d5b6f11e4"
+    }
+  ],
+  "display_names": {
+    "J Arunkumar": "J. Arunkumar",
+    "JC Buttler": "Jos Buttler",
+    "A Nehra": "Ashish Nehra",
+    "SR Tendulkar": "Sachin Tendulkar",
+    "A Kumble": "Anil Kumble",
+    "B Chipli": "Bharat Chipli",
+    "BA Stokes": "Ben Stokes",
+    "JDP Oram": "Jacob Oram",
+    "KV Sharma": "Karn Sharma",
+    "R Dravid": "Rahul Dravid"
+  }
+}

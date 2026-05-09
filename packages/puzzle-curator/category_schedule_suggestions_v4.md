@@ -1029,3 +1029,17 @@ Ed 47 — 2026-05-09
   blue     [top_run_getters] -> IPL 2026 Top Run Getters: ['Abhishek Sharma', 'Ishan Kishan', 'KL Rahul', 'Heinrich Klaasen']
   purple   [most_ducks] -> Most IPL Ducks (10+ Ducks): ['A Mishra', 'S Dhawan', 'R Ashwin', 'SA Yadav']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-09.json
+
+  Ed 48 — 2026-05-10
+  yellow   [team_players:RCB:2008] -> Royal Challengers Bengaluru 2008 Squad: ['J Arunkumar', 'B Chipli', 'R Dravid', 'A Kumble']
+  green    [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Mitchell Marsh', 'Ayush Badoni', 'Josh Inglis', 'Mayank Yadav']
+  blue     [player_of_tournament] -> Player of the Tournament: ['JC Buttler', 'SR Tendulkar', 'SA Yadav', 'BA Stokes']
+  purple   [played_both:CSK:MI] -> Played for Both CSK & MI: ['Harbhajan Singh', 'A Nehra', 'JDP Oram', 'KV Sharma']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RCB:2008] -> Royal Challengers Bengaluru 2008 Squad: ['J Arunkumar', 'B Chipli', 'R Dravid', 'A Kumble']
+  green    [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Mitchell Marsh', 'Ayush Badoni', 'Josh Inglis', 'Mayank Yadav']
+  blue     [player_of_tournament] -> Player of the Tournament: ['JC Buttler', 'SR Tendulkar', 'SA Yadav', 'BA Stokes']
+  purple   [played_both:CSK:MI] -> Played for Both CSK & MI: ['Harbhajan Singh', 'A Nehra', 'JDP Oram', 'KV Sharma']
+  Written -
