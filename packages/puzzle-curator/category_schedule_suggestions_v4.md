@@ -1043,3 +1043,23 @@ Ed 47 — 2026-05-09
   blue     [player_of_tournament] -> Player of the Tournament: ['JC Buttler', 'SR Tendulkar', 'SA Yadav', 'BA Stokes']
   purple   [played_both:CSK:MI] -> Played for Both CSK & MI: ['Harbhajan Singh', 'A Nehra', 'JDP Oram', 'KV Sharma']
   Written -
+
+  Ed 49 — 2026-05-11
+  yellow   [team_players:PBKS:2026] -> Punjab Kings 2026 Squad: ['Pyla Avinash', 'YS Chahal', 'Vyshak Vijaykumar', 'Harnoor Pannu']
+  green    [top_wicket_takers:2026] -> IPL 2026 Top Wicket Takers: ['Anshul Kamboj', 'B Kumar', 'K Rabada', 'Prince Yadav']
+  blue     [country:West Indies] -> Players from West Indies: ['S Joseph', 'R Shepherd', 'DR Smith', 'DJG Sammy']
+  purple   [winning_squad:2023] -> 2023 Champions — Chennai Super Kings: ['D Pretorius', 'RD Gaikwad', 'Akash Singh', 'SSB Magala']
+  Resampled YELLOW [team_players:PBKS:2026]:
+    was: ['Pyla Avinash', 'YS Chahal', 'Vyshak Vijaykumar', 'Harnoor Pannu']
+    now: ['Vishal Nishad', 'Nehal Wadhera', 'YS Chahal', 'SS Iyer']
+  Resampled YELLOW [team_players:PBKS:2026]:
+    was: ['Vishal Nishad', 'Nehal Wadhera', 'YS Chahal', 'SS Iyer']
+    now: ['Ben Dwarshuis', 'Pyla Avinash', 'Harnoor Pannu', 'Shashank Singh']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:PBKS:2026] -> Punjab Kings 2026 Squad: ['Ben Dwarshuis', 'Pyla Avinash', 'Harnoor Pannu', 'Shashank Singh']
+  green    [top_wicket_takers:2026] -> IPL 2026 Top Wicket Takers: ['Anshul Kamboj', 'B Kumar', 'K Rabada', 'Prince Yadav']
+  blue     [country:West Indies] -> Players from West Indies: ['S Joseph', 'R Shepherd', 'DR Smith', 'DJG Sammy']
+  purple   [winning_squad:2023] -> 2023 Champions — Chennai Super Kings: ['D Pretorius', 'RD Gaikwad', 'Akash Singh', 'SSB Magala']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-11.json

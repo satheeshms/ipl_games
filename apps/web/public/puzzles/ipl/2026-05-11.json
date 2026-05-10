@@ -1,0 +1,60 @@
+{
+  "id": "2026-05-11",
+  "date": "2026-05-11",
+  "edition": 49,
+  "items": [
+    "DR Smith",
+    "Anshul Kamboj",
+    "Prince Yadav",
+    "R Shepherd",
+    "DJG Sammy",
+    "SSB Magala",
+    "S Joseph",
+    "Shashank Singh",
+    "D Pretorius",
+    "Harnoor Pannu",
+    "K Rabada",
+    "B Kumar",
+    "Ben Dwarshuis",
+    "Pyla Avinash",
+    "Akash Singh",
+    "RD Gaikwad"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Punjab Kings 2026 Squad",
+      "spec": "team_players:PBKS:2026",
+      "hash": "738ad1238a53672190664dec594b50fcf215af45de2566b2271c24983d794b84"
+    },
+    {
+      "color": "green",
+      "title": "IPL 2026 Top Wicket Takers",
+      "spec": "top_wicket_takers:2026",
+      "hash": "70bc630cd7eef0ff275ff768de5a94440d74e96041dc41532810acafdb95e303"
+    },
+    {
+      "color": "blue",
+      "title": "Players from West Indies",
+      "spec": "country:West Indies",
+      "hash": "5068b2198e59d6049ae3471761ae44f32b2bb00e7fa5fd507d4bdbb2b34dfcfb"
+    },
+    {
+      "color": "purple",
+      "title": "2023 Champions — Chennai Super Kings",
+      "spec": "winning_squad:2023",
+      "hash": "e9609da0c446dfaa1d6395ba1ef07a06ce00789176e40e26d6834bddb33bdb0c"
+    }
+  ],
+  "display_names": {
+    "DR Smith": "Dwayne Smith",
+    "R Shepherd": "Romario Shepherd",
+    "DJG Sammy": "Darren Sammy",
+    "SSB Magala": "Sisanda Magala",
+    "S Joseph": " Shamar Joseph",
+    "D Pretorius": "Dwaine Pretorius",
+    "K Rabada": "Kagiso Rabada",
+    "B Kumar": "Bhuvneshwar Kumar",
+    "RD Gaikwad": "Ruturaj Gaikwad"
+  }
+}
