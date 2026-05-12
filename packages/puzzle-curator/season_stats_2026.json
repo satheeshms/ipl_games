@@ -13,10 +13,10 @@
     {"player_name": "Prince Yadav", "wickets": 12, "team": "GT"}
   ],
   "top_run_scorer_top4_teams": [
-    {"player_name": "Prabhsimran Singh", "runs": 0, "team": "PBKS"},
     {"player_name": "V Kohli", "runs": 328, "team": "RCB"},
-    {"player_name": "Abhishek Sharma", "runs": 380, "team": "SRH"},
-    {"player_name": "Vaibhav Sooryavanshi", "runs": 357, "team": "RR"}
+    {"player_name": "Shubman Gill", "runs": 380, "team": "GT"},
+    {"player_name": "Heinrich Klaasen", "runs": 357, "team": "SRH"},
+    {"player_name": "Cooper Connolly", "runs": 0, "team": "PBKS"}
   ],
   "top_wicket_taker_top4_teams": [
     {"player_name": "Arshdeep Singh", "wickets": 0, "team": "PBKS"},

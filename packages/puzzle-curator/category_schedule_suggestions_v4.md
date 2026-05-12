@@ -1063,3 +1063,49 @@ Ed 47 — 2026-05-09
   blue     [country:West Indies] -> Players from West Indies: ['S Joseph', 'R Shepherd', 'DR Smith', 'DJG Sammy']
   purple   [winning_squad:2023] -> 2023 Champions — Chennai Super Kings: ['D Pretorius', 'RD Gaikwad', 'Akash Singh', 'SSB Magala']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-11.json
+
+  Ed 50 — 2026-05-12
+  yellow   [team_players:GT:2026] -> Gujarat Titans 2026 Squad: ['Shahrukh Khan', 'Glenn Phillips', 'Prithvi Raj Yarra', 'Luke Wood']
+  green    [fielding_coaches] -> IPL Fielding Coaches: ['R. Sridhar', 'Dishant Yagnik', 'Jonty Rhodes', 'Sitanshu Kotak']
+  blue     [top_run_scorer_top4] -> Leading Run Scorer from Each Top-4 Team (IPL 2026): ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  purple   [multi_team:7] -> Played for 7+ IPL Teams: ['JD Unadkat', 'AJ Finch', 'I Sharma', 'MK Pandey']
+  Resampled BLUE [top_run_scorer_top4]:
+    was: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+    now: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  Resampled BLUE [top_run_scorer_top4]:
+    was: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+    now: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  Resampled BLUE [top_run_scorer_top4]:
+    was: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+    now: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  Resampled BLUE [top_run_scorer_top4]:
+    was: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+    now: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  Resampled BLUE [top_run_scorer_top4]:
+    was: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+    now: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  Resampled BLUE [top_run_scorer_top4]:
+    was: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+    now: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  Resampled BLUE [top_run_scorer_top4]:
+    was: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+    now: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  Resampled BLUE [top_run_scorer_top4]:
+    was: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+    now: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  Resampled BLUE [top_run_scorer_top4]:
+    was: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+    now: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  Resampled BLUE [top_run_scorer_top4]:
+    was: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+    now: ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  AMBIGUITY WARNING — unresolved after resampling:
+    'Shubman Gill' placed in BLUE also qualifies for YELLOW
+  Use --reshuffle or --set-items to fix manually.
+
+  Final categories:
+  yellow   [team_players:GT:2026] -> Gujarat Titans 2026 Squad: ['Shahrukh Khan', 'Glenn Phillips', 'Prithvi Raj Yarra', 'Luke Wood']
+  green    [fielding_coaches] -> IPL Fielding Coaches: ['R. Sridhar', 'Dishant Yagnik', 'Jonty Rhodes', 'Sitanshu Kotak']
+  blue     [top_run_scorer_top4] -> Leading Run Scorer from Each Top-4 Team (IPL 2026): ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
+  purple   [multi_team:7] -> Played for 7+ IPL Teams: ['JD Unadkat', 'AJ Finch', 'I Sharma', 'MK Pandey']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-12.json

@@ -1,0 +1,56 @@
+{
+  "id": "2026-05-12",
+  "date": "2026-05-12",
+  "edition": 50,
+  "items": [
+    "Heinrich Klaasen",
+    "JD Unadkat",
+    "AJ Finch",
+    "R. Sridhar",
+    "Shubman Gill",
+    "Luke Wood",
+    "Glenn Phillips",
+    "Sitanshu Kotak",
+    "Jonty Rhodes",
+    "V Kohli",
+    "Dishant Yagnik",
+    "MK Pandey",
+    "Cooper Connolly",
+    "I Sharma",
+    "Shahrukh Khan",
+    "Prithvi Raj Yarra"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Gujarat Titans 2026 Squad",
+      "spec": "team_players:GT:2026",
+      "hash": "c0d4f32bf77d570f06a6ee56bb43502ed7d526f084c9ab0d67de4ac9f0791708"
+    },
+    {
+      "color": "green",
+      "title": "IPL Fielding Coaches",
+      "spec": "fielding_coaches",
+      "hash": "efac0a60f9061770318d6b6d1bd925395244f72e9b10faf5d60497ac574e2847"
+    },
+    {
+      "color": "blue",
+      "title": "Leading Run Scorer from Each Top-4 Team (IPL 2026)",
+      "spec": "top_run_scorer_top4",
+      "hash": "512bfffcf2ece344b83d7884c8dbfc5beb5c4ed328e7b198c7c0a28468537c91"
+    },
+    {
+      "color": "purple",
+      "title": "Played for 7+ IPL Teams",
+      "spec": "multi_team:7",
+      "hash": "b0b78ad38f8cf4f4b891ce96f2c8ed2d31f9ec4a5433b19dbe9835f5b72d5fd5"
+    }
+  ],
+  "display_names": {
+    "JD Unadkat": "Jaydev Unadkat",
+    "AJ Finch": "Aaron Finch",
+    "V Kohli": "Virat Kohli",
+    "MK Pandey": "Manish Pandey",
+    "I Sharma": "Ishant Sharma"
+  }
+}
