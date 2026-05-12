@@ -1109,3 +1109,20 @@ Ed 47 — 2026-05-09
   blue     [top_run_scorer_top4] -> Leading Run Scorer from Each Top-4 Team (IPL 2026): ['V Kohli', 'Shubman Gill', 'Heinrich Klaasen', 'Cooper Connolly']
   purple   [multi_team:7] -> Played for 7+ IPL Teams: ['JD Unadkat', 'AJ Finch', 'I Sharma', 'MK Pandey']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-12.json
+
+  Ed 51 — 2026-05-13
+  yellow   [team_players:RCB:2026] -> Royal Challengers Bengaluru 2026 Squad: ['Yash Dayal', 'Venkatesh Iyer', 'Mangesh Yadav', 'B Kumar']
+  green    [team_legends_batting:KKR] -> Kolkata Knight Riders Batting Legends: ['CH Gayle', 'Shubman Gill', 'G Gambhir', 'SA Yadav']
+  blue     [purple_cap] -> Purple Cap Winners: ['SL Malinga', 'RP Singh', 'HV Patel', 'AJ Tye']
+  purple   [longest_serving] -> Longest Serving IPL Players: ['AB de Villiers', 'WP Saha', 'A Mishra', 'PP Chawla']
+  Resampled YELLOW [team_players:RCB:2026]:
+    was: ['Yash Dayal', 'Venkatesh Iyer', 'Mangesh Yadav', 'B Kumar']
+    now: ['Yash Dayal', 'Vihaan Malhotra', 'Tim David', 'Rajat Patidar']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RCB:2026] -> Royal Challengers Bengaluru 2026 Squad: ['Yash Dayal', 'Vihaan Malhotra', 'Tim David', 'Rajat Patidar']
+  green    [team_legends_batting:KKR] -> Kolkata Knight Riders Batting Legends: ['CH Gayle', 'Shubman Gill', 'G Gambhir', 'SA Yadav']
+  blue     [purple_cap] -> Purple Cap Winners: ['SL Malinga', 'RP Singh', 'HV Patel', 'AJ Tye']
+  purple   [longest_serving] -> Longest Serving IPL Players: ['AB de Villiers', 'WP Saha', 'A Mishra', 'PP Chawla']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-13.json

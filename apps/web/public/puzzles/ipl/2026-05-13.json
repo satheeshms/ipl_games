@@ -1,0 +1,59 @@
+{
+  "id": "2026-05-13",
+  "date": "2026-05-13",
+  "edition": 51,
+  "items": [
+    "Vihaan Malhotra",
+    "G Gambhir",
+    "HV Patel",
+    "CH Gayle",
+    "PP Chawla",
+    "RP Singh",
+    "WP Saha",
+    "SA Yadav",
+    "Shubman Gill",
+    "Rajat Patidar",
+    "SL Malinga",
+    "Tim David",
+    "Yash Dayal",
+    "AJ Tye",
+    "A Mishra",
+    "AB de Villiers"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Royal Challengers Bengaluru 2026 Squad",
+      "spec": "team_players:RCB:2026",
+      "hash": "d8ee8a95a4c35b99089d7f369dc9a19de30fc1cddda3060aaafac218158b0dc9"
+    },
+    {
+      "color": "green",
+      "title": "Kolkata Knight Riders Batting Legends",
+      "spec": "team_legends_batting:KKR",
+      "hash": "8c1d9da9890f12b37eac5476e74c7911dc930df4791cf94e0a72ad4bf7fdbb77"
+    },
+    {
+      "color": "blue",
+      "title": "Purple Cap Winners",
+      "spec": "purple_cap",
+      "hash": "a51325fbf6b0cddfec04f612748677fa9cf28cdb3de28124bf1c51e9de7da5f9"
+    },
+    {
+      "color": "purple",
+      "title": "Longest Serving IPL Players",
+      "spec": "longest_serving",
+      "hash": "f9effb127f9b891d5c63ee7e620b7dbfa8b64de0e864d5502f186403ab0ec84d"
+    }
+  ],
+  "display_names": {
+    "SA Yadav" : "Suryakumar Yadav",
+    "HV Patel": "Hardik Patel",
+    "CH Gayle": "Chris Gayle",
+    "PP Chawla": "Piyush Chawla",
+    "WP Saha": "Wriddhiman Saha",
+    "SL Malinga": "Lasith Malinga",
+    "AJ Tye": "Andrew Tye",
+    "A Mishra": "Amit Mishra"
+  }
+}
