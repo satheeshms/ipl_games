@@ -19,9 +19,9 @@
     {"player_name": "Cooper Connolly", "runs": 0, "team": "PBKS"}
   ],
   "top_wicket_taker_top4_teams": [
-    {"player_name": "Arshdeep Singh", "wickets": 0, "team": "PBKS"},
     {"player_name": "B Kumar", "wickets": 10, "team": "RCB"},
+    {"player_name": "K Rabada", "wickets": 0, "team": "GT"},
     {"player_name": "Eshan Malinga", "wickets": 12, "team": "SRH"},
-    {"player_name": "JC Archer", "wickets": 0, "team": "RR"}
+    {"player_name": "Arshdeep Singh", "wickets": 0, "team": "PBKS"}
   ]
 }

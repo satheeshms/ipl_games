@@ -1,0 +1,63 @@
+{
+  "id": "2026-05-14",
+  "date": "2026-05-14",
+  "edition": 52,
+  "items": [
+    "Eshan Malinga",
+    "Harbhajan Singh",
+    "S Sreesanth",
+    "LH Ferguson",
+    "Gagandeep Singh",
+    "WP Saha",
+    "HH Pandya",
+    "U Kaul",
+    "K Rabada",
+    "SR Tendulkar",
+    "MA Khote",
+    "SD Chitnis",
+    "PJ Sangwan",
+    "K Goel",
+    "Arshdeep Singh",
+    "B Kumar"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Mumbai Indians 2008 Squad",
+      "spec": "team_players:MI:2008",
+      "hash": "9454c9bb2472c9518be66ea31d22394c82e442b2c19c3e13826e88005ddfba8d"
+    },
+    {
+      "color": "green",
+      "title": "Punjab Kings 2008 Squad",
+      "spec": "team_players:PBKS:2008",
+      "hash": "edabcada9ac5a7678494a5f8754f3ae6b540b4c61ec25ae035466d58969bc24f"
+    },
+    {
+      "color": "blue",
+      "title": "Leading Wicket Taker from Each Top-4 Team (IPL 2026)",
+      "spec": "top_wicket_taker_top4",
+      "hash": "a32ed47c3071a7c80b9cbe32d9e29b9ffece538c775c32e2e589151d62ac184d"
+    },
+    {
+      "color": "purple",
+      "title": "2022 Champions — Gujarat Titans",
+      "spec": "winning_squad:2022",
+      "hash": "352144019fb1b5942fe4cc3b80200d28996cc3bb61458d27a5bc905060795558"
+    }
+  ],
+  "display_names": {
+    "S Sreesanth": "S. Sreesanth",
+    "LH Ferguson": "Lockie Ferguson",
+    "WP Saha": "Wriddhiman Saha",
+    "HH Pandya": "Hardik Pandya",
+    "U Kaul": "Uday Kaul",
+    "K Rabada": "Kagiso Rabada",
+    "SR Tendulkar": "Sachin Tendulkar",
+    "SD Chitnis": "Suyash Chitnis",
+    "PJ Sangwan": "Pradeep Sangwan",
+    "K Goel": "Karan Goel",
+    "B Kumar": "Bhuvneshwar Kumar",
+    "MA Khote": "Musavir Khote"
+  }
+}

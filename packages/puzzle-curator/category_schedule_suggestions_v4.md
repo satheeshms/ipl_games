@@ -1126,3 +1126,17 @@ Ed 47 — 2026-05-09
   blue     [purple_cap] -> Purple Cap Winners: ['SL Malinga', 'RP Singh', 'HV Patel', 'AJ Tye']
   purple   [longest_serving] -> Longest Serving IPL Players: ['AB de Villiers', 'WP Saha', 'A Mishra', 'PP Chawla']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-13.json
+
+  Ed 52 — 2026-05-14
+  yellow   [team_players:MI:2008] -> Mumbai Indians 2008 Squad: ['MA Khote', 'SD Chitnis', 'Harbhajan Singh', 'SR Tendulkar']
+  green    [team_players:PBKS:2008] -> Punjab Kings 2008 Squad: ['U Kaul', 'Gagandeep Singh', 'K Goel', 'S Sreesanth']
+  blue     [top_wicket_taker_top4] -> Leading Wicket Taker from Each Top-4 Team (IPL 2026): ['B Kumar', 'K Rabada', 'Eshan Malinga', 'Arshdeep Singh']
+  purple   [winning_squad:2022] -> 2022 Champions — Gujarat Titans: ['LH Ferguson', 'HH Pandya', 'WP Saha', 'PJ Sangwan']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:MI:2008] -> Mumbai Indians 2008 Squad: ['MA Khote', 'SD Chitnis', 'Harbhajan Singh', 'SR Tendulkar']
+  green    [team_players:PBKS:2008] -> Punjab Kings 2008 Squad: ['U Kaul', 'Gagandeep Singh', 'K Goel', 'S Sreesanth']
+  blue     [top_wicket_taker_top4] -> Leading Wicket Taker from Each Top-4 Team (IPL 2026): ['B Kumar', 'K Rabada', 'Eshan Malinga', 'Arshdeep Singh']
+  purple   [winning_squad:2022] -> 2022 Champions — Gujarat Titans: ['LH Ferguson', 'HH Pandya', 'WP Saha', 'PJ Sangwan']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-14.json
