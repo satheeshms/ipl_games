@@ -16,8 +16,9 @@ function App() {
   const [gameMode, setGameMode] = useState<GameMode>(() => {
     try {
       const stored = localStorage.getItem(GAME_MODE_KEY);
-      return stored === 'easy' ? 'easy' : 'pro';
-    } catch { return 'pro'; }
+      if (stored === 'easy' || stored === 'pro') return stored;
+      return 'easy';
+    } catch { return 'easy'; }
   });
   const [gameStarted, setGameStarted] = useState(false);
 
