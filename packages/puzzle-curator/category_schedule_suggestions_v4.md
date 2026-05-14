@@ -1140,3 +1140,17 @@ Ed 47 — 2026-05-09
   blue     [top_wicket_taker_top4] -> Leading Wicket Taker from Each Top-4 Team (IPL 2026): ['B Kumar', 'K Rabada', 'Eshan Malinga', 'Arshdeep Singh']
   purple   [winning_squad:2022] -> 2022 Champions — Gujarat Titans: ['LH Ferguson', 'HH Pandya', 'WP Saha', 'PJ Sangwan']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-14.json
+
+  Ed 53 — 2026-05-15
+  yellow   [team_owners] -> IPL Franchise Owners: ['Shah Rukh Khan', 'N. Srinivasan', 'Mohit Burman', 'Diageo']
+  green    [bowling_coaches] -> IPL Bowling Coaches: ['Alfonso Thomas', 'Andy Bichel', 'Joe Dawes', 'Munaf Patel']
+  blue     [top_run_getters] -> IPL 2026 Top Run Getters: ['Heinrich Klaasen', 'Sai Sudarshan', 'V Kohli', 'Abhishek Sharma']
+  purple   [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Arshin Kulkarni', 'Akshat Raghuwanshi', 'Wanindu Hasaranga', 'RR Pant']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_owners] -> IPL Franchise Owners: ['Shah Rukh Khan', 'N. Srinivasan', 'Mohit Burman', 'Diageo']
+  green    [bowling_coaches] -> IPL Bowling Coaches: ['Alfonso Thomas', 'Andy Bichel', 'Joe Dawes', 'Munaf Patel']
+  blue     [top_run_getters] -> IPL 2026 Top Run Getters: ['Heinrich Klaasen', 'Sai Sudarshan', 'V Kohli', 'Abhishek Sharma']
+  purple   [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Arshin Kulkarni', 'Akshat Raghuwanshi', 'Wanindu Hasaranga', 'RR Pant']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-15.json

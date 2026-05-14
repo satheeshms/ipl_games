@@ -1,0 +1,53 @@
+{
+  "id": "2026-05-15",
+  "date": "2026-05-15",
+  "edition": 53,
+  "items": [
+    "Arshin Kulkarni",
+    "Shah Rukh Khan",
+    "N. Srinivasan",
+    "Abhishek Sharma",
+    "Joe Dawes",
+    "Diageo",
+    "RR Pant",
+    "V Kohli",
+    "Wanindu Hasaranga",
+    "Munaf Patel",
+    "Andy Bichel",
+    "Akshat Raghuwanshi",
+    "Alfonso Thomas",
+    "Heinrich Klaasen",
+    "Mohit Burman",
+    "Sai Sudarshan"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "IPL Franchise Owners",
+      "spec": "team_owners",
+      "hash": "731dada477b3012e090b40cdb3c2941cf43614bd5565fb62872e99c793e366ef"
+    },
+    {
+      "color": "green",
+      "title": "IPL Bowling Coaches",
+      "spec": "bowling_coaches",
+      "hash": "6a97adb9f4be930f7df7d7af0aed5aaf5f7b0f0caa79216c9b3937e1de8b4070"
+    },
+    {
+      "color": "blue",
+      "title": "IPL 2026 Top Run Getters",
+      "spec": "top_run_getters",
+      "hash": "a6043f6e98e40f3acb8c6586221b01497319eb86f7965e44a7ede3a653d6c946"
+    },
+    {
+      "color": "purple",
+      "title": "Lucknow Super Giants 2026 Squad",
+      "spec": "team_players:LSG:2026",
+      "hash": "0ebc25619fe5640e46ad700b121fa3769ac0903ac38f287957c815d98d1987d6"
+    }
+  ],
+  "display_names": {
+    "RR Pant": "Rishabh Pant",
+    "V Kohli": "Virat Kohli"
+  }
+}
