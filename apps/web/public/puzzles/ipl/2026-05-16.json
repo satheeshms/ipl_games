@@ -1,0 +1,61 @@
+{
+  "id": "2026-05-16",
+  "date": "2026-05-16",
+  "edition": 54,
+  "items": [
+    "Anshul Kamboj",
+    "DA Warner",
+    "Luvnith Sisodia",
+    "C Sakariya",
+    "B Kumar",
+    "MM Patel",
+    "HV Patel",
+    "Rashid Khan",
+    "Harshit Rana",
+    "RA Jadeja",
+    "KS Williamson",
+    "SR Tendulkar",
+    "K Rabada",
+    "Anukul Roy",
+    "Mayank Markande",
+    "MEK Hussey"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Kolkata Knight Riders 2025 Squad",
+      "spec": "team_players:KKR:2025",
+      "hash": "2fd28f52d48880ae8b42e9a3488c56bda34482fd05337ad161fa35301d9fb795"
+    },
+    {
+      "color": "green",
+      "title": "Players from Gujarat",
+      "spec": "state:Gujarat",
+      "hash": "1027e721a6587919b9ef20e6b0ce73f288389cc76ab6781c6b6ebf4ddc491fb5"
+    },
+    {
+      "color": "blue",
+      "title": "IPL 2026 Top Wicket Takers",
+      "spec": "top_wicket_takers:2026",
+      "hash": "88e1c7f02371f5e4243c866bc19273d926f8d97ad7fad1ef1aa74b8409901cf3"
+    },
+    {
+      "color": "purple",
+      "title": "Orange Cap Winners",
+      "spec": "orange_cap",
+      "hash": "b73b266fff2ddf5432255b02fe24f2ad0f6b6d111c1efee0004edc4801839b34"
+    }
+  ],
+  "display_names": {
+    "DA Warner": "David Warner",
+    "C Sakariya": "Chetan Sakariya",
+    "B Kumar": "Bhuvneshwar Kumar",
+    "MM Patel": "Munaf Patel",
+    "HV Patel": "Hardik Patel",
+    "RA Jadeja": "Ravindra Jadeja",
+    "KS Williamson": "Kane",
+    "SR Tendulkar": "Sachin Tendulkar",
+    "K Rabada": "Kagiso Rabada",
+    "MEK Hussey": "Michael Hussey"
+  }
+}

@@ -1154,3 +1154,50 @@ Ed 47 — 2026-05-09
   blue     [top_run_getters] -> IPL 2026 Top Run Getters: ['Heinrich Klaasen', 'Sai Sudarshan', 'V Kohli', 'Abhishek Sharma']
   purple   [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Arshin Kulkarni', 'Akshat Raghuwanshi', 'Wanindu Hasaranga', 'RR Pant']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-15.json
+
+  Ed 54 — 2026-05-16
+  yellow   [team_players:KKR:2025] -> Kolkata Knight Riders 2025 Squad: ['Anukul Roy', 'Harshit Rana', 'Luvnith Sisodia', 'Mayank Markande']
+  green    [state:Gujarat] -> Players from Gujarat: ['HV Patel', 'RA Jadeja', 'C Sakariya', 'MM Patel']
+  blue     [top_wicket_takers:2026] -> IPL 2026 Top Wicket Takers: ['Anshul Kamboj', 'B Kumar', 'K Rabada', 'Rashid Khan']
+  purple   [orange_cap] -> Orange Cap Winners: ['KS Williamson', 'MEK Hussey', 'DA Warner', 'SR Tendulkar']
+  Resampled GREEN [state:Gujarat]:
+    was: ['HV Patel', 'RA Jadeja', 'C Sakariya', 'MM Patel']
+    now: ['MM Patel', 'C Sakariya', 'HV Patel', 'RA Jadeja']
+  Resampled GREEN [state:Gujarat]:
+    was: ['MM Patel', 'C Sakariya', 'HV Patel', 'RA Jadeja']
+    now: ['MM Patel', 'RA Jadeja', 'HV Patel', 'C Sakariya']
+  Resampled GREEN [state:Gujarat]:
+    was: ['MM Patel', 'RA Jadeja', 'HV Patel', 'C Sakariya']
+    now: ['HV Patel', 'C Sakariya', 'RA Jadeja', 'MM Patel']
+  Resampled GREEN [state:Gujarat]:
+    was: ['HV Patel', 'C Sakariya', 'RA Jadeja', 'MM Patel']
+    now: ['MM Patel', 'RA Jadeja', 'C Sakariya', 'HV Patel']
+  Resampled GREEN [state:Gujarat]:
+    was: ['MM Patel', 'RA Jadeja', 'C Sakariya', 'HV Patel']
+    now: ['HV Patel', 'MM Patel', 'RA Jadeja', 'C Sakariya']
+  Resampled GREEN [state:Gujarat]:
+    was: ['HV Patel', 'MM Patel', 'RA Jadeja', 'C Sakariya']
+    now: ['C Sakariya', 'MM Patel', 'RA Jadeja', 'HV Patel']
+  Resampled GREEN [state:Gujarat]:
+    was: ['C Sakariya', 'MM Patel', 'RA Jadeja', 'HV Patel']
+    now: ['RA Jadeja', 'HV Patel', 'MM Patel', 'C Sakariya']
+  Resampled GREEN [state:Gujarat]:
+    was: ['RA Jadeja', 'HV Patel', 'MM Patel', 'C Sakariya']
+    now: ['MM Patel', 'RA Jadeja', 'C Sakariya', 'HV Patel']
+  Resampled GREEN [state:Gujarat]:
+    was: ['MM Patel', 'RA Jadeja', 'C Sakariya', 'HV Patel']
+    now: ['RA Jadeja', 'HV Patel', 'MM Patel', 'C Sakariya']
+  Resampled GREEN [state:Gujarat]:
+    was: ['RA Jadeja', 'HV Patel', 'MM Patel', 'C Sakariya']
+    now: ['MM Patel', 'RA Jadeja', 'C Sakariya', 'HV Patel']
+  AMBIGUITY WARNING — unresolved after resampling:
+    'RA Jadeja' placed in GREEN also qualifies for BLUE
+    'HV Patel' placed in GREEN also qualifies for BLUE
+  Use --reshuffle or --set-items to fix manually.
+
+  Final categories:
+  yellow   [team_players:KKR:2025] -> Kolkata Knight Riders 2025 Squad: ['Anukul Roy', 'Harshit Rana', 'Luvnith Sisodia', 'Mayank Markande']
+  green    [state:Gujarat] -> Players from Gujarat: ['MM Patel', 'RA Jadeja', 'C Sakariya', 'HV Patel']
+  blue     [top_wicket_takers:2026] -> IPL 2026 Top Wicket Takers: ['Anshul Kamboj', 'B Kumar', 'K Rabada', 'Rashid Khan']
+  purple   [orange_cap] -> Orange Cap Winners: ['KS Williamson', 'MEK Hussey', 'DA Warner', 'SR Tendulkar']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-16.json
