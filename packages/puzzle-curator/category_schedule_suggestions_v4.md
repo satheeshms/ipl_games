@@ -1201,3 +1201,41 @@ Ed 47 — 2026-05-09
   blue     [top_wicket_takers:2026] -> IPL 2026 Top Wicket Takers: ['Anshul Kamboj', 'B Kumar', 'K Rabada', 'Rashid Khan']
   purple   [orange_cap] -> Orange Cap Winners: ['KS Williamson', 'MEK Hussey', 'DA Warner', 'SR Tendulkar']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-16.json
+
+  Ed 55 — 2026-05-17
+  yellow   [team_players:PBKS:2026] -> Punjab Kings 2026 Squad: ['YS Chahal', 'Cooper Connolly', 'Vishal Nishad', 'Vishnu Vinod']
+  green    [team_players:DC:2026] -> Delhi Capitals 2026 Squad: ['Prithvi Shaw', 'Karun Nair', 'Mukesh Kumar', 'AR Patel']
+  blue     [longest_serving] -> Longest Serving IPL Players: ['JD Unadkat', 'SP Narine', 'MK Pandey', 'S Dhawan']
+  purple   [player_of_tournament] -> Player of the Tournament: ['AD Russell', 'V Kohli', 'AC Gilchrist', 'HV Patel']
+  Resampled BLUE [longest_serving]:
+    was: ['JD Unadkat', 'SP Narine', 'MK Pandey', 'S Dhawan']
+    now: ['RG Sharma', 'DS Kulkarni', 'R Ashwin', 'AM Rahane']
+  Resampled PURPLE [player_of_tournament]:
+    was: ['AD Russell', 'V Kohli', 'AC Gilchrist', 'HV Patel']
+    now: ['HV Patel', 'SR Watson', 'V Kohli', 'SP Narine']
+  Resampled PURPLE [player_of_tournament]:
+    was: ['HV Patel', 'SR Watson', 'V Kohli', 'SP Narine']
+    now: ['V Kohli', 'SP Narine', 'CH Gayle', 'GJ Maxwell']
+  Resampled PURPLE [player_of_tournament]:
+    was: ['V Kohli', 'SP Narine', 'CH Gayle', 'GJ Maxwell']
+    now: ['JC Archer', 'V Kohli', 'AD Russell', 'HV Patel']
+  Resampled PURPLE [player_of_tournament]:
+    was: ['JC Archer', 'V Kohli', 'AD Russell', 'HV Patel']
+    now: ['AD Russell', 'SP Narine', 'HV Patel', 'Shubman Gill']
+  Resampled PURPLE [player_of_tournament]:
+    was: ['AD Russell', 'SP Narine', 'HV Patel', 'Shubman Gill']
+    now: ['AD Russell', 'JC Archer', 'AC Gilchrist', 'V Kohli']
+  Resampled PURPLE [player_of_tournament]:
+    was: ['AD Russell', 'JC Archer', 'AC Gilchrist', 'V Kohli']
+    now: ['CH Gayle', 'SR Watson', 'SP Narine', 'JC Archer']
+  Resampled PURPLE [player_of_tournament]:
+    was: ['CH Gayle', 'SR Watson', 'SP Narine', 'JC Archer']
+    now: ['SR Watson', 'JC Archer', 'AD Russell', 'AC Gilchrist']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:PBKS:2026] -> Punjab Kings 2026 Squad: ['YS Chahal', 'Cooper Connolly', 'Vishal Nishad', 'Vishnu Vinod']
+  green    [team_players:DC:2026] -> Delhi Capitals 2026 Squad: ['Prithvi Shaw', 'Karun Nair', 'Mukesh Kumar', 'AR Patel']
+  blue     [longest_serving] -> Longest Serving IPL Players: ['RG Sharma', 'DS Kulkarni', 'R Ashwin', 'AM Rahane']
+  purple   [player_of_tournament] -> Player of the Tournament: ['SR Watson', 'JC Archer', 'AD Russell', 'AC Gilchrist']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-17.json

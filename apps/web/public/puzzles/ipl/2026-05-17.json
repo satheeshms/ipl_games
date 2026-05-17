@@ -1,0 +1,61 @@
+{
+  "id": "2026-05-17",
+  "date": "2026-05-17",
+  "edition": 55,
+  "items": [
+    "Vishnu Vinod",
+    "Vishal Nishad",
+    "AR Patel",
+    "Cooper Connolly",
+    "AM Rahane",
+    "R Ashwin",
+    "Karun Nair",
+    "AC Gilchrist",
+    "Prithvi Shaw",
+    "RG Sharma",
+    "JC Archer",
+    "AD Russell",
+    "SR Watson",
+    "YS Chahal",
+    "Mukesh Kumar",
+    "DS Kulkarni"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Punjab Kings 2026 Squad",
+      "spec": "team_players:PBKS:2026",
+      "hash": "305a86de4a8ecfcad1184f48969b2b73ad89a75a68a609bf0d11bc7e40ff5bf9"
+    },
+    {
+      "color": "green",
+      "title": "Delhi Capitals 2026 Squad",
+      "spec": "team_players:DC:2026",
+      "hash": "c6047a46a7ed140e3182ec4fd8466f3d4bdb250a0411a141f3d2a347cdc3566e"
+    },
+    {
+      "color": "blue",
+      "title": "Longest Serving IPL Players",
+      "spec": "longest_serving",
+      "hash": "6b5cdb28ad0ff9a8ca782020133b9854d9a80e9a44988f48aa2784d4d4b07147"
+    },
+    {
+      "color": "purple",
+      "title": "Player of the Tournament",
+      "spec": "player_of_tournament",
+      "hash": "d39d4ea99b61be3b38bbee61a221172d5f33da009d465ab84316e3a6e879399a"
+    }
+  ],
+  "display_names": {
+    "AR Patel": "Axar Patel",
+    "AM Rahane": "Ajinkya Rahane",
+    "R Ashwin": "Ravichandran Ashwin",
+    "AC Gilchrist": "Adam Gilchrist",
+    "RG Sharma": "Rohit Sharma",
+    "JC Archer": "Jofra Archer",
+    "AD Russell": "Andre Russell",
+    "SR Watson": "Shane Watson",
+    "YS Chahal": "Yuzvendra Chahal",
+    "DS Kulkarni":"Dhawal Kulkarni"
+  }
+}
