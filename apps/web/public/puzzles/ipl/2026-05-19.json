@@ -1,0 +1,56 @@
+{
+  "id": "2026-05-19",
+  "date": "2026-05-19",
+  "edition": 57,
+  "items": [
+    "Abdul Samad",
+    "Younis Khan",
+    "Anshul Kamboj",
+    "SR Watson",
+    "Pankaj Singh",
+    "Shubman Gill",
+    "KL Rahul",
+    "Shahbaz Ahamad",
+    "K Rabada",
+    "Sai Sudarshan",
+    "Aiden Markram",
+    "Jofra Archer",
+    "B Kumar",
+    "V Kohli",
+    "M Rawat",
+    "Matthew Breetzke"
+  ],
+  "categories": [
+    {
+      "color": "yellow",
+      "title": "Rajasthan Royals 2008 Squad",
+      "spec": "team_players:RR:2008",
+      "hash": "2778d4b9951ff6a56df2f448e22506828cf09f5a053e334da8fd55380a31d4f4"
+    },
+    {
+      "color": "green",
+      "title": "IPL 2026 Top Run Getters",
+      "spec": "top_run_getters",
+      "hash": "2bfaff40080ce7c326670380bfb5d726e436aa02e3e2986beb578f7dfe25db81"
+    },
+    {
+      "color": "blue",
+      "title": "Lucknow Super Giants 2026 Squad",
+      "spec": "team_players:LSG:2026",
+      "hash": "4abb3bf4fa2d985bcae6e4b5437b5219805845aa3f830bf75b6e4ad63cea8dbc"
+    },
+    {
+      "color": "purple",
+      "title": "IPL 2026 Top Wicket Takers",
+      "spec": "top_wicket_takers:2026",
+      "hash": "9421fe77ceeac39d78812a136f416b39d1cca8475013b66bbb4b2996241d4620"
+    }
+  ],
+  "display_names": {
+    "SR Watson": "Shane Watson",
+    "K Rabada": "Kagiso Rabada",
+    "B Kumar": "Bhuvneshwar Kumar",
+    "V Kohli": "Virat Kohli",
+    "M Rawat": "Mahesh Rawat"
+  }
+}

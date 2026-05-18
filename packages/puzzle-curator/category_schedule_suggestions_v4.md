@@ -1239,3 +1239,35 @@ Ed 47 — 2026-05-09
   blue     [longest_serving] -> Longest Serving IPL Players: ['RG Sharma', 'DS Kulkarni', 'R Ashwin', 'AM Rahane']
   purple   [player_of_tournament] -> Player of the Tournament: ['SR Watson', 'JC Archer', 'AD Russell', 'AC Gilchrist']
   Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-17.json
+
+  Ed 56 — 2026-05-18
+  yellow   [team_players:CSK:2026] -> Chennai Super Kings 2026 Squad: ['Shivam Dube', 'Khaleel Ahmed', 'Ruturaj Gaikwad', 'Prashant Veer']
+  green    [top_run_getters:2026] -> IPL 2026 Top Run Getters: ['Shubman Gill', 'Sai Sudarshan', 'V Kohli', 'KL Rahul']
+  blue     [top_wicket_takers] -> IPL Career Wicket Takers (100+ Wickets): ['MM Sharma', 'HV Patel', 'SN Thakur', 'UT Yadav']
+  purple   [winning_squad:2016] -> 2016 Champions — Sunrisers Hyderabad: ['KV Sharma', 'A Ashish Reddy', 'Yuvraj Singh', 'S Dhawan']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:CSK:2026] -> Chennai Super Kings 2026 Squad: ['Shivam Dube', 'Khaleel Ahmed', 'Ruturaj Gaikwad', 'Prashant Veer']
+  green    [top_run_getters:2026] -> IPL 2026 Top Run Getters: ['Shubman Gill', 'Sai Sudarshan', 'V Kohli', 'KL Rahul']
+  blue     [top_wicket_takers] -> IPL Career Wicket Takers (100+ Wickets): ['MM Sharma', 'HV Patel', 'SN Thakur', 'UT Yadav']
+  purple   [winning_squad:2016] -> 2016 Champions — Sunrisers Hyderabad: ['KV Sharma', 'A Ashish Reddy', 'Yuvraj Singh', 'S Dhawan']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-18.json
+
+
+Ed 57 — 2026-05-19
+  yellow   [team_players:RR:2008] -> Rajasthan Royals 2008 Squad: ['D Salunkhe', 'RA Jadeja', 'YK Pathan', 'DS Lehmann']
+  green    [top_run_getters] -> IPL 2026 Top Run Getters: ['Shubman Gill', 'Sai Sudarshan', 'V Kohli', 'KL Rahul']
+  blue     [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Matthew Breetzke', 'Shahbaz Ahamad', 'Aiden Markram', 'Abdul Samad']
+  purple   [top_wicket_takers:2026] -> IPL 2026 Top Wicket Takers: ['Anshul Kamboj', 'B Kumar', 'K Rabada', 'Jofra Archer']
+  Resampled YELLOW [team_players:RR:2008]:
+    was: ['D Salunkhe', 'RA Jadeja', 'YK Pathan', 'DS Lehmann']
+    now: ['SR Watson', 'M Rawat', 'Younis Khan', 'Pankaj Singh']
+  AMBIGUITY CHECK: PASS
+
+  Final categories:
+  yellow   [team_players:RR:2008] -> Rajasthan Royals 2008 Squad: ['SR Watson', 'M Rawat', 'Younis Khan', 'Pankaj Singh']
+  green    [top_run_getters] -> IPL 2026 Top Run Getters: ['Shubman Gill', 'Sai Sudarshan', 'V Kohli', 'KL Rahul']
+  blue     [team_players:LSG:2026] -> Lucknow Super Giants 2026 Squad: ['Matthew Breetzke', 'Shahbaz Ahamad', 'Aiden Markram', 'Abdul Samad']
+  purple   [top_wicket_takers:2026] -> IPL 2026 Top Wicket Takers: ['Anshul Kamboj', 'B Kumar', 'K Rabada', 'Jofra Archer']
+  Written -> C:\Users\Modern14\git\ipl_games\packages\puzzle-curator\..\..\apps\web\public\puzzles\ipl\2026-05-19.json

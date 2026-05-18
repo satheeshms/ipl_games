@@ -84,8 +84,8 @@ Status: `[ ]` pending · `[g]` generated · `[r]` reviewed · `[x]` published ·
 | 53 | 15 May | Fri | LSG vs CSK | `team_owners` | `bowling_coaches` | `top_run_getters` | `team_players:LSG:2026` | [ ] |
 | 54 | 16 May | Sat | KKR vs GT | `team_players:KKR:2025` | `state:Gujarat` | `top_wicket_takers:2026`| `orange_cap` | [ ] |
 | 55 | 17 May | Sun | PBKS vs RCB, RR vs DC | `team_players:PBKS:2026` | `team_players:DC:2026` | `longest_serving` | `player_of_tournament` | [ ] |
-| 56 | 18 May | Mon | KKR vs MI | `team_players:KKR:2025` | `country:West Indies` | `top_run_scorers` | `played_both:CSK:MI` | [ ] |
-| 57 | 19 May | Tue | GT vs LSG | `team_players:GT:2026` | `state:Karnataka` | `top_wicket_takers` | `multi_team:5` | [ ] |
+| 56 | 18 May | Mon | CSK vs SRH | `team_players:CSK:2026` | `top_run_getters:2026` | `top_wicket_takers` | `winning_squad:2016` | [ ] |
+| 57 | 19 May | Tue | RR vs LSG | `team_players:RR:2008` | `top_run_getters`| `team_players:LSG:2026` | `top_wicket_takers:2026` | [ ] |
 | 58 | 20 May | Wed | PBKS vs RR | `team_players:PBKS:2025` | `team_legends_batting:GT` | `ranji:Delhi` | `multi_team:7` | [ ] |
 | 59 | 21 May | Thu | SRH vs DC | `team_players:SRH:2025` | `team_legends_bowling:LSG` | `batting_coaches` | `longest_serving` | [ ] |
 

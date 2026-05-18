@@ -1,16 +1,16 @@
 {
   "_note": "Mid-season IPL 2026 stats — last updated April 27, 2026 (after match 37). Verify exact figures each match day before use.",
   "top_run_getters": [
-    {"player_name": "Heinrich Klaasen", "runs": 328, "team": "SRH"},
-    {"player_name": "Sai Sudarshan", "runs": 357, "team": "RR"},
-    {"player_name": "V Kohli", "runs": 357, "team": "DC"},
-    {"player_name": "Abhishek Sharma", "runs": 380, "team": "SRH"}
+    {"player_name": "Shubman Gill", "runs": 328, "team": "GT"},
+    {"player_name": "Sai Sudarshan", "runs": 357, "team": "GT"},
+    {"player_name": "V Kohli", "runs": 357, "team": "RCB"},
+    {"player_name": "KL Rahul", "runs": 380, "team": "DC"}
   ],
   "top_wicket_takers": [
     {"player_name": "Anshul Kamboj", "wickets": 14, "team": "CSK"},
     {"player_name": "B Kumar", "wickets": 13, "team": "LSG"},
     {"player_name": "K Rabada", "wickets": 12, "team": "SRH"},
-    {"player_name": "Rashid Khan", "wickets": 12, "team": "GT"}
+    {"player_name": "Jofra Archer", "wickets": 12, "team": "GT"}
   ],
   "top_run_scorer_top4_teams": [
     {"player_name": "V Kohli", "runs": 328, "team": "RCB"},
